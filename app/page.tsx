@@ -1,54 +1,71 @@
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
 import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code"
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
+import { title, subtitle } from "@/components/Home/primitives";
 import { GithubIcon } from "@/components/icons";
+import MainLayout from "@/app/layouts/Mainlayout";
+import AutoScrollCarousel from "@/components/Home/AutoScrollCarousel";
+import { Team } from "@/components/Home/team";
+import { TemplateContext } from "next/dist/shared/lib/app-router-context";
+import Stats from "@/components/Home/Stats";
+import Macbook from "@/components/Home/Macbook";
+import { Steps } from "@/components/Home/steps";
+import { Hero } from "@/components/Home/Hero";
+import { Pricing } from "@/components/Home/pricing";
+import { CustomTitle } from "@/components/CustomTitle";
+import Review from "@/components/Home/review";
 
 export default function Home() {
-	return (
-		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-			<div className="inline-block max-w-lg text-center justify-center">
-				<h1 className={title()}>Make&nbsp;</h1>
-				<h1 className={title({ color: "violet" })}>beautiful&nbsp;</h1>
-				<br />
-				<h1 className={title()}>
-					websites regardless of your design experience.
-				</h1>
-				<h2 className={subtitle({ class: "mt-4" })}>
-					Beautiful, fast and modern React UI library.
-				</h2>
-			</div>
+  return (
+    <MainLayout>
+      <Hero />
+      <section className=" items-center justify-center gap-4 py-8 md:py-10 mt-20">
+        <div className="mt-20 text-center   justify-center">
+          <CustomTitle title1={"ჩვენი"} title2={"კურსები"} />
+          <div className="mt-20 ">
+            <AutoScrollCarousel />
+          </div>
+        </div>
+      </section>
+      <section className=" items-center justify-center gap-4 py-8 md:py-10">
+        <div className="mt-20 text-center   justify-center">
+          <CustomTitle title1={"ჩვენი"} title2={"გუნდი"} />
+          <Team />
+        </div>
+      </section>
 
-			<div className="flex gap-3">
-				<Link
-					isExternal
-					as={NextLink}
-					href={siteConfig.links.docs}
-					className={buttonStyles({ color: "primary", radius: "full", variant: "shadow" })}
-				>
-					Documentation
-				</Link>
-				<Link
-					isExternal
-					as={NextLink}
-					className={buttonStyles({ variant: "bordered", radius: "full" })}
-					href={siteConfig.links.github}
-				>
-					<GithubIcon size={20} />
-					GitHub
-				</Link>
-			</div>
+      <section className=" items-center justify-center gap-4 py-8 md:py-10">
+        <div className="mt-20 text-center   justify-center">
+          <CustomTitle title1={"პროექტის"} title2={"სტატისტიკა"} />
+          <Stats />
+        </div>
+      </section>
+      <section className=" items-center justify-center gap-4 py-8 md:py-10">
+        <div className="mt-20 text-center   justify-center">
+          <CustomTitle title1={"მიყევი"} title2={"ინსტრუქციას"} />
+          <div className="mt-10">
+            <Steps />
+          </div>
+        </div>
+      </section>
+      <section className=" items-center justify-center gap-4 py-8 md:py-10">
+        <div className="mt-20 text-center   justify-center">
+          <div className="mt-10">
+            <Pricing />
+          </div>
+        </div>
+      </section>
 
-			<div className="mt-8">
-				<Snippet hideSymbol hideCopyButton variant="flat">
-					<span>
-						Get started by editing <Code color="primary">app/page.tsx</Code>
-					</span>
-				</Snippet>
-			</div>
-		</section>
-	);
+      <section className=" items-center justify-center gap-4 py-8 md:py-10">
+        <div className="mt-20 text-center   justify-center">
+          <CustomTitle title1={"ჩვენი"} title2={"მომხმარებლები"} />
+          <div className="mt-10">
+            <Review />
+          </div>
+        </div>
+      </section>
+    </MainLayout>
+  );
 }
