@@ -26,13 +26,13 @@ import {
   Scale,
 } from "../Home/Icon.jsx";
 import { EduSpace } from "@/components/EduSpaceLogo.jsx";
-import {useUser} from "@/app/context/UserDbContext.tsx"
 import { SearchIcon } from "@/components/navbar/SearchIcon.jsx";
 import { useEffect } from "react";
 import { NotificationIcon } from "@/components/navbar/NotificationIcon.jsx";
 import { Skeleton } from "@nextui-org/react";
 import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
 import SideNavBarWithDropDown from "@/components/navbar/sidenavbar.jsx";
+import { useUser } from "@/app/context/UserDbContext.tsx";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
