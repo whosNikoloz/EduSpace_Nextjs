@@ -27,9 +27,9 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 const Posts = () => {
-  const GetPosts = async (page: any, pageSize: any) => {
+  const GetPosts = async (page: number, pageSize: number) => {
     try {
-      const apiUrl = `${social_API}Posts?page=${page}&pageSize=${pageSize}`; // Construct the URL with query parameters
+      const apiUrl = `${social_API}Posts?page=${page}&pageSize=${pageSize}`;
 
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -43,11 +43,11 @@ const Posts = () => {
         return posts;
       } else {
         const errorText = await response.text();
-        return errorText;
+        throw new Error(errorText); // Throw an error if the response is not OK
       }
     } catch (error) {
-      window.alert(error);
-      return error;
+      console.error("Error fetching posts:", error);
+      throw error; // Rethrow the error to the calling function
     }
   };
 
@@ -57,7 +57,10 @@ const Posts = () => {
   ) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const fileRef = ref(storage, `${folderName}/${file.name}`);
+        const uniqueFileName = `${Date.now()}-${Math.random()
+          .toString(36)
+          .substring(2)}-${file.name}`;
+        const fileRef = ref(storage, `${folderName}/${uniqueFileName}`);
         const uploadTask = uploadBytesResumable(fileRef, file);
 
         // Listen for state changes, errors, and completion of the upload.
@@ -73,13 +76,18 @@ const Posts = () => {
             reject(error);
           },
           async () => {
-            // Upload completed successfully, get the download URL.
-            const downloadURL = await getDownloadURL(fileRef);
-            console.log(
-              "File uploaded successfully. Download URL:",
-              downloadURL
-            );
-            resolve(downloadURL);
+            try {
+              // Upload completed successfully, get the download URL.
+              const downloadURL = await getDownloadURL(fileRef);
+              console.log(
+                "File uploaded successfully. Download URL:",
+                downloadURL
+              );
+              resolve(downloadURL);
+            } catch (error) {
+              console.error("Error getting download URL:", error);
+              reject(error);
+            }
           }
         );
 
@@ -93,10 +101,10 @@ const Posts = () => {
   };
 
   const CreatePost = async (
-    subject: any,
-    content: any,
-    video: File,
-    picture: File,
+    subject: string,
+    content: string,
+    video: File | null,
+    picture: File | null
   ) => {
     try {
       const token = localStorage.getItem("jwt_token");
@@ -133,6 +141,7 @@ const Posts = () => {
       }
     } catch (error) {
       console.error("Post creation error:", error); // Log the error
+      // Display an error message to the user or handle it as needed
       return error;
     }
   };
@@ -160,7 +169,11 @@ const Posts = () => {
     }
   };
 
-  const FilteredPosts = async (subject: any, page: any, pageSize: any) => {
+  const FilteredPosts = async (
+    subject: string,
+    page: number,
+    pageSize: number
+  ) => {
     try {
       const encodedSubject = encodeURIComponent(subject);
       const apiUrl = `${social_API}Posts/${encodedSubject}?page=${page}&pageSize=${pageSize}`;
@@ -187,7 +200,7 @@ const Posts = () => {
     }
   };
 
-  const deleteFileByDownloadUrl = async (contentUrl: any) => {
+  const deleteFileByDownloadUrl = async (contentUrl: string) => {
     try {
       // Find the corresponding file path using the mapping
 
@@ -207,9 +220,9 @@ const Posts = () => {
   };
 
   const DeletePost = async (
-    postid: any,
-    contentvideo: any,
-    contentpicture: any
+    postid: number,
+    contentvideo: string,
+    contentpicture: string
   ) => {
     try {
       const token = localStorage.getItem("jwt_token");
@@ -247,6 +260,3 @@ const Posts = () => {
 };
 
 export default Posts;
-function deleteObject(fileRef: any) {
-  throw new Error("Function not implemented.");
-}

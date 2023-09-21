@@ -32,7 +32,7 @@ import { NotificationIcon } from "@/components/navbar/NotificationIcon.jsx";
 import { Skeleton } from "@nextui-org/react";
 import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
 import SideNavBarWithDropDown from "@/components/navbar/sidenavbar.jsx";
-import { useUser } from "@/app/context/UserDbContext.tsx";
+import { useUser } from "@/app/context/UserdbContext";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

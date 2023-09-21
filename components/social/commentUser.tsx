@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { User } from "@nextui-org/react";
+import CommentApi from "@/app/api/Social/Comment";
 import {
   Dropdown,
   Link,
@@ -9,7 +10,8 @@ import {
   Button,
 } from "@nextui-org/react";
 import { DotsIcon } from "@/components/social/DotsIcon";
-import { useUser } from "@/app/context/UserDbContext";
+import { useUser } from "@/app/context/UserdbContext";
+import WarningAlert from "@/components/social/WarningAlert";
 
 interface CommentProps {
   commentId: string;
@@ -55,6 +57,27 @@ const Comment: React.FC<CommentProps> = ({
 }) => {
   const formattedTimeAgo = formatTimeAgo(createdAt);
   const { user } = useUser();
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const [showWarningAlert, setShowWarningAlert] = useState(false);
+
+  const confirmDelete = () => {
+    setShowWarningAlert(true);
+  };
+
+  const handleDelete = () => {
+    const comment = CommentApi();
+    setIsDeleting(true);
+    comment
+      .DeleteComment(commentId, videoUrl, pictureUrl)
+      .then(() => {
+        setIsDeleting(false);
+      })
+      .catch((error) => {
+        setIsDeleting(false);
+        console.error("Error deleting post:", error);
+      });
+  };
 
   return (
     <div className="flex items-center bg-white dark:bg-gray-800">
@@ -110,12 +133,23 @@ const Comment: React.FC<CommentProps> = ({
                 key="delete"
                 className="text-danger"
                 color="danger"
-                //onClick={confirmDelete}
+                onClick={confirmDelete}
               >
                 კომენტარის წაშლა
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
+        )}
+        {showWarningAlert && (
+          <WarningAlert
+            title="პოსტის წაშლა"
+            message="დარწმუნებული ხართ, რომ გსურთ ამ პოსტის წაშლა?"
+            onCancel={() => setShowWarningAlert(false)}
+            onAgree={() => {
+              setShowWarningAlert(false);
+              handleDelete();
+            }}
+          />
         )}
       </div>
     </div>

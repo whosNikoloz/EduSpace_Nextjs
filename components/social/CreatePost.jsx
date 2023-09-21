@@ -6,7 +6,7 @@ import FileUpload from "@/components/social/fileuploade";
 import { Textarea } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
-import { useUser } from "@/app/context/UserDbContext";
+import { useUser } from "@/app/context/UserdbContext";
 import Posts from "@/app/api/Social/Post";
 import { Skeleton } from "@nextui-org/react";
 import { User } from "@nextui-org/react";

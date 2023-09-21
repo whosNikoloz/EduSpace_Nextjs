@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
-import { UserProvider } from "@/app/context/UserDbContext";
+import { UserProvider } from "@/app/context/UserdbContext";
 import { Providers } from "./providers";
 import { QueryClient, QueryClientProvider } from "react-query";
 

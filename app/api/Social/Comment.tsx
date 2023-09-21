@@ -7,6 +7,8 @@ import {
   uploadBytes,
   getDownloadURL,
   uploadBytesResumable,
+  listAll,
+  deleteObject as deleteFirebaseObject,
 } from "firebase/storage";
 
 const social_API = "https://192.168.1.68:45455/api/Social/";
@@ -54,7 +56,10 @@ const Comment = () => {
   ) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const fileRef = ref(storage, `${folderName}/${file.name}`);
+        const uniqueFileName = `${Date.now()}-${Math.random()
+          .toString(36)
+          .substring(2)}-${file.name}`;
+        const fileRef = ref(storage, `${folderName}/${uniqueFileName}`);
         const uploadTask = uploadBytesResumable(fileRef, file);
 
         // Listen for state changes, errors, and completion of the upload.
@@ -134,9 +139,60 @@ const Comment = () => {
     }
   };
 
+  const deleteFileByDownloadUrl = async (contentUrl: any) => {
+    try {
+      // Find the corresponding file path using the mapping
+
+      if (contentUrl) {
+        // Create a reference to the file path in Firebase Storage
+        const fileRef = ref(storage, contentUrl);
+
+        // Delete the file using the renamed imported function
+        await deleteFirebaseObject(fileRef);
+        console.log("File deleted successfully");
+      } else {
+        console.error("File not found in your app's mapping");
+      }
+    } catch (error) {
+      console.error("Error deleting file from Firebase Storage:", error);
+    }
+  };
+
+  const DeleteComment = async (
+    commentid: any,
+    contentvideo: any,
+    contentpicture: any
+  ) => {
+    try {
+      const token = localStorage.getItem("jwt_token");
+
+      const response = await fetch(social_API + "Comments/" + commentid, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const fileToPass = contentvideo ? contentvideo : contentpicture;
+        if (fileToPass) {
+          deleteFileByDownloadUrl(fileToPass);
+        }
+      } else {
+        const errorText = await response.text();
+        return errorText;
+      }
+    } catch (error) {
+      window.alert(error);
+      return error;
+    }
+  };
+
   return {
     GetComments,
     CreateComment,
+    DeleteComment,
   };
 };
 

@@ -15,7 +15,7 @@ import {
   DropdownItem,
   Button,
 } from "@nextui-org/react";
-import { useUser } from "@/app/context/UserDbContext";
+import { useUser } from "@/app/context/UserdbContext";
 import Comment from "@/components/social/commentUser";
 import WarningAlert from "./WarningAlert";
 
@@ -283,6 +283,7 @@ function PostCard({ postData }) {
                     createdAt={comment.commentCreatedAt}
                     videoUrl={comment.commentVideo} // Set a default contentUrl if none found
                     pictureUrl={comment.commentPicture}
+                    userid={comment.commentUser.userId}
                   />
                 );
               })}
