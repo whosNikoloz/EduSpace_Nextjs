@@ -84,10 +84,14 @@ function PostCard({ postData, onDelete }) {
         <div className="px-5 py-4 bg-white dark:bg-gray-800 shadow justif rounded-lg   w-[800px] mb-4">
           <div className="flex justify-between mb-4">
             <User
-              name={postData.user.firstname + " " + postData.user.lastname}
+              name={
+                postData.user.firstname && postData.user.lastname
+                  ? postData.user.firstname + " " + postData.user.lastname
+                  : postData.user.username
+              }
               description={formattedTimeAgo + "  " + postData.subject}
               avatarProps={{
-                src: postData.user.picture,
+                src: postData.user.picture || "default-avatar-src",
               }}
             />
             {user && postData.user.userId === user.userId && (
@@ -224,7 +228,11 @@ function PostCard({ postData, onDelete }) {
               {/* post author profile */}
               <div className="my-2 px-4 flex items-center space-x-2 ">
                 <User
-                  name={postData.user.firstname + " " + postData.user.lastname}
+                  name={
+                    postData.user.firstname && postData.user.lastname
+                      ? postData.user.firstname + " " + postData.user.lastname
+                      : postData.user.username
+                  }
                   description={formattedTimeAgo + "  " + postData.subject}
                   avatarProps={{
                     src: postData.user.picture,

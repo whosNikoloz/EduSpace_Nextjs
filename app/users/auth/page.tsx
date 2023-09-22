@@ -13,7 +13,7 @@ import { Button } from "@nextui-org/react";
 const AuthPage: React.FC = () => {
   const router = useRouter();
 
-  const [isSignUpMode, setIsSignUpMode] = useState(true);
+  const [isSignUpMode, setIsSignUpMode] = useState(false);
 
   const [registrationState, setRegistrationState] = useState({
     username: "",

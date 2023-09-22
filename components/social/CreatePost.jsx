@@ -42,30 +42,36 @@ export default function CreatePost({ setPosts }) {
   const handleLanguageSelect = (event) => {
     const selectedValue = event.target.value;
 
+    console.log("selectedValue:", selectedValue);
+
     switch (selectedValue) {
       case "$.0":
         setPostModel((prevModel) => ({
           ...prevModel,
           subject: "C#",
         }));
+        setSelectedLanguage("C#");
         break;
       case "$.1":
         setPostModel((prevModel) => ({
           ...prevModel,
           subject: "Swift",
         }));
+        setSelectedLanguage("Swift");
         break;
       case "$.2":
         setPostModel((prevModel) => ({
           ...prevModel,
           subject: "Python",
         }));
+        setSelectedLanguage("Python");
         break;
       case "$.3":
         setPostModel((prevModel) => ({
           ...prevModel,
           subject: "C++",
         }));
+        setSelectedLanguage("C++");
         break;
       default:
         break;
@@ -263,6 +269,7 @@ export default function CreatePost({ setPosts }) {
                           color="primary"
                           className="w-full py-2"
                           onClick={handlePost}
+                          isDisabled={!selectedLanguage || PostModel.content}
                         >
                           დაპოსტვა
                         </Button>

@@ -43,10 +43,10 @@ const Authentication = () => {
   };
 
   const handleRegistration = async (
-    userName: any,
-    email: any,
-    password: any,
-    confirmPassword: any
+    userName: string,
+    email: string,
+    password: string,
+    confirmPassword: string
   ) => {
     try {
       console.log(email);
