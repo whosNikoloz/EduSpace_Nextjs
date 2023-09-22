@@ -38,7 +38,7 @@ function formatTimeAgo(timestamp) {
   }
 }
 
-function PostCard({ postData }) {
+function PostCard({ postData, onDelete }) {
   const { user } = useUser();
   const [isFullTextVisible, setFullTextVisible] = useState(false);
 
@@ -64,6 +64,7 @@ function PostCard({ postData }) {
         setIsDeleting(false);
         setIsOpen(false); // Close the dialog after deletion
         onDelete(postData.postId); // Notify the parent component about the deletion
+        setShowAlert(true); // Show an alert to confirm that the post has been deleted
       })
       .catch((error) => {
         setIsDeleting(false);
@@ -161,8 +162,7 @@ function PostCard({ postData }) {
                 className="ml-1 text-gray-500 dark:text-gray-400 font-light"
                 onClick={() => setIsOpen(true)}
               >
-                {commentCount}{" "}
-                {commentCount === 1 ? "კომენტარი" : "კომენტარები"}
+                {commentCount === 0 ? "კომენტარი" : `${commentCount} კომენტარი`}
               </button>
             </Link>
           </div>
@@ -266,8 +266,9 @@ function PostCard({ postData }) {
                 <div className="flex"></div>
                 <Link>
                   <button className="mr-4 text-gray-500 dark:text-gray-400 font-light">
-                    {commentCount}{" "}
-                    {commentCount === 1 ? "კომენტარი" : "კომენტარები"}
+                    {commentCount === 0
+                      ? "კომენტარი"
+                      : `${commentCount} კომენტარი`}
                   </button>
                 </Link>
               </div>
@@ -277,6 +278,7 @@ function PostCard({ postData }) {
               {postData.comments.map((comment) => {
                 return (
                   <Comment
+                    commentId={comment.commentId}
                     username={comment.commentUser.username}
                     commentText={comment.commentContent}
                     avatarUrl={comment.commentUser.picture}

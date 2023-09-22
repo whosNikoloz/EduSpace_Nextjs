@@ -10,9 +10,12 @@ import { useUser } from "@/app/context/UserdbContext";
 import Posts from "@/app/api/Social/Post";
 import { Skeleton } from "@nextui-org/react";
 import { User } from "@nextui-org/react";
+import Alert from "@/components/social/Alert";
 
 export default function CreatePost({ setPosts }) {
   const [selectedLanguage, setSelectedLanguage] = useState("");
+
+  const [alert, setAlert] = useState(null);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -107,8 +110,15 @@ export default function CreatePost({ setPosts }) {
         const newPost = newPostResponse;
 
         console.log("last post", newPost);
-        // Call the callback function with the new post
-        setPosts((prevPosts) => [...prevPosts, newPost]);
+
+        // Prepend the new post to the beginning of the posts array
+        setPosts((prevPosts) => [newPost, ...prevPosts]);
+
+        setAlert({
+          message: "პოსტი წარმატებით დაემატა",
+          type: "success",
+          onClose: () => setAlert(null),
+        });
 
         setIsOpen(false);
       } else {
@@ -261,6 +271,13 @@ export default function CreatePost({ setPosts }) {
                   </div>
                 </div>
               </Dialog>
+              {alert && (
+                <Alert
+                  message={"პოსტი წარმატებით დაემატა"}
+                  type={"success"}
+                  onClose={alert.onClose}
+                />
+              )}
             </>
           ) : (
             // Render this content if user is null

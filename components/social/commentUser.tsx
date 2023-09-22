@@ -142,8 +142,9 @@ const Comment: React.FC<CommentProps> = ({
         )}
         {showWarningAlert && (
           <WarningAlert
-            title="პოსტის წაშლა"
-            message="დარწმუნებული ხართ, რომ გსურთ ამ პოსტის წაშლა?"
+            title="კომენტარის წაშლა"
+            message="
+            დარწმუნებული ხართ რომ გსურთ ამ კომენტარის წაშლა?"
             onCancel={() => setShowWarningAlert(false)}
             onAgree={() => {
               setShowWarningAlert(false);

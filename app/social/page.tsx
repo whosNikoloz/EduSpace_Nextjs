@@ -9,8 +9,14 @@ import Social from "../api/Social/Post";
 import { useQuery } from "react-query";
 import PostCardSkeleton from "@/components/social/PostCardSkeleton";
 import { CustomTitle } from "@/components/CustomTitle";
+import Alert from "@/components/social/Alert";
 
 export default function SocialPage() {
+  const [alert, setAlert] = useState<{
+    message: string;
+    type: string;
+    onClose: () => void;
+  } | null>(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [posts, setPosts] = useState<
     Array<{ postId: Key | null | undefined; subject: string }>
@@ -43,12 +49,34 @@ export default function SocialPage() {
       if (data.length === 0) {
         setHasMorePages(false);
       } else {
-        setPosts((prevPosts) => [...prevPosts, ...data]);
+        // Filter out duplicate posts based on their postId
+        const uniqueData = data.filter(
+          (newPost: { postId: React.Key | null | undefined }) => {
+            return !posts.some((post) => post.postId === newPost.postId);
+          }
+        );
+
+        // Prepend the new unique posts to the existing posts array
+        setPosts((prevPosts) => [...uniqueData, ...prevPosts]);
         setIsLoadingMore(false);
         setIsLoadingNewPosts(false);
       }
     }
-  }, [data, searchQuery]);
+
+    // Update the filteredPosts array with the new post
+    setSearchQuery(""); // Clear the search query to show all posts
+  }, [data]);
+
+  useEffect(() => {
+    const pollingInterval = setInterval(async () => {
+      const updatedPosts = await fetchPosts(); // Make an API call to get the latest posts
+      setPosts(updatedPosts);
+    }, 5000); // Polling interval, e.g., every 5 seconds
+
+    return () => {
+      clearInterval(pollingInterval); // Clear the interval when the component unmounts
+    };
+  }, []);
 
   const filteredPosts = searchQuery
     ? posts.filter((post) =>
@@ -93,6 +121,17 @@ export default function SocialPage() {
     }
   };
 
+  const handleDeletePost = (postId: Key | null | undefined) => {
+    // Remove the deleted post from the posts array
+    setPosts((prevPosts) => prevPosts.filter((post) => post.postId !== postId));
+
+    setAlert({
+      message: "Post deleted successfully",
+      type: "success",
+      onClose: () => setAlert(null),
+    });
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -120,9 +159,19 @@ export default function SocialPage() {
             <CustomTitle title1={"გაიფილტრა"} title2={searchQuery} />
           )}
           {filteredPosts.map((post: { postId: Key | null | undefined }) => (
-            <PostCard key={post.postId} postData={post} />
+            <PostCard
+              key={post.postId}
+              postData={post}
+              onDelete={handleDeletePost}
+            />
           ))}
-
+          {alert && (
+            <Alert
+              message={"პოსტი წარმატებით წაიშალა"}
+              type={"success"}
+              onClose={alert.onClose}
+            />
+          )}
           {isLoadingNewPosts && <PostCardSkeleton />}
 
           <div ref={endOfListRef}></div>

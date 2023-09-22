@@ -10,8 +10,10 @@ import {
   listAll,
   deleteObject as deleteFirebaseObject,
 } from "firebase/storage";
+import { SubresourceIntegrityPlugin } from "next/dist/build/webpack/plugins/subresource-integrity-plugin";
 
-const social_API = "https://192.168.1.68:45455/api/Social/";
+const social_API = "https://192.168.1.68:45457/api/Social/";
+const social_API_NIkoloza = "https://172.20.10.7:45456/api/Social/";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCpTtUB_NqmFfsoccOBozkZ8tMlpzTd0U0",
@@ -159,14 +161,20 @@ const Comment = () => {
   };
 
   const DeleteComment = async (
-    commentid: any,
-    contentvideo: any,
-    contentpicture: any
+    commentid: string,
+    contentvideo: string,
+    contentpicture: string
   ) => {
     try {
+      const commentIdNumber = parseInt(commentid, 10); // Convert commentid to a number
+
+      if (isNaN(commentIdNumber)) {
+        throw new Error("commentid is not a valid number");
+      }
+
       const token = localStorage.getItem("jwt_token");
 
-      const response = await fetch(social_API + "Comments/" + commentid, {
+      const response = await fetch(social_API + "Comments/" + commentIdNumber, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
