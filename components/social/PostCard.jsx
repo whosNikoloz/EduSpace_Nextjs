@@ -7,6 +7,7 @@ import CommentForm from "./commentform";
 import { User } from "@nextui-org/react";
 import { DotsIcon } from "@/components/social/DotsIcon";
 import Posts from "@/app/api/Social/Post";
+import { Skeleton } from "@nextui-org/react";
 import {
   Dropdown,
   Link,
@@ -40,6 +41,15 @@ function formatTimeAgo(timestamp) {
 
 function PostCard({ postData, onDelete }) {
   const { user } = useUser();
+  const [IsAddingComment, setIsAddingComment] = useState(false);
+
+  const handleNewComment = () => {
+    // Set a flag to indicate that a new comment is created
+    setIsAddingComment(true);
+    setTimeout(() => {
+      setIsAddingComment(false);
+    }, 2000);
+  };
   const [isFullTextVisible, setFullTextVisible] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -55,21 +65,25 @@ function PostCard({ postData, onDelete }) {
     setShowWarningAlert(true);
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     const post = Posts();
     setIsDeleting(true);
-    post
-      .DeletePost(postData.postId, postData.video, postData.picture)
-      .then(() => {
-        setIsDeleting(false);
-        setIsOpen(false); // Close the dialog after deletion
-        onDelete(postData.postId); // Notify the parent component about the deletion
-        setShowAlert(true); // Show an alert to confirm that the post has been deleted
-      })
-      .catch((error) => {
-        setIsDeleting(false);
-        console.error("Error deleting post:", error);
-      });
+    try {
+      await post.DeletePost(
+        postData.postId,
+        postData.video,
+        postData.picture,
+        postData.comments
+      );
+      setIsDeleting(false);
+      console.log(postData.comments);
+      setIsOpen(false); // Close the dialog after deletion
+      onDelete(postData.postId); // Notify the parent component about the deletion
+      setShowAlert(true); // Show an alert to confirm that the post has been deleted
+    } catch (error) {
+      setIsDeleting(false);
+      console.error("Error deleting post:", error);
+    }
   };
 
   const formattedTimeAgo = formatTimeAgo(postData.createdAt);
@@ -132,32 +146,25 @@ function PostCard({ postData, onDelete }) {
           </p>
           <br />
           {(postData.picture || postData.video) && (
-            <>
+            <div className="flex items-center justify-center w-full">
               {postData.video && (
                 <video
                   controls
-                  width="100%"
-                  max-width="100%"
-                  height="auto"
+                  className="w-auto max-h-screen rounded"
                   src={postData.video}
                   alt="Video Description"
                 />
               )}
               {postData.picture && (
-                <button>
+                <button onClick={() => setIsOpen(true)}>
                   <img
-                    className="rounded"
+                    className="w-auto max-h-screen rounded"
                     src={postData.picture}
-                    width="100%"
-                    max-width="100%"
-                    height="auto"
-                    layout="responsive"
                     alt="Image Description"
-                    onClick={() => setIsOpen(true)}
                   />
                 </button>
               )}
-            </>
+            </div>
           )}
           <div className="flex justify-between items-center mt-5">
             <div className="flex"></div>
@@ -190,7 +197,6 @@ function PostCard({ postData, onDelete }) {
         className="fixed z-10 inset-0 overflow-y-auto"
       >
         <div className="flex items-center justify-center min-h-screen mt-10">
-          {/* dialog overlay */}
           <Dialog.Overlay className="fixed inset-0 bg-black opacity-20" />
           {/* dialog card */}
           <div className="relative bg-white w-full md:w-9/12 lg:w-8/12 rounded-lg dark:bg-gray-800 mt-6">
@@ -241,32 +247,26 @@ function PostCard({ postData, onDelete }) {
               </div>
               <div className="my-2 px-4 flex items-center ">{text}</div>
               {/* create post interface */}
-              <div className="px-4 py-2">
+              <div className="px-4 py-2 ">
                 <div className="flex items-center justify-center">
                   {(postData.picture || postData.video) && (
-                    <>
+                    <div className="flex items-center justify-center w-full">
                       {postData.video && (
                         <video
                           controls
-                          width="100%"
-                          max-width="100%"
-                          height="auto"
+                          className="w-auto max-h-screen rounded"
                           src={postData.video}
                           alt="Video Description"
                         />
                       )}
                       {postData.picture && (
                         <img
-                          className="rounded"
+                          className="w-auto max-h-screen rounded"
                           src={postData.picture}
-                          width="100%"
-                          max-width="100%"
-                          height="auto"
-                          layout="responsive"
                           alt="Image Description"
                         />
                       )}
-                    </>
+                    </div>
                   )}
                 </div>
               </div>
@@ -283,20 +283,55 @@ function PostCard({ postData, onDelete }) {
 
               <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
 
-              {postData.comments.map((comment) => {
-                return (
-                  <Comment
-                    commentId={comment.commentId}
-                    username={comment.commentUser.username}
-                    commentText={comment.commentContent}
-                    avatarUrl={comment.commentUser.picture}
-                    createdAt={comment.commentCreatedAt}
-                    videoUrl={comment.commentVideo} // Set a default contentUrl if none found
-                    pictureUrl={comment.commentPicture}
-                    userid={comment.commentUser.userId}
-                  />
-                );
-              })}
+              {postData.comments.map((comment) => (
+                <Comment
+                  key={comment.commentId}
+                  commentId={comment.commentId}
+                  username={comment.commentUser.username}
+                  commentText={comment.commentContent}
+                  avatarUrl={comment.commentUser.picture}
+                  createdAt={comment.commentCreatedAt}
+                  videoUrl={comment.commentVideo}
+                  pictureUrl={comment.commentPicture}
+                  userid={comment.commentUser.userId}
+                />
+              ))}
+
+              {IsAddingComment ? (
+                <>
+                  <div className="flex items-center bg-white dark:bg-gray-800">
+                    <div className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex max-w-lg">
+                      <div>
+                        <Skeleton className="flex rounded-full w-12 h-12" />
+                      </div>
+                      <div className="ml-3">
+                        <Skeleton className="rounded-3xl">
+                          <div className="bg-gray-100 dark:bg-gray-700 rounded-3xl px-4 pt-2 pb-2.5 mb-2">
+                            <div className="font-semibold text-sm leading-relaxed">
+                              <Skeleton className="h-3 w-3/5 rounded-lg" />
+                            </div>
+                            <div className="text-normal leading-snug md:leading-normal"></div>
+                          </div>
+                          <div className="text-sm ml-4 mt-0.5 text-gray-500 dark:text-gray-400">
+                            {formattedTimeAgo}
+                          </div>
+                        </Skeleton>
+                      </div>
+                      <Button isIconOnly variant="light">
+                        <DotsIcon
+                          size={35}
+                          filled={undefined}
+                          height={undefined}
+                          width={undefined}
+                          label={undefined}
+                        />
+                      </Button>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
 
               <div className="my-1 px-4 flex items-start space-x-2 mt-5">
                 {user && (
@@ -307,8 +342,11 @@ function PostCard({ postData, onDelete }) {
                         src: user.picture,
                       }}
                     />
-                    <div className="mb-4  w-full max-w-lg ">
-                      <CommentForm postid={postData.postId} />
+                    <div className="mb-4 w-full max-w-lg">
+                      <CommentForm
+                        postid={postData.postId}
+                        onCommentSubmit={handleNewComment}
+                      />
                     </div>
                   </>
                 )}

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Comment from "@/app/api/Social/Comment";
 
-function CommentForm({ postid }) {
+function CommentForm({ postid, onCommentSubmit }) {
   const fileInputRef = useRef(null);
   const [commentText, setCommentText] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -57,15 +57,17 @@ function CommentForm({ postid }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      comment.CreateComment(
+      await comment.CreateComment(
         commentText,
         commentModel.picture,
-        comment.video,
+        commentModel.video,
         postid
       );
+      setCommentText("");
       setSelectedImage(null);
+      onCommentSubmit();
     } catch (error) {
-      // Handle network or other errors
+      console.log(error);
     }
   };
 

@@ -126,6 +126,14 @@ export default function CreatePost({ setPosts }) {
           onClose: () => setAlert(null),
         });
 
+        setPostModel({
+          subject: "",
+          content: "",
+          video: null,
+          picture: null,
+          Userid: "",
+        });
+
         setIsOpen(false);
       } else {
         setPostModelError("Error fetching new post");
@@ -179,7 +187,16 @@ export default function CreatePost({ setPosts }) {
 
               <Dialog
                 open={isOpen}
-                onClose={() => setIsOpen(false)}
+                onClose={() => {
+                  setIsOpen(false);
+                  setPostModel({
+                    subject: "",
+                    content: "",
+                    video: null,
+                    picture: null,
+                    Userid: "",
+                  });
+                }}
                 className="fixed z-10 inset-0 overflow-y-auto"
               >
                 <div className="flex items-center justify-center min-h-screen mt-10 ">
@@ -197,7 +214,16 @@ export default function CreatePost({ setPosts }) {
                       <div className="absolute right-0 p-2">
                         <button
                           className="bg-gray-800 p-2  rounded-full text-black dark:text-white"
-                          onClick={() => setIsOpen(false)}
+                          onClick={() => {
+                            setIsOpen(false);
+                            setPostModel({
+                              subject: "",
+                              content: "",
+                              video: null,
+                              picture: null,
+                              Userid: "",
+                            });
+                          }}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -269,7 +295,7 @@ export default function CreatePost({ setPosts }) {
                           color="primary"
                           className="w-full py-2"
                           onClick={handlePost}
-                          isDisabled={!selectedLanguage || PostModel.content}
+                          isDisabled={!selectedLanguage || !PostModel.content}
                         >
                           დაპოსტვა
                         </Button>

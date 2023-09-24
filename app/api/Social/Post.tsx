@@ -11,7 +11,7 @@ import {
   deleteObject as deleteFirebaseObject,
 } from "firebase/storage";
 
-const social_API = "https://192.168.1.68:45457/api/Social/";
+const social_API = "https://192.168.1.68:45455/api/Social/";
 const social_API_NIkoloza = "https://172.20.10.7:45456/api/Social/";
 
 const firebaseConfig = {
@@ -69,8 +69,9 @@ const Posts = () => {
           "state_changed",
           (snapshot) => {
             // You can monitor the progress here if needed.
-            // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            // console.log(`Upload is ${progress}% done`);
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log(`Upload is ${progress}% done`);
           },
           (error) => {
             console.error("Error uploading file:", error);
@@ -203,8 +204,6 @@ const Posts = () => {
 
   const deleteFileByDownloadUrl = async (contentUrl: string) => {
     try {
-      // Find the corresponding file path using the mapping
-
       if (contentUrl) {
         // Create a reference to the file path in Firebase Storage
         const fileRef = ref(storage, contentUrl);
@@ -223,12 +222,27 @@ const Posts = () => {
   const DeletePost = async (
     postid: number,
     contentvideo: string,
-    contentpicture: string
+    contentpicture: string,
+    comments: any
   ) => {
     try {
       const token = localStorage.getItem("jwt_token");
 
-      const response = await fetch(social_API + "Posts/" + postid, {
+      if (comments) {
+        for (const comment of comments) {
+          console.log("picture", comment.commentPicture);
+          console.log("video", comment.commentVideo);
+          const fileToPass = comment.commentPicture
+            ? comment.commentPicture
+            : comment.commentVideo;
+          if (fileToPass) {
+            await deleteFileByDownloadUrl(fileToPass);
+          }
+        }
+      }
+
+      // Delete the post itself
+      const postResponse = await fetch(social_API + "Posts/" + postid, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -236,15 +250,18 @@ const Posts = () => {
         },
       });
 
-      if (response.ok) {
+      if (postResponse.ok) {
         const fileToPass = contentvideo ? contentvideo : contentpicture;
         if (fileToPass) {
           deleteFileByDownloadUrl(fileToPass);
         }
       } else {
-        const errorText = await response.text();
+        const errorText = await postResponse.text();
         return errorText;
       }
+
+      // Delete the comments from your SQL database
+      // Add your SQL delete code here
     } catch (error) {
       window.alert(error);
       return error;
