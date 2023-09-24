@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@nextui-org/button";
 
-function FileUpload({ onFileSelect }) {
+function FileUpload({ onFileSelect, onCancelUpload }) {
   const [mediaSrc, setMediaSrc] = useState(null);
 
   const handleFileChange = (event) => {
@@ -24,11 +24,50 @@ function FileUpload({ onFileSelect }) {
   const handleReupload = () => {
     setMediaSrc(null);
     onFileSelect(null);
-    document.getElementById("dropzone-file").value = ""; // Clear the file input
+    onCancelUpload();
+    const fileInput = document.getElementById("dropzone-file");
+    if (fileInput) {
+      fileInput.value = ""; // Clear the file input
+    }
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    event.dataTransfer.dropEffect = "copy";
+  };
+
+  const handleDragEnter = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const file = event.dataTransfer.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setMediaSrc(e.target.result);
+      };
+      if (file.type.includes("image") || file.type.includes("video")) {
+        reader.readAsDataURL(file);
+        // Call the onFileSelect callback with the selected file
+        onFileSelect(file, file.type.includes("image") ? "picture" : "video");
+      } else {
+        alert("Invalid file type. Please upload an image or video.");
+      }
+    }
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
+    <div
+      className="flex items-center justify-center w-full"
+      onDragOver={handleDragOver}
+      onDragEnter={handleDragEnter}
+      onDrop={handleDrop}
+    >
       {mediaSrc ? (
         <div>
           {mediaSrc.includes("image") ? (
@@ -83,15 +122,15 @@ function FileUpload({ onFileSelect }) {
               MP4, PNG, JPG ან GIF
             </p>
           </div>
+          <input
+            id="dropzone-file"
+            type="file"
+            accept="image/*, video/*"
+            className="hidden"
+            onChange={handleFileChange}
+          />
         </label>
       )}
-      <input
-        id="dropzone-file"
-        type="file"
-        accept="image/*, video/*"
-        className="hidden"
-        onChange={handleFileChange}
-      />
     </div>
   );
 }
