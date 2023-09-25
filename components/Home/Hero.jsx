@@ -37,7 +37,7 @@ export const Hero = () => {
               ონლაინ და დაეუფლეთ თქვენს უნარებს.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Link href="users/Auth">
+              <Link href="users/auth">
                 <Button className="bg-blue-600 text-white">
                   დაიწყე ახლავე!
                 </Button>

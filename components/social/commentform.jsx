@@ -63,7 +63,12 @@ function CommentForm({ postid, onCommentSubmit }) {
         commentModel.video,
         postid
       );
-      setCommentText("");
+      setCommentModel((prevModel) => ({
+        ...prevModel,
+        content: "",
+        video: null,
+        picture: null,
+      }));
       setSelectedImage(null);
       onCommentSubmit();
     } catch (error) {
