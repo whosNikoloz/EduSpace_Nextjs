@@ -26,11 +26,13 @@ class User {
     comments: Array<string>;
   }>;
 
-  notifications: Array<{
+  notification: Array<{
     notificationId: number;
     message: string;
     isRead: boolean;
     createdAt: string;
+    commentAuthorUsername: string;
+    commentAuthorPicture: string;
     userId: number;
   }>;
 
@@ -52,11 +54,13 @@ class User {
       createDate: string;
       comments: string[];
     }[],
-    notifications: {
+    notification: {
       notificationId: number;
       message: string;
       isRead: boolean;
       createdAt: string;
+      commentAuthorUsername: string;
+      commentAuthorPicture: string;
       userId: number;
     }[]
   ) {
@@ -68,7 +72,7 @@ class User {
     this.email = email;
     this.role = role;
     this.posts = posts;
-    this.notifications = notifications;
+    this.notification = notification;
   }
 }
 

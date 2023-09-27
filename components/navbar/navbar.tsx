@@ -16,6 +16,7 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/react";
+import Notification from "@/components/navbar/Notification";
 import {
   ChevronDown,
   Lock,
@@ -224,6 +225,7 @@ export const Navbar = () => {
                   </DropdownMenu>
                 </Dropdown>
                 <Dropdown backdrop="blur" children={[]}></Dropdown>
+                <Notification notifications={user.notification} />
               </>
             ) : (
               // Render this content if user is null

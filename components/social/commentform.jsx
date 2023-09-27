@@ -69,7 +69,9 @@ function CommentForm({ postid, onCommentSubmit }) {
         video: null,
         picture: null,
       }));
+      setCommentText("");
       setSelectedImage(null);
+      setSelectedVideo(null);
       onCommentSubmit();
     } catch (error) {
       console.log(error);
