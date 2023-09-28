@@ -18,6 +18,7 @@ export default function CreatePost({ setPosts }) {
   const [alert, setAlert] = useState(null);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isCreateLoading, setCreateLoading] = useState(false);
 
   useEffect(() => {
     // Simulate loading for demonstration purposes
@@ -109,6 +110,7 @@ export default function CreatePost({ setPosts }) {
   };
 
   const handlePost = async () => {
+    setCreateLoading(true);
     var errorMessage = await posts.CreatePost(
       PostModel.subject,
       PostModel.content,
@@ -144,6 +146,7 @@ export default function CreatePost({ setPosts }) {
         });
 
         setIsOpen(false);
+        setCreateLoading(false);
       } else {
         setPostModelError("Error fetching new post");
         console.log(newPostResponse.error);
@@ -320,6 +323,7 @@ export default function CreatePost({ setPosts }) {
                           className="w-full py-2"
                           onClick={handlePost}
                           isDisabled={!selectedLanguage || !PostModel.content}
+                          isLoading={isCreateLoading}
                         >
                           დაპოსტვა
                         </Button>

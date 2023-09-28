@@ -14,6 +14,7 @@ const AuthPage: React.FC = () => {
   const router = useRouter();
 
   const [isSignUpMode, setIsSignUpMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [registrationState, setRegistrationState] = useState({
     username: "",
@@ -45,6 +46,7 @@ const AuthPage: React.FC = () => {
       setLoginError("Invalid Email or Passowrd");
       console.log(errorMessage);
     } else {
+      setIsLoading(false);
       router.push("/");
     }
   };
@@ -59,6 +61,7 @@ const AuthPage: React.FC = () => {
     if (errorMessage) {
       setRegError("Email or UserName Already Exists");
     } else {
+      setIsLoading(false);
       var cookie = new Cookies();
       cookie.set("regEmail", registrationState.email);
       cookie.set("regUserName", registrationState.username);
@@ -70,8 +73,10 @@ const AuthPage: React.FC = () => {
     e.preventDefault();
 
     if (isSignUpMode) {
+      setIsLoading(true);
       handleRegistration();
     } else {
+      setIsLoading(true);
       handleLogin();
     }
   };
@@ -92,7 +97,7 @@ const AuthPage: React.FC = () => {
         <div className={Style["forms-container"]}>
           <div className={Style["signin-signup"]}>
             <form className={`${Style.authform} ${Style["sign-in-form"]}`}>
-              <h2 className={Style.title}>Sign in</h2>
+              <h2 className={Style.title}>შესვლა</h2>
               <div className={Style["input-field"]}>
                 <i className="fas fa-user"></i>
                 <input
@@ -127,8 +132,9 @@ const AuthPage: React.FC = () => {
                 type="submit"
                 className={`${Style.btn}`}
                 onClick={handleSubmit}
+                isLoading={isLoading}
               >
-                Login
+                შესვლა
               </Button>
               <p className={Style["social-text"]}>
                 Or Sign in with social platforms
@@ -149,7 +155,7 @@ const AuthPage: React.FC = () => {
               </div>
             </form>
             <form className={`${Style.authform} ${Style["sign-up-form"]}`}>
-              <h2 className={Style.title}>Sign up</h2>
+              <h2 className={Style.title}>რეგისტრაცია</h2>
               <div className={Style["input-field"]}>
                 <i className="fas fa-user"></i>
                 <input
@@ -218,8 +224,9 @@ const AuthPage: React.FC = () => {
                 type="submit"
                 className={`${Style.btn}`}
                 onClick={handleSubmit}
+                isLoading={isLoading}
               >
-                Sign Up
+                რეგისტრაცია
               </Button>
               <p className={Style["social-text"]}>
                 Or Sign up with social platforms
@@ -255,7 +262,7 @@ const AuthPage: React.FC = () => {
                 id="sign-up-btn"
                 onClick={handleModeToggle} // Toggle sign-up/login form
               >
-                Sign up
+                რეგისტრაცია
               </button>
             </div>
             <Image src={logSVG} className={Style.image} alt="" />
@@ -272,7 +279,7 @@ const AuthPage: React.FC = () => {
                 id="sign-in-btn"
                 onClick={handleModeToggle}
               >
-                Sign in
+                შესვლა
               </button>
             </div>
             <Image src={registerSVG} className={Style.image} alt="" />

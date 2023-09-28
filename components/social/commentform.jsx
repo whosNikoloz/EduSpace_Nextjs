@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
 import Comment from "@/app/api/Social/Comment";
+import { Button } from "@nextui-org/button";
 
 function CommentForm({ postid, onCommentSubmit }) {
   const fileInputRef = useRef(null);
   const [commentText, setCommentText] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const comment = Comment();
 
   const handleAttachFile = () => {
@@ -55,6 +57,7 @@ function CommentForm({ postid, onCommentSubmit }) {
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     try {
       await comment.CreateComment(
@@ -73,6 +76,7 @@ function CommentForm({ postid, onCommentSubmit }) {
       setSelectedImage(null);
       setSelectedVideo(null);
       onCommentSubmit();
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -158,12 +162,13 @@ function CommentForm({ postid, onCommentSubmit }) {
           )}
         </div>
         <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-          <button
+          <Button
             type="submit"
+            isLoading={isLoading}
             className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
           >
             დაპოსტე კომენტარი
-          </button>
+          </Button>
           <div className="flex pl-0 space-x-1 sm:pl-2">
             <button
               type="button"

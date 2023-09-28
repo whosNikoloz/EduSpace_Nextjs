@@ -61,7 +61,9 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
         <Button
           onClick={() => setDropdownOpen(!dropdownOpen)}
           isIconOnly
+          variant="light"
           aria-label="Notification"
+          color="primary"
         >
           <svg
             className="h-5 w-5 "
@@ -76,7 +78,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
         {dropdownOpen && (
           <div
             className="absolute right-0 mt-2 dark:bg-zinc-800 bg-white  rounded-md shadow-lg overflow-hidden z-20"
-            style={{ width: "20rem", overflowY: "auto", maxHeight: "650px" }}
+            style={{ width: "20rem", overflowY: "auto", maxHeight: "550px" }}
           >
             {notifications.length === 0 ? ( // Check if there are no notifications
               <div>

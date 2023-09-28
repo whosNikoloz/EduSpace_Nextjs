@@ -29,7 +29,6 @@ import {
 import { EduSpace } from "@/components/EduSpaceLogo.jsx";
 import { SearchIcon } from "@/components/navbar/SearchIcon.jsx";
 import { useEffect } from "react";
-import { NotificationIcon } from "@/components/navbar/NotificationIcon.jsx";
 import { Skeleton } from "@nextui-org/react";
 import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
 import SideNavBarWithDropDown from "@/components/navbar/sidenavbar.jsx";
@@ -59,7 +58,6 @@ export const Navbar = () => {
       }
     }
     fetchNotifications();
-    console.log(notifications);
   }, []);
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
@@ -145,7 +143,9 @@ export const Navbar = () => {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <EduSpace />
+          <Link href="/">
+            <EduSpace />
+          </Link>
           <Link href="/" className="font-bold text-inherit">
             {" "}
             EduSpace
@@ -169,6 +169,7 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent justify="end">
+        {/* <NavbarContent justify="end">
         <Input
           classNames={{
             base: "max-w-full sm:max-w-[10rem] h-10",
@@ -184,6 +185,8 @@ export const Navbar = () => {
           }
           type="search"
         />
+        </NavbarContent>
+        */}
 
         {isLoading ? (
           <>
