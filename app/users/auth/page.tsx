@@ -45,6 +45,7 @@ const AuthPage: React.FC = () => {
     if (errorMessage) {
       setLoginError("Invalid Email or Passowrd");
       console.log(errorMessage);
+      setIsLoading(false);
     } else {
       setIsLoading(false);
       router.push("/");

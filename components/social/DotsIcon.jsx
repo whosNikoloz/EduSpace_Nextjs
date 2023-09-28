@@ -8,16 +8,16 @@ export const DotsIcon = ({ filled, size, height, width, label, ...props }) => {
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       stroke="currentColor"
-      stroke-width="1"
-      stroke-linecap="round"
-      stroke-linejoin="miter"
+      strokeWidth="1"
+      strokeLinecap="round"
+      strokeLinejoin="miter"
       {...props}
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       ></g>
       <g id="SVGRepo_iconCarrier">
         <line
@@ -25,24 +25,24 @@ export const DotsIcon = ({ filled, size, height, width, label, ...props }) => {
           y1="12"
           x2="6"
           y2="12"
-          stroke-linecap="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeWidth="2"
         ></line>
         <line
           x1="11.99"
           y1="12"
           x2="12"
           y2="12"
-          stroke-linecap="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeWidth="2"
         ></line>
         <line
           x1="17.99"
           y1="12"
           x2="18"
           y2="12"
-          stroke-linecap="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeWidth="2"
         ></line>
       </g>
     </svg>
@@ -54,15 +54,15 @@ export const DotsIcon = ({ filled, size, height, width, label, ...props }) => {
   xmlns="http://www.w3.org/2000/svg"
   fill="none"
   stroke="white"
-  stroke-width="1"
-  stroke-linecap="round"
-  stroke-linejoin="miter"
+  strokeWidth="1"
+  strokeLinecap="round"
+  strokeLinejoin="miter"
 >
-  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
   <g
     id="SVGRepo_tracerCarrier"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeLinecap="round"
+    strokeLinejoin="round"
   ></g>
   <g id="SVGRepo_iconCarrier">
     <line
@@ -70,24 +70,24 @@ export const DotsIcon = ({ filled, size, height, width, label, ...props }) => {
       y1="12"
       x2="6"
       y2="12"
-      stroke-linecap="round"
-      stroke-width="2"
+      strokeLinecap="round"
+      strokeWidth="2"
     ></line>
     <line
       x1="11.99"
       y1="12"
       x2="12"
       y2="12"
-      stroke-linecap="round"
-      stroke-width="2"
+      strokeLinecap="round"
+      strokeWidth="2"
     ></line>
     <line
       x1="17.99"
       y1="12"
       x2="18"
       y2="12"
-      stroke-linecap="round"
-      stroke-width="2"
+      strokeLinecap="round"
+      strokeWidth="2"
     ></line>
   </g>
 </svg>;
