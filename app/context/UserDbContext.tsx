@@ -101,22 +101,40 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 
   // Load user data from local storage when the component initializes
   useEffect(() => {
+    // Load user data from local storage
     const userData = localStorage.getItem("user");
     if (userData) {
-      setUser(JSON.parse(userData));
+      const data = JSON.parse(userData);
+
+      // Check if the user data is still valid (within one hour)
+      const currentTime = new Date().getTime();
+      const savedTime = new Date(data.timestamp).getTime();
+      const timeDifference = currentTime - savedTime;
+
+      if (timeDifference < 3600000) {
+        setUser(data.user);
+      } else {
+        // Data is older than an hour, remove it from local storage
+        localStorage.removeItem("user");
+      }
     }
   }, []);
 
   const login = (userData: User) => {
     setUser(userData);
-    // Save user data to local storage when they log in
-    //sessionStorage.setItem("userSession", JSON.stringify(userData));
-    localStorage.setItem("user", JSON.stringify(userData));
+
+    // Save user data with a timestamp to local storage
+    const data = {
+      user: userData,
+      timestamp: new Date().toISOString(),
+    };
+    localStorage.setItem("user", JSON.stringify(data));
   };
 
   const logout = () => {
     setUser(null);
-    // Remove user data from local storage when they log out
+
+    // Remove user data from local storage
     localStorage.removeItem("user");
     localStorage.removeItem("jwt_token");
   };

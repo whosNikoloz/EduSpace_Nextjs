@@ -64,10 +64,10 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
           aria-label="Notification"
         >
           <svg
-            className="h-5 w-5 text-gray-800"
+            className="h-5 w-5 "
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            fill="white"
+            fill="currentColor"
           >
             <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
           </svg>
@@ -80,7 +80,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
           >
             {notifications.length === 0 ? ( // Check if there are no notifications
               <div>
-                <a className="flex items-center px-4 py-3  hover:bg-zinc-600 -mx-2">
+                <a className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 -mx-2">
                   თქვენ არ გაქვთ შეტყობინება
                 </a>
               </div>
@@ -88,13 +88,13 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
               <>
                 {notifications.map((notification) => (
                   <div key={notification.notificationId}>
-                    <a className="flex items-center px-4 py-3  hover:bg-zinc-600 -mx-2">
+                    <a className="flex items-center px-4 py-3 hover:bg-zinc-200  dark:hover:bg-zinc-600 -mx-2">
                       <img
                         className="h-8 w-8 rounded-full object-cover mx-1"
                         src={notification.commentAuthorPicture}
                         alt="avatar"
                       />
-                      <p className="text-white text-sm mx-2">
+                      <p className="dark:text-white text-black text-sm mx-2">
                         <span className="font-bold">
                           {notification.commentAuthorUsername}
                         </span>{" "}
