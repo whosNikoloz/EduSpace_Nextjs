@@ -34,18 +34,32 @@ import { Skeleton } from "@nextui-org/react";
 import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
 import SideNavBarWithDropDown from "@/components/navbar/sidenavbar.jsx";
 import { useUser } from "@/app/context/UserdbContext";
+import Notifications from "@/app/api/Social/Notification";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useUser();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [notifications, setNotifications] = useState([]);
+  const notf = Notifications();
 
   useEffect(() => {
     // Simulate loading for demonstration purposes
     setTimeout(() => {
       setIsLoading(false);
     }, 1); // Replace with your actual data fetching logic
+  }, []);
+
+  useEffect(() => {
+    async function fetchNotifications() {
+      if (user) {
+        const notifications = notf.GetNotifications(user.userId);
+        setNotifications(await notifications);
+      }
+    }
+    fetchNotifications();
+    console.log(notifications);
   }, []);
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
@@ -225,7 +239,7 @@ export const Navbar = () => {
                   </DropdownMenu>
                 </Dropdown>
                 <Dropdown backdrop="blur" children={[]}></Dropdown>
-                <Notification notifications={user.notification} />
+                <Notification userid={user.userId} />
               </>
             ) : (
               // Render this content if user is null

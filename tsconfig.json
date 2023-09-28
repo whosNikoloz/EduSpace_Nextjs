@@ -29,6 +29,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/context/UserdbContext.tsx"
-  ],
+, "components/navbar/Notification.tsx"  ],
   "exclude": ["node_modules"]
 }

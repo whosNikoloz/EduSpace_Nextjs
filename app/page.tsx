@@ -8,7 +8,6 @@ import { GithubIcon } from "@/components/icons";
 import MainLayout from "@/app/layouts/Mainlayout";
 import AutoScrollCarousel from "@/components/Home/AutoScrollCarousel";
 import { Team } from "@/components/Home/team";
-import { TemplateContext } from "next/dist/shared/lib/app-router-context";
 import Stats from "@/components/Home/Stats";
 import Macbook from "@/components/Home/Macbook";
 import { Steps } from "@/components/Home/steps";
