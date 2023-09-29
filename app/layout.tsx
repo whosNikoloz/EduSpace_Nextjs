@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { UserProvider } from "@/app/context/UserdbContext";
 import { Providers } from "./providers";
 import { QueryClient, QueryClientProvider } from "react-query";
+import NextTopLoader from "nextjs-toploader";
+import { isMobile } from "react-device-detect";
 
 export default function RootLayout({
   children,
@@ -61,6 +63,17 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "system" }}>
           <UserProvider>
             <QueryClientProvider client={queryClient}>
+              <NextTopLoader
+                color="#1E88E5"
+                initialPosition={0.08}
+                crawlSpeed={200}
+                height={3}
+                crawl={true}
+                showSpinner={true}
+                easing="ease"
+                speed={200}
+                shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+              />
               {children}
             </QueryClientProvider>
           </UserProvider>

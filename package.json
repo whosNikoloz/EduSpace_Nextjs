@@ -38,8 +38,9 @@
     "gsap": "^3.12.2",
     "install": "^0.13.0",
     "intl-messageformat": "^10.5.0",
-    "next": "^13.5.2",
+    "next": "^13.5.3",
     "next-themes": "^0.2.1",
+    "nextjs-toploader": "^1.4.2",
     "npm": "^10.1.0",
     "postcss": "8.4.29",
     "react": "18.2.0",
@@ -50,5 +51,8 @@
     "tailwindcss": "3.3.3",
     "typescript": "5.0.4",
     "universal-cookie": "^6.1.1"
+  },
+  "devDependencies": {
+    "@types/nprogress": "^0.2.1"
   }
 }
