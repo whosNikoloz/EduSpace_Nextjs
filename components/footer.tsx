@@ -29,79 +29,39 @@ export const Footer = () => {
           <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
             <div className="space-y-3">
               <h3 className="tracki uppercase text-blue-600 dark:text-blue-400">
-                ენები / Languages
-              </h3>
-              <ul className="space-y-1">
-                <li>
-                  <a rel="noopener noreferrer" href="#">
-                    C#
-                  </a>
-                </li>
-                <li>
-                  <a rel="noopener noreferrer" href="#">
-                    Swift
-                  </a>
-                </li>
-                <li>
-                  <a rel="noopener noreferrer" href="#">
-                    Java
-                  </a>
-                </li>
-                <li>
-                  <a rel="noopener noreferrer" href="#">
-                    Python
-                  </a>
-                </li>
-                <li>
-                  <a rel="noopener noreferrer" href="#">
-                    Sql
-                  </a>
-                </li>
-                <li>
-                  <a rel="noopener noreferrer" href="#">
-                    C++
-                  </a>
-                </li>
-                <li>
-                  <a rel="noopener noreferrer" href="#">
-                    JavaScript
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-3">
-              <h3 className="tracki uppercase text-blue-600 dark:text-blue-400">
                 შესავალი კურსები / Introduction Courses
               </h3>
               <ul className="space-y-1">
                 <li>
-                  <a rel="noopener noreferrer" href="#">
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/c-sharp-beginner"
+                  >
                     C# შესავალი
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener noreferrer" href="#">
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/python-beginner"
+                  >
                     Python შესავალი
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener noreferrer" href="#">
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/swift-beginner"
+                  >
                     Swift შესავალი
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener noreferrer" href="#">
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/c-plus-beginner"
+                  >
                     C++ შესავალი
-                  </a>
-                </li>
-                <li>
-                  <a rel="noopener noreferrer" href="#">
-                    JavaScript შესავალი
-                  </a>
-                </li>
-                <li>
-                  <a rel="noopener noreferrer" href="#">
-                    Sql შესავალი
                   </a>
                 </li>
               </ul>
@@ -112,33 +72,74 @@ export const Footer = () => {
               </h3>
               <ul className="space-y-1">
                 <li>
-                  <a rel="noopener noreferrer" href="#">
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/c-sharp-intermediate"
+                  >
                     C# შუალედური
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener noreferrer" href="#">
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/python-intermediate"
+                  >
                     Python შუალედური
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener noreferrer" href="#">
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/swift-intermediate"
+                  >
                     Swift შუალედური
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener noreferrer" href="#">
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/c-plus-intermediate"
+                  >
                     C++ შუალედური
                   </a>
                 </li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h3 className="uppercase text-blue-600  dark:text-blue-400">
+                მოწინავე კურსები / Advanced Courses
+              </h3>
+              <ul className="space-y-1">
                 <li>
-                  <a rel="noopener noreferrer" href="#">
-                    JavaScript შუალედური
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/c-sharp-advanced"
+                  >
+                    C# მოწინავე
                   </a>
                 </li>
                 <li>
-                  <a rel="noopener noreferrer" href="#">
-                    Sql შუალედური
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/python-advanced"
+                  >
+                    Python მოწინავე
+                  </a>
+                </li>
+                <li>
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/swift-advanced"
+                  >
+                    Swift მოწინავე
+                  </a>
+                </li>
+                <li>
+                  <a
+                    rel="noopener noreferrer"
+                    href="/learn/courses/c-plus-advanced"
+                  >
+                    C++ მოწინავე
                   </a>
                 </li>
               </ul>
