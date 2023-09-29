@@ -101,6 +101,7 @@ export default function SocialPage() {
   };
 
   const fetchNewPosts = async () => {
+    setIsLoadingMore(true);
     setIsLoadingNewPosts(true);
 
     try {
@@ -110,13 +111,19 @@ export default function SocialPage() {
         setHasMorePages(false);
       } else {
         await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate loading
+        // Update the posts state with the new posts
+        setPosts((prevPosts) => [...prevPosts, ...response]);
         setPageNumber((prevPage) => prevPage + 1);
         // Restore the scroll position after loading new posts
         window.scrollTo(0, scrollPosition);
+        console.log("New posts fetched:", response);
+        console.log("posts fetched:", filteredPosts);
       }
     } catch (error) {
-      // Handle error
+      // Handle error here and set isError state
+      console.error("Error fetching new posts:", error);
     } finally {
+      setIsLoadingMore(false);
       setIsLoadingNewPosts(false);
     }
   };
