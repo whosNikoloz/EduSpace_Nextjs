@@ -28,6 +28,7 @@ const AutoScrollCarousel = () => {
       try {
         const response = await courseAPI.GetCourses();
         setCourses(response); // Assuming the API response is an array of Course objects
+        console.log(response);
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
@@ -43,6 +44,7 @@ const AutoScrollCarousel = () => {
       type: "loop",
       drag: "free",
       gap: "1rem",
+      pauseOnHover: false,
       focus: "center",
       perPage: perPage,
       arrows: false,
@@ -66,7 +68,7 @@ const AutoScrollCarousel = () => {
             courses.map((course) => (
               <li className="splide__slide" key={course.courseId}>
                 <div className="slide-content">
-                  <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                  <div className="max-w-xs   border border-gray-200 rounded-lg shadow bg-blue-600 dark:border-gray-700">
                     <a href={`/learn/courses/${course.formattedCourseName}`}>
                       <img
                         className="rounded-t-lg"
@@ -76,7 +78,7 @@ const AutoScrollCarousel = () => {
                     </a>
                     <div className="p-3">
                       <a href={`/learn/courses/${course.formattedCourseName}`}>
-                        <h5 className="mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h5 className="mb-2 text-base font-bold tracking-tight text-gray-900 text-white">
                           {course.courseName}
                         </h5>
                       </a>

@@ -30,8 +30,35 @@ const Courses = () => {
     }
   };
 
+  const GetCourse = async (courseName: string) => {
+    try {
+      const token = localStorage.getItem("jwt_token");
+      const response = await fetch(learn_API + "Course/" + courseName, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Include the bearer token in the Authorization header
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const courses = await response.json();
+        return courses;
+      } else {
+        const errorText = await response.text();
+        console.error("Courses Get:", errorText); // Log the error
+        return errorText;
+      }
+    } catch (error) {
+      console.error("Courses Get error:", error); // Log the error
+      return error;
+    }
+  };
+
   return {
     GetCourses,
+    GetCourse,
   };
 };
 
