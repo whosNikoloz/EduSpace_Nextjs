@@ -1,9 +1,9 @@
 "use client";
 
+import "@/styles/globals.css";
 import { Navbar } from "@/components/navbar/navbar";
-import { Footer } from "@/components/footer";
 
-export default function MainLayout({
+export default function LayoutNavbar({
   children,
 }: {
   children: React.ReactNode;
@@ -14,7 +14,6 @@ export default function MainLayout({
       <main className="container mx-auto max-w-7xl pt-9 px-6 flex-grow">
         {children}
       </main>
-      <Footer />
     </div>
   );
 }

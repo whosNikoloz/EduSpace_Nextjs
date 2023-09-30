@@ -12,7 +12,7 @@ export const Hero = () => {
   useEffect(() => {
     const bounceAnimation = () => {
       gsap.to(".bounce-img", {
-        y: -40, // Adjust the bounce height as needed
+        y: -20, // Adjust the bounce height as needed
         duration: 1,
         yoyo: true,
         repeat: -1, // -1 means infinite repeat
@@ -25,7 +25,7 @@ export const Hero = () => {
 
   return (
     <>
-      <div className="flex flex-wrap  md:mt-20">
+      <div className="flex flex-wrap md:mt-20">
         <div className="w-full md:w-1/2 p-6">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl dark:text-white">
@@ -52,9 +52,67 @@ export const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2">
+        <div className="w-full md:w-1/2 md:mt-8">
           <div className="mx-auto flex items-center justify-center bounce-img">
-            <Image src={Ilustration} alt="error" />
+            <div className="w-3/4 mx-auto">
+              <div className="w-full h-96 shadow-2xl subpixel-antialiased rounded bg-black dark:bg-white border-black mx-auto">
+                <div
+                  className="flex items-center h-8 rounded-t bg-gray-100 dark:bg-black border-b border-gray-500 text-center text-black"
+                  id="headerTerminal"
+                >
+                  <div
+                    className="flex ml-2 items-center text-center border-red-900 bg-red-500 shadow-inner rounded-full w-4 h-4"
+                    id="closebtn"
+                  ></div>
+                  <div
+                    className="ml-2 border-yellow-900 bg-yellow-500 shadow-inner rounded-full w-4 h-4"
+                    id="minbtn"
+                  ></div>
+                  <div
+                    className="ml-2 border-green-900 bg-green-500 shadow-inner rounded-full w-4 h-4"
+                    id="maxbtn"
+                  ></div>
+                  <div className="mx-auto pr-16" id="terminaltitle">
+                    <p className="text-center text-base dark:text-white">
+                      Welcome to C# Learning Terminal
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="pl-1 pt-1 h-auto text-green-200 dark:text-black font-mono text-sm dark:bg-white"
+                  id="console"
+                >
+                  <p className="pb-1">
+                    You are now connected to the C# learning environment.
+                  </p>
+                  <p className="pb-1">
+                    Type the following commands to get started:
+                  </p>
+                  <code className="text-yellow-400">
+                    csharp{">"} Console.WriteLine("Hello, World!");
+                  </code>
+                  <p className="pb-1">
+                    This will print "Hello, World!" to the console.
+                  </p>
+                  <code className="text-yellow-400">
+                    csharp{">"} int number = 42;
+                  </code>
+                  <p className="pb-1">
+                    Declare and initialize an integer variable.
+                  </p>
+                  <code className="text-yellow-400">
+                    csharp{">"} string greeting = "Welcome to C#!";
+                  </code>
+                  <p className="pb-1">
+                    Declare and initialize a string variable.
+                  </p>
+                  <code className="text-yellow-400">
+                    csharp{">"} // Your C# code goes here
+                  </code>
+                  <p className="pb-1">Feel free to experiment and learn!</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
