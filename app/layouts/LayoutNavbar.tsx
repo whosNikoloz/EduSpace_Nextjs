@@ -9,11 +9,9 @@ export default function LayoutNavbar({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col h-screen">
+    <div>
       <Navbar />
-      <main className="container mx-auto max-w-7xl pt-9 px-6 flex-grow">
-        {children}
-      </main>
+      {children}
     </div>
   );
 }

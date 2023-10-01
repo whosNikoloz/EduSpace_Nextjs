@@ -22,7 +22,7 @@ export default function Home() {
       <Hero />
       <section className=" items-center justify-center gap-4 py-8 md:py-10 mt-20">
         <div className="mt-20 text-center   justify-center">
-          <CustomTitle title1={"ჩვენი"} title2={"კურსები"} />
+          <CustomTitle title1={"ჩვენი"} title2={"კურსები"} margin={12} />
           <div className="mt-20 ">
             <AutoScrollCarousel />
           </div>
@@ -30,20 +30,20 @@ export default function Home() {
       </section>
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-20 text-center   justify-center">
-          <CustomTitle title1={"ჩვენი"} title2={"გუნდი"} />
+          <CustomTitle title1={"ჩვენი"} title2={"გუნდი"} margin={12} />
           <Team />
         </div>
       </section>
 
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-20 text-center   justify-center">
-          <CustomTitle title1={"პროექტის"} title2={"სტატისტიკა"} />
+          <CustomTitle title1={"პროექტის"} title2={"სტატისტიკა"} margin={12} />
           <Stats />
         </div>
       </section>
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-20 text-center   justify-center">
-          <CustomTitle title1={"მიყევი"} title2={"ინსტრუქციას"} />
+          <CustomTitle title1={"მიყევი"} title2={"ინსტრუქციას"} margin={12} />
           <div className="mt-10">
             <Steps />
           </div>
@@ -59,7 +59,7 @@ export default function Home() {
 
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-20 text-center   justify-center">
-          <CustomTitle title1={"ჩვენი"} title2={"მომხმარებლები"} />
+          <CustomTitle title1={"ჩვენი"} title2={"მომხმარებლები"} margin={12} />
           <div className="mt-10">
             <Review />
           </div>

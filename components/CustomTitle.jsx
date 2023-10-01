@@ -2,10 +2,10 @@
 
 import React from "react";
 
-export const CustomTitle = ({ title1, title2 }) => {
+export const CustomTitle = ({ title1, title2, margin }) => {
   return (
     <>
-      <header className="text-center mx-auto mb-12">
+      <header className={`text-center mx-auto mb-${margin}`}>
         <h2 className="text-2xl leading-normal mb-2 font-bold text-blue-600 dark:text-gray-100">
           <span className="font-light">{title1}</span> {title2}
         </h2>
