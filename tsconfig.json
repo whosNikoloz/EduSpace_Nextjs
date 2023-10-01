@@ -28,7 +28,13 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/context/UserdbContext.tsx"
-, "components/navbar/Notification.tsx", "components/Learn/Hero.tsx", "components/compiler/CodeEditorWindow.js", "components/compiler/ThemeDropdown.js", "components/compiler/Landing.js", "components/compiler/MonacoEditorWrapper.js"  ],
+    "app/context/UserdbContext.tsx",
+    "components/navbar/Notification.tsx",
+    "components/Learn/Hero.tsx",
+    "components/compiler/MonacoEditorWrapper.js",
+    "components/compiler/ThemeDropdown.js",
+    "components/compiler/Landing.js",
+    "components/compiler/MonacoEditorWrapper.js"
+, "components/compiler/RunIcon.jsx"  ],
   "exclude": ["node_modules"]
 }

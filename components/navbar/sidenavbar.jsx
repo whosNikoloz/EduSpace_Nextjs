@@ -227,7 +227,7 @@ function SideNavBarWithDropDown() {
         </Link>
       </NavbarMenuItem>
       <NavbarMenuItem>
-        <Link color="foreground" className="w-full" href="#" size="lg">
+        <Link color="foreground" className="w-full" href="/compiler/csharp" size="lg">
           {"compiler"}
         </Link>
       </NavbarMenuItem>

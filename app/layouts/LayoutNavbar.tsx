@@ -2,6 +2,7 @@
 
 import "@/styles/globals.css";
 import { Navbar } from "@/components/navbar/navbar";
+import { Footer } from "@/components/footer";
 
 export default function LayoutNavbar({
   children,
@@ -9,9 +10,10 @@ export default function LayoutNavbar({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="relative flex flex-col h-screen">
       <Navbar />
       {children}
+      <Footer />
     </div>
   );
 }

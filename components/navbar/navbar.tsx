@@ -162,7 +162,7 @@ export const Navbar = () => {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="/compiler/csharp">
             Compiler
           </Link>
         </NavbarItem>

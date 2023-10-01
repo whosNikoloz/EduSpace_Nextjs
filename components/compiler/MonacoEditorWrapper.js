@@ -1,26 +1,30 @@
-import React from "react";
-import MonacoEditor from "react-monaco-editor";
+"use client";
 
-const MonacoEditorWrapper = ({ code, onChange }) => {
-  const options = {
-    selectOnLineNumbers: true,
-    roundedSelection: false,
-    readOnly: false,
-    cursorStyle: "line",
-    automaticLayout: true,
+import React, { useState } from "react";
+
+import Editor from "@monaco-editor/react";
+
+const CodeEditorWindow = ({ onChange, language, code, theme }) => {
+  const [value, setValue] = useState(code || "");
+
+  const handleEditorChange = (value) => {
+    setValue(value);
+    onChange("code", value);
   };
 
   return (
-    <MonacoEditor
-      width="100%"
-      height="500"
-      language="javascript"
-      theme="vs-dark"
-      value={code}
-      options={options}
-      onChange={onChange}
-    />
+    <div className="overlay rounded-md overflow-hidden w-full h-full shadow-4xl">
+      <Editor
+        height="85vh"
+        width={`100%`}
+        language={language || "csharp"}
+        value={value}
+        theme={theme}
+        defaultValue="// some comment"
+        onChange={handleEditorChange}
+      />
+    </div>
   );
 };
+export default CodeEditorWindow;
 
-export default MonacoEditorWrapper;
