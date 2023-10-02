@@ -32,9 +32,14 @@ public class HelloWorld
   );
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [selectedTab, setSelectedTab] = useState("Main.cpp");
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
+  };
+
+  const handleTabChange = (tabName: string) => {
+    setSelectedTab(tabName);
   };
 
   const toggleSize = () => {
@@ -49,7 +54,7 @@ public class HelloWorld
     <LayoutNavbar>
       <div className="flex flex-col md:flex-row">
         {/* Sidebar */}
-        <div className="p-4">
+        <div className="p-4 border-b  border-blue-600 rounded-br-lg">
           <div className="flex flex-row md:flex-col items-start mb-4 gap-4">
             {/* Use flex-col to arrange items vertically */}
             <div className="mb-2">
@@ -87,14 +92,89 @@ public class HelloWorld
         </div>
 
         {/* Main content */}
-        <div className="flex-1 rounded-lg">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="border-t md:border-l border-blue-600 rounded-l-lg md:rounded-r-lg">
+        {/* Two-column layout for larger screens */}
+        <div className="hidden sm:block w-full">
+          <div className="flex-1 rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              <div className="border-t md:border-l border-blue-600 rounded-l-lg ">
+                <div className="flex justify-between items-center px-4">
+                  <h2 className="text-xl font-semibold mb-2">Main.cpp</h2>
+                  <div className="mb-2 d-flex gap-2">
+                    {" "}
+                    {/* Add d-flex class to create a flex container */}
+                    <Button
+                      color="primary"
+                      className="py-2 mt-4 mr-1"
+                      isIconOnly
+                      isLoading={false}
+                      onClick={toggleDarkMode}
+                    >
+                      <SunIcon size={20} />
+                    </Button>
+                    <Button color="primary" isLoading={false} className="py-2">
+                      <RunIcon size={20} />
+                      კომპილაცია
+                    </Button>
+                  </div>
+                </div>
+                <CodeEditorWindow
+                  code={code}
+                  onChange={handleCodeChange}
+                  language={"csharp"}
+                  isDarkMode={isDarkMode}
+                />
+              </div>
+
+              <div className="border-t border-blue-600">
+                <div className="flex justify-between items-center px-4">
+                  <h2 className="text-xl font-semibold mb-2">Output</h2>
+                  <div>
+                    <Button
+                      isLoading={false}
+                      color="primary"
+                      className="mb-2 px-4 py-2 mt-4"
+                    >
+                      გასუფთავება
+                    </Button>
+                  </div>
+                </div>
+                <OutputTerminal outputDetails="test" DarkMode={isDarkMode} />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* One-column layout for smaller screens */}
+        <div className="sm:hidden">
+          {/* Content for smaller screens */}
+          <div className="grid grid-cols-1 md:grid-cols-2 ">
+            <div className="border-t md:border-l border-blue-600 rounded-l-lg ">
               <div className="flex justify-between items-center px-4">
-                <h2 className="text-xl font-semibold mb-2">Main.cpp</h2>
-                <div className="mb-2 d-flex gap-2">
+                {/* Tabs */}
+                <div className="flex space-x-2 ">
                   {" "}
-                  {/* Add d-flex class to create a flex container */}
+                  {/* Add w-full class here */}
+                  <Button
+                    color="primary"
+                    className={`py-2 mt-4 ${
+                      selectedTab === "Main.cpp"
+                        ? "bg-primary"
+                        : "bg-transparent"
+                    }`}
+                    onClick={() => handleTabChange("Main.cpp")}
+                  >
+                    Main.cpp
+                  </Button>
+                  <Button
+                    color="primary"
+                    className={`py-2 mt-4 ${
+                      selectedTab === "Output" ? "bg-primary" : "bg-transparent"
+                    }`}
+                    onClick={() => handleTabChange("Output")}
+                  >
+                    Output
+                  </Button>
+                </div>
+                <div className="mb-2 d-flex gap-2">
                   <Button
                     color="primary"
                     className="py-2 mt-4 mr-1"
@@ -104,34 +184,31 @@ public class HelloWorld
                   >
                     <SunIcon size={20} />
                   </Button>
-                  <Button color="primary" isLoading={false} className="py-2">
-                    <RunIcon size={20} />
-                    კომპილაცია
-                  </Button>
+                  {selectedTab === "Main.cpp" && (
+                    <Button
+                      color="primary"
+                      isLoading={false}
+                      className="py-2"
+                      onClick={() => {
+                        // Handle compilation for Main.cpp
+                      }}
+                    >
+                      კომპილაცია
+                    </Button>
+                  )}
                 </div>
               </div>
-              <CodeEditorWindow
-                code={code}
-                onChange={handleCodeChange}
-                language={"csharp"}
-                isDarkMode={isDarkMode}
-              />
-            </div>
-
-            <div className="border-t border-blue-600">
-              <div className="flex justify-between items-center px-4">
-                <h2 className="text-xl font-semibold mb-2">Output</h2>
-                <div>
-                  <Button
-                    isLoading={false}
-                    color="primary"
-                    className="mb-2 px-4 py-2 mt-4"
-                  >
-                    გასუფთავება
-                  </Button>
-                </div>
-              </div>
-              <OutputTerminal outputDetails="test" DarkMode={isDarkMode}/>
+              {selectedTab === "Main.cpp" && (
+                <CodeEditorWindow
+                  code={code}
+                  onChange={setCode}
+                  language={"csharp"}
+                  isDarkMode={isDarkMode}
+                />
+              )}
+              {selectedTab === "Output" && (
+                <OutputTerminal outputDetails="test" DarkMode={isDarkMode} />
+              )}
             </div>
           </div>
         </div>
