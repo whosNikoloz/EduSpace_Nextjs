@@ -32,7 +32,7 @@ public class HelloWorld
   );
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [selectedTab, setSelectedTab] = useState("Main.cpp");
+  const [selectedTab, setSelectedTab] = useState("Main.cs");
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -54,8 +54,8 @@ public class HelloWorld
     <LayoutNavbar>
       <div className="flex flex-col md:flex-row">
         {/* Sidebar */}
-        <div className="p-4 border-b  border-blue-600 rounded-br-lg">
-          <div className="flex flex-row md:flex-col items-start mb-4 gap-4">
+        <div className="p-4 md:border-b border-blue-600 rounded-br-lg">
+          <div className="flex flex-row md:flex-col md:mb-1 items-start gap-7">
             {/* Use flex-col to arrange items vertically */}
             <div className="mb-2">
               <Link href="/compiler/csharp">
@@ -96,9 +96,9 @@ public class HelloWorld
         <div className="hidden sm:block w-full">
           <div className="flex-1 rounded-lg">
             <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="border-t md:border-l border-blue-600 rounded-l-lg ">
+              <div className="border-t md:border-l border-blue-600 rounded-lg ">
                 <div className="flex justify-between items-center px-4">
-                  <h2 className="text-xl font-semibold mb-2">Main.cpp</h2>
+                  <h2 className="text-xl font-semibold mb-2">Main.cs</h2>
                   <div className="mb-2 d-flex gap-2">
                     {" "}
                     {/* Add d-flex class to create a flex container */}
@@ -106,10 +106,13 @@ public class HelloWorld
                       color="primary"
                       className="py-2 mt-4 mr-1"
                       isIconOnly
-                      isLoading={false}
                       onClick={toggleDarkMode}
                     >
-                      <SunIcon size={20} />
+                      {isDarkMode ? (
+                        <SunIcon size={20} />
+                      ) : (
+                        <MoonIcon size={20} />
+                      )}
                     </Button>
                     <Button color="primary" isLoading={false} className="py-2">
                       <RunIcon size={20} />
@@ -147,26 +150,39 @@ public class HelloWorld
         <div className="sm:hidden">
           {/* Content for smaller screens */}
           <div className="grid grid-cols-1 md:grid-cols-2 ">
-            <div className="border-t md:border-l border-blue-600 rounded-l-lg ">
+            <div className="border-t md:border-l border-blue-600 md:rounded-l-lg rounded-lg ">
               <div className="flex justify-between items-center px-4">
-                {/* Tabs */}
-                <div className="flex space-x-2 ">
-                  {" "}
-                  {/* Add w-full class here */}
+                {/* Buttons at the beginning */}
+                <div className="flex space-x-2 mb-2 items-center">
                   <Button
                     color="primary"
-                    className={`py-2 mt-4 ${
-                      selectedTab === "Main.cpp"
+                    className="py-2 mt-4 mr-1"
+                    isIconOnly
+                    onClick={toggleDarkMode}
+                  >
+                    {isDarkMode ? (
+                      <SunIcon size={20} />
+                    ) : (
+                      <MoonIcon size={20} />
+                    )}
+                  </Button>
+                </div>
+                {/* Buttons in the middle */}
+                <div className="flex space-x-2">
+                  <Button
+                    color="primary"
+                    className={`py-2 ${
+                      selectedTab === "Main.cs"
                         ? "bg-primary"
                         : "bg-transparent"
                     }`}
-                    onClick={() => handleTabChange("Main.cpp")}
+                    onClick={() => handleTabChange("Main.cs")}
                   >
-                    Main.cpp
+                    Main.cs
                   </Button>
                   <Button
                     color="primary"
-                    className={`py-2 mt-4 ${
+                    className={`py-2 ${
                       selectedTab === "Output" ? "bg-primary" : "bg-transparent"
                     }`}
                     onClick={() => handleTabChange("Output")}
@@ -174,31 +190,27 @@ public class HelloWorld
                     Output
                   </Button>
                 </div>
-                <div className="mb-2 d-flex gap-2">
+                {/* Button at the end */}
+                {selectedTab !== "Output" ? (
+                  /* This is the "if" part */
                   <Button
                     color="primary"
-                    className="py-2 mt-4 mr-1"
-                    isIconOnly
                     isLoading={false}
-                    onClick={toggleDarkMode}
+                    onClick={() => handleTabChange("Output")}
+                    isIconOnly
                   >
-                    <SunIcon size={20} />
+                    <RunIcon size={20} />
                   </Button>
-                  {selectedTab === "Main.cpp" && (
-                    <Button
-                      color="primary"
-                      isLoading={false}
-                      className="py-2"
-                      onClick={() => {
-                        // Handle compilation for Main.cpp
-                      }}
-                    >
-                      კომპილაცია
-                    </Button>
-                  )}
-                </div>
+                ) : (
+                  <Button
+                    disabled={true}
+                    className="bg-transparent"
+                    isIconOnly
+                  ></Button>
+                )}
               </div>
-              {selectedTab === "Main.cpp" && (
+
+              {selectedTab === "Main.cs" && (
                 <CodeEditorWindow
                   code={code}
                   onChange={setCode}

@@ -1,27 +1,28 @@
 import React from "react";
 
-export const RunIcon = ({ fill = "currentColor", size }) => {
+export const RunIcon = ({ size }) => {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 16 16"
+      viewBox="0 0 24 24"
       width={size || width || 16}
       height={size || height || 16}
-      fill={fill}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+      <g id="SVGRepo_bgCarrier" stroke-whiteidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
         strokeLinecap="round"
         strokeLinejoin="round"
       ></g>
       <g id="SVGRepo_iconCarrier">
-        <path d="M2.78 2L2 2.41v12l.78.42 9-6V8l-9-6zM3 13.48V3.35l7.6 5.07L3 13.48z"></path>
+        {" "}
         <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M6 14.683l8.78-5.853V8L6 2.147V3.35l7.6 5.07L6 13.48v1.203z"
-        ></path>
+          d="M16.6582 9.28638C18.098 10.1862 18.8178 10.6361 19.0647 11.2122C19.2803 11.7152 19.2803 12.2847 19.0647 12.7878C18.8178 13.3638 18.098 13.8137 16.6582 14.7136L9.896 18.94C8.29805 19.9387 7.49907 20.4381 6.83973 20.385C6.26501 20.3388 5.73818 20.0469 5.3944 19.584C5 19.053 5 18.1108 5 16.2264V7.77357C5 5.88919 5 4.94701 5.3944 4.41598C5.73818 3.9531 6.26501 3.66111 6.83973 3.6149C7.49907 3.5619 8.29805 4.06126 9.896 5.05998L16.6582 9.28638Z"
+          stroke="white"
+          stroke-whiteidth="2"
+          strokeLinejoin="round"
+        ></path>{" "}
       </g>
     </svg>
   );
