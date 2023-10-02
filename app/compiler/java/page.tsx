@@ -7,7 +7,8 @@ import CodeEditorWindow from "@/components/compiler/MonacoEditorWrapper";
 import OutputTerminal from "@/components/compiler/OutputTerminal";
 import { Button } from "@nextui-org/react";
 import { RunIcon } from "@/components/compiler/RunIcon";
-import { ResetIcon } from "@/components/compiler/ResetIcon";
+import { MoonIcon } from "@/components/compiler/MoonIcon";
+import { SunIcon } from "@/components/compiler/SunIcon";
 import { PythonIcon } from "@/components/compiler/PythonIcon";
 import { CsharpIcon } from "@/components/compiler/CsharpIcon";
 import { CppIcon } from "@/components/compiler/CppIcon";
@@ -26,6 +27,11 @@ public class HelloWorld {
 }`
   );
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   const toggleSize = () => {
     setIsExpanded(!isExpanded);
@@ -81,14 +87,21 @@ public class HelloWorld {
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="border-t md:border-l border-blue-600 rounded-l-lg md:rounded-r-lg">
               <div className="flex justify-between items-center px-4">
-                <h2 className="text-xl font-semibold mb-2">Main.java</h2>
-                <div className="mb-2">
+                <h2 className="text-xl font-semibold mb-2">Main.cpp</h2>
+                <div className="mb-2 d-flex gap-2">
+                  {" "}
+                  {/* Add d-flex class to create a flex container */}
                   <Button
                     color="primary"
+                    className="py-2 mt-4 mr-1"
+                    isIconOnly
                     isLoading={false}
-                    className=" px-4 py-2 mt-4"
-                    endContent={<RunIcon size={20} />}
+                    onClick={toggleDarkMode}
                   >
+                    <SunIcon size={20} />
+                  </Button>
+                  <Button color="primary" isLoading={false} className="py-2">
+                    <RunIcon size={20} />
                     კომპილაცია
                   </Button>
                 </div>
@@ -97,7 +110,7 @@ public class HelloWorld {
                 code={code}
                 onChange={handleCodeChange}
                 language={"java"}
-                theme={"vs-dark"}
+                isDarkMode={isDarkMode}
               />
             </div>
 
@@ -114,8 +127,8 @@ public class HelloWorld {
                   </Button>
                 </div>
               </div>
-              <OutputTerminal outputDetails="test" />
-            </div>
+              <OutputTerminal outputDetails="test" DarkMode={isDarkMode}/>
+            </div>DarkMode
           </div>
         </div>
       </div>
