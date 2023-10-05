@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import Cookies from "universal-cookie";
 import { Button } from "@nextui-org/react";
+import { signIn } from "next-auth/react";
 
 const AuthPage: React.FC = () => {
   const router = useRouter();
@@ -126,6 +127,7 @@ const AuthPage: React.FC = () => {
               {loginError && (
                 <div className={Style["error-message"]}>{loginError}</div>
               )}
+
               <Button
                 color="primary"
                 size="md"
@@ -141,18 +143,34 @@ const AuthPage: React.FC = () => {
                 Or Sign in with social platforms
               </p>
               <div className={Style["social-media"]}>
-                <a href="#" className={Style["social-icon"]}>
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" className={Style["social-icon"]}>
-                  <i className="fab fa-twitter"></i>
-                </a>
-                <a href="#" className={Style["social-icon"]}>
+                <Button
+                  onClick={() => signIn("google")}
+                  className={Style["social-icon"]}
+                  isIconOnly
+                >
                   <i className="fab fa-google"></i>
-                </a>
-                <a href="#" className={Style["social-icon"]}>
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
+                </Button>
+                <Button
+                  onClick={() => signIn("github")}
+                  className={Style["social-icon"]}
+                  isIconOnly
+                >
+                  <i className="fab fa-github"></i>
+                </Button>
+                <Button
+                  onClick={() => signIn("facebook")}
+                  className={Style["social-icon"]}
+                  isIconOnly
+                >
+                  <i className="fab fa-facebook"></i>
+                </Button>
+                <Button
+                  onClick={() => signIn("linkedin")}
+                  className={Style["social-icon"]}
+                  isIconOnly
+                >
+                  <i className="fab fa-linkedin"></i>
+                </Button>
               </div>
             </form>
             <form className={`${Style.authform} ${Style["sign-up-form"]}`}>
@@ -233,18 +251,34 @@ const AuthPage: React.FC = () => {
                 Or Sign up with social platforms
               </p>
               <div className={Style["social-media"]}>
-                <a href="#" className={Style["social-icon"]}>
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" className={Style["social-icon"]}>
-                  <i className="fab fa-twitter"></i>
-                </a>
-                <a href="#" className={Style["social-icon"]}>
+                <Button
+                  onClick={() => signIn("google")}
+                  className={Style["social-icon"]}
+                  isIconOnly
+                >
                   <i className="fab fa-google"></i>
-                </a>
-                <a href="#" className={Style["social-icon"]}>
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
+                </Button>
+                <Button
+                  onClick={() => signIn("github")}
+                  className={Style["social-icon"]}
+                  isIconOnly
+                >
+                  <i className="fab fa-github"></i>
+                </Button>
+                <Button
+                  onClick={() => signIn("facebook")}
+                  className={Style["social-icon"]}
+                  isIconOnly
+                >
+                  <i className="fab fa-facebook"></i>
+                </Button>
+                <Button
+                  onClick={() => signIn("linkedin")}
+                  className={Style["social-icon"]}
+                  isIconOnly
+                >
+                  <i className="fab fa-linkedin"></i>
+                </Button>
               </div>
             </form>
           </div>
