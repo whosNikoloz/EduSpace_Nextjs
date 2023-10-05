@@ -83,7 +83,7 @@ export const Hero = () => {
                   id="console"
                 >
                   <p className="pb-1">
-                    You are now connected to the C# learning environment.
+                    You are now connected to the C# learning
                   </p>
                   <p className="pb-1">
                     Type the following commands to get started:
