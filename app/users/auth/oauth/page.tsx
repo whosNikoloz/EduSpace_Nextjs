@@ -1,15 +1,13 @@
 "use client";
 
 import { title } from "@/components/Home/primitives";
-import Image from "next/image";
+import { Hero } from "@/components/signupsuccessful/Hero";
 import { useEffect, useState } from "react";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import Authenitcation from "@/app/api/User/auth";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Styles from "@/styles/loader.module.css";
-import EduSpace from "@/public/EduSpaceLogo.png";
 
 interface CustomSession extends Session {
   provider?: string; // Add the provider property
@@ -86,16 +84,5 @@ export default function oauthPage() {
     oauth();
   }, [session]);
 
-  return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 mt-20">
-      <div className={Styles.Loader}>
-        <Image
-          src={EduSpace}
-          alt="Description of the image"
-          width={100} // Specify the width of the image
-          height={100}
-        />
-      </div>
-    </section>
-  );
+  return <Hero userEmail={"test"} userName={"test"} />;
 }
