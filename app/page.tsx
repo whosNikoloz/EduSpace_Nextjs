@@ -1,10 +1,3 @@
-import NextLink from "next/link";
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { button as buttonStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/Home/primitives";
-import { GithubIcon } from "@/components/icons";
 import MainLayout from "@/app/layouts/Mainlayout";
 import AutoScrollCarousel from "@/components/Home/AutoScrollCarousel";
 import { Team } from "@/components/Home/team";

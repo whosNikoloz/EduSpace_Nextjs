@@ -9,7 +9,7 @@ import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import Cookies from "universal-cookie";
 import { Button } from "@nextui-org/react";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 const AuthPage: React.FC = () => {
   const router = useRouter();
@@ -51,6 +51,13 @@ const AuthPage: React.FC = () => {
       setIsLoading(false);
       router.push("/");
     }
+  };
+
+  const handleRegisterOAuth = async (provider: string) => {
+    // Trigger OAuth authentication
+    const callbackUrl = "/users/auth/oauth";
+
+    await signIn(provider, { callbackUrl });
   };
 
   const handleRegistration = async () => {
@@ -144,28 +151,35 @@ const AuthPage: React.FC = () => {
               </p>
               <div className={Style["social-media"]}>
                 <Button
-                  onClick={() => signIn("google")}
+                  onClick={() => signOut()}
                   className={Style["social-icon"]}
                   isIconOnly
                 >
                   <i className="fab fa-google"></i>
                 </Button>
                 <Button
-                  onClick={() => signIn("github")}
+                  onClick={() => handleRegisterOAuth("google")}
+                  className={Style["social-icon"]}
+                  isIconOnly
+                >
+                  <i className="fab fa-google"></i>
+                </Button>
+                <Button
+                  onClick={() => handleRegisterOAuth("github")}
                   className={Style["social-icon"]}
                   isIconOnly
                 >
                   <i className="fab fa-github"></i>
                 </Button>
                 <Button
-                  onClick={() => signIn("facebook")}
+                  onClick={() => handleRegisterOAuth("facebook")}
                   className={Style["social-icon"]}
                   isIconOnly
                 >
                   <i className="fab fa-facebook"></i>
                 </Button>
                 <Button
-                  onClick={() => signIn("linkedin")}
+                  onClick={() => handleRegisterOAuth("linkedin")}
                   className={Style["social-icon"]}
                   isIconOnly
                 >
