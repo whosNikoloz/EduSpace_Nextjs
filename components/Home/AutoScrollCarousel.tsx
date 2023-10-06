@@ -78,7 +78,7 @@ const AutoScrollCarousel = () => {
                     </a>
                     <div className="p-3">
                       <a href={`/learn/courses/${course.formattedCourseName}`}>
-                        <h5 className="mb-2 text-base font-bold tracking-tight text-gray-900 text-white">
+                        <h5 className="mb-2 text-base font-bold tracking-tight text-gray-900">
                           {course.courseName}
                         </h5>
                       </a>
