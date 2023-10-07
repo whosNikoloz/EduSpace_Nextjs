@@ -1,7 +1,5 @@
 "use client";
 
-import { title } from "@/components/Home/primitives";
-import { Hero } from "@/components/signupsuccessful/Hero";
 import { useEffect, useState } from "react";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
@@ -42,7 +40,10 @@ export default function oauthPage() {
           providerId: customSession.providerId || "",
         };
 
-        const checkemail = await auth.CheckeMailExist(userModel.email);
+        const checkemail = await auth.CheckeOAuthExist(
+          userModel.provider,
+          userModel.providerId
+        );
         console.log(checkemail);
         if (checkemail) {
           const loginoauth = await auth.handleOAuthLogin(

@@ -151,13 +151,6 @@ const AuthPage: React.FC = () => {
               </p>
               <div className={Style["social-media"]}>
                 <Button
-                  onClick={() => signOut()}
-                  className={Style["social-icon"]}
-                  isIconOnly
-                >
-                  <i className="fab fa-google"></i>
-                </Button>
-                <Button
                   onClick={() => handleRegisterOAuth("google")}
                   className={Style["social-icon"]}
                   isIconOnly
@@ -266,28 +259,28 @@ const AuthPage: React.FC = () => {
               </p>
               <div className={Style["social-media"]}>
                 <Button
-                  onClick={() => signIn("google")}
+                  onClick={() => handleRegisterOAuth("google")}
                   className={Style["social-icon"]}
                   isIconOnly
                 >
                   <i className="fab fa-google"></i>
                 </Button>
                 <Button
-                  onClick={() => signIn("github")}
+                  onClick={() => handleRegisterOAuth("github")}
                   className={Style["social-icon"]}
                   isIconOnly
                 >
                   <i className="fab fa-github"></i>
                 </Button>
                 <Button
-                  onClick={() => signIn("facebook")}
+                  onClick={() => handleRegisterOAuth("facebook")}
                   className={Style["social-icon"]}
                   isIconOnly
                 >
                   <i className="fab fa-facebook"></i>
                 </Button>
                 <Button
-                  onClick={() => signIn("linkedin")}
+                  onClick={() => handleRegisterOAuth("linkedin")}
                   className={Style["social-icon"]}
                   isIconOnly
                 >

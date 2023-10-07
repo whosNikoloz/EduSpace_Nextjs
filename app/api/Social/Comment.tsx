@@ -1,4 +1,3 @@
-import React from "react";
 import "firebase/auth";
 import { initializeApp } from "firebase/app";
 import {
@@ -10,7 +9,6 @@ import {
   listAll,
   deleteObject as deleteFirebaseObject,
 } from "firebase/storage";
-import { SubresourceIntegrityPlugin } from "next/dist/build/webpack/plugins/subresource-integrity-plugin";
 
 const social_API = "https://192.168.1.68:45455/api/Social/";
 const social_API_NIkoloza = "https://172.20.10.7:45456/api/Social/";

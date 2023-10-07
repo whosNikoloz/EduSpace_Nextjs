@@ -1,4 +1,3 @@
-import React from "react";
 import "firebase/auth";
 import { initializeApp } from "firebase/app";
 import {

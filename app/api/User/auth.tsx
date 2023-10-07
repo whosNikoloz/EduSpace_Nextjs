@@ -86,10 +86,6 @@ const Authentication = () => {
     confirmPassword: string
   ) => {
     try {
-      console.log(email);
-      console.log(userName);
-      console.log(password);
-      console.log(confirmPassword);
       const response = await fetch(auth_API + "register", {
         method: "POST",
         headers: {
@@ -116,13 +112,20 @@ const Authentication = () => {
     }
   };
 
-  const CheckeMailExist = async (email: string) => {
+  const CheckeOAuthExist = async (
+    oAuthProvider: string,
+    oAuthProviderId: string
+  ) => {
     try {
-      const response = await fetch(auth_API + "CheckeMailExist/" + email, {
+      const response = await fetch(auth_API + "OAuth2Exist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          oAuthProvider,
+          oAuthProviderId,
+        }),
       });
 
       if (response.ok) {
@@ -144,10 +147,6 @@ const Authentication = () => {
     oAuthProviderId: string
   ) => {
     try {
-      console.log(email);
-      console.log(username);
-      console.log(picture);
-      console.log(oAuthProvider);
       const response = await fetch(auth_API + "RegisterOAuth2", {
         method: "POST",
         headers: {
@@ -181,7 +180,7 @@ const Authentication = () => {
     handleOAuthLogin,
     handleRegistration,
     handleoAuthRegistration,
-    CheckeMailExist,
+    CheckeOAuthExist,
   };
 };
 

@@ -163,7 +163,11 @@ export default function SocialPage() {
       ) : (
         <>
           {searchQuery && (
-            <CustomTitle title1={"გაიფილტრა"} title2={searchQuery} />
+            <CustomTitle
+              title1={"გაიფილტრა"}
+              title2={searchQuery}
+              margin={14}
+            />
           )}
           {filteredPosts.map((post: { postId: Key | null | undefined }) => (
             <PostCard
