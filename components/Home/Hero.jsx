@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
-import Ilustration from "@/public/ilustration3.png";
-import { Code } from "@nextui-org/code";
-import Image from "next/image";
 import gsap from "gsap";
 import Link from "next/link";
+import { GitBashIcon } from "@/components/Home/GitBashIcon";
 
 export const Hero = () => {
   useEffect(() => {
@@ -55,61 +53,73 @@ export const Hero = () => {
         <div className="w-full md:w-1/2 md:mt-8">
           <div className="mx-auto flex items-center justify-center bounce-img">
             <div className="w-3/4 mx-auto">
-              <div className="w-full h-96 shadow-2xl subpixel-antialiased rounded bg-black dark:bg-white border-black mx-auto">
+              <div className="w-full h-96 shadow-2xl subpixel-antialiased rounded  dark:bg-black border-2 border-gray-800 mx-auto">
                 <div
-                  className="flex items-center h-8 rounded-t bg-gray-100 dark:bg-black border-b border-gray-500 text-center text-black"
+                  className="flex items-center h-8 rounded-t bg-gray-800 dark:bg-grey-900  text-center text-black"
                   id="headerTerminal"
                 >
                   <div
-                    className="flex ml-2 items-center text-center border-red-900 bg-red-500 shadow-inner rounded-full w-4 h-4"
+                    className="flex ml-2 items-center text-center border-red-900 bg-red-500 shadow-inner rounded-full w-3 h-3"
                     id="closebtn"
                   ></div>
                   <div
-                    className="ml-2 border-yellow-900 bg-yellow-500 shadow-inner rounded-full w-4 h-4"
+                    className="ml-2 border-yellow-900 bg-yellow-500 shadow-inner rounded-full w-3 h-3"
                     id="minbtn"
                   ></div>
                   <div
-                    className="ml-2 border-green-900 bg-green-500 shadow-inner rounded-full w-4 h-4"
+                    className="ml-2 border-green-900 bg-green-500 shadow-inner rounded-full w-3 h-3"
                     id="maxbtn"
                   ></div>
-                  <div className="mx-auto pr-16" id="terminaltitle">
-                    <p className="text-center text-base dark:text-white">
-                      Welcome to C# Learning Terminal
+                  <div
+                    className="mx-auto pr-16 flex items-center"
+                    id="terminaltitle"
+                  >
+                    <GitBashIcon size={23} />
+                    <p className="text-center text-xs dark:text-white ml-1">
+                      MINGW64:/
                     </p>
                   </div>
                 </div>
                 <div
-                  className="pl-1 pt-1 h-auto text-green-200 dark:text-black font-mono text-sm dark:bg-white"
+                  className="pl-1 pt-1 h-auto text-green-200 dark:text-gray-300 font-mono text-xs dark:bg-grey-900"
                   id="console"
                 >
-                  <p className="pb-1">
-                    You are now connected to the C# learning
+                  <p className="pt-1">
+                    <code className="text-green-600 ">
+                      EduSpace@whosNikoloz
+                    </code>
+                    <code className="text-purple-500"> MINGW64</code>
+                    <code className="text-yellow-500">
+                      {" "}
+                      ~/OneDrive/desktop/eduspace
+                    </code>
+                    <code className="text-green-300"> (main)</code>
                   </p>
                   <p className="pb-1">
-                    Type the following commands to get started:
+                    <code> $ git status</code>
                   </p>
-                  <code className="text-yellow-400">
-                    csharp{">"} Console.WriteLine("Hello, World!");
-                  </code>
-                  <p className="pb-1">
-                    This will print "Hello, World!" to the console.
+                  <p>
+                    <code> On branch main</code>
                   </p>
-                  <code className="text-yellow-400">
-                    csharp{">"} int number = 42;
-                  </code>
-                  <p className="pb-1">
-                    Declare and initialize an integer variable.
+                  <p>
+                    <code>Your branch is up to date with 'origin/main'.</code>
                   </p>
-                  <code className="text-yellow-400">
-                    csharp{">"} string greeting = "Welcome to C#!";
-                  </code>
-                  <p className="pb-1">
-                    Declare and initialize a string variable.
+                  <p className="pt-2">
+                    <code>Changes not staged for commit:</code>
                   </p>
-                  <code className="text-yellow-400">
-                    csharp{">"} // Your C# code goes here
-                  </code>
-                  <p className="pb-1">Feel free to experiment and learn!</p>
+                  <p>
+                    <code>
+                      {"     "}
+                      (use "git add/rm file..." to update what will be
+                      committed)
+                    </code>
+                  </p>
+                  <p>
+                    <code>
+                      (use "git restore file..." to discard changes in working
+                      directory)
+                    </code>
+                  </p>
                 </div>
               </div>
             </div>

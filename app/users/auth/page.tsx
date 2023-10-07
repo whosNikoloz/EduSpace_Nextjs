@@ -3,8 +3,8 @@
 import Authentication from "@/app/api/User/auth";
 import { useEffect, useState } from "react";
 import Style from "@/app/users/auth/page.module.css";
-import logSVG from "@/public/log.svg";
-import registerSVG from "@/public/register.svg";
+import LoginIl from "@/public/ProgiLust.png";
+import RegistrationIl from "@/public/ProgiLust2.png";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import Cookies from "universal-cookie";
@@ -307,7 +307,7 @@ const AuthPage: React.FC = () => {
                 რეგისტრაცია
               </button>
             </div>
-            <Image src={logSVG} className={Style.image} alt="" />
+            <Image src={LoginIl} className={Style.image} alt="" />
           </div>
           <div className={`${Style.panel} ${Style["right-panel"]}`}>
             <div className={Style.content}>
@@ -324,7 +324,7 @@ const AuthPage: React.FC = () => {
                 შესვლა
               </button>
             </div>
-            <Image src={registerSVG} className={Style.image} alt="" />
+            <Image src={RegistrationIl} className={Style.image} alt="" />
           </div>
         </div>
       </div>

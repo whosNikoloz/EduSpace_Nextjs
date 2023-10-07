@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import Courses from "@/app/api/Learn/Course";
-import Image from "next/image";
 
 interface HeroProps {
   logo: string;
@@ -17,10 +15,7 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <>
       <div className="flex items-center justify-center ">
-        <a
-          href="#"
-          className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-2xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-        >
+        <div className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-2xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
           <img
             className="object-cover w-full  h-96 md:h-auto md:w-44 rounded-lg"
             src={logo}
@@ -34,7 +29,7 @@ export const Hero: React.FC<HeroProps> = ({
               {description}
             </p>
           </div>
-        </a>
+        </div>
       </div>
     </>
   );

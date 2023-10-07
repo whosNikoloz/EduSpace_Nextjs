@@ -1,12 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button } from "@nextui-org/react";
-import Ilustration from "@/public/ilustration1.png";
-import { Code } from "@nextui-org/code";
+import Ilustration from "@/public/ProgiLust1.png";
 import Image from "next/image";
 import gsap from "gsap";
-import Link from "next/link";
 
 export const Hero = ({ userEmail, userName }) => {
   useEffect(() => {

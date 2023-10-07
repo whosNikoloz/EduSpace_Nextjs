@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
-import Ilustration from "@/public/ilustration2.png";
-import { Code } from "@nextui-org/code";
+import Ilustration from "@/public/ProgiLust3.png";
 import Image from "next/image";
 import gsap from "gsap";
-import Link from "next/link";
 
 export const Hero = ({ userEmail, userName }) => {
   useEffect(() => {
