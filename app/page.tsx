@@ -8,6 +8,7 @@ import { Hero } from "@/components/Home/Hero";
 import { Pricing } from "@/components/Home/pricing";
 import { CustomTitle } from "@/components/CustomTitle";
 import Review from "@/components/Home/review";
+import { Compiler } from "@/components/Home/compiler";
 
 export default function Home() {
   return (
@@ -39,6 +40,13 @@ export default function Home() {
           <CustomTitle title1={"მიყევი"} title2={"ინსტრუქციას"} margin={12} />
           <div className="mt-10">
             <Steps />
+          </div>
+        </div>
+      </section>
+      <section className=" items-center justify-center gap-4 py-8 md:py-10">
+        <div className="mt-20 text-center   justify-center">
+          <div className="mt-10">
+            <Compiler />
           </div>
         </div>
       </section>

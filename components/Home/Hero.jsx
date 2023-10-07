@@ -61,7 +61,7 @@ export const Hero = () => {
             <div className="w-3/4 mx-auto">
               <div className="w-full h-96 shadow-2xl subpixel-antialiased rounded bg-black border-2 border-gray-800 mx-auto">
                 <div
-                  className="flex items-center h-8 rounded-t bg-grey-900  text-center text-black"
+                  className="flex items-center h-8 rounded-t bg-gray-900  text-center text-black"
                   id="headerTerminal"
                 >
                   <div

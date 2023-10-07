@@ -137,7 +137,11 @@ public class HelloWorld {
                     </Button>
                   </div>
                 </div>
-                <OutputTerminal outputDetails="test" DarkMode={isDarkMode} />
+                <OutputTerminal
+                  outputDetails="test"
+                  Height="85vh"
+                  DarkMode={isDarkMode}
+                />
               </div>
             </div>
           </div>
@@ -215,7 +219,11 @@ public class HelloWorld {
                 />
               )}
               {selectedTab === "Output" && (
-                <OutputTerminal outputDetails="test" DarkMode={isDarkMode} />
+                <OutputTerminal
+                  outputDetails="test"
+                  Height="85vh"
+                  DarkMode={isDarkMode}
+                />
               )}
             </div>
           </div>

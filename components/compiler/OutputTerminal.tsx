@@ -5,14 +5,13 @@ import React, { useEffect, useState } from "react";
 interface OutputTerminalProps {
   outputDetails: string;
   DarkMode: boolean;
+  Height: string;
 }
-const containerStyle = {
-  height: "85vh", // Set the desired height here
-};
 
 const OutputTerminal: React.FC<OutputTerminalProps> = ({
   outputDetails,
   DarkMode,
+  Height,
 }) => {
   const [backgroundColor, setBackgroundColor] = useState("#24292E");
 
@@ -28,8 +27,8 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
   return (
     <div className="w-full">
       <div
-        style={{ height: "85vh", backgroundColor: backgroundColor }}
-        className="inverse-toggle px-5 pt-4 shadow-lg text-green-600 text-sm font-mono subpixel-antialiased  pb-6  leading-normal overflow-hidden"
+        style={{ height: Height, backgroundColor: backgroundColor }}
+        className="inverse-toggle px-5  shadow-lg text-green-600 text-sm font-mono subpixel-antialiased  pb-6  leading-normal overflow-hidden"
       >
         <div className="flex">
           <p className="flex-1 typing items-center pl-2">
