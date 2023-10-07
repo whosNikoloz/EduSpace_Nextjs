@@ -6,6 +6,12 @@ import gsap from "gsap";
 import Link from "next/link";
 import { GitBashIcon } from "@/components/Home/GitBashIcon";
 
+import dynamic from "next/dynamic";
+
+const Typewriter = dynamic(() => import("typewriter-effect"), {
+  ssr: false, // Disable server-side rendering for this component
+});
+
 export const Hero = () => {
   useEffect(() => {
     const bounceAnimation = () => {
@@ -50,12 +56,12 @@ export const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 md:mt-8">
+        <div className="w-full md:w-1/2 md:mt-8 mt-9">
           <div className="mx-auto flex items-center justify-center bounce-img">
             <div className="w-3/4 mx-auto">
-              <div className="w-full h-96 shadow-2xl subpixel-antialiased rounded  dark:bg-black border-2 border-gray-800 mx-auto">
+              <div className="w-full h-96 shadow-2xl subpixel-antialiased rounded bg-black border-2 border-gray-800 mx-auto">
                 <div
-                  className="flex items-center h-8 rounded-t bg-gray-800 dark:bg-grey-900  text-center text-black"
+                  className="flex items-center h-8 rounded-t bg-grey-900  text-center text-black"
                   id="headerTerminal"
                 >
                   <div
@@ -75,13 +81,13 @@ export const Hero = () => {
                     id="terminaltitle"
                   >
                     <GitBashIcon size={23} />
-                    <p className="text-center text-xs dark:text-white ml-1">
+                    <p className="text-center text-xs text-white ml-1">
                       MINGW64:/
                     </p>
                   </div>
                 </div>
                 <div
-                  className="pl-1 pt-1 h-auto text-green-200 dark:text-gray-300 font-mono text-xs dark:bg-grey-900"
+                  className="pl-1 pt-1 h-auto text-gray-300 font-mono text-xs bg-grey-900"
                   id="console"
                 >
                   <p className="pt-1">
@@ -108,16 +114,34 @@ export const Hero = () => {
                     <code>Changes not staged for commit:</code>
                   </p>
                   <p>
-                    <code>
-                      {"     "}
-                      (use "git add/rm file..." to update what will be
-                      committed)
-                    </code>
+                    <code>nothing to commit, working tree clean</code>
                   </p>
-                  <p>
+                  <p className="pt-1">
+                    <code className="text-green-600 ">
+                      EduSpace@whosNikoloz
+                    </code>
+                    <code className="text-purple-500"> MINGW64</code>
+                    <code className="text-yellow-500">
+                      {" "}
+                      ~/OneDrive/desktop/eduspace
+                    </code>
+                    <code className="text-green-300"> (main)</code>
+                  </p>
+                  <p className="pb-1 flex items-center gap-2">
+                    <code>$</code>
                     <code>
-                      (use "git restore file..." to discard changes in working
-                      directory)
+                      <Typewriter
+                        options={{
+                          strings: [
+                            "git commit",
+                            "git push",
+                            "git add .",
+                            "git დაიწყე სწავლა 🤙",
+                          ],
+                          autoStart: true,
+                          loop: true,
+                        }}
+                      />
                     </code>
                   </p>
                 </div>
