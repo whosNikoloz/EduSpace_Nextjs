@@ -8,13 +8,16 @@ import { Hero } from "@/components/Home/Hero";
 import { Pricing } from "@/components/Home/pricing";
 import { CustomTitle } from "@/components/CustomTitle";
 import Review from "@/components/Home/review";
-import { Compiler } from "@/components/Home/compiler";
+import CompilerSection from "@/components/Home/compilerSection";
 
 export default function Home() {
   return (
     <MainLayout>
       <Hero />
-      <section className=" items-center justify-center gap-4 py-8 md:py-10 mt-20">
+      <section
+        id="compiler-section"
+        className=" items-center justify-center gap-4 py-8 md:py-10 mt-20"
+      >
         <div className="mt-20 text-center   justify-center">
           <CustomTitle title1={"ჩვენი"} title2={"კურსები"} margin={12} />
           <div className="mt-20 ">
@@ -46,7 +49,7 @@ export default function Home() {
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-20 text-center   justify-center">
           <div className="mt-10">
-            <Compiler />
+            <CompilerSection />
           </div>
         </div>
       </section>

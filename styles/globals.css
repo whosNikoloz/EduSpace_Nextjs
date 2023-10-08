@@ -5,3 +5,6 @@
 #nprogress .bar {
   background-color: blue; /* Set your desired color here */
 }
+html {
+  scroll-behavior: smooth;
+}

@@ -8,24 +8,7 @@ import { EduSpace } from "../EduSpaceLogo";
 import { Button } from "@nextui-org/react";
 import { RunIcon } from "../compiler/RunIcon";
 
-export const Compiler = () => {
-  const [code, setCode] = useState(
-    `using System;
-
-public class HelloWorld
-{
-    public static void Main(string[] args)
-    {
-        string Name = "EduSpace";
-
-        //Change Name With Your Name and Run
-
-        Console.WriteLine ($"Hello {Name}!");
-    }
-}`
-  );
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
+export const Compiler = ({ code, isDarkMode, onChange }) => {
   useEffect(() => {
     if (isDarkMode) {
       defineTheme("githubdark");
@@ -53,12 +36,17 @@ public class HelloWorld
           {/* Nested container 2 */}
           <div className="flex-1 border-b border-gray-500">
             <Editor
-              height="40vh"
+              height="37vh"
               width="100%"
               language="csharp"
               value={code}
+              onChange={onChange}
               theme={isDarkMode ? "githubdark" : "githublight"}
               defaultValue="// some comment"
+              options={{
+                fontSize: 12, // Adjust the font size as needed
+                minimap: { enabled: false }, // Optional minimap configuration
+              }}
             />
           </div>
         </div>
@@ -72,7 +60,7 @@ public class HelloWorld
 
           {/* Nested container 4 */}
           <div className="flex-1 lg:w-full text-start border-b  border-gray-500">
-            <OutputTerminal Height="40vh" DarkMode outputDetails="test" />
+            <OutputTerminal Height="37vh" DarkMode outputDetails="test" />
           </div>
         </div>
       </div>
@@ -81,9 +69,8 @@ public class HelloWorld
           color="primary"
           isLoading={false}
           onClick={() => handleTabChange("Output")}
-          isIconOnly
         >
-          <RunIcon size={20} />
+          <RunIcon size={20} /> კომპილაცია
         </Button>
       </div>
     </div>

@@ -28,7 +28,7 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
     <div className="w-full">
       <div
         style={{ height: Height, backgroundColor: backgroundColor }}
-        className="inverse-toggle px-5  shadow-lg text-green-600 text-sm font-mono subpixel-antialiased  pb-6  leading-normal overflow-hidden"
+        className="inverse-toggle px-5  shadow-lg  text-sm font-mono subpixel-antialiased  pb-6  leading-normal overflow-hidden"
       >
         <div className="flex">
           <p className="flex-1 typing items-center pl-2">
