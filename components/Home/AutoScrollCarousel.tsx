@@ -9,6 +9,7 @@ import ilustration from "@/public/ilustration2.png";
 import Courses from "@/app/api/Learn/Course";
 import Image from "next/image";
 import { Skeleton } from "@nextui-org/react";
+import gsap from "gsap";
 
 interface Course {
   courseId: number;
@@ -59,6 +60,33 @@ const AutoScrollCarousel = () => {
       splide.destroy();
     };
   }, [courses]);
+
+  const animateSlider = () => {
+    const splide = document.querySelector(".splide"); // Get the specific .splide div
+    if (splide) {
+      gsap.fromTo(
+        splide, // Target the specific .splide div
+        { opacity: 0, y: 50 }, // Initial state (hidden and moved down)
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            trigger: splide, // Use the specific .splide div as the trigger
+            start: "top bottom-=100", // Adjust as needed
+            end: "top center", // Adjust as needed
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
+    }
+  };
+
+  useEffect(() => {
+    animateSlider();
+  }, []);
 
   return (
     <div className="splide">

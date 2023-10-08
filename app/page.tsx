@@ -34,8 +34,7 @@ export default function Home() {
 
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-20 text-center   justify-center">
-          <CustomTitle title1={"პროექტის"} title2={"სტატისტიკა"} margin={12} />
-          <Stats />
+          <CompilerSection />
         </div>
       </section>
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
@@ -49,7 +48,8 @@ export default function Home() {
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-20 text-center   justify-center">
           <div className="mt-10">
-            <CompilerSection />
+            <CustomTitle title1={"პროექტის"} title2={"სტატისტიკა"} margin={12} />
+          <Stats />
           </div>
         </div>
       </section>

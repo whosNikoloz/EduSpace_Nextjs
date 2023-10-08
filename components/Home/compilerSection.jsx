@@ -9,9 +9,10 @@ const CompilerSection = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const animateCompiler = () => {
-    gsap.utils.toArray(".compiler").forEach((member, index) => {
+    const splide = document.querySelector(".compiler"); // Get the specific .splide div
+    if (splide) {
       gsap.fromTo(
-        member,
+        splide, // Target the specific .splide div
         { opacity: 0, y: 50 }, // Initial state (hidden and moved down)
         {
           opacity: 1,
@@ -19,7 +20,7 @@ const CompilerSection = () => {
           duration: 1,
           ease: "power2.inOut",
           scrollTrigger: {
-            trigger: member,
+            trigger: splide, // Use the specific .splide div as the trigger
             start: "top bottom-=100", // Adjust as needed
             end: "top center", // Adjust as needed
             toggleActions: "play none none none",
@@ -27,7 +28,7 @@ const CompilerSection = () => {
           },
         }
       );
-    });
+    }
   };
 
   useEffect(() => {
@@ -51,6 +52,7 @@ public class HelloWorld
 };
     `
   );
+
 
   return (
     <div>
