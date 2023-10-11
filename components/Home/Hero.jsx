@@ -30,17 +30,17 @@ export const Hero = () => {
   return (
     <>
       <div className="flex flex-wrap md:mt-20">
-        <div className="w-full md:w-1/2 p-6">
-          <div className="text-center">
+        <div className="w-full md:w-1/2 p-6 lg:text-left text-center">
+          <div className="text-center lg:text-left">
             <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl dark:text-white">
-              Welcome to <span className="text-blue-600">EduSpace</span> - Learn
+              Welcome to <span className="text-blue-600">EduSpace</span> Learn
               Programming Online
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-white">
               გამოიკვლიეთ კოდირების სამყარო EduSpace-ით. ისწავლეთ პროგრამირება
               ონლაინ და დაეუფლეთ თქვენს უნარებს.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
               <Link href="users/auth">
                 <Button className="bg-blue-600 text-white">
                   დაიწყე ახლავე!

@@ -70,7 +70,7 @@ public class HelloWorld
               <br />
             </p>
             <div className="mt-10 flex items-center justify-center md:justify-start gap-x-6">
-              <a href="/learn/c-sharp-beginner">
+              <a href="/learn/courses/c-sharp-beginner">
                 <Button className="bg-blue-600 text-white">
                   დაიწყე სწავლა
                 </Button>
