@@ -250,15 +250,16 @@ export const Navbar = () => {
               // Render this content if user is null
               <>
                 <NavbarItem>
-                  <Button
-                    className="bg-blue-600 text-white"
-                    as={Link}
-                    color="primary"
-                    href="users/auth"
-                    variant="ghost"
-                  >
-                    დაწყება
-                  </Button>
+                  <Link href="/users/auth">
+                    <Button
+                      className="bg-blue-600 text-white"
+                      as={Link}
+                      color="primary"
+                      variant="ghost"
+                    >
+                      დაწყება
+                    </Button>
+                  </Link>
                 </NavbarItem>
               </>
             )}

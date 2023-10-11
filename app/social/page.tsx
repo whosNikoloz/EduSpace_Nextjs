@@ -167,6 +167,7 @@ export default function SocialPage() {
               title1={"გაიფილტრა"}
               title2={searchQuery}
               margin={14}
+              direct={"center"}
             />
           )}
           {filteredPosts.map((post: { postId: Key | null | undefined }) => (

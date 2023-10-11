@@ -53,10 +53,9 @@ public class HelloWorld
     `
   );
 
-
   return (
     <div>
-      <div className="flex flex-wrap md:mt-20">
+      <div className="flex flex-wrap">
         {/* First container */}
         <div className="w-full md:w-1/3 p-6 flex items-center justify-center md:order-2">
           <div className="text-center md:text-left">

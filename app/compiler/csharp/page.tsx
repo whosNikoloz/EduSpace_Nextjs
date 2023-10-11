@@ -96,7 +96,7 @@ public class HelloWorld
         <div className="hidden sm:block w-full">
           <div className="flex-1 rounded-lg">
             <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="border-t md:border-l border-blue-600 rounded-lg ">
+              <div className="border-t md:border-l border-blue-600 rounded-l-lg ">
                 <div className="flex justify-between items-center px-4">
                   <h2 className="text-xl font-semibold mb-2">Main.cs</h2>
                   <div className="mb-2 d-flex gap-2">
@@ -145,6 +145,7 @@ public class HelloWorld
                   outputDetails="test"
                   Height="85vh"
                   DarkMode={isDarkMode}
+                  Error
                 />
               </div>
             </div>
@@ -227,6 +228,7 @@ public class HelloWorld
                   outputDetails="test"
                   Height="85vh"
                   DarkMode={isDarkMode}
+                  Error
                 />
               )}
             </div>

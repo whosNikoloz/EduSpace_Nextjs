@@ -21,6 +21,7 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [output, setOutput] = useState("");
   const [activeTab, setActiveTab] = useState("code");
+  const [errorFlag, setErrorFlag] = useState(false);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -31,10 +32,18 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
 
     try {
       const response = await compiler.compilecsharp(code, "csharp", "");
-      setOutput(response);
+
+      if (response.success === true) {
+        setOutput(response.result);
+        setErrorFlag(false);
+      } else {
+        setOutput(response.error);
+        setErrorFlag(true);
+      }
     } catch (error) {
       // Handle any errors that may occur during compilation
       console.error(error);
+      setErrorFlag(true);
     } finally {
       // Compilation is done, whether it succeeds or fails
       setIsRunning(false);
@@ -92,7 +101,12 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
 
             {/* Nested container 4 */}
             <div className="flex-1 lg:w-full text-start border-b  border-gray-500">
-              <OutputTerminal Height="37vh" DarkMode outputDetails={output} />
+              <OutputTerminal
+                Height="37vh"
+                DarkMode
+                outputDetails={output}
+                Error={errorFlag}
+              />
             </div>
           </div>
         </div>
@@ -134,7 +148,12 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
           )}
           {activeTab === "output" && (
             <div className="flex-1 lg:w-full text-start border-b  border-gray-500">
-              <OutputTerminal Height="37vh" DarkMode outputDetails={output} />
+              <OutputTerminal
+                Height="37vh"
+                DarkMode
+                outputDetails={output}
+                Error={errorFlag}
+              />
             </div>
           )}
         </div>

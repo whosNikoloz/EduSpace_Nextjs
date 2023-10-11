@@ -1,22 +1,49 @@
-"use client";
+export const CustomTitle = ({ title1, title2, margin, direct }) => {
+  const titleDirectionClass =
+    direct === "right"
+      ? "text-right mr-28"
+      : direct === "left"
+      ? "text-left ml-28" 
+      : "text-center";
+  const svgDirectionStyle =
+    direct === "right"
+      ? { float: "right", marginRight: "180px" }
+      : direct === "left"
+      ? { float: "left", marginLeft: "180px" }
+      : {};
 
-import React from "react";
-
-export const CustomTitle = ({ title1, title2, margin }) => {
   return (
     <>
-      <header className={`text-center mx-auto mb-${margin}`}>
-        <h2 className="text-2xl leading-normal mb-2 font-bold text-blue-600 dark:text-gray-100">
-          <span className="font-light">{title1}</span> {title2}
+      <header
+        className={`text-center mx-auto mb-${margin}`}
+      >
+        <h2
+          className={`text-2xl leading-normal ${titleDirectionClass} mb-2 font-bold text-blue-600 dark:text-gray-100`}
+        >
+          {direct === "left" && (
+            <>
+              <span className="font-light ml-50">{title1}</span> {title2}
+            </>
+          )}
+          {direct === "center" && (
+            <>
+              <span className="font-light">{title1}</span> {title2}
+            </>
+          )}
+          {direct === "right" && (
+            <>
+              <span className="font-light">{title1}</span> {title2}
+            </>
+          )}
         </h2>
         <svg
           version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
+          xmlns="http://w3.org/2000/svg"
+          xmlnsXlink="http://w3.org/1999/xlink"
           x="0px"
           y="0px"
           viewBox="0 0 100 60"
-          style={{ margin: "0 auto", height: "35px" }}
+          style={{ margin: "0 auto", height: "35px", ...svgDirectionStyle }}
           xmlSpace="preserve"
         >
           <circle
