@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { CustomTitle } from "@/components/CustomTitle";
 import { Hero } from "@/components/Learn/Hero";
 import CoursesAPI from "@/app/api/Learn/Course";
+import Subject from "@/components/Learn/Subject";
 
 interface Course {
   courseId: number;
@@ -16,6 +17,7 @@ interface Course {
 }
 
 export default function CplusAdvancedPage() {
+  const containers = ["Container 1", "Container 2", "Container 3"];
   const courses = CoursesAPI();
   const [course, setCourse] = useState<Course | null>(null);
   useEffect(() => {
@@ -23,7 +25,6 @@ export default function CplusAdvancedPage() {
       try {
         const response = await courses.GetCourse("c-plus-advanced");
         setCourse(response); // Assuming the API response is an array of Course objects
-        console.log(response);
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
@@ -34,11 +35,16 @@ export default function CplusAdvancedPage() {
   return (
     <MainLayout>
       {course && (
-        <Hero
-          logo={course.courseLogo}
-          courseName={course.courseName}
-          description={course.description}
-        />
+        <>
+          <div className="flex flex-col items-center justify-center ">
+            <Hero
+              logo={course.courseLogo}
+              courseName={course.courseName}
+              description={course.description}
+            />
+            <Subject />
+          </div>
+        </>
       )}
     </MainLayout>
   );

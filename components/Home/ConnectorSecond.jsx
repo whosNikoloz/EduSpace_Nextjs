@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const ConnectorSecond = () => {
+export const ConnectorSecond = ({ text }) => {
   const animateTeamMembers = () => {
     gsap.utils.toArray(".Connector").forEach((member, index) => {
       gsap.fromTo(
@@ -35,9 +35,17 @@ export const ConnectorSecond = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="w-2/6 h-10 lg:h-56 lg:w-4/6 border-blue-600  border-r-4  border-dashed Connector"></div>
-      <div className="w-2/6 border-b-4 lg:w-4/6 border-blue-600 border-dashed Connector"></div>
-      <div className="w-2/6 h-10 lg:h-56 lg:w-4/6 border-blue-600 border-dashed border-l-4  Connector"></div>
+      <div className="w-2/6 md:w-1/2 lg:w-4/6 relative">
+        <div className="h-10 md:h-36 lg:h-56 border-blue-600 border-r-4 border-dashed w-full Connector">
+          <span className="absolute bottom-2 text-center w-full text-sm sm:text-2xl">
+            {text}
+          </span>
+        </div>
+      </div>
+      <div className="w-2/6 border-b-4 lg:w-4/6 md:w-1/2 border-blue-600 border-dashed Connector"></div>
+      <div className="w-2/6 md:w-1/2 lg:w-4/6">
+        <div className="h-10 md:h-36 lg:h-56 border-blue-600 border-dashed border-l-4 w-full Connector"></div>
+      </div>
     </div>
   );
 };

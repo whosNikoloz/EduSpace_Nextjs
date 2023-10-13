@@ -1,28 +1,41 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
+
 export const CustomTitle = ({ title1, title2, margin, direct }) => {
+  const [direction, setDirection] = useState(direct);
+
+  // Update direction based on screen size
+  useEffect(() => {
+    if (isMobile) {
+      setDirection("center");
+    }
+  }, [isMobile]);
+
   const titleDirectionClass =
-    direct === "right"
+    direction === "right"
       ? "text-right mr-28"
-      : direct === "left"
-      ? "text-left ml-28" 
+      : direction === "left"
+      ? "text-left ml-28"
       : "text-center";
   const svgDirectionStyle =
-    direct === "right"
+    direction === "right"
       ? { float: "right", marginRight: "180px" }
-      : direct === "left"
+      : direction === "left"
       ? { float: "left", marginLeft: "180px" }
-      : {};
-
+      : { marginLeft: "105px" };
   return (
     <>
-      <header
-        className={`text-center mx-auto mb-${margin}`}
-      >
+      <header className={`text-center mx-auto mb-${margin}`}>
         <h2
           className={`text-2xl leading-normal ${titleDirectionClass} mb-2 font-bold text-blue-600 dark:text-gray-100`}
         >
           {direct === "left" && (
             <>
-              <span className="font-light ml-50">{title1}</span> {title2}
+              <span className="font-light text-blue-600 dark:text-gray-100">
+                {title1}
+              </span>{" "}
+              {title2}
             </>
           )}
           {direct === "center" && (
