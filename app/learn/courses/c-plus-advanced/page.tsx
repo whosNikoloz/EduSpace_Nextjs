@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { CustomTitle } from "@/components/CustomTitle";
 import { Hero } from "@/components/Learn/Hero";
 import CoursesAPI from "@/app/api/Learn/Course";
-import Subject from "@/components/Learn/Subject";
+import Subject from "@/components/Learn/subject";
 
 interface Course {
   courseId: number;
