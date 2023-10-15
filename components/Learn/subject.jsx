@@ -2,6 +2,8 @@
 import { Button } from "@nextui-org/react";
 import { useState } from "react";
 import { CertificationIcon } from "../Learn/CertificationIcon";
+import { QuizIcon } from "../Learn/QuizIcon";
+import { VectorIcon } from "../Learn/VectorIcon";
 
 const Subject = ({ subjectList, idx }) => {
   const [containerVisible, setContainerVisible] = useState(false);
@@ -47,8 +49,33 @@ const Subject = ({ subjectList, idx }) => {
             key={index}
             className="px-5 py-4 bg-white dark:bg-gray-800 shadow justif rounded-lg mb-4"
           >
-            <p className="text-white">{container}</p>
-            <Button>Learn</Button>
+            <div className="flex flex-row justify-between">
+              <div className="flex flex-row items-center gap-4">
+                <QuizIcon size={25} />
+                <div className="flex flex-col gap-1 ">
+                  <p className="text-slate-400  text-[8px] lg:text-[10px]">
+                    გაკვეთილი
+                  </p>
+                  <p className="text-white  sm:text-lg lg:text-2xl">
+                    {container}
+                  </p>
+                  <div className="rounded-2xl font-medium  border lg:w-12 lg:h-6 w-10 h-5 flex items-center justify-center">
+                    <p className="text-slate-400 text-[8px] lg:text-[10px]">
+                      XP + 10
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <VectorIcon size={30} />
+            </div>
+            <Button
+              className="bg-blue-600 w-full text-white mt-4"
+              color="primary"
+              variant="ghost"
+              size="large"
+            >
+              Learn
+            </Button>
           </div>
         ))}
       </div>
@@ -59,8 +86,8 @@ const Subject = ({ subjectList, idx }) => {
 export default () => {
   const subjectList = [
     {
-      q: "What are some random questions to ask?",
-      containers: ["1", "2"],
+      q: "Classes & Objects",
+      containers: ["Classes & Objects", "Variables", "Functions", "Loops"],
     },
     {
       q: "Do you include common questions?",
@@ -88,17 +115,19 @@ export default () => {
         <div className="px-5 py-4 bg-white gap-4 dark:bg-gray-800 shadow justify-center items-center rounded-lg mb-4 text-center flex space-y-4">
           <div className="flex flex-col items-center">
             <CertificationIcon size={100} />
-            <h1 className="text-white mt-4">Your Certificate is close</h1>
+            <h1 className="text-white mt-4">თქვენი სერთიფიკატი ახლოს არის</h1>
             <p className="text-white mt-3 mb-4">
-              You are doing great! Keep learning to unlock your certificate!
+              მშვენივრად აკეთებ! განაგრძეთ სწავლა თქვენი სერტიფიკატის
+              აღებისთვის!
             </p>
             <Button
               className="bg-blue-600 w-1/2 text-white"
               color="primary"
               variant="ghost"
               size="large"
+              isDisabled
             >
-              Claim Certificate
+              სერთიფიკატის მიღება
             </Button>
           </div>
         </div>
