@@ -10,6 +10,7 @@ import Subject from "@/components/Learn/subject";
 interface Course {
   courseId: number;
   courseName: string;
+  subjects: any;
   description: string;
   courseLogo: string;
   formattedCourseName: string;
@@ -25,6 +26,7 @@ export default function CplusAdvancedPage() {
       try {
         const response = await courses.GetCourse("c-plus-advanced");
         setCourse(response); // Assuming the API response is an array of Course objects
+        console.log(response.subjects);
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
@@ -42,7 +44,7 @@ export default function CplusAdvancedPage() {
               courseName={course.courseName}
               description={course.description}
             />
-            <Subject />
+            <Subject courseData={course} />
           </div>
         </>
       )}

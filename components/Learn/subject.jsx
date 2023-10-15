@@ -5,7 +5,17 @@ import { CertificationIcon } from "../Learn/CertificationIcon";
 import { QuizIcon } from "../Learn/QuizIcon";
 import { VectorIcon } from "../Learn/VectorIcon";
 
-const Subject = ({ subjectList, idx }) => {
+const Subject = ({ courseData }) => {
+  return (
+    <div className="space-y-3 mt-5 overflow-hidden">
+      {courseData.subjects.map((subject, index) => (
+        <SubjectItem key={index} subject={subject} />
+      ))}
+    </div>
+  );
+};
+
+const SubjectItem = ({ subject }) => {
   const [containerVisible, setContainerVisible] = useState(false);
 
   const handleToggleContainer = () => {
@@ -13,12 +23,12 @@ const Subject = ({ subjectList, idx }) => {
   };
 
   return (
-    <div className="space-y-3 mt-5 overflow-hidden">
+    <div>
       <h4
         className="cursor-pointer pb-5 flex items-center justify-between text-lg text-white font-medium"
         onClick={handleToggleContainer}
       >
-        {subjectList.q}
+        {subject.subjectName}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={`h-5 w-5 text-white ml-2 transform transition-transform ${
@@ -44,23 +54,23 @@ const Subject = ({ subjectList, idx }) => {
             : { height: "0px", overflow: "hidden" }
         }
       >
-        {subjectList.containers.map((container, index) => (
+        {subject.lessons.map((lesson, lessonIndex) => (
           <div
-            key={index}
+            key={lessonIndex}
             className="px-5 py-4 bg-white dark:bg-gray-800 shadow justif rounded-lg mb-4"
           >
             <div className="flex flex-row justify-between">
               <div className="flex flex-row items-center gap-4">
                 <QuizIcon size={25} />
-                <div className="flex flex-col gap-1 ">
-                  <p className="text-slate-400  text-[8px] lg:text-[10px]">
+                <div className="flex flex-col gap-1">
+                  <p className="text-slate-400 text-[8px] lg-text-[10px]">
                     გაკვეთილი
                   </p>
-                  <p className="text-white  sm:text-lg lg:text-2xl">
-                    {container}
+                  <p className="text-white  sm:text-lg lg:text-xl">
+                    {lesson.lessonName}
                   </p>
-                  <div className="rounded-2xl font-medium  border lg:w-12 lg:h-6 w-10 h-5 flex items-center justify-center">
-                    <p className="text-slate-400 text-[8px] lg:text-[10px]">
+                  <div className="rounded-2xl font-medium border lg-w-12 lg-h-6 w-10 h-5 flex items-center justify-center">
+                    <p className="text-slate-400 text-[8px] lg-text-[10px]">
                       XP + 10
                     </p>
                   </div>
@@ -83,33 +93,11 @@ const Subject = ({ subjectList, idx }) => {
   );
 };
 
-export default () => {
-  const subjectList = [
-    {
-      q: "Classes & Objects",
-      containers: ["Classes & Objects", "Variables", "Functions", "Loops"],
-    },
-    {
-      q: "Do you include common questions?",
-      containers: ["2", "2"],
-    },
-    {
-      q: "Subject",
-      containers: ["2", "2"],
-    },
-    {
-      q: "Subject",
-      containers: ["2", "2"],
-    },
-    // Add more questions with containers
-  ];
-
+export default ({ courseData }) => {
   return (
-    <section className="leading-relaxed w-full max-w-screen-xl mt-12 mx-auto px-4 md:px-8">
+    <section className="leading-relaxed w-full max-w-screen-xl mt-12 mx-auto px-4 md-px-8">
       <div className="mt-14 w-full max-w-2xl mx-auto">
-        {subjectList.map((item, idx) => (
-          <Subject key={idx} idx={idx} subjectList={item} />
-        ))}
+        <Subject courseData={courseData} />
       </div>
       <div className="mt-14 w-full max-w-2xl mx-auto">
         <div className="px-5 py-4 bg-white gap-4 dark:bg-gray-800 shadow justify-center items-center rounded-lg mb-4 text-center flex space-y-4">
