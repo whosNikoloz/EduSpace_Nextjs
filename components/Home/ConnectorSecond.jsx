@@ -11,18 +11,20 @@ export const ConnectorSecond = ({ text }) => {
     gsap.utils.toArray(".Connector").forEach((member, index) => {
       gsap.fromTo(
         member,
-        { opacity: 0 }, // Initial state (hidden)
+        {
+          opacity: 0,
+          y: 20,
+        },
         {
           opacity: 1,
+          y: 0,
           duration: 1,
-          lazy: true,
           ease: "power2.inOut",
           scrollTrigger: {
             trigger: member,
-            start: "top bottom-=100", // Adjust as needed
-            end: "top center", // Adjust as needed
-            toggleActions: "play none none none",
-            once: true,
+            start: "top bottom-=100",
+            end: "top center",
+            toggleActions: "play none reverse none",
           },
         }
       );
@@ -31,13 +33,19 @@ export const ConnectorSecond = ({ text }) => {
 
   useEffect(() => {
     animateTeamMembers();
+
+    return () => {
+      gsap.utils.toArray(".Connector").forEach((member) => {
+        gsap.set(member, { clearProps: "all" });
+      });
+    };
   }, []);
 
   return (
     <div className="flex flex-col items-center">
       <div className="w-2/6 md:w-1/2 lg:w-4/6 relative">
         <div className="h-10 md:h-36 lg:h-56 border-blue-600 border-r-4 border-dashed w-full Connector">
-          <span className="absolute bottom-2 text-center w-full text-sm sm:text-2xl">
+          <span className="absolute bottom-2 text-center w-full text-sm sm:text-lg">
             {text}
           </span>
         </div>

@@ -76,8 +76,7 @@ const AutoScrollCarousel = () => {
             trigger: splide, // Use the specific .splide div as the trigger
             start: "top bottom-=100", // Adjust as needed
             end: "top center", // Adjust as needed
-            toggleActions: "play none none none",
-            once: true,
+            toggleActions: "play none reverse none",
           },
         }
       );
@@ -86,6 +85,13 @@ const AutoScrollCarousel = () => {
 
   useEffect(() => {
     animateSlider();
+    return () => {
+      // Clear the GSAP properties for the splide element when unmounting
+      const splide = document.querySelector(".splide");
+      if (splide) {
+        gsap.set(splide, { clearProps: "all" });
+      }
+    };
   }, []);
 
   return (

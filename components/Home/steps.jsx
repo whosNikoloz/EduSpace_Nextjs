@@ -22,8 +22,7 @@ export const Steps = () => {
             trigger: step,
             start: "top bottom-=100", // Adjust as needed
             end: "top center", // Adjust as needed
-            toggleActions: "play none none none",
-            once: true,
+            toggleActions: "play none reverse none",
           },
         }
       );
@@ -32,6 +31,11 @@ export const Steps = () => {
 
   useEffect(() => {
     animateSteps();
+    return () => {
+      gsap.utils.toArray(".steps").forEach((member) => {
+        gsap.set(member, { clearProps: "all" });
+      });
+    };
   }, []);
 
   return (

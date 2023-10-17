@@ -15,16 +15,13 @@ import { isMobile } from "react-device-detect";
 import { useMediaQuery } from "react-responsive";
 
 export default function Home() {
-
-
-
   return (
     <MainLayout>
-      <div className="mb-5">
+      <div className="mb-56">
         <Hero />
       </div>
       <div className="hidden md:block">
-        <ConnectorFirst text="test" />
+        <ConnectorFirst text="კოდის ყოველი ხაზი არის ინოვაციასთან უფრო ახლოს." />
       </div>
       <section id="compiler-section" className=" items-center justify-center">
         <div className="mt-7 ">
@@ -40,7 +37,7 @@ export default function Home() {
         </div>
       </section>
       <div className="hidden md:block">
-        <ConnectorSecond text="test" />
+        <ConnectorSecond text="ყველა საიდანღაც იწყებს" />
       </div>
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-7">
@@ -54,7 +51,7 @@ export default function Home() {
         </div>
       </section>
       <div className="hidden md:block">
-        <ConnectorFirst text="test" />
+        <ConnectorFirst text="არ არსებობს იდეალური დრო" />
       </div>
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-7 ">
@@ -62,7 +59,7 @@ export default function Home() {
         </div>
       </section>
       <div className="hidden md:block">
-        <ConnectorSecond text="test" />
+        <ConnectorSecond text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
       </div>
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-7 ">
@@ -78,7 +75,7 @@ export default function Home() {
         </div>
       </section>
       <div className="hidden md:block">
-        <ConnectorFirst text="test" />
+        <ConnectorFirst text="გააგრძელეთ კოდირება, განაგრძეთ სწავლა და განაგრძეთ ზრდა." />
       </div>
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-7 ">
@@ -94,7 +91,7 @@ export default function Home() {
         </div>
       </section>
       <div className="hidden md:block">
-        <ConnectorSecond text="test" />
+        <ConnectorSecond text="წარუმატებლობა მხოლოდ დროებითი შეცდომაა" />
       </div>
       <section className=" items-center justify-center gap-4 py-8 md:py-10">
         <div className="mt-7 text-center   justify-center">

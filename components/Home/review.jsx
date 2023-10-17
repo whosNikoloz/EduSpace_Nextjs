@@ -21,8 +21,7 @@ const Review = () => {
             trigger: step,
             start: "top bottom-=100", // Adjust as needed
             end: "top center", // Adjust as needed
-            toggleActions: "play none none none",
-            once: true,
+            toggleActions: "play none reverse none",
           },
         }
       );
@@ -43,8 +42,7 @@ const Review = () => {
             trigger: step,
             start: "top bottom-=100", // Adjust as needed
             end: "top center", // Adjust as needed
-            toggleActions: "play none none none",
-            once: true,
+            toggleActions: "play none reverse none",
           },
         }
       );
@@ -54,6 +52,15 @@ const Review = () => {
   useEffect(() => {
     animateReview1();
     animateReview2();
+
+    return () => {
+      gsap.utils.toArray(".review1").forEach((member) => {
+        gsap.set(member, { clearProps: "all" });
+      });
+      gsap.utils.toArray(".review2").forEach((member) => {
+        gsap.set(member, { clearProps: "all" });
+      });
+    };
   }, []);
   return (
     <>
