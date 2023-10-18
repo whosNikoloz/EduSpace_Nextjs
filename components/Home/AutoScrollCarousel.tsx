@@ -126,9 +126,9 @@ const AutoScrollCarousel = () => {
             <>
               <li className="splide__slide">
                 <div className="slide-content">
-                  <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                  <div className="max-w-xsborder  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <Link href="#">
-                      <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700">
+                      <div className="flex items-center justify-center h-48 mb-4 rounded dark:bg-gray-700">
                         <svg
                           className="w-10 h-10 text-gray-200 dark:text-gray-600"
                           aria-hidden="true"
@@ -151,11 +151,11 @@ const AutoScrollCarousel = () => {
               </li>
               <li className="splide__slide">
                 <div className="slide-content">
-                  <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark.border-gray-700">
+                  <div className="max-w-xsborder  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <Link href="#">
-                      <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark.bg-gray-700">
+                      <div className="flex items-center justify-center h-48 mb-4 rounded dark:bg-gray-700">
                         <svg
-                          className="w-10 h-10 text-gray-200 dark.text-gray-600"
+                          className="w-10 h-10 text-gray-200 dark:text-gray-600"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="currentColor"
@@ -168,7 +168,7 @@ const AutoScrollCarousel = () => {
                     </Link>
                     <div className="p-3">
                       <Skeleton className="w-4/5 rounded-lg">
-                        <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
+                        <div className="h-3 w-4/5 rounded-lg"></div>
                       </Skeleton>
                     </div>
                   </div>
