@@ -194,9 +194,9 @@ function PostCard({ postData, onDelete }) {
       <Dialog
         open={isOpen}
         onClose={() => setIsOpen(false)}
-        className="fixed z-10 inset-0 overflow-y-auto"
+        className="fixed z-10 inset-0 "
       >
-        <div className="flex items-center justify-center min-h-screen mt-10">
+        <div className="flex items-center justify-center min-h-[80vh] mt-10">
           <Dialog.Overlay className="fixed inset-0 bg-black opacity-20" />
           {/* dialog card */}
           <div className="relative bg-white w-full md:w-9/12 lg:w-8/12 rounded-lg dark:bg-gray-800 mt-6">
