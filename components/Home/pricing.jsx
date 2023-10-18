@@ -222,13 +222,13 @@ export const Pricing = () => {
                     <span>Aenean et lectus blandit</span>
                   </li>
                 </ul>
-                <a
+                <Link
                   rel="noopener noreferrer"
                   href="#"
                   className="inline-block w-full px-5 py-3 font-bold tracki text-center rounded dark:bg-white dark:text-blue-600"
                 >
                   Get Started
-                </a>
+                </Link>
               </div>
             </div>
             <div className="w-full mb-8 sm:px-4 md:w-1/2 lg:w-1/3 lg:mb-0 price">
@@ -320,13 +320,13 @@ export const Pricing = () => {
                     <span>Vivamus ut lectus ex</span>
                   </li>
                 </ul>
-                <a
+                <Link
                   rel="noopener noreferrer"
                   href="#"
                   className="inline-block w-full px-5 py-3 font-semibold tracki text-center rounded dark:bg-blue-600 dark:text-white"
                 >
                   Get Started
-                </a>
+                </Link>
               </div>
             </div>
           </div>

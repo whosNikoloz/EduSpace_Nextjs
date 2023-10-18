@@ -47,12 +47,12 @@ export const Hero = () => {
                 </Button>
               </Link>
 
-              <a
+              <Link
                 href="#"
                 className="text-sm font-semibold leading-6 text-black dark:text-white"
               >
                 გაიგე მეტი <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -101,22 +101,22 @@ export const Hero = () => {
                     </code>
                     <code className="text-green-300"> (main)</code>
                   </p>
-                  <p className="pb-1">
+                  <div className="pb-1">
                     <code> $ git status</code>
-                  </p>
-                  <p>
+                  </div>
+                  <div>
                     <code> On branch main</code>
-                  </p>
-                  <p>
+                  </div>
+                  <div>
                     <code>Your branch is up to date with 'origin/main'.</code>
-                  </p>
-                  <p className="pt-2">
+                  </div>
+                  <div className="pt-2">
                     <code>Changes not staged for commit:</code>
-                  </p>
-                  <p>
+                  </div>
+                  <div>
                     <code>nothing to commit, working tree clean</code>
-                  </p>
-                  <p className="pt-1">
+                  </div>
+                  <div className="pt-1">
                     <code className="text-green-600 ">
                       EduSpace@whosNikoloz
                     </code>
@@ -126,8 +126,8 @@ export const Hero = () => {
                       ~/OneDrive/desktop/eduspace
                     </code>
                     <code className="text-green-300"> (main)</code>
-                  </p>
-                  <p className="pb-1 flex items-center gap-2">
+                  </div>
+                  <div className="pb-1 flex items-center gap-2">
                     <code>$</code>
                     <code>
                       <Typewriter
@@ -143,7 +143,7 @@ export const Hero = () => {
                         }}
                       />
                     </code>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>

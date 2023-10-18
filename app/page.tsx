@@ -11,8 +11,6 @@ import Review from "@/components/Home/review";
 import CompilerSection from "@/components/Home/compilerSection";
 import { ConnectorFirst } from "@/components/Home/ConnectorFirst";
 import { ConnectorSecond } from "@/components/Home/ConnectorSecond";
-import { isMobile } from "react-device-detect";
-import { useMediaQuery } from "react-responsive";
 
 export default function Home() {
   return (

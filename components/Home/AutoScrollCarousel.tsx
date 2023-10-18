@@ -10,6 +10,7 @@ import Courses from "@/app/api/Learn/Course";
 import Image from "next/image";
 import { Skeleton } from "@nextui-org/react";
 import gsap from "gsap";
+import Link from "next/link";
 
 interface Course {
   courseId: number;
@@ -29,12 +30,10 @@ const AutoScrollCarousel = () => {
       try {
         const response = await courseAPI.GetCourses();
         setCourses(response); // Assuming the API response is an array of Course objects
-        console.log(response);
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
     };
-
     fetchCourses();
   }, []);
 
@@ -103,20 +102,22 @@ const AutoScrollCarousel = () => {
               <li className="splide__slide" key={course.courseId}>
                 <div className="slide-content">
                   <div className="max-w-xs   border border-gray-200 rounded-lg shadow bg-blue-600 dark:border-gray-700">
-                    <a href={`/learn/courses/${course.formattedCourseName}`}>
-                      <img
-                        className="rounded-t-lg"
-                        src={course.courseLogo}
-                        alt={course.courseName}
-                      />
-                    </a>
-                    <div className="p-3">
-                      <a href={`/learn/courses/${course.formattedCourseName}`}>
-                        <h5 className="mb-2 text-base font-bold tracking-tight text-white">
-                          {course.courseName}
-                        </h5>
-                      </a>
-                    </div>
+                    <Link href={`/learn/courses/${course.formattedCourseName}`}>
+                      <div className="slide-content">
+                        <div className="max-w-xs   border border-gray-200 rounded-lg shadow bg-blue-600 dark:border-gray-700">
+                          <img
+                            className="rounded-t-lg"
+                            src={course.courseLogo}
+                            alt={course.courseName}
+                          />
+                          <div className="p-3">
+                            <h5 className="mb-2 text-base font-bold tracking-tight text-white">
+                              {course.courseName}
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </li>
@@ -126,7 +127,7 @@ const AutoScrollCarousel = () => {
               <li className="splide__slide">
                 <div className="slide-content">
                   <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
+                    <Link href="#">
                       <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700">
                         <svg
                           className="w-10 h-10 text-gray-200 dark:text-gray-600"
@@ -139,24 +140,22 @@ const AutoScrollCarousel = () => {
                           <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z" />
                         </svg>
                       </div>
-                    </a>
+                    </Link>
                     <div className="p-3">
-                      <a href="#">
-                        <Skeleton className="w-4/5 rounded-lg">
-                          <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
-                        </Skeleton>
-                      </a>
+                      <Skeleton className="w-4/5 rounded-lg">
+                        <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
+                      </Skeleton>
                     </div>
                   </div>
                 </div>
               </li>
               <li className="splide__slide">
                 <div className="slide-content">
-                  <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
-                      <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700">
+                  <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark.border-gray-700">
+                    <Link href="#">
+                      <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark.bg-gray-700">
                         <svg
-                          className="w-10 h-10 text-gray-200 dark:text-gray-600"
+                          className="w-10 h-10 text-gray-200 dark.text-gray-600"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="currentColor"
@@ -166,13 +165,11 @@ const AutoScrollCarousel = () => {
                           <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z" />
                         </svg>
                       </div>
-                    </a>
+                    </Link>
                     <div className="p-3">
-                      <a href="#">
-                        <Skeleton className="w-4/5 rounded-lg">
-                          <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
-                        </Skeleton>
-                      </a>
+                      <Skeleton className="w-4/5 rounded-lg">
+                        <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
+                      </Skeleton>
                     </div>
                   </div>
                 </div>

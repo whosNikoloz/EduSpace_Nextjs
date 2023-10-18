@@ -70,7 +70,7 @@ const Review = () => {
             <div className="flex space-x-4">
               <div>
                 <img
-                  src="https://source.unsplash.com/100x100/?portrait"
+                  src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar1.png"
                   alt=""
                   className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
                 />
@@ -105,7 +105,7 @@ const Review = () => {
             <div className="flex space-x-4">
               <div>
                 <img
-                  src="https://source.unsplash.com/100x100/?portrait"
+                  src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar2.png"
                   alt=""
                   className="object-cover w-12 h-12 rounded-full dark:bg-black"
                 />
@@ -140,7 +140,7 @@ const Review = () => {
             <div className="flex space-x-4">
               <div>
                 <img
-                  src="https://source.unsplash.com/100x100/?portrait"
+                  src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar3.png"
                   alt=""
                   className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
                 />

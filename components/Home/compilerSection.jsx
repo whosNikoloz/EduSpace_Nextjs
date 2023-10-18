@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Compiler } from "@/components/Home/compiler";
 import gsap from "gsap";
 import { Button } from "@nextui-org/react";
+import Link from "next/link";
 
 const CompilerSection = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -76,17 +77,17 @@ public class HelloWorld
               <br />
             </p>
             <div className="mt-10 flex items-center justify-center md:justify-start gap-x-6">
-              <a href="/learn/courses/c-sharp-beginner">
+              <Link href="/learn/courses/c-sharp-beginner">
                 <Button className="bg-blue-600 text-white">
                   დაიწყე სწავლა
                 </Button>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#compiler-section"
                 className="text-sm font-semibold leading-6 text-black dark:text-white"
               >
                 Go to Compiler
-              </a>
+              </Link>
             </div>
           </div>
         </div>
