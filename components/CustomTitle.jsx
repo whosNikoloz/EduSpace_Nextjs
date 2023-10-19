@@ -3,14 +3,9 @@ import React, { useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
 
 export const CustomTitle = ({ title1, title2, margin, direct }) => {
-  const [direction, setDirection] = useState(direct);
+  const direction = isMobile ? "center" : direct;
 
-  // Update direction based on screen size
-  useEffect(() => {
-    if (isMobile) {
-      setDirection("center");
-    }
-  }, [isMobile]);
+  console.log(direction);
 
   const titleDirectionClass =
     direction === "right"
@@ -23,7 +18,7 @@ export const CustomTitle = ({ title1, title2, margin, direct }) => {
       ? { float: "right", marginRight: "180px" }
       : direction === "left"
       ? { float: "left", marginLeft: "180px" }
-      : { marginLeft: "105px" };
+      : {};
   return (
     <>
       <header className={`text-center mx-auto mb-${margin}`}>
