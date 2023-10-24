@@ -10,7 +10,7 @@ const Progresess = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt_token");
-      const apiUrl = `${learn_API}/GetProgress/?UserId=${userid}&CourseId=${courseid}`; // Construct the URL with query parameters
+      const apiUrl = `${learn_API}GetProgress/?UserId=${userid}&CourseId=${courseid}`; // Construct the URL with query parameters
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
