@@ -18,7 +18,6 @@ interface Course {
 }
 
 export default function CplusAdvancedPage() {
-  const containers = ["Container 1", "Container 2", "Container 3"];
   const courses = CoursesAPI();
   const [course, setCourse] = useState<Course | null>(null);
   useEffect(() => {

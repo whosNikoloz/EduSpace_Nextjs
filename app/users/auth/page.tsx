@@ -49,7 +49,13 @@ const AuthPage: React.FC = () => {
       setIsLoading(false);
     } else {
       setIsLoading(false);
-      router.push("/");
+      const redirectUrl = sessionStorage.getItem("redirect_url");
+      if (redirectUrl) {
+        sessionStorage.removeItem("redirect_url");
+        router.push(redirectUrl);
+      } else {
+        router.push("/");
+      }
     }
   };
 

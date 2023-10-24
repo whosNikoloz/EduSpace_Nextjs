@@ -5,9 +5,21 @@ import { Compiler } from "@/components/Home/compiler";
 import gsap from "gsap";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
+import { useUser } from "@/app/context/UserdbContext";
 
 const CompilerSection = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const { user } = useUser();
+
+  const handleClick = () => {
+    if (user) {
+      
+      window.location.href = "/learn/courses/c-sharp-beginner";
+    } else {
+      sessionStorage.setItem("redirect_url", "/learn/courses/c-sharp-beginner");
+      window.location.href = "/users/auth";
+    }
+  };
 
   const animateCompiler = () => {
     const splide = document.querySelector(".compiler"); // Get the specific .splide div
@@ -77,11 +89,9 @@ public class HelloWorld
               <br />
             </p>
             <div className="mt-10 flex items-center justify-center md:justify-start gap-x-6">
-              <Link href="/learn/courses/c-sharp-beginner">
-                <Button className="bg-blue-600 text-white">
-                  დაიწყე სწავლა
-                </Button>
-              </Link>
+              <Button className="bg-blue-600 text-white" onClick={handleClick}>
+                დაიწყე სწავლა
+              </Button>
               <Link
                 href="#compiler-section"
                 className="text-sm font-semibold leading-6 text-black dark:text-white"
