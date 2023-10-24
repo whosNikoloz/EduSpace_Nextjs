@@ -11,6 +11,7 @@ import Image from "next/image";
 import { Skeleton } from "@nextui-org/react";
 import gsap from "gsap";
 import Link from "next/link";
+import { useUser } from "@/app/context/UserdbContext";
 
 interface Course {
   courseId: number;
@@ -23,6 +24,19 @@ interface Course {
 
 const AutoScrollCarousel = () => {
   const [courses, setCourses] = useState<Course[]>([]);
+
+  const { user } = useUser();
+
+  const handleCourse = (FormatedName: string) => {
+    if (user) {
+      window.location.href = `/learn/courses/${FormatedName}`;
+    } else {
+      sessionStorage.setItem("redirect_url", `/learn/courses/${FormatedName}`);
+      window.location.href = "/users/auth";
+    }
+  };
+
+  
 
   useEffect(() => {
     const courseAPI = Courses();
@@ -102,7 +116,9 @@ const AutoScrollCarousel = () => {
               <li className="splide__slide" key={course.courseId}>
                 <div className="slide-content">
                   <div className="max-w-xs   border border-gray-200 rounded-lg shadow bg-blue-600 dark:border-gray-700">
-                    <Link href={`/learn/courses/${course.formattedCourseName}`}>
+                    <button
+                      onClick={() => handleCourse(course.formattedCourseName)}
+                    >
                       <div className="slide-content">
                         <div className="max-w-xs   border border-gray-200 rounded-lg shadow bg-blue-600 dark:border-gray-700">
                           <img
@@ -117,7 +133,7 @@ const AutoScrollCarousel = () => {
                           </div>
                         </div>
                       </div>
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </li>

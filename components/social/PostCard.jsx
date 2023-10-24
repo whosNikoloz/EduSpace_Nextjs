@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Textarea } from "@nextui-org/react";
 import CommentForm from "./commentform";
-import { User } from "@nextui-org/react";
+import { User, Avatar } from "@nextui-org/react";
 import { DotsIcon } from "@/components/social/DotsIcon";
 import Posts from "@/app/api/Social/Post";
 import { Skeleton } from "@nextui-org/react";
@@ -105,7 +105,7 @@ function PostCard({ postData, onDelete }) {
               }
               description={formattedTimeAgo + "  " + postData.subject}
               avatarProps={{
-                src: postData.user.picture || "default-avatar-src",
+                src: postData.user.picture,
               }}
             />
             {user && postData.user.userId === user.userId && (

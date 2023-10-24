@@ -2,7 +2,6 @@
 
 import MainLayout from "@/app/layouts/Mainlayout";
 import React, { useState, useEffect } from "react";
-import { CustomTitle } from "@/components/CustomTitle";
 import { Hero } from "@/components/Learn/Hero";
 import CoursesAPI from "@/app/api/Learn/Course";
 import Subject from "@/components/Learn/subject";
@@ -25,7 +24,6 @@ export default function CplusAdvancedPage() {
       try {
         const response = await courses.GetCourse("c-plus-advanced");
         setCourse(response); // Assuming the API response is an array of Course objects
-        console.log(response.subjects);
       } catch (error) {
         console.error("Error fetching courses:", error);
       }

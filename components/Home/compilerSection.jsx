@@ -11,9 +11,8 @@ const CompilerSection = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const { user } = useUser();
 
-  const handleClick = () => {
+  const handleCourse = () => {
     if (user) {
-      
       window.location.href = "/learn/courses/c-sharp-beginner";
     } else {
       sessionStorage.setItem("redirect_url", "/learn/courses/c-sharp-beginner");
@@ -89,7 +88,7 @@ public class HelloWorld
               <br />
             </p>
             <div className="mt-10 flex items-center justify-center md:justify-start gap-x-6">
-              <Button className="bg-blue-600 text-white" onClick={handleClick}>
+              <Button className="bg-blue-600 text-white" onClick={handleCourse}>
                 დაიწყე სწავლა
               </Button>
               <Link

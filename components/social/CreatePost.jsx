@@ -9,7 +9,7 @@ import { Button } from "@nextui-org/button";
 import { useUser } from "@/app/context/UserdbContext";
 import Posts from "@/app/api/Social/Post";
 import { Skeleton } from "@nextui-org/react";
-import { User } from "@nextui-org/react";
+import { Avatar, User } from "@nextui-org/react";
 import Alert from "@/components/social/Alert";
 
 export default function CreatePost({ setPosts }) {
@@ -20,15 +20,16 @@ export default function CreatePost({ setPosts }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isCreateLoading, setCreateLoading] = useState(false);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const { user } = useUser();
+
   useEffect(() => {
     // Simulate loading for demonstration purposes
     setTimeout(() => {
       setIsLoading(false);
     }, 1); // Replace with your actual data fetching logic
-  }, []);
-
-  const [isOpen, setIsOpen] = useState(false);
-  const { user } = useUser();
+    console.log(user);
+  }, [user]);
 
   const posts = Posts();
 
@@ -189,10 +190,15 @@ export default function CreatePost({ setPosts }) {
                 <div className="p-4 md:p-6 shadow-md bg-white rounded-lg dark:bg-gray-800 w-[750px] mb-4">
                   <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0">
-                      <User
-                        avatarProps={{
-                          src: user.picture,
-                        }}
+                      <Avatar
+                        className="transition-transform"
+                        size="sm"
+                        name={
+                          user.firstname && user.lastname
+                            ? user.firstName + " " + user.lastName
+                            : user.userName
+                        }
+                        src={user.picture}
                       />
                     </div>
                     <div
@@ -200,7 +206,7 @@ export default function CreatePost({ setPosts }) {
                       onClick={() => setIsOpen(true)}
                     >
                       <h3 className="md:text-md text-gray-500">
-                        რა არის შენი კითხვა, {user.firstName}?
+                        რა არის შენი კითხვა, {user.userName}?
                       </h3>
                     </div>
                   </div>
@@ -271,11 +277,16 @@ export default function CreatePost({ setPosts }) {
                       {/* post author profile */}
                       <div className="my-2 px-4 flex items-center space-x-2">
                         <User
-                          name={user.firstName + " " + user.lastName}
-                          avatarProps={{
-                            src: user.picture,
-                          }}
+                          className="transition-transform"
+                          name={
+                            user.firstname && user.lastname
+                              ? user.firstName + " " + user.lastName
+                              : user.userName
+                          }
+                          size="sm"
+                          src={user.picture}
                         />
+
                         <div></div>
                       </div>
                       <div className="my-2 px-4 flex items-center space-x-2">
