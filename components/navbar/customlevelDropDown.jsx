@@ -125,7 +125,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/c-sharp-beginner";
+                  window.location.href = "/learn/course/c-sharp-beginner";
                 }}
               >
                 C# შესავალი
@@ -133,7 +133,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/python-beginner";
+                  window.location.href = "/learn/course/python-beginner";
                 }}
               >
                 Python შესავალი
@@ -141,7 +141,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/c-plus-beginner";
+                  window.location.href = "/learn/course/c-plus-beginner";
                 }}
               >
                 C++ შესავალი
@@ -149,7 +149,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/swift-beginner";
+                  window.location.href = "/learn/course/swift-beginner";
                 }}
               >
                 Swift შესავალი
@@ -180,7 +180,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/c-sharp-intermediate";
+                  window.location.href = "/learn/course/c-sharp-intermediate";
                 }}
               >
                 C# შუალედური
@@ -188,7 +188,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/python-intermediate";
+                  window.location.href = "/learn/course/python-intermediate";
                 }}
               >
                 Python შუალედური
@@ -196,7 +196,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/c-plus-intermediate";
+                  window.location.href = "/learn/course/c-plus-intermediate";
                 }}
               >
                 C++ შუალედური
@@ -204,7 +204,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/swift-intermediate";
+                  window.location.href = "/learn/course/swift-intermediate";
                 }}
               >
                 Swift შუალედური
@@ -235,7 +235,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/c-sharp-advanced";
+                  window.location.href = "/learn/course/c-sharp-advanced";
                 }}
               >
                 C# მოწინავე
@@ -243,7 +243,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/python-advanced";
+                  window.location.href = "/learn/course/python-advanced";
                 }}
               >
                 Python მოწინავე
@@ -251,7 +251,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/c-plus-advanced";
+                  window.location.href = "/learn/course/c-plus-advanced";
                 }}
               >
                 C++ მოწინავე
@@ -259,7 +259,7 @@ function MultiLevelDropdown() {
               <DropdownItem
                 color="default"
                 onClick={() => {
-                  window.location.href = "/learn/courses/swift-advanced";
+                  window.location.href = "/learn/course/swift-advanced";
                 }}
               >
                 Swift მოწინავე

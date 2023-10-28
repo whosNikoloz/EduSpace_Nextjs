@@ -32,7 +32,7 @@ const AutoScrollCarousel = () => {
       window.location.href = `/learn/courses/${FormatedName}`;
     } else {
       sessionStorage.setItem("redirect_url", `/learn/courses/${FormatedName}`);
-      window.location.href = "/users/auth";
+      window.location.href = "/user/auth";
     }
   };
 

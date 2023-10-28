@@ -250,7 +250,7 @@ export const Navbar = () => {
               // Render this content if user is null
               <>
                 <NavbarItem>
-                  <Link href="/users/auth">
+                  <Link href="/user/auth">
                     <Button
                       className="bg-blue-600 text-white"
                       as={Link}

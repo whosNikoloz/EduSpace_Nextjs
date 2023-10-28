@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@material-tailwind/react": "^2.1.4",
     "@monaco-editor/react": "^4.6.0",
     "@nextui-org/button": "2.0.18",
     "@nextui-org/code": "2.0.16",

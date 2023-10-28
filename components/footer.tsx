@@ -36,7 +36,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/c-sharp-beginner"
+                    href="/learn/course/c-sharp-beginner"
                   >
                     C# შესავალი
                   </Link>
@@ -44,7 +44,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/python-beginner"
+                    href="/learn/course/python-beginner"
                   >
                     Python შესავალი
                   </Link>
@@ -52,7 +52,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/swift-beginner"
+                    href="/learn/course/swift-beginner"
                   >
                     Swift შესავალი
                   </Link>
@@ -60,7 +60,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/c-plus-beginner"
+                    href="/learn/course/c-plus-beginner"
                   >
                     C++ შესავალი
                   </Link>
@@ -75,7 +75,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/c-sharp-intermediate"
+                    href="/learn/course/c-sharp-intermediate"
                   >
                     C# შუალედური
                   </Link>
@@ -83,7 +83,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/python-intermediate"
+                    href="/learn/course/python-intermediate"
                   >
                     Python შუალედური
                   </Link>
@@ -91,7 +91,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/swift-intermediate"
+                    href="/learn/course/swift-intermediate"
                   >
                     Swift შუალედური
                   </Link>
@@ -99,7 +99,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/c-plus-intermediate"
+                    href="/learn/course/c-plus-intermediate"
                   >
                     C++ შუალედური
                   </Link>
@@ -114,7 +114,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/c-sharp-advanced"
+                    href="/learn/course/c-sharp-advanced"
                   >
                     C# მოწინავე
                   </Link>
@@ -122,7 +122,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/python-advanced"
+                    href="/learn/course/python-advanced"
                   >
                     Python მოწინავე
                   </Link>
@@ -130,7 +130,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/swift-advanced"
+                    href="/learn/course/swift-advanced"
                   >
                     Swift მოწინავე
                   </Link>
@@ -138,7 +138,7 @@ export const Footer = () => {
                 <li>
                   <Link
                     rel="noopener noreferrer"
-                    href="/learn/courses/c-plus-advanced"
+                    href="/learn/course/c-plus-advanced"
                   >
                     C++ მოწინავე
                   </Link>

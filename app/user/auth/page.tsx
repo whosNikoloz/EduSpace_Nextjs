@@ -2,7 +2,7 @@
 
 import Authentication from "@/app/api/User/auth";
 import { useEffect, useState } from "react";
-import Style from "@/app/users/auth/page.module.css";
+import Style from "@/app/user/auth/page.module.css";
 import LoginIl from "@/public/ProgiLust.png";
 import RegistrationIl from "@/public/ProgiLust2.png";
 import Image from "next/image";
@@ -61,7 +61,7 @@ const AuthPage: React.FC = () => {
 
   const handleRegisterOAuth = async (provider: string) => {
     // Trigger OAuth authentication
-    const callbackUrl = "/users/auth/oauth";
+    const callbackUrl = "/user/auth/oauth";
 
     await signIn(provider, { callbackUrl });
   };
@@ -80,7 +80,7 @@ const AuthPage: React.FC = () => {
       var cookie = new Cookies();
       cookie.set("regEmail", registrationState.email);
       cookie.set("regUserName", registrationState.username);
-      router.push("/users/auth/signup-successful");
+      router.push("/user/auth/signup-successful");
     }
   };
 
