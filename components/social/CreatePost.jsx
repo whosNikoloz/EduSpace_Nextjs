@@ -10,13 +10,10 @@ import { useUser } from "@/app/context/UserdbContext";
 import Posts from "@/app/api/Social/Post";
 import { Skeleton } from "@nextui-org/react";
 import { Avatar, User } from "@nextui-org/react";
-import Alert from "@/components/social/Alert";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function CreatePost({ setPosts }) {
   const [selectedLanguage, setSelectedLanguage] = useState("");
-
-  const [alert, setAlert] = useState(null);
-
   const [isLoading, setIsLoading] = useState(true);
   const [isCreateLoading, setCreateLoading] = useState(false);
 
@@ -28,7 +25,6 @@ export default function CreatePost({ setPosts }) {
     setTimeout(() => {
       setIsLoading(false);
     }, 1); // Replace with your actual data fetching logic
-    console.log(user);
   }, [user]);
 
   const posts = Posts();
@@ -132,11 +128,7 @@ export default function CreatePost({ setPosts }) {
         // Prepend the new post to the beginning of the posts array
         setPosts((prevPosts) => [newPost, ...prevPosts]);
 
-        setAlert({
-          message: "პოსტი წარმატებით დაემატა",
-          type: "success",
-          onClose: () => setAlert(null),
-        });
+        toast.success("წარმატებით დაიპოსტა");
 
         setPostModel({
           subject: "",
@@ -150,6 +142,7 @@ export default function CreatePost({ setPosts }) {
         setCreateLoading(false);
       } else {
         setPostModelError("Error fetching new post");
+        toast.error("სამწუხაროდ ვერ დაიპოსტა");
         console.log(newPostResponse.error);
       }
     }
@@ -343,13 +336,6 @@ export default function CreatePost({ setPosts }) {
                   </div>
                 </div>
               </Dialog>
-              {alert && (
-                <Alert
-                  message={"პოსტი წარმატებით დაემატა"}
-                  type={"success"}
-                  onClose={alert.onClose}
-                />
-              )}
             </>
           ) : (
             // Render this content if user is null

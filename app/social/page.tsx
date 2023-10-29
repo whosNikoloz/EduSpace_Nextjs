@@ -9,14 +9,9 @@ import Social from "../api/Social/Post";
 import { useQuery } from "react-query";
 import PostCardSkeleton from "@/components/social/PostCardSkeleton";
 import { CustomTitle } from "@/components/CustomTitle";
-import Alert from "@/components/social/Alert";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function SocialPage() {
-  const [alert, setAlert] = useState<{
-    message: string;
-    type: string;
-    onClose: () => void;
-  } | null>(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [posts, setPosts] = useState<
     Array<{ postId: Key | null | undefined; subject: string }>
@@ -132,11 +127,7 @@ export default function SocialPage() {
     // Remove the deleted post from the posts array
     setPosts((prevPosts) => prevPosts.filter((post) => post.postId !== postId));
 
-    setAlert({
-      message: "Post deleted successfully",
-      type: "success",
-      onClose: () => setAlert(null),
-    });
+    toast.success("წარმატებით წაიშალა");
   };
 
   useEffect(() => {
@@ -177,13 +168,7 @@ export default function SocialPage() {
               onDelete={handleDeletePost}
             />
           ))}
-          {alert && (
-            <Alert
-              message={"პოსტი წარმატებით წაიშალა"}
-              type={"success"}
-              onClose={alert.onClose}
-            />
-          )}
+          <Toaster position="bottom-left" reverseOrder={false} />
           {isLoadingNewPosts && <PostCardSkeleton />}
 
           <div ref={endOfListRef}></div>
