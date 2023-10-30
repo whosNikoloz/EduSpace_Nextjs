@@ -12,21 +12,19 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ LessonName }) => {
   return (
     <>
-      <div className="flex flex-col md:flex-row justify-between items-center">
+      <div className="flex flex-col md:flex-row justify-between items-center flex-shrink-0">
         <Link
-          href={"/learn/courses/c-plus-advanced"}
+          href={"/learn/course/c-plus-advanced"}
           className="text-sm mb-2 md:mb-0"
         >
           {LessonName}
         </Link>
-        <div className="flex-grow">
-          <Progress
-            value={25}
-            size="sm"
-            color="blue"
-            className="bg-white w-full md:w-1/2 mx-auto"
-          />
-        </div>
+        <Progress
+          value={25}
+          size="sm"
+          color="blue"
+          className="bg-white w-full md:w-1/2 mx-auto mt-2"
+        />
       </div>
     </>
   );

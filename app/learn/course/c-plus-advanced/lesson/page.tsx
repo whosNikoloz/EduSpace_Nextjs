@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useUser } from "@/app/context/UserdbContext";
 import { Button } from "@nextui-org/react";
 import { Header } from "@/components/Learn/Lesson/Header";
+import { FooterLesson } from "@/components/Learn/Lesson/FooterLesson";
+import { Content } from "@/components/Learn/Lesson/Content";
 
 interface LearnMaterial {
   levelId: number;
@@ -40,7 +42,11 @@ export default function CplusAdvancedLessonPage() {
 
   return (
     <>
-      <Header LessonName={"x  გაკვეთილის სახელი"} />
+      <div className="mx-auto max-w-7xl pt-6 px-6">
+        <Header LessonName={"x  გაკვეთილის სახელი"} />
+      </div>
+      <Content contentList={[]} />
+      <FooterLesson />
     </>
   );
 }
