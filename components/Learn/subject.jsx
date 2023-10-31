@@ -118,14 +118,18 @@ const SubjectItem = ({ subject, progress }) => {
                       </div>
                     </div>
                   </div>
-                  <Button
-                    className="bg-blue-600 w-full text-white mt-4"
-                    color="primary"
-                    variant="ghost"
-                    size="large"
-                  >
-                    Learn
-                  </Button>
+                  <Link href={`/lesson?lessonid=${lesson.lessonId}`}>
+                    <a>
+                      <Button
+                        className="bg-blue-600 w-full text-white mt-4"
+                        color="primary"
+                        variant="ghost"
+                        size="large"
+                      >
+                        Learn
+                      </Button>
+                    </a>
+                  </Link>
                 </div>
               ) : (
                 // Render this when the lesson is blocked

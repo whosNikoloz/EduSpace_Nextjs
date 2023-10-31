@@ -40,16 +40,7 @@ export const Content: React.FC<ContentProps> = ({ contentList }) => {
         }}
         readOnly
       />
-      <div className="mt-4">სასწავლო კონტენტი</div>
-      <div className="mt-4">სასწავლო კონტენტი</div>
-      <div className="mt-4">სასწავლო კონტენტი</div>
-      <div className="mt-4">სასწავლო კონტენტი</div>
-      <div className="mt-4">სასწავლო კონტენტი</div>
-      <div className="mt-4">სასწავლო კონტენტი</div>
-      <div className="mt-4">სასწავლო კონტენტი</div>
-      <div className="mt-4">სასწავლო კონტენტი</div>
-      <div className="mt-4">სასწავლო კონტენტი</div>
-      <div className="mt-4">სასწავლო კონტენტი</div>
+
       <Answers Answer={[]} />
       {contentList.map((item, index) => (
         <div key={index}>

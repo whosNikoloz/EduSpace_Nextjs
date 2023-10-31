@@ -6,6 +6,7 @@ import { Button } from "@nextui-org/react";
 import { Header } from "@/components/Learn/Lesson/Header";
 import { FooterLesson } from "@/components/Learn/Lesson/FooterLesson";
 import { Content } from "@/components/Learn/Lesson/Content";
+import LearnMaterial from "@/app/api/Learn/LearnMaterial";
 
 interface LearnMaterial {
   levelId: number;
@@ -35,9 +36,48 @@ interface Answer {
   Option: string;
   IsCorrect: boolean;
 }
+interface CplusAdvancedLessonPageProps {
+  lessonid: number;
+}
 
-export default function CplusAdvancedLessonPage() {
-  const { user } = useUser();
+export default function CplusAdvancedLessonPage({
+  lessonid,
+}: CplusAdvancedLessonPageProps) {
+  const learnAPI = LearnMaterial();
+  useEffect(() => {
+    const beforeUnloadHandler = (e: {
+      preventDefault: () => void;
+      returnValue: string;
+    }) => {
+      e.preventDefault();
+      e.returnValue = "";
+      const confirmationMessage =
+        "Are you sure you want to leave this page? Your changes may not be saved.";
+      (e || window.event).returnValue = confirmationMessage;
+      return confirmationMessage;
+    };
+
+    window.addEventListener("beforeunload", beforeUnloadHandler);
+
+    return () => {
+      window.removeEventListener("beforeunload", beforeUnloadHandler);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Fetch LearnMaterial data here
+    const fetchLearnMaterial = async () => {
+      try {
+        const data = await learnAPI.LearnMaterialByLesson(lessonid); // Assuming this function fetches data
+        setCourse(data);
+      } catch (error) {
+        console.error("Error fetching LearnMaterial data:", error);
+      }
+    };
+
+    fetchLearnMaterial();
+  }, []);
+
   const [course, setCourse] = useState<LearnMaterial | null>(null);
 
   return (
