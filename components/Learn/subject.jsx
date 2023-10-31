@@ -6,18 +6,24 @@ import { QuizIcon } from "../Learn/QuizIcon";
 import { VectorIcon } from "../Learn/VectorIcon";
 import { LockedIcon } from "../Learn/LockedIcon";
 import { PlayIcon } from "../Learn/PlayIcon";
+import Link from "next/link";
 
 const Subject = ({ courseData, userProgress }) => {
   return (
     <div className="space-y-3 mt-5 overflow-hidden">
       {courseData.subjects.map((subject, index) => (
-        <SubjectItem key={index} subject={subject} progress={userProgress} />
+        <SubjectItem
+          key={index}
+          subject={subject}
+          progress={userProgress}
+          formattedCourseName={courseData.formattedCourseName}
+        />
       ))}
     </div>
   );
 };
 
-const SubjectItem = ({ subject, progress }) => {
+const SubjectItem = ({ subject, progress, formattedCourseName }) => {
   const [containerVisible, setContainerVisible] = useState(false);
 
   const handleToggleContainer = () => {
@@ -118,17 +124,17 @@ const SubjectItem = ({ subject, progress }) => {
                       </div>
                     </div>
                   </div>
-                  <Link href={`/lesson?lessonid=${lesson.lessonId}`}>
-                    <a>
-                      <Button
-                        className="bg-blue-600 w-full text-white mt-4"
-                        color="primary"
-                        variant="ghost"
-                        size="large"
-                      >
-                        Learn
-                      </Button>
-                    </a>
+                  <Link
+                    href={`/learn/course/${formattedCourseName}/lesson?lessonId=${lesson.lessonId}&lessonName=${lesson.lessonName}`}
+                  >
+                    <Button
+                      className="bg-blue-600 w-full text-white mt-4"
+                      color="primary"
+                      variant="ghost"
+                      size="large"
+                    >
+                      Learn
+                    </Button>
                   </Link>
                 </div>
               ) : (

@@ -20,7 +20,7 @@ export const Content: React.FC<ContentProps> = ({ contentList }) => {
   );
 
   return (
-    <div className="grid justify-center items-center w-full overflow-auto max-h-[calc(100vh-230px)] overflow-auto h-screen">
+    <div className="grid justify-center px-6 items-center w-full  max-h-[calc(100vh-230px)] overflow-auto h-screen">
       <div className="mt-4">
         სასწავლო კონტენტი სასწავლო კონტენტისასწავლო კონტენტი სასწავლო კონტენტი
       </div>
@@ -34,7 +34,7 @@ export const Content: React.FC<ContentProps> = ({ contentList }) => {
         padding={15}
         style={{
           fontSize: 12,
-          backgroundColor: "#171515",
+          backgroundColor: "#161B22",
           fontFamily:
             "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
         }}
