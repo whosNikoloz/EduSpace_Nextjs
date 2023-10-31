@@ -45,8 +45,12 @@ export default function CplusAdvancedLessonPage() {
       <div className="mx-auto max-w-7xl pt-6 px-6">
         <Header LessonName={"x  გაკვეთილის სახელი"} />
       </div>
-      <Content contentList={[]} />
-      <FooterLesson />
+      <div className="mt-3 md:mt-11">
+        <Content contentList={[]} />
+      </div>
+      <div className="mt-2 md:mt-9">
+        <FooterLesson />
+      </div>
     </>
   );
 }

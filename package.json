@@ -32,6 +32,7 @@
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "@uiw/react-textarea-code-editor": "^2.1.9",
     "autoprefixer": "10.4.15",
     "axios": "^1.5.1",
     "clsx": "^2.0.0",

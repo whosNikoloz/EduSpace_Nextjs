@@ -4,8 +4,8 @@ export default function LessonLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col">
-      <main className="h-screen">{children}</main>
+    <div className="relative flex flex-col h-screen">
+      <main>{children}</main>
     </div>
   );
 }
