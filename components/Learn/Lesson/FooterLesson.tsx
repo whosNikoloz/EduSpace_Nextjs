@@ -4,17 +4,17 @@ import { Button } from "@nextui-org/button";
 type FooterLessonProps = {
   onPrev: () => void;
   onContinue: () => void;
-  onCheck: () => void;
   contentFooter: string;
   answerSelected: boolean;
+  answerSelectedCorrect: boolean;
 };
 
 export const FooterLesson: React.FC<FooterLessonProps> = ({
   onPrev,
   onContinue,
-  onCheck,
   contentFooter,
   answerSelected,
+  answerSelectedCorrect,
 }) => {
   return (
     <>
@@ -44,16 +44,28 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
               >
                 Back
               </Button>
-              <Button
-                color="primary"
-                radius="sm"
-                isDisabled={!answerSelected} // Disable the button if no answer is selected
-                variant="ghost"
-                className="w-auto"
-                onClick={onCheck}
-              >
-                Check
-              </Button>
+              {answerSelected ? (
+                answerSelectedCorrect ? (
+                  <Button
+                    color="primary"
+                    radius="sm"
+                    variant="shadow"
+                    className="w-auto"
+                    onClick={onContinue}
+                  >
+                    Continue
+                  </Button>
+                ) : (
+                  <Button
+                    color="primary"
+                    radius="sm"
+                    variant="shadow"
+                    className="w-auto"
+                  >
+                    Try Again
+                  </Button>
+                )
+              ) : null}
             </>
           ) : contentFooter === "last" ? (
             <>
@@ -89,10 +101,9 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
               <Button
                 color="primary"
                 radius="sm"
-                isDisabled={!answerSelected} // Disable the button if no answer is selected
                 variant="ghost"
                 className="w-auto"
-                onClick={onCheck}
+                onClick={onContinue}
               >
                 Continue
               </Button>

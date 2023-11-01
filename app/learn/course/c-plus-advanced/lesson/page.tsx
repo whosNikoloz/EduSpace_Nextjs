@@ -57,10 +57,10 @@ export default function CplusAdvancedLessonPage() {
 
   const [isTestVisible, setIsTestVisible] = useState(false);
 
-  const [testPassed, setTestPassed] = useState(false); // Add test passed state
-
   const [answerSelected, setAnswerSelected] = useState(false);
   const [answerSelectedCorrect, setAnswerSelectedCorrect] = useState(false);
+
+  const [testPassed, setTestPassed] = useState(answerSelectedCorrect);
 
   const searchParams = useSearchParams();
   const lessonid = searchParams.get("lessonId");
@@ -87,6 +87,10 @@ export default function CplusAdvancedLessonPage() {
   }, []);
 
   useEffect(() => {
+    setTestPassed(answerSelectedCorrect);
+  }, [answerSelectedCorrect]);
+
+  useEffect(() => {
     // Fetch LearnMaterial data here
     const fetchLearnMaterial = async () => {
       try {
@@ -102,38 +106,35 @@ export default function CplusAdvancedLessonPage() {
 
   const handleContinue = () => {
     if (isTestVisible) {
-      // If currently showing a test
-      if (testPassed) {
-        // Check if the test is passed
-        if (currentLessonIndex < learn.length - 1) {
-          setCurrentLessonIndex(currentLessonIndex + 1); // Increment current lesson index
-          setIsTestVisible(false); // Show the learning material next
-          setTestPassed(false); // Reset testPassed for the next test
-        } else {
-          setcontentFooter("last"); // Set content footer to last if end of lesson array is reached
-        }
+      if (testPassed && currentLessonIndex < learn.length - 1) {
+        setCurrentLessonIndex(currentLessonIndex + 1);
+        setcontentFooter(
+          currentLessonIndex === learn.length - 2 ? "last" : "learn"
+        );
+      } else {
+        setIsTestVisible(false);
+        setTestPassed(false);
+        setcontentFooter("learn");
+        setContentType("learn");
       }
     } else {
-      // If currently showing learning material
-      setIsTestVisible(true); // Show the test next
-      setContentType("test"); // Set content type to test
-      setcontentFooter("test"); // Set content footer to test
+      setIsTestVisible(true);
+      setContentType("test");
+      setcontentFooter("test");
     }
   };
 
   const handlePrev = () => {
     if (currentLessonIndex > 0) {
-      setCurrentLessonIndex(currentLessonIndex - 1); // Decrement current lesson index
-      setContentType("test");
-    }
-  };
-
-  const handleCheckAnswer = () => {
-    if (answerSelectedCorrect) {
-      setCurrentLessonIndex(currentLessonIndex + 1);
-      setTestPassed(true);
-      setcontentFooter("learn");
-      setContentType("learn");
+      if (isTestVisible) {
+        setIsTestVisible(false);
+        setContentType("learn");
+        setcontentFooter("learn");
+      } else {
+        setCurrentLessonIndex(currentLessonIndex - 1);
+        setContentType("test");
+        setcontentFooter("test");
+      }
     }
   };
 
@@ -150,7 +151,7 @@ export default function CplusAdvancedLessonPage() {
   return (
     <>
       <div className="mx-auto max-w-7xl pt-6 px-6">
-        <Header LessonName={lessonname ?? ""} />
+        <Header LessonName={lessonname ?? ""} progress={50} />
       </div>
       <div className="mt-3 md:mt-11">
         {learn.length > 0 && (
@@ -165,9 +166,9 @@ export default function CplusAdvancedLessonPage() {
       <div className="mt-2 md:mt-9">
         <FooterLesson
           contentFooter={contentFooter}
-          onCheck={handleCheckAnswer}
           onContinue={handleContinue}
           answerSelected={answerSelected}
+          answerSelectedCorrect={answerSelectedCorrect}
           onPrev={handlePrev}
         />
       </div>

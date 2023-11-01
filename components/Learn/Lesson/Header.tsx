@@ -7,9 +7,10 @@ import { ArrowIcon } from "./ArrowIcon";
 
 interface HeaderProps {
   LessonName: string;
+  progress: number;
 }
 
-export const Header: React.FC<HeaderProps> = ({ LessonName }) => {
+export const Header: React.FC<HeaderProps> = ({ LessonName, progress }) => {
   return (
     <>
       <div className="flex flex-col md:flex-row justify-between items-center flex-shrink-0">
@@ -23,7 +24,7 @@ export const Header: React.FC<HeaderProps> = ({ LessonName }) => {
           {LessonName}
         </div>
         <Progress
-          value={25}
+          value={progress}
           size="sm"
           color="blue"
           className="bg-white w-full md:w-1/2 mx-auto mt-2"

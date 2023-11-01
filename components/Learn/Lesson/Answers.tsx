@@ -12,21 +12,21 @@ interface Answer {
 
 interface AnswerProps {
   answers: Answer[];
-  isCorrect: (isCorrect: boolean) => void; // Modify this prop
   onAnswerSelected: (isAnswerSelected: boolean) => void;
+  IsCorrect: (isAnswerSelected: boolean) => void;
 }
 
 export const Answers: React.FC<AnswerProps> = ({
   answers,
-  isCorrect,
   onAnswerSelected,
+  IsCorrect,
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
   const handleAnswerClick = (index: number) => {
     setSelectedAnswer(index);
     onAnswerSelected(true);
-    isCorrect(answers[index].isCorrect); // Call isCorrect with the correctness of the selected answer
+    IsCorrect(answers[index].isCorrect);
   };
 
   return (
@@ -34,7 +34,13 @@ export const Answers: React.FC<AnswerProps> = ({
       {answers.map((answer, index) => (
         <div key={answer.answerId} className="mb-2 lg:mb-0">
           <Button
-            color="primary"
+            color={
+              selectedAnswer === index
+                ? answer.isCorrect
+                  ? "success"
+                  : "danger"
+                : "primary"
+            } // Change color based on the correctness of the selected answer
             size="md"
             radius="sm"
             variant={selectedAnswer === index ? "shadow" : "ghost"}

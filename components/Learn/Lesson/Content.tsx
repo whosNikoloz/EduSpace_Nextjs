@@ -56,12 +56,14 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
   onAnswerSelected,
   onCorrectAnswer,
 }) => {
+
+  
   const handleAnswerSelected = () => {
     onAnswerSelected(true);
   };
 
-  const handleIsCorrect = (correct: any) => {
-    onCorrectAnswer(correct);
+  const handleIsCorrect = (isCorrect: boolean) => {
+    onCorrectAnswer(isCorrect);
   };
 
   return (
@@ -101,7 +103,7 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
           <Answers
             answers={learnMaterialData.test.answers}
             onAnswerSelected={handleAnswerSelected}
-            isCorrect={handleIsCorrect}
+            IsCorrect={handleIsCorrect}
           />
         )}
       </div>
