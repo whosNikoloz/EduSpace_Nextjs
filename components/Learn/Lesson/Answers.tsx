@@ -3,66 +3,47 @@
 import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
 
-interface AnswerProps {
-  Answer: string[];
+interface Answer {
+  answerId: number;
+  option: string;
+  isCorrect: boolean;
+  testId: number;
 }
 
-export const Answers: React.FC<AnswerProps> = ({ Answer }) => {
+interface AnswerProps {
+  answers: Answer[];
+  isCorrect: (isCorrect: boolean) => void; // Modify this prop
+  onAnswerSelected: (isAnswerSelected: boolean) => void;
+}
+
+export const Answers: React.FC<AnswerProps> = ({
+  answers,
+  isCorrect,
+  onAnswerSelected,
+}) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
   const handleAnswerClick = (index: number) => {
     setSelectedAnswer(index);
-    setSelectedOption(null); // Deselect any selected option
+    onAnswerSelected(true);
+    isCorrect(answers[index].isCorrect); // Call isCorrect with the correctness of the selected answer
   };
 
-  const handleOptionClick = (index: number) => {
-    setSelectedOption(index);
-    setSelectedAnswer(null); // Deselect any selected answer
-  };
   return (
-    <>
-      <div>
-        <div>
-          {Answer.map((answer, index) => (
-            <Button
-              key={index}
-              color="primary"
-              radius="sm"
-              variant={selectedOption === index ? "shadow" : "ghost"}
-              onClick={() => handleAnswerClick(index)}
-            >
-              {answer}
-            </Button>
-          ))}
-          <div className="gap-5 flex flex-row justify-center items-center mt-5">
-            <Button
-              color="primary"
-              variant={selectedOption === 2 ? "shadow" : "ghost"}
-              radius="sm"
-              onClick={() => handleOptionClick(2)}
-            >
-              ans2
-            </Button>
-            <Button
-              variant={selectedOption === 3 ? "shadow" : "ghost"}
-              color="primary"
-              radius="sm"
-              onClick={() => handleOptionClick(3)}
-            >
-              ans3
-            </Button>
-            <Button
-              color="primary"
-              variant={selectedOption === 4 ? "shadow" : "ghost"}
-              radius="sm"
-              onClick={() => handleOptionClick(4)}
-            >
-              ans4
-            </Button>
-          </div>
+    <div className="gap-5 flex flex-col lg:flex-row justify-center items-center mt-20">
+      {answers.map((answer, index) => (
+        <div key={answer.answerId} className="mb-2 lg:mb-0">
+          <Button
+            color="primary"
+            size="md"
+            radius="sm"
+            variant={selectedAnswer === index ? "shadow" : "ghost"}
+            onClick={() => handleAnswerClick(index)}
+          >
+            {answer.option}
+          </Button>
         </div>
-      </div>
-    </>
+      ))}
+    </div>
   );
 };

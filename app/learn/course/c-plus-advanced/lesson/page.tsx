@@ -8,6 +8,8 @@ import { FooterLesson } from "@/components/Learn/Lesson/FooterLesson";
 import { Content } from "@/components/Learn/Lesson/Content";
 import LearnMaterial from "@/app/api/Learn/LearnMaterial";
 import { useSearchParams } from "next/navigation";
+import { connectStorageEmulator } from "firebase/storage";
+import { set } from "nprogress";
 
 interface Answer {
   answerId: number;
@@ -47,13 +49,22 @@ interface LearnMaterialData {
 
 export default function CplusAdvancedLessonPage() {
   const learnAPI = LearnMaterial();
-  const [courses, setCourses] = useState<LearnMaterialData[]>([]);
+  const [learn, setLearn] = useState<LearnMaterialData[]>([]);
+
+  const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
+  const [contentType, setContentType] = useState("learn"); // Add content type state
+  const [contentFooter, setcontentFooter] = useState("first"); // Add content footer state
+
+  const [isTestVisible, setIsTestVisible] = useState(false);
+
+  const [testPassed, setTestPassed] = useState(false); // Add test passed state
+
+  const [answerSelected, setAnswerSelected] = useState(false);
+  const [answerSelectedCorrect, setAnswerSelectedCorrect] = useState(false);
 
   const searchParams = useSearchParams();
-
   const lessonid = searchParams.get("lessonId");
   const lessonname = searchParams.get("lessonName");
-  console.log(lessonname);
 
   useEffect(() => {
     const beforeUnloadHandler = (e: {
@@ -79,8 +90,8 @@ export default function CplusAdvancedLessonPage() {
     // Fetch LearnMaterial data here
     const fetchLearnMaterial = async () => {
       try {
-        const data = await learnAPI.LearnMaterialByLesson(parseInt(lessonid!));
-        setCourses(data);
+        const data = await learnAPI.LearnMaterialByLesson(1);
+        setLearn(data);
       } catch (error) {
         console.error("Error fetching LearnMaterial data:", error);
       }
@@ -89,16 +100,76 @@ export default function CplusAdvancedLessonPage() {
     fetchLearnMaterial();
   }, [lessonid]);
 
+  const handleContinue = () => {
+    if (isTestVisible) {
+      // If currently showing a test
+      if (testPassed) {
+        // Check if the test is passed
+        if (currentLessonIndex < learn.length - 1) {
+          setCurrentLessonIndex(currentLessonIndex + 1); // Increment current lesson index
+          setIsTestVisible(false); // Show the learning material next
+          setTestPassed(false); // Reset testPassed for the next test
+        } else {
+          setcontentFooter("last"); // Set content footer to last if end of lesson array is reached
+        }
+      }
+    } else {
+      // If currently showing learning material
+      setIsTestVisible(true); // Show the test next
+      setContentType("test"); // Set content type to test
+      setcontentFooter("test"); // Set content footer to test
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentLessonIndex > 0) {
+      setCurrentLessonIndex(currentLessonIndex - 1); // Decrement current lesson index
+      setContentType("test");
+    }
+  };
+
+  const handleCheckAnswer = () => {
+    if (answerSelectedCorrect) {
+      setCurrentLessonIndex(currentLessonIndex + 1);
+      setTestPassed(true);
+      setcontentFooter("learn");
+      setContentType("learn");
+    }
+  };
+
+  const handleAnswerSelected = (
+    selected: boolean | ((prevState: boolean) => boolean)
+  ) => {
+    setAnswerSelected(selected);
+  };
+
+  const handleFinish = () => {
+    // Redirect to a congratulations page
+  };
+
   return (
     <>
       <div className="mx-auto max-w-7xl pt-6 px-6">
         <Header LessonName={lessonname ?? ""} />
       </div>
       <div className="mt-3 md:mt-11">
-        <Content contentList={[]} />
+        {learn.length > 0 && (
+          <Content
+            learnMaterialData={learn[currentLessonIndex]}
+            contentType={contentType} // Pass content type as a prop
+            onAnswerSelected={handleAnswerSelected}
+            onCorrectAnswer={setAnswerSelectedCorrect}
+          />
+        )}
       </div>
       <div className="mt-2 md:mt-9">
-        <FooterLesson />
+        <FooterLesson
+          contentFooter={contentFooter}
+          onCheck={handleCheckAnswer}
+          onContinue={handleContinue}
+          answerSelected={answerSelected}
+          onPrev={handlePrev}
+        />
       </div>
     </>
   );
