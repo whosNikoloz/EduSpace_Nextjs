@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@nextui-org/button";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  Button,
+} from "@nextui-org/react";
 
 type FooterLessonProps = {
   onPrev: () => void;
@@ -16,6 +21,8 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
   answerSelected,
   answerSelectedCorrect,
 }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <>
       <footer className="rounded-lg shadow">
@@ -44,16 +51,34 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
               >
                 Back
               </Button>
-              <Button
+
+              <Popover
+                isOpen={isOpen}
+                backdrop="opaque"
+                onOpenChange={(open) => setIsOpen(open)}
                 color="primary"
-                variant="ghost"
-                radius="sm"
-                className="w-auto"
-                isIconOnly
-                onClick={onPrev}
               >
-                Hint
-              </Button>
+                <PopoverTrigger>
+                  <Button
+                    color="primary"
+                    variant="shadow"
+                    radius="sm"
+                    className="w-auto"
+                  >
+                    Hint
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <div className="px-1 py-2">
+                    <div className="text-small font-bold text-center">
+                      მინიშნება
+                    </div>
+                    <div className="text-tiny">
+                      ბალ ბლა ბლა ბალ ბლა ბლაბალ ბლა ბლა
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
               {answerSelected ? (
                 answerSelectedCorrect ? (
                   <Button

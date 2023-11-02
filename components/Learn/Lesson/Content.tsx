@@ -66,7 +66,10 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
   };
 
   return (
-    <ScrollShadow hideScrollBar className="max-h-[calc(100vh-230px)]">
+    <ScrollShadow
+      hideScrollBar
+      className="max-h-[calc(100vh-220px)] h-[calc(100vh-220px)]"
+    >
       <div className="flex justify-center items-center">
         <div className="grid px-6 items-center w-full lg:w-2/3 overflow-auto">
           <div className="mt-4">
@@ -78,20 +81,6 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
           </div>
           {contentType === "learn" && learnMaterialData.code && (
             <>
-              <CodeEditor
-                value={learnMaterialData.code}
-                language="cpp"
-                placeholder="Please enter JS code."
-                className="rounded-md mt-4"
-                padding={15}
-                style={{
-                  fontSize: 12,
-                  backgroundColor: "#161B22",
-                  fontFamily:
-                    "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
-                }}
-                readOnly
-              />
               <CodeEditor
                 value={learnMaterialData.code}
                 language="cpp"
