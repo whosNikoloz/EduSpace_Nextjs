@@ -2,6 +2,7 @@ import { Button } from "@nextui-org/button";
 import React, { useState, useEffect } from "react";
 import Notifications from "@/app/api/Social/Notification";
 import { Badge } from "@nextui-org/react";
+import { NotificationIcon } from "./NotificationIcon";
 
 interface NotificationProps {
   notificationId: number;
@@ -59,48 +60,47 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
   return (
     <>
       <div className="relative my-32">
-        <Button
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-          isIconOnly
-          variant="light"
-          aria-label="Notification"
-          color="primary"
-        >
-          {notifications.length > 9 ? (
-            <Badge content={99} size="sm" color="primary">
-              <svg
-                className="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-              </svg>
-            </Badge>
-          ) : notifications.length > 0 ? (
-            // Render the badge when notifications.length is greater than 0
-            <Badge content={notifications.length} size="sm" color="primary">
-              <svg
-                className="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-              </svg>
-            </Badge>
-          ) : (
-            // Render something when notifications.length is 0
-            <svg
-              className="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+        {notifications.length > 99 ? (
+          <Badge content="99+" shape="circle" color="danger">
+            <Button
+              radius="full"
+              isIconOnly
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              aria-label="more than 99 notifications"
+              variant="light"
             >
-              <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-            </svg>
-          )}
-        </Button>
+              <NotificationIcon
+                size={24}
+                height={undefined}
+                width={undefined}
+              />
+            </Button>
+          </Badge>
+        ) : notifications.length > 0 ? (
+          <Badge content={notifications.length} shape="circle" color="danger">
+            <Button
+              radius="full"
+              isIconOnly
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              variant="light"
+            >
+              <NotificationIcon
+                size={24}
+                height={undefined}
+                width={undefined}
+              />
+            </Button>
+          </Badge>
+        ) : (
+          <Button
+            radius="full"
+            isIconOnly
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            variant="light"
+          >
+            <NotificationIcon size={24} height={undefined} width={undefined} />
+          </Button>
+        )}
 
         {dropdownOpen && (
           <div
@@ -109,7 +109,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
           >
             {notifications.length === 0 ? ( // Check if there are no notifications
               <div>
-                <a className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 -mx-2">
+                <a className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 mx-2">
                   თქვენ არ გაქვთ შეტყობინება
                 </a>
               </div>

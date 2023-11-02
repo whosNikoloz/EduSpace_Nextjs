@@ -175,7 +175,7 @@ export default function CplusAdvancedLessonPage() {
       </div>
       <div className="mt-3 md:mt-11">
         {loading ? (
-          <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 mt-20">
+          <section className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20">
             <div className={Styles.Loader}>
               <Image
                 src={EduSpace}
