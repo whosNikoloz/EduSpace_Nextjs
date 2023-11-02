@@ -40,7 +40,7 @@ export default function RootLayout({
   }, []);
 
   return (
-    <html lang="en"  className={theme} suppressHydrationWarning>
+    <html lang="en"  className={`${theme} scroll-smooth`} suppressHydrationWarning>
       <head>
         <title>EduSpace</title>
         <link

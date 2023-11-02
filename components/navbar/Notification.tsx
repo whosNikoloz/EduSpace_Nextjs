@@ -1,6 +1,7 @@
 import { Button } from "@nextui-org/button";
 import React, { useState, useEffect } from "react";
 import Notifications from "@/app/api/Social/Notification";
+import { Badge } from "@nextui-org/react";
 
 interface NotificationProps {
   notificationId: number;
@@ -65,14 +66,40 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
           aria-label="Notification"
           color="primary"
         >
-          <svg
-            className="h-5 w-5 "
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-          </svg>
+          {notifications.length > 9 ? (
+            <Badge content={99} size="sm" color="primary">
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+              </svg>
+            </Badge>
+          ) : notifications.length > 0 ? (
+            // Render the badge when notifications.length is greater than 0
+            <Badge content={notifications.length} size="sm" color="primary">
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+              </svg>
+            </Badge>
+          ) : (
+            // Render something when notifications.length is 0
+            <svg
+              className="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+            </svg>
+          )}
         </Button>
 
         {dropdownOpen && (

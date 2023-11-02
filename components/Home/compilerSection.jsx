@@ -13,9 +13,9 @@ const CompilerSection = () => {
 
   const handleCourse = () => {
     if (user) {
-      window.location.href = "/learn/courses/c-sharp-beginner";
+      window.location.href = "/learn/course/c-sharp-beginner";
     } else {
-      sessionStorage.setItem("redirect_url", "/learn/courses/c-sharp-beginner");
+      sessionStorage.setItem("redirect_url", "/learn/course/c-sharp-beginner");
       window.location.href = "/user/auth";
     }
   };

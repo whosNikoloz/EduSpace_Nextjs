@@ -53,10 +53,7 @@ export default function Home() {
             <div className="hidden md:block">
               <ConnectorFirst text="კოდის ყოველი ხაზი არის ინოვაციასთან უფრო ახლოს." />
             </div>
-            <section
-              id="compiler-section"
-              className=" items-center justify-center"
-            >
+            <section className=" items-center justify-center">
               <div className="mt-7 ">
                 <CustomTitle
                   title1={"ჩვენი"}
@@ -94,7 +91,10 @@ export default function Home() {
             <div className="hidden md:block">
               <ConnectorSecond text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
             </div>
-            <section className=" items-center justify-center gap-4 py-8 md:py-10">
+            <section
+              className=" items-center justify-center gap-4 py-8 md:py-10"
+              id="step-section"
+            >
               <div className="mt-7 ">
                 <CustomTitle
                   title1={"მიყევი"}

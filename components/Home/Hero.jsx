@@ -48,7 +48,7 @@ export const Hero = () => {
               </Link>
 
               <Link
-                href="#"
+                href="#step-section"
                 className="text-sm font-semibold leading-6 text-black dark:text-white"
               >
                 გაიგე მეტი <span aria-hidden="true">→</span>
