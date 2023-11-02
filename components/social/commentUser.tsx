@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { User } from "@nextui-org/react";
+import { Avatar, User } from "@nextui-org/react";
 import CommentApi from "@/app/api/Social/Comment";
 import {
   Dropdown,
@@ -84,11 +84,10 @@ const Comment: React.FC<CommentProps> = ({
     <div className="flex items-center bg-white dark:bg-gray-800">
       <div className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex max-w-lg">
         <div>
-          <User
-            name
-            avatarProps={{
-              src: avatarUrl,
-            }}
+          <Avatar
+            className="transition-transform"
+            name={username}
+            src={avatarUrl}
           />
         </div>
         <div className="ml-3">

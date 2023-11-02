@@ -29,9 +29,9 @@ const AutoScrollCarousel = () => {
 
   const handleCourse = (FormatedName: string) => {
     if (user) {
-      window.location.href = `/learn/courses/${FormatedName}`;
+      window.location.href = `/learn/course/${FormatedName}`;
     } else {
-      sessionStorage.setItem("redirect_url", `/learn/courses/${FormatedName}`);
+      sessionStorage.setItem("redirect_url", `/learn/course/${FormatedName}`);
       window.location.href = "/user/auth";
     }
   };

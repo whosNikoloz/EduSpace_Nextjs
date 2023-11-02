@@ -118,7 +118,6 @@ function PostCard({ postData, onDelete }) {
                     key="delete"
                     className="text-danger"
                     color="danger"
-                    
                     onPress={onOpen}
                   >
                     პოსტის წაშლა
@@ -381,11 +380,14 @@ function PostCard({ postData, onDelete }) {
               <div className="my-1 px-4 flex items-start space-x-2 mt-5">
                 {user && (
                   <>
-                    <User
-                      name
-                      avatarProps={{
-                        src: user.picture,
-                      }}
+                    <Avatar
+                      className="transition-transform"
+                      name={
+                        user.firstname && user.lastname
+                          ? user.firstName + " " + user.lastName
+                          : user.userName
+                      }
+                      src={user.picture}
                     />
                     <div className="mb-4 w-full max-w-lg">
                       <CommentForm

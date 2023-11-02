@@ -279,8 +279,6 @@ export default function CreatePost({ setPosts }) {
                           size="sm"
                           src={user.picture}
                         />
-
-                        <div></div>
                       </div>
                       <div className="my-2 px-4 flex items-center space-x-2">
                         <Select
