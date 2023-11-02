@@ -2,14 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import { useUser } from "@/app/context/UserdbContext";
-import { Button } from "@nextui-org/react";
 import { Header } from "@/components/Learn/Lesson/Header";
 import { FooterLesson } from "@/components/Learn/Lesson/FooterLesson";
 import { Content } from "@/components/Learn/Lesson/Content";
 import LearnMaterial from "@/app/api/Learn/LearnMaterial";
 import { useSearchParams } from "next/navigation";
-import { connectStorageEmulator } from "firebase/storage";
-import { set } from "nprogress";
+import Styles from "@/styles/Loader.module.css";
+import Image from "next/image";
+import EduSpace from "@/public/EduSpaceLogo.png";
 
 interface Answer {
   answerId: number;
@@ -51,14 +51,18 @@ export default function CplusAdvancedLessonPage() {
   const learnAPI = LearnMaterial();
   const [learn, setLearn] = useState<LearnMaterialData[]>([]);
 
+  const [loading, setLoading] = useState(true);
+
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [contentType, setContentType] = useState("learn"); // Add content type state
   const [contentFooter, setcontentFooter] = useState("first"); // Add content footer state
 
-  const [isTestVisible, setIsTestVisible] = useState(false);
-
   const [answerSelected, setAnswerSelected] = useState(false);
   const [answerSelectedCorrect, setAnswerSelectedCorrect] = useState(false);
+
+  const [progress, setProgress] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
 
   const [testPassed, setTestPassed] = useState(answerSelectedCorrect);
 
@@ -96,45 +100,61 @@ export default function CplusAdvancedLessonPage() {
       try {
         const data = await learnAPI.LearnMaterialByLesson(1);
         setLearn(data);
+
+        // Calculate totalPage based on fetched learn data
+        const calculatedTotalPage = Math.ceil(data.length * 2);
+        setTotalPage(calculatedTotalPage);
+
+        // Set loading to false when data is loaded
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching LearnMaterial data:", error);
+        setLoading(false); // Set loading to false in case of an error
       }
     };
 
     fetchLearnMaterial();
   }, [lessonid]);
 
+  useEffect(() => {
+    const updatedProgress = (currentPage / totalPage) * 100;
+    setProgress(updatedProgress);
+  }, [currentPage, totalPage]);
+
   const handleContinue = () => {
-    if (isTestVisible) {
-      if (testPassed && currentLessonIndex < learn.length - 1) {
-        setCurrentLessonIndex(currentLessonIndex + 1);
-        setcontentFooter(
-          currentLessonIndex === learn.length - 2 ? "last" : "learn"
-        );
+    if (contentType === "test") {
+      setCurrentLessonIndex(currentLessonIndex + 1);
+      setcontentFooter("learn");
+      setContentType("learn");
+      setAnswerSelected(false);
+    } else {
+      if (currentLessonIndex == learn.length - 1) {
+        setcontentFooter("last");
+        setContentType("test");
       } else {
-        setIsTestVisible(false);
-        setTestPassed(false);
+        setcontentFooter("test");
+        setContentType("test");
+      }
+    }
+    setCurrentPage(currentPage + 1);
+    const updatedProgress = ((currentPage + 2) / totalPage) * 100;
+    setProgress(updatedProgress);
+  };
+
+  const handlePrev = () => {
+    if (contentType == "test") {
+      if (currentLessonIndex == 0) {
+        setcontentFooter("first");
+        setContentType("learn");
+      } else {
         setcontentFooter("learn");
         setContentType("learn");
       }
     } else {
-      setIsTestVisible(true);
-      setContentType("test");
+      setCurrentLessonIndex(currentLessonIndex - 1);
       setcontentFooter("test");
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentLessonIndex > 0) {
-      if (isTestVisible) {
-        setIsTestVisible(false);
-        setContentType("learn");
-        setcontentFooter("learn");
-      } else {
-        setCurrentLessonIndex(currentLessonIndex - 1);
-        setContentType("test");
-        setcontentFooter("test");
-      }
+      setContentType("test");
+      setAnswerSelected(false);
     }
   };
 
@@ -151,16 +171,30 @@ export default function CplusAdvancedLessonPage() {
   return (
     <>
       <div className="mx-auto max-w-7xl pt-6 px-6">
-        <Header LessonName={lessonname ?? ""} progress={50} />
+        <Header LessonName={lessonname ?? ""} progress={progress} />
       </div>
       <div className="mt-3 md:mt-11">
-        {learn.length > 0 && (
-          <Content
-            learnMaterialData={learn[currentLessonIndex]}
-            contentType={contentType} // Pass content type as a prop
-            onAnswerSelected={handleAnswerSelected}
-            onCorrectAnswer={setAnswerSelectedCorrect}
-          />
+        {loading ? (
+          <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 mt-20">
+            <div className={Styles.Loader}>
+              <Image
+                src={EduSpace}
+                alt="Description of the image"
+                width={100} // Specify the width of the image
+                height={100}
+              />
+            </div>
+          </section>
+        ) : (
+          // Render the content when data is loaded
+          learn.length > 0 && (
+            <Content
+              learnMaterialData={learn[currentLessonIndex]}
+              contentType={contentType} // Pass content type as a prop
+              onAnswerSelected={handleAnswerSelected}
+              onCorrectAnswer={setAnswerSelectedCorrect}
+            />
+          )
         )}
       </div>
       <div className="mt-2 md:mt-9">

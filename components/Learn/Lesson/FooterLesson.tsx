@@ -44,6 +44,16 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
               >
                 Back
               </Button>
+              <Button
+                color="primary"
+                variant="ghost"
+                radius="sm"
+                className="w-auto"
+                isIconOnly
+                onClick={onPrev}
+              >
+                Hint
+              </Button>
               {answerSelected ? (
                 answerSelectedCorrect ? (
                   <Button
@@ -80,12 +90,36 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
               </Button>
               <Button
                 color="primary"
+                variant="ghost"
                 radius="sm"
-                variant="solid"
                 className="w-auto"
+                isIconOnly
+                onClick={onPrev}
               >
-                Finish
+                Hint
               </Button>
+              {answerSelected ? (
+                answerSelectedCorrect ? (
+                  <Button
+                    color="primary"
+                    radius="sm"
+                    variant="shadow"
+                    className="w-auto"
+                    onClick={onContinue}
+                  >
+                    Finish
+                  </Button>
+                ) : (
+                  <Button
+                    color="primary"
+                    radius="sm"
+                    variant="shadow"
+                    className="w-auto"
+                  >
+                    Try Again
+                  </Button>
+                )
+              ) : null}
             </>
           ) : contentFooter == "learn" ? (
             <>
