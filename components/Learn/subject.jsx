@@ -17,13 +17,14 @@ const Subject = ({ courseData, userProgress }) => {
           subject={subject}
           progress={userProgress}
           formattedCourseName={courseData.formattedCourseName}
+          courseId={courseData.courseId}
         />
       ))}
     </div>
   );
 };
 
-const SubjectItem = ({ subject, progress, formattedCourseName }) => {
+const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
   const [containerVisible, setContainerVisible] = useState(false);
 
   const handleToggleContainer = () => {
@@ -125,7 +126,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName }) => {
                     </div>
                   </div>
                   <Link
-                    href={`/learn/course/${formattedCourseName}/lesson?lessonId=${lesson.lessonId}&lessonName=${lesson.lessonName}`}
+                    href={`/learn/course/${formattedCourseName}/lesson?lessonId=${lesson.lessonId}&lesson=${lesson.lessonName}&subject=${subject.subjectId}&course=${courseId}`}
                   >
                     <Button
                       className="bg-blue-600 w-full text-white mt-4"

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { useUser } from "@/app/context/UserdbContext";
 import { Header } from "@/components/Learn/Lesson/Header";
 import { FooterLesson } from "@/components/Learn/Lesson/FooterLesson";
@@ -10,6 +10,8 @@ import { useSearchParams } from "next/navigation";
 import Styles from "@/styles/Loader.module.css";
 import Image from "next/image";
 import EduSpace from "@/public/EduSpaceLogo.png";
+import ProgressAPI from "@/app/api/Learn/Progress";
+import { useRouter } from "next/router";
 
 interface Answer {
   answerId: number;
@@ -51,6 +53,10 @@ export default function CplusAdvancedLessonPage() {
   const learnAPI = LearnMaterial();
   const [learn, setLearn] = useState<LearnMaterialData[]>([]);
 
+  const { user } = useUser();
+
+  const progressAPI = ProgressAPI();
+
   const [loading, setLoading] = useState(true);
 
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
@@ -64,11 +70,18 @@ export default function CplusAdvancedLessonPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
 
-  const [testPassed, setTestPassed] = useState(answerSelectedCorrect);
-
   const searchParams = useSearchParams();
+
   const lessonid = searchParams.get("lessonId");
-  const lessonname = searchParams.get("lessonName");
+  const lessonname = searchParams.get("lesson");
+  const courseId = searchParams.get("course");
+  const subjectId = searchParams.get("subject");
+
+  // Convert to numbers if they are non-null and valid numbers
+  const lessonIdAsNumber = lessonid ? parseInt(lessonid, 10) : null;
+
+  const courseIdAsNumber = courseId ? parseInt(courseId, 10) : null;
+  const subjectIdAsNumber = subjectId ? parseInt(subjectId, 10) : null;
 
   useEffect(() => {
     const beforeUnloadHandler = (e: {
@@ -91,14 +104,11 @@ export default function CplusAdvancedLessonPage() {
   }, []);
 
   useEffect(() => {
-    setTestPassed(answerSelectedCorrect);
-  }, [answerSelectedCorrect]);
-
-  useEffect(() => {
     // Fetch LearnMaterial data here
     const fetchLearnMaterial = async () => {
       try {
-        const data = await learnAPI.LearnMaterialByLesson(1);
+        if (!lessonIdAsNumber) return;
+        const data = await learnAPI.LearnMaterialByLesson(lessonIdAsNumber);
         setLearn(data);
 
         // Calculate totalPage based on fetched learn data
@@ -114,7 +124,7 @@ export default function CplusAdvancedLessonPage() {
     };
 
     fetchLearnMaterial();
-  }, [lessonid]);
+  }, [lessonIdAsNumber]);
 
   useEffect(() => {
     const updatedProgress = (currentPage / totalPage) * 100;
@@ -165,14 +175,32 @@ export default function CplusAdvancedLessonPage() {
   };
 
   const handleFinish = () => {
-    // Redirect to a congratulations page
+    setcontentFooter("finished");
+  };
+
+  const handleOnFinished = async () => {
+    try {
+      const data = await progressAPI.CompleteLesson(
+        user?.userId || 0,
+        subjectIdAsNumber || 0,
+        courseIdAsNumber || 0,
+        lessonIdAsNumber || 0
+      );
+
+      const router = useRouter();
+      router.push("/learn/course/c-plus-advanced");
+    } catch (error) {
+      console.error("Error fetching Progress data:", error);
+    }
   };
 
   return (
     <>
-      <div className="mx-auto max-w-7xl pt-6 px-6">
-        <Header LessonName={lessonname ?? ""} progress={progress} />
-      </div>
+      {contentFooter !== "finished" && ( // Check if contentFooter is not "finished"
+        <div className="mx-auto max-w-7xl pt-6 px-6">
+          <Header LessonName={lessonname ?? ""} progress={progress} />
+        </div>
+      )}
       <div className="mt-3 md:mt-11">
         {loading ? (
           <section className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20">
@@ -185,8 +213,11 @@ export default function CplusAdvancedLessonPage() {
               />
             </div>
           </section>
+        ) : contentFooter === "finished" ? (
+          <div className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20">
+            <p>Lesson Finished</p>
+          </div>
         ) : (
-          // Render the content when data is loaded
           learn.length > 0 && (
             <Content
               learnMaterialData={learn[currentLessonIndex]}
@@ -202,6 +233,8 @@ export default function CplusAdvancedLessonPage() {
           contentFooter={contentFooter}
           onContinue={handleContinue}
           answerSelected={answerSelected}
+          onFinish={handleFinish}
+          onFinished={handleOnFinished}
           answerSelectedCorrect={answerSelectedCorrect}
           onPrev={handlePrev}
         />
