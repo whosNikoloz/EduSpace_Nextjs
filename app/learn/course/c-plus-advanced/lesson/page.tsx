@@ -11,7 +11,7 @@ import Styles from "@/styles/Loader.module.css";
 import Image from "next/image";
 import EduSpace from "@/public/EduSpaceLogo.png";
 import ProgressAPI from "@/app/api/Learn/Progress";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface Answer {
   answerId: number;
@@ -50,6 +50,8 @@ interface LearnMaterialData {
 }
 
 export default function CplusAdvancedLessonPage() {
+  const router = useRouter();
+
   const learnAPI = LearnMaterial();
   const [learn, setLearn] = useState<LearnMaterialData[]>([]);
 
@@ -186,8 +188,6 @@ export default function CplusAdvancedLessonPage() {
         courseIdAsNumber || 0,
         lessonIdAsNumber || 0
       );
-
-      const router = useRouter();
       router.push("/learn/course/c-plus-advanced");
     } catch (error) {
       console.error("Error fetching Progress data:", error);

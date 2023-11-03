@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Progress } from "@material-tailwind/react";
+import { Progress } from "@nextui-org/react";
 import Link from "next/link";
 import { ArrowIcon } from "./ArrowIcon";
 
@@ -26,8 +26,7 @@ export const Header: React.FC<HeaderProps> = ({ LessonName, progress }) => {
         <Progress
           value={progress}
           size="sm"
-          color="blue"
-          className="bg-white w-full md:w-1/2 mx-auto mt-2"
+          className=" w-full md:w-1/2 mx-auto mt-2"
         />
       </div>
     </>
