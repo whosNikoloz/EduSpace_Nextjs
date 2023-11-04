@@ -238,9 +238,9 @@ function PostCard({ postData, onDelete }) {
       <Dialog
         open={isOpenPost}
         onClose={() => setIsOpenPost(false)}
-        className="fixed z-10 inset-0 "
+        className="fixed z-10 inset-0 max-h-screen overflow-y-auto"
       >
-        <div className="flex items-center justify-center min-h-[80vh] mt-10">
+        <div className="flex items-center justify-center min-h-[80vh]  mt-10">
           <Dialog.Overlay className="fixed inset-0 bg-black opacity-20" />
           {/* dialog card */}
           <div className="relative bg-white w-full md:w-9/12 lg:w-8/12 rounded-lg dark:bg-gray-800 mt-6">
@@ -305,7 +305,7 @@ function PostCard({ postData, onDelete }) {
                       )}
                       {postData.picture && (
                         <img
-                          className="w-auto max-h-screen rounded"
+                          className="max-w-lg max-h-screen rounded"
                           src={postData.picture}
                           alt="Image Description"
                         />
@@ -326,7 +326,6 @@ function PostCard({ postData, onDelete }) {
               </div>
 
               <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
-
               {postData.comments.map((comment) => (
                 <Comment
                   key={comment.commentId}
