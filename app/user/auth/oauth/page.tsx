@@ -1,18 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import Authenitcation from "@/app/api/User/auth";
 import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; // Use "router" instead of "navigation"
 import Styles from "@/styles/Loader.module.css";
 import Image from "next/image";
 import EduSpace from "@/public/EduSpaceLogo.png";
 
 interface CustomSession extends Session {
-  provider?: string; // Add the provider property
-  providerId?: string; // Add the access token property if needed
+  provider?: string;
+  providerId?: string;
 }
 
 interface OAuthUserModel {
@@ -40,11 +40,18 @@ export default function oauthPage() {
           providerId: customSession.providerId || "",
         };
 
+        // Add a simple check to prevent duplicate registration attempts
+        if (localStorage.getItem("registrationInProgress") === "true") {
+          return;
+        }
+
+        localStorage.setItem("registrationInProgress", "true");
+
         const checkemail = await auth.CheckeOAuthExist(
           userModel.provider,
           userModel.providerId
         );
-        console.log(checkemail);
+
         if (checkemail) {
           const loginoauth = await auth.handleOAuthLogin(
             userModel.provider,
@@ -56,8 +63,6 @@ export default function oauthPage() {
             } catch (error) {
               console.error("Error during sign-out:", error);
             }
-          } else {
-            console.log(loginoauth);
           }
         } else {
           const registeroauth = await auth.handleoAuthRegistration(
@@ -83,6 +88,8 @@ export default function oauthPage() {
             console.log(registeroauth);
           }
         }
+
+        localStorage.removeItem("registrationInProgress");
       }
     }
     oauth();
@@ -94,7 +101,7 @@ export default function oauthPage() {
         <Image
           src={EduSpace}
           alt="Description of the image"
-          width={100} // Specify the width of the image
+          width={100}
           height={100}
         />
       </div>
