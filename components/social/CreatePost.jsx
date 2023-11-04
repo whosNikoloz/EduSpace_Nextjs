@@ -277,7 +277,9 @@ export default function CreatePost({ setPosts }) {
                               : user.userName
                           }
                           size="sm"
-                          src={user.picture}
+                          avatarProps={{
+                            src: user.picture
+                          }}
                         />
                       </div>
                       <div className="my-2 px-4 flex items-center space-x-2">

@@ -168,6 +168,7 @@ export default function CplusAdvancedLessonPage() {
       setContentType("test");
       setAnswerSelected(false);
     }
+    setCurrentPage(currentPage - 1);
   };
 
   const handleAnswerSelected = (
@@ -215,7 +216,17 @@ export default function CplusAdvancedLessonPage() {
           </section>
         ) : contentFooter === "finished" ? (
           <div className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20">
-            <p>Lesson Finished</p>
+            <div className={Styles.Loader}>
+              <Image
+                src={EduSpace}
+                alt="Description of the image"
+                width={100} // Specify the width of the image
+                height={100}
+              />
+            </div>
+            <p>Lesson completed!</p>
+            <p>You learned Numerical Data. You’re one step </p>
+            <p>closer to reaching your goal!</p>
           </div>
         ) : (
           learn.length > 0 && (
