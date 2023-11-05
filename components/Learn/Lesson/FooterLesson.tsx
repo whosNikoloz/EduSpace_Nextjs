@@ -5,6 +5,7 @@ import {
   PopoverContent,
   Button,
 } from "@nextui-org/react";
+import { HintIcon } from "@/components/Learn/Lesson/HintIcon";
 
 type FooterLessonProps = {
   onPrev: () => void;
@@ -48,7 +49,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
       footerContent = (
         <>
           <Button
-          size="md"
+            size="md"
             color="primary"
             variant="ghost"
             radius="sm"
@@ -64,14 +65,8 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             color="primary"
           >
             <PopoverTrigger>
-              <Button
-                color="primary"
-                variant="shadow"
-                radius="sm"
-                size="md"
-                className="w-auto"
-              >
-                Hint
+              <Button radius="sm" className="w-auto bg-transparent" isIconOnly>
+                <HintIcon size={undefined} height={30} width={30} />
               </Button>
             </PopoverTrigger>
             <PopoverContent>
@@ -125,17 +120,28 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
           >
             Back
           </Button>
-          <Button
+          <Popover
+            isOpen={isOpen}
+            backdrop="opaque"
+            onOpenChange={(open) => setIsOpen(open)}
             color="primary"
-            variant="ghost"
-            radius="sm"
-            size="md"
-            className="w-auto"
-            isIconOnly
-            onClick={onPrev}
           >
-            Hint
-          </Button>
+            <PopoverTrigger>
+              <Button radius="sm" className="w-auto bg-transparent" isIconOnly>
+                <HintIcon size={undefined} height={30} width={30} />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <div className="px-1 py-2">
+                <div className="text-small font-bold text-center">
+                  მინიშნება
+                </div>
+                <div className="text-tiny">
+                  ბალ ბლა ბლა ბალ ბლა ბლაბალ ბლა ბლა
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
           {answerSelected ? (
             answerSelectedCorrect ? (
               <Button
@@ -196,7 +202,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             color="primary"
             size="md"
             radius="sm"
-            variant="ghost"
+            variant="shadow"
             className="w-auto"
             onClick={onContinue}
           >
