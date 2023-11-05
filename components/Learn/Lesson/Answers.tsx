@@ -41,10 +41,10 @@ export const Answers: React.FC<AnswerProps> = ({
                   : "danger"
                 : "primary"
             } // Change color based on the correctness of the selected answer
-            size="md"
-            radius="sm"
+            size="lg"
             variant={selectedAnswer === index ? "shadow" : "ghost"}
             onClick={() => handleAnswerClick(index)}
+            className="rounded-md"
           >
             {answer.option}
           </Button>

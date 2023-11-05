@@ -143,9 +143,11 @@ export default function CplusAdvancedLessonPage() {
       if (currentLessonIndex == learn.length - 1) {
         setcontentFooter("last");
         setContentType("test");
+        setAnswerSelected(false);
       } else {
         setcontentFooter("test");
         setContentType("test");
+        setAnswerSelected(false);
       }
     }
     setCurrentPage(currentPage + 1);
@@ -158,9 +160,11 @@ export default function CplusAdvancedLessonPage() {
       if (currentLessonIndex == 0) {
         setcontentFooter("first");
         setContentType("learn");
+        setAnswerSelected(false);
       } else {
         setcontentFooter("learn");
         setContentType("learn");
+        setAnswerSelected(false);
       }
     } else {
       setCurrentLessonIndex(currentLessonIndex - 1);

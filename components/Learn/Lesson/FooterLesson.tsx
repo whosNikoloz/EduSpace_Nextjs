@@ -34,6 +34,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
       footerContent = (
         <Button
           radius="sm"
+          size="md"
           variant="shadow"
           color="primary"
           className="w-full md:w-auto"
@@ -47,6 +48,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
       footerContent = (
         <>
           <Button
+          size="md"
             color="primary"
             variant="ghost"
             radius="sm"
@@ -66,6 +68,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                 color="primary"
                 variant="shadow"
                 radius="sm"
+                size="md"
                 className="w-auto"
               >
                 Hint
@@ -87,6 +90,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
               <Button
                 color="primary"
                 radius="sm"
+                size="md"
                 variant="shadow"
                 className="w-auto"
                 onClick={onContinue}
@@ -97,6 +101,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
               <Button
                 color="primary"
                 radius="sm"
+                size="md"
                 variant="shadow"
                 className="w-auto"
               >
@@ -114,6 +119,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             color="primary"
             variant="ghost"
             radius="sm"
+            size="md"
             className="w-auto"
             onClick={onPrev}
           >
@@ -123,6 +129,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             color="primary"
             variant="ghost"
             radius="sm"
+            size="md"
             className="w-auto"
             isIconOnly
             onClick={onPrev}
@@ -134,6 +141,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
               <Button
                 color="primary"
                 radius="sm"
+                size="md"
                 variant="shadow"
                 className="w-auto"
                 onClick={onFinish}
@@ -144,6 +152,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
               <Button
                 color="primary"
                 radius="sm"
+                size="md"
                 variant="shadow"
                 className="w-auto"
               >
@@ -160,6 +169,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
           <Button
             color="primary"
             radius="sm"
+            size="md"
             variant="shadow"
             className="w-auto"
             onClick={onFinished}
@@ -176,6 +186,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             color="primary"
             variant="ghost"
             radius="sm"
+            size="md"
             className="w-auto"
             onClick={onPrev}
           >
@@ -183,6 +194,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
           </Button>
           <Button
             color="primary"
+            size="md"
             radius="sm"
             variant="ghost"
             className="w-auto"
