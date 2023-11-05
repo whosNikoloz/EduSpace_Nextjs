@@ -81,8 +81,8 @@ const Comment: React.FC<CommentProps> = ({
   };
 
   return (
-    <div className="flex items-center bg-white dark:bg-gray-800">
-      <div className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex max-w-lg">
+    <div className="flex items-center ">
+      <div className=" text-black dark:text-gray-200 p-4 antialiased flex max-w-lg">
         <div>
           <Avatar
             className="transition-transform"

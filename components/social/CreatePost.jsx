@@ -236,7 +236,7 @@ export default function CreatePost({ setPosts }) {
                       {/* dialog close icon button  */}
                       <div className="absolute right-0 p-2">
                         <button
-                          className="bg-gray-800 p-2  rounded-full text-black dark:text-white"
+                          className="p-2  rounded-full text-black bg-white dark:text-white"
                           onClick={() => {
                             setIsOpen(false);
                             setPostModel({
@@ -278,7 +278,7 @@ export default function CreatePost({ setPosts }) {
                           }
                           size="sm"
                           avatarProps={{
-                            src: user.picture
+                            src: user.picture,
                           }}
                         />
                       </div>

@@ -50,7 +50,17 @@ function PostCard({ postData, onDelete }) {
   const { user } = useUser();
   const [IsAddingComment, setIsAddingComment] = useState(false);
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const {
+    isOpen: isOpenWarning,
+    onOpen: onOpenWarning,
+    onOpenChange: onOpenChangeWarning,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenModalPost,
+    onOpen: onOpenModalPost,
+    onOpenChange: onOpenChangeModalPost,
+  } = useDisclosure();
 
   const handleNewComment = () => {
     // Set a flag to indicate that a new comment is created
@@ -61,7 +71,6 @@ function PostCard({ postData, onDelete }) {
   };
   const [isFullTextVisible, setFullTextVisible] = useState(false);
 
-  const [isOpenPost, setIsOpenPost] = useState(false);
   const toggleFullText = () => {
     setFullTextVisible(!isFullTextVisible);
   };
@@ -75,9 +84,7 @@ function PostCard({ postData, onDelete }) {
         postData.picture,
         postData.comments
       );
-      setIsOpenPost(false); // Close the dialog after deletion
       onDelete(postData.postId); // Notify the parent component about the deletion
-      setShowAlert(true); // Show an alert to confirm that the post has been deleted
     } catch (error) {
       console.error("Error deleting post:", error);
     }
@@ -118,7 +125,7 @@ function PostCard({ postData, onDelete }) {
                     key="delete"
                     className="text-danger"
                     color="danger"
-                    onPress={onOpen}
+                    onPress={onOpenChangeWarning}
                   >
                     პოსტის წაშლა
                   </DropdownItem>
@@ -153,7 +160,7 @@ function PostCard({ postData, onDelete }) {
                 />
               )}
               {postData.picture && (
-                <button onClick={() => setIsOpenPost(true)}>
+                <button onClick={onOpenModalPost}>
                   <img
                     className="w-auto max-h-screen rounded"
                     src={postData.picture}
@@ -168,7 +175,7 @@ function PostCard({ postData, onDelete }) {
             <Link>
               <button
                 className="ml-1 text-gray-500 dark:text-gray-400 font-light"
-                onClick={() => setIsOpenPost(true)}
+                onClick={onOpenModalPost}
               >
                 {commentCount === 0 ? "კომენტარი" : `${commentCount} კომენტარი`}
               </button>
@@ -178,8 +185,8 @@ function PostCard({ postData, onDelete }) {
       </div>
       <Modal
         backdrop="blur"
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
+        isOpen={isOpenWarning}
+        onOpenChange={onOpenChangeWarning}
         radius="2xl"
       >
         <ModalContent>
@@ -235,148 +242,120 @@ function PostCard({ postData, onDelete }) {
           )}
         </ModalContent>
       </Modal>
-      <Dialog
-        open={isOpenPost}
-        onClose={() => setIsOpenPost(false)}
-        className="fixed z-10 inset-0 max-h-screen overflow-y-auto"
+
+      <Modal
+        isOpen={isOpenModalPost}
+        onOpenChange={onOpenChangeModalPost}
+        scrollBehavior="inside"
+        size="xl"
       >
-        <div className="flex items-center justify-center min-h-[80vh]  mt-10">
-          <Dialog.Overlay className="fixed inset-0 bg-black opacity-20" />
-          {/* dialog card */}
-          <div className="relative bg-white w-full md:w-9/12 lg:w-8/12 rounded-lg dark:bg-gray-800 mt-6">
-            {/* dialog header */}
-            <div className="flex justify-center relative ">
-              {/* dialog title */}
-              <Dialog.Title className="py-4 text-xl text-center font-bold dark:text-white">
+        <ModalContent>
+          {(onCloseModalPost) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
                 {postData.user.username} პოსტი
-              </Dialog.Title>
-              {/* dialog close icon button */}
-              <div className="absolute right-0 p-2">
-                <button
-                  className="p-2 rounded-full text-black dark:text-white"
-                  onClick={() => setIsOpenPost(false)}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            {/* dialog body */}
-            <Dialog.Description>
-              {/* post author profile */}
-              <div className="my-2 px-4 flex items-center space-x-2 ">
-                <User
-                  name={
-                    postData.user.firstname && postData.user.lastname
-                      ? postData.user.firstname + " " + postData.user.lastname
-                      : postData.user.username
-                  }
-                  description={formattedTimeAgo + "  " + postData.subject}
-                  avatarProps={{
-                    src: postData.user.picture,
-                  }}
-                />
-              </div>
-              <div className="my-2 px-4 flex items-center ">{text}</div>
-              {/* create post interface */}
-              <div className="px-4 py-2 ">
-                <div className="flex items-center justify-center">
-                  {(postData.picture || postData.video) && (
-                    <div className="flex items-center justify-center w-full">
-                      {postData.video && (
-                        <video
-                          controls
-                          className="w-auto max-h-screen rounded"
-                          src={postData.video}
-                          alt="Video Description"
-                        />
-                      )}
-                      {postData.picture && (
-                        <img
-                          className="max-w-lg max-h-screen rounded"
-                          src={postData.picture}
-                          alt="Image Description"
-                        />
-                      )}
-                    </div>
-                  )}
+              </ModalHeader>
+              <ModalBody>
+                {/* post author profile */}
+                <div className="my-2 px-4 flex items-center space-x-2 ">
+                  <User
+                    name={
+                      postData.user.firstname && postData.user.lastname
+                        ? postData.user.firstname + " " + postData.user.lastname
+                        : postData.user.username
+                    }
+                    description={formattedTimeAgo + "  " + postData.subject}
+                    avatarProps={{
+                      src: postData.user.picture,
+                    }}
+                  />
                 </div>
-              </div>
-              <div className="flex justify-between items-center mt-5">
-                <div className="flex"></div>
-                <Link>
-                  <button className="mr-4 text-gray-500 dark:text-gray-400 font-light">
-                    {commentCount === 0
-                      ? "კომენტარი"
-                      : `${commentCount} კომენტარი`}
-                  </button>
-                </Link>
-              </div>
-
-              <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
-              {postData.comments.map((comment) => (
-                <Comment
-                  key={comment.commentId}
-                  commentId={comment.commentId}
-                  username={comment.commentUser.username}
-                  commentText={comment.commentContent}
-                  avatarUrl={comment.commentUser.picture}
-                  createdAt={comment.commentCreatedAt}
-                  videoUrl={comment.commentVideo}
-                  pictureUrl={comment.commentPicture}
-                  userid={comment.commentUser.userId}
-                />
-              ))}
-
-              {IsAddingComment ? (
-                <>
-                  <div className="flex items-center bg-white dark:bg-gray-800">
-                    <div className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex max-w-lg">
-                      <div>
-                        <Skeleton className="flex rounded-full w-12 h-12" />
+                <div className="my-2 px-4 flex items-center ">{text}</div>
+                {/* create post interface */}
+                <div className="px-4 py-2 ">
+                  <div className="flex items-center justify-center">
+                    {(postData.picture || postData.video) && (
+                      <div className="flex items-center justify-center w-full">
+                        {postData.video && (
+                          <video
+                            controls
+                            className="w-auto max-h-screen rounded"
+                            src={postData.video}
+                            alt="Video Description"
+                          />
+                        )}
+                        {postData.picture && (
+                          <img
+                            className="max-w-lg max-h-screen rounded"
+                            src={postData.picture}
+                            alt="Image Description"
+                          />
+                        )}
                       </div>
-                      <div className="ml-3">
-                        <Skeleton className="rounded-3xl">
-                          <div className="bg-gray-100 dark:bg-gray-700 rounded-3xl px-4 pt-2 pb-2.5 mb-2">
-                            <div className="font-semibold text-sm leading-relaxed">
-                              <Skeleton className="h-3 w-3/5 rounded-lg" />
-                            </div>
-                            <div className="text-normal leading-snug md:leading-normal"></div>
-                          </div>
-                          <div className="text-sm ml-4 mt-0.5 text-gray-500 dark:text-gray-400">
-                            {formattedTimeAgo}
-                          </div>
-                        </Skeleton>
-                      </div>
-                      <Button isIconOnly variant="light">
-                        <DotsIcon
-                          size={35}
-                          filled={undefined}
-                          height={undefined}
-                          width={undefined}
-                          label={undefined}
-                        />
-                      </Button>
-                    </div>
+                    )}
                   </div>
-                </>
-              ) : (
-                <></>
-              )}
+                </div>
+                <div className="flex justify-between items-center mt-5">
+                  <div className="flex"></div>
+                  <Link>
+                    <button className="mr-4 text-gray-500 dark:text-gray-400 font-light">
+                      {commentCount === 0
+                        ? "კომენტარი"
+                        : `${commentCount} კომენტარი`}
+                    </button>
+                  </Link>
+                </div>
+                {postData.comments.map((comment) => (
+                  <Comment
+                    key={comment.commentId}
+                    commentId={comment.commentId}
+                    username={comment.commentUser.username}
+                    commentText={comment.commentContent}
+                    avatarUrl={comment.commentUser.picture}
+                    createdAt={comment.commentCreatedAt}
+                    videoUrl={comment.commentVideo}
+                    pictureUrl={comment.commentPicture}
+                    userid={comment.commentUser.userId}
+                  />
+                ))}
 
-              <div className="my-1 px-4 flex items-start space-x-2 mt-5">
+                {IsAddingComment ? (
+                  <>
+                    <div className="flex items-center bg-white dark:bg-gray-800">
+                      <div className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex max-w-lg">
+                        <div>
+                          <Skeleton className="flex rounded-full w-12 h-12" />
+                        </div>
+                        <div className="ml-3">
+                          <Skeleton className="rounded-3xl">
+                            <div className="bg-gray-100 dark:bg-gray-700 rounded-3xl px-4 pt-2 pb-2.5 mb-2">
+                              <div className="font-semibold text-sm leading-relaxed">
+                                <Skeleton className="h-3 w-3/5 rounded-lg" />
+                              </div>
+                              <div className="text-normal leading-snug md:leading-normal"></div>
+                            </div>
+                            <div className="text-sm ml-4 mt-0.5 text-gray-500 dark:text-gray-400">
+                              {formattedTimeAgo}
+                            </div>
+                          </Skeleton>
+                        </div>
+                        <Button isIconOnly variant="light">
+                          <DotsIcon
+                            size={35}
+                            filled={undefined}
+                            height={undefined}
+                            width={undefined}
+                            label={undefined}
+                          />
+                        </Button>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </ModalBody>
+              <ModalFooter>
                 {user && (
                   <>
                     <Avatar
@@ -396,11 +375,11 @@ function PostCard({ postData, onDelete }) {
                     </div>
                   </>
                 )}
-              </div>
-            </Dialog.Description>
-          </div>
-        </div>
-      </Dialog>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </>
   );
 }
