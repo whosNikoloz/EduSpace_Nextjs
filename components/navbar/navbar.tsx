@@ -60,79 +60,9 @@ export const Navbar = () => {
     fetchNotifications();
   }, []);
 
-  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-
-  const toggleSubMenu = () => {
-    setIsSubMenuOpen(!isSubMenuOpen);
-  };
 
   const handleLogout = () => {
     logout();
-  };
-
-  const icons = {
-    chevron: (
-      <ChevronDown
-        fill="currentColor"
-        size={16}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    scale: (
-      <Scale
-        className="text-warning"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    lock: (
-      <Lock
-        className="text-success"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    activity: (
-      <Activity
-        className="text-secondary"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    flash: (
-      <Flash
-        className="text-primary"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    server: (
-      <Server
-        className="text-success"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    user: (
-      <TagUser
-        className="text-danger"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
   };
 
   return (

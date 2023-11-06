@@ -35,6 +35,6 @@
     "components/compiler/ThemeDropdown.js",
     "components/compiler/Landing.js",
     "components/compiler/MonacoEditorWrapper.js"
-, "components/compiler/RunIcon.jsx", "components/Learn/subject.jsx", "components/Learn/Lesson/ArrowIcon.jsx"  ],
+, "components/compiler/RunIcon.jsx", "components/Learn/subject.jsx", "components/Learn/Lesson/ArrowIcon.jsx", "components/navbar/BeginnerIcon.jsx"  ],
   "exclude": ["node_modules"]
 }

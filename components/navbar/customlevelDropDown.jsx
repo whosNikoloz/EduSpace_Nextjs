@@ -16,6 +16,9 @@ import {
   Scale,
 } from "../Home/Icon.jsx";
 import Link from "next/link.js";
+import { BeginnerIcon } from "./BeginnerIcon.jsx";
+import { AdvancedIcon } from "./AdvancedIcon.jsx";
+import { IntermediateIcon } from "./IntermediateIcon.jsx";
 
 function MultiLevelDropdown() {
   const icons = {
@@ -27,60 +30,9 @@ function MultiLevelDropdown() {
         width={undefined}
       />
     ),
-    scale: (
-      <Scale
-        className="text-warning"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    lock: (
-      <Lock
-        className="text-success"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    activity: (
-      <Activity
-        className="text-secondary"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    flash: (
-      <Flash
-        className="text-primary"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    server: (
-      <Server
-        className="text-success"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    user: (
-      <TagUser
-        className="text-danger"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
+    Beginner: <BeginnerIcon height={16} width={16} />,
+    advanced: <AdvancedIcon height={16} width={16} />,
+    intermediate: <IntermediateIcon height={16} width={16} />,
   };
 
   return (
@@ -106,7 +58,7 @@ function MultiLevelDropdown() {
         <DropdownItem
           key="autoscaling"
           description="დამწყებებისათვის საუკეთესო, შესავალი პროგრამირებაში"
-          startContent={icons.flash}
+          startContent={icons.Beginner}
         >
           <Dropdown>
             <DropdownTrigger>
@@ -161,7 +113,7 @@ function MultiLevelDropdown() {
         <DropdownItem
           key="production_ready"
           description="გმაოცადე შენი თავი და განავითარე თავი"
-          startContent={icons.user}
+          startContent={icons.advanced}
         >
           <Dropdown>
             <DropdownTrigger>
@@ -216,7 +168,7 @@ function MultiLevelDropdown() {
         <DropdownItem
           key="99_uptime"
           description="გახდი საუკეთესო პროგრამირებში"
-          startContent={icons.server}
+          startContent={icons.intermediate}
         >
           <Dropdown>
             <DropdownTrigger>

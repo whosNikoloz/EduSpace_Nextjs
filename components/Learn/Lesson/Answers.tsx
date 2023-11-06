@@ -24,6 +24,9 @@ export const Answers: React.FC<AnswerProps> = ({
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
   const handleAnswerClick = (index: number) => {
+    if (selectedAnswer !== null) {
+      return;
+    }
     setSelectedAnswer(index);
     onAnswerSelected(true);
     IsCorrect(answers[index].isCorrect);

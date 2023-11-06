@@ -36,8 +36,6 @@ const AutoScrollCarousel = () => {
     }
   };
 
-  
-
   useEffect(() => {
     const courseAPI = Courses();
     const fetchCourses = async () => {
@@ -52,7 +50,7 @@ const AutoScrollCarousel = () => {
   }, []);
 
   useEffect(() => {
-    const perPage = isMobile ? 2 : 4; // Adjust perPage based on the device type.
+    const perPage = isMobile ? 3 : 5; // Adjust perPage based on the device type.
 
     const splide = new Splide(".splide", {
       type: "loop",
@@ -115,19 +113,19 @@ const AutoScrollCarousel = () => {
             courses.map((course) => (
               <li className="splide__slide" key={course.courseId}>
                 <div className="slide-content">
-                  <div className="max-w-xs   border border-gray-200 rounded-lg shadow bg-blue-600 dark:border-gray-700">
+                  <div className="w-12 lg:w-56 border border-gray-200 rounded-lg shadow bg-blue-600 dark:border-gray-700">
                     <button
                       onClick={() => handleCourse(course.formattedCourseName)}
                     >
                       <div className="slide-content">
-                        <div className="max-w-xs   border border-gray-200 rounded-lg shadow bg-blue-600 dark:border-gray-700">
+                        <div className="max-w-sm  border border-gray-200 rounded-lg shadow bg-blue-600 dark:border-gray-700">
                           <img
                             className="rounded-t-lg"
                             src={course.courseLogo}
                             alt={course.courseName}
                           />
                           <div className="p-3">
-                            <h5 className="mb-2 text-base font-bold tracking-tight text-white">
+                            <h5 className="mb-2 font-bold tracking-tight text-xs lg:text-base text-white">
                               {course.courseName}
                             </h5>
                           </div>
