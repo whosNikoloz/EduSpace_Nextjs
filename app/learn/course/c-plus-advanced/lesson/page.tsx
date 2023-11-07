@@ -227,7 +227,7 @@ export default function CplusAdvancedLessonPage({
             </div>
           </section>
         ) : contentFooter === "finished" ? (
-          <div className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20">
+          <div className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20 mb-20">
             <div className={Styles.Loader}>
               <Image
                 src={EduSpace}

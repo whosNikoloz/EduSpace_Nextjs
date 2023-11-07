@@ -14,6 +14,9 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/react";
+import { BeginnerIcon } from "./BeginnerIcon.jsx";
+import { AdvancedIcon } from "./AdvancedIcon.jsx";
+import { IntermediateIcon } from "./IntermediateIcon.jsx";
 
 function SideNavBarWithDropDown() {
   const icons = {
@@ -25,60 +28,9 @@ function SideNavBarWithDropDown() {
         width={undefined}
       />
     ),
-    scale: (
-      <Scale
-        className="text-warning"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    lock: (
-      <Lock
-        className="text-success"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    activity: (
-      <Activity
-        className="text-secondary"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    flash: (
-      <Flash
-        className="text-primary"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    server: (
-      <Server
-        className="text-success"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
-    user: (
-      <TagUser
-        className="text-danger"
-        fill="currentColor"
-        size={30}
-        height={undefined}
-        width={undefined}
-      />
-    ),
+    Beginner: <BeginnerIcon height={16} width={16} />,
+    advanced: <AdvancedIcon height={16} width={16} />,
+    intermediate: <IntermediateIcon height={16} width={16} />,
   };
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
@@ -139,23 +91,43 @@ function SideNavBarWithDropDown() {
             size="sm"
             onClick={toggleSubSubMenu1}
           >
-            {icons.flash}
+            {icons.Beginner}
             {"შესავალი"}
             {icons.chevron}
           </Link>
           {isSubSubMenu1Open && (
             <>
               <NavbarMenuItem className="ml-8">
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/c-sharp-beginner"
+                  size="xs"
+                >
                   {"C# შესავალი"}
                 </Link>
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/python-beginner"
+                  size="xs"
+                >
                   {"Python შესავალი"}
                 </Link>
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/c-plus-beginner"
+                  size="xs"
+                >
                   {"C++ შესავალი"}
                 </Link>
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/swift-beginner"
+                  size="xs"
+                >
                   {"Swift შესავალი"}
                 </Link>
               </NavbarMenuItem>
@@ -168,23 +140,43 @@ function SideNavBarWithDropDown() {
             size="sm"
             onClick={toggleSubSubMenu2}
           >
-            {icons.user}
+            {icons.advanced}
             {"შუალედური"}
             {icons.chevron}
           </Link>
           {isSubSubMenu2Open && (
             <>
               <NavbarMenuItem className="ml-8">
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/c-sharp-intermediate"
+                  size="xs"
+                >
                   {"C# შუალედური"}
                 </Link>
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/python-intermediate"
+                  size="xs"
+                >
                   {"Python შუალედური"}
                 </Link>
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/c-plus-intermediate"
+                  size="xs"
+                >
                   {"C++ შუალედური"}
                 </Link>
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/swift-intermediate"
+                  size="xs"
+                >
                   {"Swift შუალედური"}
                 </Link>
               </NavbarMenuItem>
@@ -197,23 +189,43 @@ function SideNavBarWithDropDown() {
             size="sm"
             onClick={toggleSubSubMenu3}
           >
-            {icons.server}
-            {"მოწინავე"}
+            {icons.intermediate}
+            {" მოწინავე"}
             {icons.chevron}
           </Link>
           {isSubSubMenu3Open && (
             <>
               <NavbarMenuItem className="ml-8">
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/c-sharp-advanced"
+                  size="xs"
+                >
                   {"C# მოწინავე"}
                 </Link>
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/python-advanced"
+                  size="xs"
+                >
                   {"Python მოწინავე"}
                 </Link>
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/c-plus-advanced"
+                  size="xs"
+                >
                   {"C++ მოწინავე"}
                 </Link>
-                <Link color="foreground" className="w-full" href="#" size="xs">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/swift-advanced"
+                  size="xs"
+                >
                   {"Swift მოწინავე"}
                 </Link>
               </NavbarMenuItem>
@@ -227,7 +239,12 @@ function SideNavBarWithDropDown() {
         </Link>
       </NavbarMenuItem>
       <NavbarMenuItem>
-        <Link color="foreground" className="w-full" href="/compiler/csharp" size="lg">
+        <Link
+          color="foreground"
+          className="w-full"
+          href="/compiler/csharp"
+          size="lg"
+        >
           {"compiler"}
         </Link>
       </NavbarMenuItem>
