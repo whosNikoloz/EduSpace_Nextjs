@@ -6,13 +6,10 @@ const learn_API_NIkoloza = "https://172.20.10.7:45456/api/Learn/";
 const Courses = () => {
   const GetCourses = async () => {
     try {
-      const token = localStorage.getItem("jwt_token");
       const response = await fetch(learn_API + "Courses/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          // Include the bearer token in the Authorization header
-          Authorization: `Bearer ${token}`,
         },
       });
 

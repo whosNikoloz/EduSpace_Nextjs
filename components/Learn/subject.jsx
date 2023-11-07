@@ -33,7 +33,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
 
   const isCurrentSubject = progress?.subjectId === subject.subjectId;
   const isLockedSubject = progress?.subjectId < subject.subjectId;
-
+  const isComplete = progress?.subjectId > subject.subjectId;
   return (
     <div>
       <h4
@@ -43,7 +43,13 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
         onClick={handleToggleContainer}
       >
         <div className="flex items-center gap-2">
-          {isLockedSubject ? <LockedIcon size={25} /> : <PlayIcon size={25} />}
+          {isComplete ? (
+            <VectorIcon size={25} />
+          ) : isCurrentSubject ? (
+            <PlayIcon size={25} />
+          ) : (
+            <LockedIcon size={25} />
+          )}
           {subject.subjectName}
         </div>
         <svg
