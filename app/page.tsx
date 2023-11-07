@@ -20,6 +20,7 @@ import Image from "next/image";
 import Styles from "@/styles/Loader.module.css";
 import EduSpace from "@/public/EduSpaceLogo.png";
 import dynamic from "next/dynamic";
+import ScrollToTopButton from "@/components/ScrollToTop";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -139,6 +140,7 @@ export default function Home() {
                 </div>
               </div>
             </section>
+            <ScrollToTopButton />
           </MainLayout>
         </>
       )}
