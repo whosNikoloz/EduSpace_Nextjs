@@ -49,7 +49,16 @@ interface LearnMaterialData {
   lessonId: number;
 }
 
-export default function CplusAdvancedLessonPage() {
+export default function CplusAdvancedLessonPage({
+  searchParams,
+}: {
+  searchParams: {
+    lessonId: string;
+    lesson: string;
+    course: string;
+    subject: string;
+  };
+}) {
   const router = useRouter();
 
   const learnAPI = LearnMaterial();
@@ -72,18 +81,17 @@ export default function CplusAdvancedLessonPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
 
-  const searchParams = useSearchParams();
-
-  const lessonid = searchParams.get("lessonId");
-  const lessonname = searchParams.get("lesson");
-  const courseId = searchParams.get("course");
-  const subjectId = searchParams.get("subject");
-
   // Convert to numbers if they are non-null and valid numbers
-  const lessonIdAsNumber = lessonid ? parseInt(lessonid, 10) : null;
+  const lessonIdAsNumber = searchParams.lessonId
+    ? parseInt(searchParams.lessonId, 10)
+    : null;
 
-  const courseIdAsNumber = courseId ? parseInt(courseId, 10) : null;
-  const subjectIdAsNumber = subjectId ? parseInt(subjectId, 10) : null;
+  const courseIdAsNumber = searchParams.course
+    ? parseInt(searchParams.course, 10)
+    : null;
+  const subjectIdAsNumber = searchParams.subject
+    ? parseInt(searchParams.subject, 10)
+    : null;
 
   useEffect(() => {
     const beforeUnloadHandler = (e: {
@@ -203,7 +211,7 @@ export default function CplusAdvancedLessonPage() {
     <>
       {contentFooter !== "finished" && ( // Check if contentFooter is not "finished"
         <div className="mx-auto max-w-7xl pt-6 px-6">
-          <Header LessonName={lessonname ?? ""} progress={progress} />
+          <Header LessonName={searchParams.lesson ?? ""} progress={progress} />
         </div>
       )}
       <div className="mt-3 md:mt-11">

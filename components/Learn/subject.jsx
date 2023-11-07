@@ -132,7 +132,15 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                     </div>
                   </div>
                   <Link
-                    href={`/learn/course/${formattedCourseName}/lesson?lessonId=${lesson.lessonId}&lesson=${lesson.lessonName}&subject=${subject.subjectId}&course=${courseId}`}
+                    href={{
+                      pathname: `/learn/course/${formattedCourseName}/lesson`,
+                      query: {
+                        lessonId: lesson.lessonId,
+                        lesson: lesson.lessonName,
+                        subject: subject.subjectId,
+                        course: courseId,
+                      },
+                    }}
                   >
                     <Button
                       className="bg-blue-600 w-full text-white mt-4"
