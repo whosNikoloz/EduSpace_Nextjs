@@ -147,7 +147,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                       variant="ghost"
                       size="large"
                     >
-                      Learn
+                      სწავლა
                     </Button>
                   </Link>
                 </div>
