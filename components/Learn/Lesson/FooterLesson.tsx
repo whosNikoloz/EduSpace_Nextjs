@@ -43,7 +43,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
           className="w-full md:w-auto"
           onClick={onContinue}
         >
-          Continue
+          შემდეგ
         </Button>
       );
       break;
@@ -58,7 +58,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             className="w-auto"
             onClick={onPrev}
           >
-            Back
+            უკან
           </Button>
           <Popover
             isOpen={isOpen}
@@ -76,9 +76,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                 <div className="text-small font-bold text-center">
                   მინიშნება
                 </div>
-                <div className="text-tiny">
-                  {Hint}
-                </div>
+                <div className="text-tiny">{Hint}</div>
               </div>
             </PopoverContent>
           </Popover>
@@ -92,7 +90,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                 className="w-auto"
                 onClick={onContinue}
               >
-                Continue
+                შემდეგ
               </Button>
             ) : (
               <Button
@@ -102,7 +100,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                 variant="shadow"
                 className="w-auto"
               >
-                Try Again
+                თავიდან ცდა
               </Button>
             )
           ) : null}
@@ -120,7 +118,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             className="w-auto"
             onClick={onPrev}
           >
-            Back
+            უკან
           </Button>
           <Popover
             isOpen={isOpen}
@@ -152,7 +150,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                 className="w-auto"
                 onClick={onFinish}
               >
-                Finish
+                დამთავრება
               </Button>
             ) : (
               <Button
@@ -180,7 +178,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             className="w-auto"
             onClick={onFinished}
           >
-            Continue
+            შემდეგ
           </Button>
         </>
       );
@@ -196,7 +194,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             className="w-auto"
             onClick={onPrev}
           >
-            Back
+            უკან
           </Button>
           <Button
             color="primary"
@@ -206,7 +204,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             className="w-auto"
             onClick={onContinue}
           >
-            Continue
+            შემდეგ
           </Button>
         </>
       );
@@ -219,7 +217,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
     <>
       <footer className="rounded-lg shadow">
         <hr className="my-4 md:my-6 lg:my-8 border-gray-200 dark:border-gray-700" />
-        <div className="flex flex-row items-center justify-center gap-4 md:gap-6 lg:gap-9">
+        <div className="flex flex-row items-center justify-center gap-4  lg:gap-24">
           {footerContent}
         </div>
       </footer>
