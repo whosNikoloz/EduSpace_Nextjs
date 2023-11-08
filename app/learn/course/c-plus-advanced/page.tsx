@@ -21,6 +21,7 @@ interface userProgress {
   progressId: number;
   subjectId: number;
   lessonId: number;
+  complete: boolean;
 }
 
 export default function CplusAdvancedPage() {
@@ -75,7 +76,7 @@ export default function CplusAdvancedPage() {
               courseName={course.courseName}
               description={course.description}
             />
-            <Subject courseData={course} userProgress={progress}/>
+            <Subject courseData={course} userProgress={progress} />
           </div>
         </>
       )}

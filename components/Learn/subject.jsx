@@ -33,7 +33,8 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
 
   const isCurrentSubject = progress?.subjectId === subject.subjectId;
   const isLockedSubject = progress?.subjectId < subject.subjectId;
-  const isComplete = progress?.subjectId > subject.subjectId;
+  const isComplete =
+    progress?.subjectId > subject.subjectId || progress?.complete;
   return (
     <div>
       <h4
@@ -78,7 +79,8 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
       >
         {subject.lessons.map((lesson, lessonIndex) => {
           // Correct variable names and conditions for lesson status
-          const isCompletedLesson = progress?.lessonId > lesson.lessonId;
+          const isCompletedLesson =
+            progress?.lessonId > lesson.lessonId || progress?.complete;
           const isCurrentLesson = progress?.lessonId === lesson.lessonId;
           const isLockedLesson = !isCompletedLesson && !isCurrentLesson;
           return (
@@ -196,7 +198,7 @@ export default ({ courseData, userProgress }) => {
               color="primary"
               variant="ghost"
               size="large"
-              isDisabled
+              isDisabled={!userProgress?.complete}
             >
               სერთიფიკატის მიღება
             </Button>
