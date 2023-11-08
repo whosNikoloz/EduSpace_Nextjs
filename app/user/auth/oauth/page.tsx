@@ -101,7 +101,7 @@ export default function oauthPage() {
         <Image
           src={EduSpace}
           alt="Description of the image"
-          width={100}
+          width={100} // Specify the width of the image
           height={100}
         />
       </div>

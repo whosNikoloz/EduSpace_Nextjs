@@ -27,9 +27,7 @@ export default function Home() {
 
   // Simulate loading by setting isLoading to false after some time
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 200); // Adjust the delay as needed
+    setIsLoading(false);
   }, []);
   return (
     <>

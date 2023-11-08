@@ -15,6 +15,7 @@ type FooterLessonProps = {
   onFinished: () => void;
   answerSelected: boolean;
   answerSelectedCorrect: boolean;
+  Hint: string;
 };
 
 export const FooterLesson: React.FC<FooterLessonProps> = ({
@@ -22,6 +23,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
   onContinue,
   onFinish,
   onFinished,
+  Hint,
   contentFooter,
   answerSelected,
   answerSelectedCorrect,
@@ -75,7 +77,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                   მინიშნება
                 </div>
                 <div className="text-tiny">
-                  ბალ ბლა ბლა ბალ ბლა ბლაბალ ბლა ბლა
+                  {Hint}
                 </div>
               </div>
             </PopoverContent>
@@ -136,9 +138,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                 <div className="text-small font-bold text-center">
                   მინიშნება
                 </div>
-                <div className="text-tiny">
-                  ბალ ბლა ბლა ბალ ბლა ბლაბალ ბლა ბლა
-                </div>
+                <div className="text-tiny">{Hint}</div>
               </div>
             </PopoverContent>
           </Popover>

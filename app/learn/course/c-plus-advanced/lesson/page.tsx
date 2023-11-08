@@ -254,6 +254,7 @@ export default function CplusAdvancedLessonPage({
       <div className="mt-2 md:mt-9">
         <FooterLesson
           contentFooter={contentFooter}
+          Hint={learn[currentLessonIndex]?.test?.hint}
           onContinue={handleContinue}
           answerSelected={answerSelected}
           onFinish={handleFinish}

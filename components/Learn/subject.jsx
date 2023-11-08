@@ -70,7 +70,6 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
         </svg>
       </h4>
       <div
-        className="duration-300"
         style={
           containerVisible
             ? { height: "auto" }
