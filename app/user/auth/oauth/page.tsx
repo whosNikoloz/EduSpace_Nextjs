@@ -3,9 +3,8 @@
 import { useEffect } from "react";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
-import Authenitcation from "@/app/api/User/auth";
+import Authentication from "@/app/api/User/auth";
 import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation"; // Use "router" instead of "navigation"
 import Styles from "@/styles/loader.module.css";
 import Image from "next/image";
 import EduSpace from "@/public/EduSpaceLogo.png";
@@ -23,10 +22,9 @@ interface OAuthUserModel {
   providerId: string;
 }
 
-export default function oauthPage() {
+export default function OauthPage() {
   const { data: session } = useSession();
-  const auth = Authenitcation();
-  const router = useRouter();
+  const auth = Authentication();
 
   useEffect(() => {
     async function oauth() {

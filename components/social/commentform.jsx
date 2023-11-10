@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import Comment from "@/app/api/Social/Comment";
 import { Button } from "@nextui-org/button";
+import Image from "next/image";
 
 function CommentForm({ postid, onCommentSubmit }) {
   const fileInputRef = useRef(null);
@@ -101,7 +102,7 @@ function CommentForm({ postid, onCommentSubmit }) {
           {selectedImage && (
             <div className="px-3 py-2 border-t dark:border-gray-600">
               <div className="flex items-center">
-                <img src={selectedImage} alt="Selected" className="max-h-20" />
+                <Image src={selectedImage} alt="Selected" className="max-h-20" />
                 <button
                   type="button"
                   className="ml-2 p-2 text-red-500 rounded-full hover:text-red-700 dark:hover:text-red-300"

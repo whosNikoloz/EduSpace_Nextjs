@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React from "react";
 
 interface HeroProps {
@@ -16,7 +17,7 @@ export const Hero: React.FC<HeroProps> = ({
     <>
       <div className="flex items-center justify-center">
         <div className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-2xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-          <img
+          <Image
             className="object-cover w-28  sm:w-1/3 rounded-lg"
             src={logo}
             alt=""

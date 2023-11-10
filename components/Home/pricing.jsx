@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,21 +13,23 @@ export const Pricing = () => {
   useEffect(() => {
     setIsMobile(window.innerWidth <= 768);
   }, []);
-  if (isMobile) {
+
+  useEffect(() => {
     const animatePrices = () => {
       gsap.utils.toArray(".price").forEach((price, index) => {
         gsap.fromTo(
           price,
-          { opacity: 0, x: -50 }, // Initial state (hidden and moved down)
+          { opacity: 0, x: isMobile ? -50 : 0, y: isMobile ? 0 : 50 },
           {
             opacity: 1,
             x: 0,
+            y: 0,
             duration: 1,
             ease: "power2.inOut",
             scrollTrigger: {
               trigger: price,
-              start: "top bottom-=100", // Adjust as needed
-              end: "top center", // Adjust as needed
+              start: "top bottom-=100",
+              end: "top center",
               toggleActions: "play none reverse none",
             },
           }
@@ -34,42 +37,14 @@ export const Pricing = () => {
       });
     };
 
-    useEffect(() => {
-      animatePrices();
+    animatePrices();
 
-      return () => {
-        gsap.utils.toArray(".price").forEach((member) => {
-          gsap.set(member, { clearProps: "all" });
-        });
-      };
-    }, []);
-  } else {
-    const animatePrices = () => {
-      gsap.utils.toArray(".price").forEach((price, index) => {
-        gsap.fromTo(
-          price,
-          { opacity: 0, y: 50 }, // Initial state (hidden and moved down)
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.inOut",
-            scrollTrigger: {
-              trigger: price,
-              start: "top bottom-=100", // Adjust as needed
-              end: "top center", // Adjust as needed
-              toggleActions: "play none none none",
-              once: true,
-            },
-          }
-        );
+    return () => {
+      gsap.utils.toArray(".price").forEach((member) => {
+        gsap.set(member, { clearProps: "all" });
       });
     };
-
-    useEffect(() => {
-      animatePrices();
-    }, []);
-  }
+  }, [isMobile]);
 
   return (
     <>

@@ -30,7 +30,7 @@ export default function CplusIntermediatePage() {
     };
 
     fetchCourse();
-  }, []);
+  });
 
   return (
     <MainLayout>

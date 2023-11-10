@@ -178,7 +178,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
   );
 };
 
-export default ({ courseData, userProgress }) => {
+const SubjectComponent = ({ courseData, userProgress }) => {
   return (
     <section className="leading-relaxed w-full max-w-screen-xl mt-12 mx-auto px-4 md-px-8">
       <div className="mt-14 w-full max-w-2xl mx-auto">
@@ -208,3 +208,5 @@ export default ({ courseData, userProgress }) => {
     </section>
   );
 };
+
+export default SubjectComponent;

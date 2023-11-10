@@ -108,7 +108,9 @@ export const Hero = () => {
                     <code> On branch main</code>
                   </div>
                   <div>
-                    <code>Your branch is up to date with 'origin/main'.</code>
+                    <code>
+                      Your branch is up to date with {"'origin/main'"}.
+                    </code>
                   </div>
                   <div className="pt-2">
                     <code>Changes not staged for commit:</code>

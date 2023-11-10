@@ -30,7 +30,7 @@ export default function PythonBeginnerPage() {
     };
 
     fetchCourse();
-  }, []);
+  });
 
   return (
     <MainLayout>

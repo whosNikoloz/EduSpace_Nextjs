@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Image } from "@nextui-org/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,9 +70,11 @@ const Review = () => {
           <div className="flex justify-between p-4">
             <div className="flex space-x-4">
               <div>
-                <img
+                <Image
                   src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar1.png"
                   alt=""
+                  width={500}
+                  height={300}
                   className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
                 />
               </div>
@@ -104,9 +107,11 @@ const Review = () => {
           <div className="flex justify-between p-4">
             <div className="flex space-x-4">
               <div>
-                <img
+                <Image
                   src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar2.png"
                   alt=""
+                  width={500}
+                  height={300}
                   className="object-cover w-12 h-12 rounded-full dark:bg-black"
                 />
               </div>
@@ -139,9 +144,11 @@ const Review = () => {
           <div className="flex justify-between p-4">
             <div className="flex space-x-4">
               <div>
-                <img
+                <Image
                   src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar3.png"
                   alt=""
+                  width={500}
+                  height={300}
                   className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
                 />
               </div>

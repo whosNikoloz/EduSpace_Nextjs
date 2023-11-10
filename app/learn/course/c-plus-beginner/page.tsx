@@ -29,7 +29,7 @@ export default function CplusBeginnerPage() {
     };
 
     fetchCourse();
-  }, []);
+  });
 
   return (
     <MainLayout>

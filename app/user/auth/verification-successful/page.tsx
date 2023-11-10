@@ -21,9 +21,9 @@ export default function VerificationSuccessfulPage() {
         cookie.remove("regEmail")
 
         setTimeout(() => {
-            router.push("/users/auth");
+            router.push("/user/auth");
         }, 3000); 
-    }, []); 
+    }); 
 
 	return (
 		<Hero userEmail={userEmail} userName={userUserName}/>

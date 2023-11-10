@@ -30,7 +30,7 @@ export default function CsharpBeginnerPage() {
     };
 
     fetchCourse();
-  }, []);
+  });
 
   return (
     <MainLayout>

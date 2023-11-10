@@ -30,7 +30,7 @@ export default function PythonIntermediatePage() {
     };
 
     fetchCourse();
-  }, []);
+  });
 
   return (
     <MainLayout>

@@ -58,7 +58,7 @@ export const Navbar = () => {
       }
     }
     fetchNotifications();
-  }, []);
+  });
 
   const handleLogout = () => {
     logout();
@@ -172,7 +172,6 @@ export const Navbar = () => {
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
-                <Dropdown backdrop="blur" children={[]}></Dropdown>
                 <Notification userid={user.userId} />
               </>
             ) : (

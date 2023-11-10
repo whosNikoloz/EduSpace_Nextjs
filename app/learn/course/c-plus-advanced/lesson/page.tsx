@@ -111,7 +111,7 @@ export default function CplusAdvancedLessonPage({
     return () => {
       window.removeEventListener("beforeunload", beforeUnloadHandler);
     };
-  }, []);
+  });
 
   useEffect(() => {
     // Fetch LearnMaterial data here

@@ -71,7 +71,7 @@ export default function SocialPage() {
     return () => {
       clearInterval(pollingInterval); // Clear the interval when the component unmounts
     };
-  }, []);
+  });
 
   const filteredPosts = searchQuery
     ? posts.filter((post) =>

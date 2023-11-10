@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@nextui-org/button";
+import Image from "next/image";
 
 function FileUpload({ onFileSelect, onCancelUpload }) {
   const [mediaSrc, setMediaSrc] = useState(null);
@@ -71,7 +72,7 @@ function FileUpload({ onFileSelect, onCancelUpload }) {
       {mediaSrc ? (
         <div>
           {mediaSrc.includes("image") ? (
-            <img
+            <Image
               src={mediaSrc}
               alt="Uploaded"
               className="w-64 h-64 rounded-lg object-cover cursor-pointer"

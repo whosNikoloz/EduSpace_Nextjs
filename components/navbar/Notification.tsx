@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Notifications from "@/app/api/Social/Notification";
 import { Badge } from "@nextui-org/react";
 import { NotificationIcon } from "./NotificationIcon";
+import Image from "next/image";
 
 interface NotificationProps {
   notificationId: number;
@@ -47,7 +48,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
 
   useEffect(() => {
     fetchNotifications();
-  }, []);
+  });
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -118,7 +119,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                 {notifications.map((notification) => (
                   <div key={notification.notificationId}>
                     <a className="flex items-center px-4 py-3 hover:bg-zinc-200  dark:hover:bg-zinc-600 -mx-2">
-                      <img
+                      <Image
                         className="h-8 w-8 rounded-full object-cover mx-1"
                         src={notification.commentAuthorPicture}
                         alt="avatar"

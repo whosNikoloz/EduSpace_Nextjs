@@ -26,6 +26,7 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
+import Image from "next/image";
 
 function formatTimeAgo(timestamp) {
   const currentDate = new Date();
@@ -161,7 +162,7 @@ function PostCard({ postData, onDelete }) {
               )}
               {postData.picture && (
                 <button onClick={onOpenModalPost}>
-                  <img
+                  <Image
                     className="w-auto max-h-screen rounded"
                     src={postData.picture}
                     alt="Image Description"
@@ -285,7 +286,7 @@ function PostCard({ postData, onDelete }) {
                           />
                         )}
                         {postData.picture && (
-                          <img
+                          <Image
                             className="max-w-lg max-h-screen rounded"
                             src={postData.picture}
                             alt="Image Description"

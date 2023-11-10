@@ -1,23 +1,19 @@
-'use client'
+"use client";
 
-import { title } from "@/components/Home/primitives";
 import { Hero } from "@/components/signupsuccessful/Hero";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 
-export default function signupSuccessfulPage() {
-    const [userUserName , setUserUserName] = useState(null);
-    const [userEmail , setUserEmail] = useState(null);
+export default function SignupSuccessfulPage() {
+  const [userUserName, setUserUserName] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
 
-    useEffect(() => {
-        var cookie = new Cookies()
+  useEffect(() => {
+    var cookie = new Cookies();
 
-        setUserUserName(cookie.get("regUserName")) 
-        setUserEmail(cookie.get("regEmail"))      
-        
-    }, []);
+    setUserUserName(cookie.get("regUserName"));
+    setUserEmail(cookie.get("regEmail"));
+  }, []);
 
-	return (
-		<Hero userEmail={userEmail} userName={userUserName}/>
-	);
+  return <Hero userEmail={userEmail} userName={userUserName} />;
 }

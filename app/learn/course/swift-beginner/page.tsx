@@ -30,7 +30,7 @@ export default function SwiftBeginnerPage() {
     };
 
     fetchCourse();
-  }, []);
+  });
 
   return (
     <MainLayout>

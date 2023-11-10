@@ -1,75 +1,41 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { isMobile } from "react-device-detect";
 import Link from "next/link";
+import { Image } from "@nextui-org/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const Team = () => {
-  if (isMobile) {
-    const animateTeamMembers = () => {
-      gsap.utils.toArray(".team-member").forEach((member, index) => {
-        gsap.fromTo(
-          member,
-          { opacity: 0, x: 50 }, // Initial state (hidden and moved down)
-          {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power2.inOut",
-            scrollTrigger: {
-              trigger: member,
-              start: "top bottom-=100", // Adjust as needed
-              end: "top center", // Adjust as needed
-              toggleActions: "play none reverse none",
-            },
-          }
-        );
+  const animateTeamMembers = () => {
+    gsap.utils.toArray(".team-member").forEach((member, index) => {
+      const params = isMobile ? { opacity: 0, x: 50 } : { opacity: 0, y: 50 };
+      gsap.fromTo(member, params, {
+        opacity: 1,
+        x: 0, // or y: 0 based on the condition
+        duration: 1,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: member,
+          start: "top bottom-=100",
+          end: "top center",
+          toggleActions: "play none reverse none",
+        },
       });
-    };
+    });
+  };
 
-    useEffect(() => {
-      animateTeamMembers();
-      return () => {
-        gsap.utils.toArray(".team-member").forEach((member) => {
-          gsap.set(member, { clearProps: "all" });
-        });
-      };
-    }, []);
-  } else {
-    const animateTeamMembers = () => {
-      gsap.utils.toArray(".team-member").forEach((member, index) => {
-        gsap.fromTo(
-          member,
-          { opacity: 0, y: 50 }, // Initial state (hidden and moved down)
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.inOut",
-            scrollTrigger: {
-              trigger: member,
-              start: "top bottom-=100", // Adjust as needed
-              end: "top center", // Adjust as needed
-              toggleActions: "play none reverse none",
-            },
-          }
-        );
-      });
-    };
+  const cleanUpTeamMembers = () => {
+    gsap.utils.toArray(".team-member").forEach((member) => {
+      gsap.set(member, { clearProps: "all" });
+    });
+  };
 
-    useEffect(() => {
-      animateTeamMembers();
-      return () => {
-        gsap.utils.toArray(".team-member").forEach((member) => {
-          gsap.set(member, { clearProps: "all" });
-        });
-      };
-    }, []);
-  }
+  useEffect(() => {
+    animateTeamMembers();
+    return cleanUpTeamMembers;
+  }, [animateTeamMembers, cleanUpTeamMembers]);
   return (
     <>
       <div
@@ -89,10 +55,12 @@ export const Team = () => {
                 }}
               >
                 <div className="relative overflow-hidden px-6">
-                  <img
+                  <Image
                     src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar1.png"
                     className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
                     alt="title image"
+                    width={100}
+                    height={100}
                   />
                 </div>
                 <div className="pt-6 text-center">
@@ -204,10 +172,12 @@ export const Team = () => {
                 }}
               >
                 <div className="relative overflow-hidden px-6">
-                  <img
+                  <Image
                     src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar3.png"
                     className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
                     alt="title image"
+                    width={100}
+                    height={100}
                   />
                 </div>
                 <div className="pt-6 text-center">
@@ -320,10 +290,12 @@ export const Team = () => {
                 }}
               >
                 <div className="relative overflow-hidden px-6">
-                  <img
+                  <Image
                     src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar2.png"
                     className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
                     alt="title image"
+                    width={100}
+                    height={100}
                   />
                 </div>
                 <div className="pt-6 text-center">
@@ -436,10 +408,12 @@ export const Team = () => {
                 }}
               >
                 <div className="relative overflow-hidden px-6">
-                  <img
+                  <Image
                     src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar4.png"
                     className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
                     alt="title image"
+                    width={100}
+                    height={100}
                   />
                 </div>
                 <div className="pt-6 text-center">
