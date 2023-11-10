@@ -17,7 +17,7 @@ import { ConnectorFirst } from "@/components/Home/ConnectorFirst";
 import { ConnectorSecond } from "@/components/Home/ConnectorSecond";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Styles from "@/styles/Loader.module.css";
+import Styles from "@/styles/loader.module.css";
 import EduSpace from "@/public/EduSpaceLogo.png";
 import dynamic from "next/dynamic";
 import ScrollToTopButton from "@/components/ScrollToTop";
