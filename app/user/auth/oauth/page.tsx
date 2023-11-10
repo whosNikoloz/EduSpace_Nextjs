@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import Authenitcation from "@/app/api/User/auth";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation"; // Use "router" instead of "navigation"
-import Styles from "@/styles/Loader.module.css";
+import Styles from "@/styles/loader.module.css";
 import Image from "next/image";
 import EduSpace from "@/public/EduSpaceLogo.png";
 
