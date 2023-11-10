@@ -15,7 +15,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
-import { useUser } from "@/app/context/UserdbContext";
+import { useUser } from "@/app/dbcontext/UserdbContext";
 import Comment from "@/components/social/commentUser";
 import {
   Modal,

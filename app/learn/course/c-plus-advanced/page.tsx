@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { Hero } from "@/components/Learn/Hero";
 import CoursesAPI from "@/app/api/Learn/Course";
 import Subject from "@/components/Learn/subject";
-import { useUser } from "@/app/context/UserdbContext";
+import { useUser } from "@/app/dbcontext/UserdbContext";
 import ProgressAPI from "@/app/api/Learn/Progress";
 
 interface Course {

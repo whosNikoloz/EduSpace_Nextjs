@@ -7,7 +7,7 @@ import { ThemeProviderProps } from "next-themes/dist/types";
 import { SessionProvider } from "next-auth/react";
 import NextTopLoader from "nextjs-toploader";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { UserProvider } from "@/app/context/UserdbContext";
+import { UserProvider } from "@/app/dbcontext/UserdbContext";
 
 export interface ProvidersProps {
   children: React.ReactNode;

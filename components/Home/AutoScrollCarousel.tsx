@@ -11,7 +11,7 @@ import Image from "next/image";
 import { Skeleton } from "@nextui-org/react";
 import gsap from "gsap";
 import Link from "next/link";
-import { useUser } from "@/app/context/UserdbContext";
+import { useUser } from "@/app/dbcontext/UserdbContext";
 
 interface Course {
   courseId: number;

@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState, useEffect, use } from "react";
-import { useUser } from "@/app/context/UserdbContext";
+import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Header } from "@/components/Learn/Lesson/Header";
 import { FooterLesson } from "@/components/Learn/Lesson/FooterLesson";
 import { Content } from "@/components/Learn/Lesson/Content";
 import LearnMaterial from "@/app/api/Learn/LearnMaterial";
 import { useSearchParams } from "next/navigation";
-import Styles from "@/styles/Loader.module.css";
+import Styles from "@/styles/loader.module.css";
 import Image from "next/image";
 import EduSpace from "@/public/EduSpaceLogo.png";
 import ProgressAPI from "@/app/api/Learn/Progress";

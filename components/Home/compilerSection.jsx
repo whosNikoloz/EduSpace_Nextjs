@@ -5,7 +5,7 @@ import { Compiler } from "@/components/Home/compiler";
 import gsap from "gsap";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
-import { useUser } from "@/app/context/UserdbContext";
+import { useUser } from "@/app/dbcontext/UserdbContext";
 
 const CompilerSection = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);

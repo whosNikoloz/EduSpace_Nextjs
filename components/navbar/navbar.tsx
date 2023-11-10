@@ -32,7 +32,7 @@ import { useEffect } from "react";
 import { Skeleton } from "@nextui-org/react";
 import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
 import SideNavBarWithDropDown from "@/components/navbar/sidenavbar.jsx";
-import { useUser } from "@/app/context/UserdbContext";
+import { useUser } from "@/app/dbcontext/UserdbContext";
 import Notifications from "@/app/api/Social/Notification";
 
 export const Navbar = () => {
@@ -59,7 +59,6 @@ export const Navbar = () => {
     }
     fetchNotifications();
   }, []);
-
 
   const handleLogout = () => {
     logout();

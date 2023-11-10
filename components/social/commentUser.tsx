@@ -9,7 +9,7 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import { DotsIcon } from "@/components/social/DotsIcon";
-import { useUser } from "@/app/context/UserdbContext";
+import { useUser } from "@/app/dbcontext/UserdbContext";
 import {
   Modal,
   ModalContent,
