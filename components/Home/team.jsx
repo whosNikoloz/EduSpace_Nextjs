@@ -54,7 +54,7 @@ export const Team = () => {
                   animationName: "fadeInUp",
                 }}
               >
-                <div className="relative overflow-hidden px-6">
+                <div className="relative overflow-hidden px-6 flex items-center justify-center">
                   <Image
                     src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar1.png"
                     className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
@@ -171,7 +171,7 @@ export const Team = () => {
                   animationName: "fadeInUp",
                 }}
               >
-                <div className="relative overflow-hidden px-6">
+                <div className="relative overflow-hidden px-6 flex items-center justify-center">
                   <Image
                     src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar3.png"
                     className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
@@ -289,7 +289,7 @@ export const Team = () => {
                   animationName: "fadeInUp",
                 }}
               >
-                <div className="relative overflow-hidden px-6">
+                <div className="relative overflow-hidden px-6 flex items-center justify-center">
                   <Image
                     src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar2.png"
                     className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
@@ -407,7 +407,7 @@ export const Team = () => {
                   animationName: "fadeInUp",
                 }}
               >
-                <div className="relative overflow-hidden px-6">
+                <div className="relative overflow-hidden px-6 flex items-center justify-center">
                   <Image
                     src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar4.png"
                     className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
