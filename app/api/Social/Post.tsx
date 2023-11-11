@@ -147,6 +147,46 @@ const Posts = () => {
     }
   };
 
+  const EditPost = async (
+    postId: number,
+    subject: string,
+    content: string,
+    video: string | null,
+    picture: string | null
+  ) => {
+    try {
+      const token = localStorage.getItem("jwt_token");
+      const response = await fetch(social_API + "Posts/", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          // Include the bearer token in the Authorization header
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          postId,
+          subject,
+          content,
+          video,
+          picture,
+        }),
+      });
+
+      if (response.ok) {
+        // Handle successful response here
+      } else {
+        const errorText = await response.text();
+        console.error("Post Edit error:", errorText); // Log the error
+        // Display an error message to the user or handle it as needed
+        return errorText;
+      }
+    } catch (error) {
+      console.error("Post Edit error:", error); // Log the error
+      // Display an error message to the user or handle it as needed
+      return error;
+    }
+  };
+
   const GetLastPost = async () => {
     try {
       const response = await fetch(social_API + "LastPost", {
@@ -270,6 +310,7 @@ const Posts = () => {
   return {
     GetPosts,
     CreatePost,
+    EditPost,
     GetLastPost,
     FilteredPosts,
     DeletePost,

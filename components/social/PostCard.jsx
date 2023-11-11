@@ -27,6 +27,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import Image from "next/image";
+import toast, { Toaster } from "react-hot-toast";
 
 function formatTimeAgo(timestamp) {
   const currentDate = new Date();
@@ -60,6 +61,7 @@ function PostCard({ postData, onDelete }) {
   const {
     isOpen: isOpenEdit,
     onOpen: onOpenEdit,
+    onClose: onCloseEdit,
     onOpenChange: onOpenChangeEdit,
   } = useDisclosure();
 
@@ -76,14 +78,51 @@ function PostCard({ postData, onDelete }) {
       setIsAddingComment(false);
     }, 2000);
   };
+
+  const formattedTimeAgo = formatTimeAgo(postData.createdAt);
+  const text = postData.content;
+  const maxTextLength = 300;
+  const shouldShowSeeMore = text.length > maxTextLength;
+  const commentCount = postData.comments ? postData.comments.length : 0;
+
   const [isFullTextVisible, setFullTextVisible] = useState(false);
+  const [edittextPost, setEdittextPost] = useState(text);
+  const [postcontent, setPostcontent] = useState(text);
+
+  const [editSuccess, setEditSuccess] = useState(false);
+
+  const [deleteSuccess, setdeleteSuccessSuccess] = useState(false);
 
   const toggleFullText = () => {
     setFullTextVisible(!isFullTextVisible);
   };
 
+  const handleEditPost = async () => {
+    const post = Posts();
+
+    setEditSuccess(true);
+
+    var errorMessage = await post.EditPost(
+      postData.postId,
+      postData.subject,
+      edittextPost,
+      postData.video,
+      postData.picture
+    );
+    if (errorMessage) {
+      setPostModelError("Invalid Email or Password");
+      console.log(errorMessage);
+    } else {
+      setEditSuccess(false);
+      onCloseEdit();
+      toast.success("წარმატებით დარედაქტირდა პოსტი");
+      setPostcontent(edittextPost);
+    }
+  };
+
   const handleDelete = async () => {
     const post = Posts();
+    setdeleteSuccessSuccess(true);
     try {
       await post.DeletePost(
         postData.postId,
@@ -92,16 +131,11 @@ function PostCard({ postData, onDelete }) {
         postData.comments
       );
       onDelete(postData.postId); // Notify the parent component about the deletion
+      setdeleteSuccessSuccess(false);
     } catch (error) {
       console.error("Error deleting post:", error);
     }
   };
-
-  const formattedTimeAgo = formatTimeAgo(postData.createdAt);
-  const text = postData.content;
-  const maxTextLength = 300;
-  const shouldShowSeeMore = text.length > maxTextLength;
-  const commentCount = postData.comments ? postData.comments.length : 0;
 
   return (
     <>
@@ -149,8 +183,8 @@ function PostCard({ postData, onDelete }) {
             }}
           >
             {shouldShowSeeMore && !isFullTextVisible
-              ? text.slice(0, maxTextLength)
-              : text}
+              ? postcontent.slice(0, maxTextLength)
+              : postcontent}
             {shouldShowSeeMore && (
               <button
                 onClick={toggleFullText}
@@ -246,7 +280,12 @@ function PostCard({ postData, onDelete }) {
                 <Button color="foreground" variant="light" onPress={onClose}>
                   დახურვა
                 </Button>
-                <Button onClick={handleDelete} color="primary" variant="shadow">
+                <Button
+                  onClick={handleDelete}
+                  color="primary"
+                  variant="shadow"
+                  isLoading={deleteSuccess}
+                >
                   წაშლა
                 </Button>
               </ModalFooter>
@@ -284,9 +323,9 @@ function PostCard({ postData, onDelete }) {
                 </div>
                 <div className="my-2 px-4 flex items-center ">
                   <Textarea
-                    value={text}
+                    value={edittextPost}
                     variant="underlined"
-                    placeholder="Enter your description"
+                    onChange={(e) => setEdittextPost(e.target.value)}
                   />
                 </div>
                 {/* create post interface */}
@@ -315,7 +354,12 @@ function PostCard({ postData, onDelete }) {
                 </div>
               </ModalBody>
               <ModalFooter className="flex justify-center items-center">
-                <Button variant="shadow" color="primary">
+                <Button
+                  variant="shadow"
+                  color="primary"
+                  isLoading={editSuccess}
+                  onClick={handleEditPost}
+                >
                   რედაქტირება
                 </Button>
               </ModalFooter>
