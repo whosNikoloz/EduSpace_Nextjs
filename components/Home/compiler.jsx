@@ -85,8 +85,9 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
                 theme={isDarkMode ? "githubdark" : "githublight"}
                 defaultValue="// some comment"
                 options={{
-                  fontSize: 12, // Adjust the font size as needed
+                  fontSize: 11, // Adjust the font size as needed
                   minimap: { enabled: false }, // Optional minimap configuration
+                  scrollbar: { vertical: "hidden", horizontal: "hidden" },
                 }}
               />
             </div>
@@ -140,7 +141,7 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
                 theme={isDarkMode ? "githubdark" : "githublight"}
                 defaultValue="// some comment"
                 options={{
-                  fontSize: 12,
+                  fontSize: 10,
                   minimap: { enabled: false },
                 }}
               />
