@@ -153,7 +153,7 @@ const AuthPage: React.FC = () => {
                 შესვლა
               </Button>
               <p className={Style["social-text"]}>
-                Or Sign in with social platforms
+                ან შედით სოციალური პლატფორმებით
               </p>
               <div className={Style["social-media"]}>
                 <Button
@@ -261,7 +261,7 @@ const AuthPage: React.FC = () => {
                 რეგისტრაცია
               </Button>
               <p className={Style["social-text"]}>
-                Or Sign up with social platforms
+                ან დარეგისტრირდით სოციალურ პლატფორმებზე
               </p>
               <div className={Style["social-media"]}>
                 <Button

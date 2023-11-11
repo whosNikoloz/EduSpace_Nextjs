@@ -166,7 +166,7 @@ export const Footer = () => {
               <div className="flex justify-start space-x-3">
                 <Link
                   rel="noopener noreferrer"
-                  href="#"
+                  href="https://www.facebook.com/profile.php?id=100009152091053"
                   title="Facebook"
                   className="flex items-center p-1"
                 >
@@ -195,7 +195,7 @@ export const Footer = () => {
                 </Link>
                 <Link
                   rel="noopener noreferrer"
-                  href="#"
+                  href="https://www.instagram.com/kobaidze0"
                   title="Instagram"
                   className="flex items-center p-1"
                 >
