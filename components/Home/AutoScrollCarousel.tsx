@@ -7,7 +7,6 @@ import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import { isMobile } from "react-device-detect";
 import ilustration from "@/public/ilustration2.png";
 import Courses from "@/app/api/Learn/Course";
-import { Image } from "@nextui-org/react";
 import { Skeleton } from "@nextui-org/react";
 import gsap from "gsap";
 import Link from "next/link";
@@ -119,12 +118,10 @@ const AutoScrollCarousel = () => {
                     >
                       <div className="slide-content">
                         <div className="max-w-sm  border border-gray-200 rounded-lg shadow bg-blue-600 dark:border-gray-700">
-                          <Image
+                          <img
                             className="rounded-t-lg"
                             src={course.courseLogo}
                             alt={course.courseName}
-                            width={500}
-                            height={300}
                           />
                           <div className="p-3">
                             <h5 className="mb-2 font-bold tracking-tight text-xs lg:text-base text-white">
