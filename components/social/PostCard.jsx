@@ -58,6 +58,12 @@ function PostCard({ postData, onDelete }) {
   } = useDisclosure();
 
   const {
+    isOpen: isOpenEdit,
+    onOpen: onOpenEdit,
+    onOpenChange: onOpenChangeEdit,
+  } = useDisclosure();
+
+  const {
     isOpen: isOpenModalPost,
     onOpen: onOpenModalPost,
     onOpenChange: onOpenChangeModalPost,
@@ -99,8 +105,8 @@ function PostCard({ postData, onDelete }) {
 
   return (
     <>
-      <div className="flex items-center justify-center ">
-        <div className="px-5 py-4 bg-white dark:bg-gray-800 shadow justif rounded-lg   w-[800px] mb-4">
+      <div className="flex items-center justify-center">
+        <div className="px-5 py-4 bg-white dark:bg-gray-800 shadow justif rounded-lg w-full md:w-[800px] mb-4">
           <div className="flex justify-between mb-4">
             <User
               name={
@@ -121,7 +127,9 @@ function PostCard({ postData, onDelete }) {
                   </Button>
                 </DropdownTrigger>
                 <DropdownMenu variant="faded" aria-label="Static Actions">
-                  <DropdownItem key="new">პოსტის რედაქტირება</DropdownItem>
+                  <DropdownItem key="edit" onPress={onOpenChangeEdit}>
+                    პოსტის რედაქტირება
+                  </DropdownItem>
                   <DropdownItem
                     key="delete"
                     className="text-danger"
@@ -135,7 +143,10 @@ function PostCard({ postData, onDelete }) {
             )}
           </div>
           <p
-            className={`text-gray-800 dark:text-gray-100 leading-snug md:leading-normal`}
+            className={`text-gray-800 dark:text-gray-100 leading-snug md:leading-normal overflow-hidden`}
+            style={{
+              marginBottom: "1rem", // Adjust margin as needed
+            }}
           >
             {shouldShowSeeMore && !isFullTextVisible
               ? text.slice(0, maxTextLength)
@@ -245,13 +256,82 @@ function PostCard({ postData, onDelete }) {
       </Modal>
 
       <Modal
+        backdrop="blur"
+        isOpen={isOpenEdit}
+        onOpenChange={onOpenChangeEdit}
+        radius="2xl"
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                {postData.user.username} პოსტი
+              </ModalHeader>
+              <ModalBody>
+                {/* post author profile */}
+                <div className="my-2 px-4 flex items-center space-x-2 ">
+                  <User
+                    name={
+                      postData.user.firstname && postData.user.lastname
+                        ? postData.user.firstname + " " + postData.user.lastname
+                        : postData.user.username
+                    }
+                    description={formattedTimeAgo + "  " + postData.subject}
+                    avatarProps={{
+                      src: postData.user.picture,
+                    }}
+                  />
+                </div>
+                <div className="my-2 px-4 flex items-center ">
+                  <Textarea
+                    value={text}
+                    variant="underlined"
+                    placeholder="Enter your description"
+                  />
+                </div>
+                {/* create post interface */}
+                <div className="px-4 py-2 ">
+                  <div className="flex items-center justify-center">
+                    {(postData.picture || postData.video) && (
+                      <div className="flex items-center justify-center w-full">
+                        {postData.video && (
+                          <video
+                            controls
+                            className="w-auto max-h-screen rounded"
+                            src={postData.video}
+                            alt="Video Description"
+                          />
+                        )}
+                        {postData.picture && (
+                          <Image
+                            className="max-w-lg max-h-screen rounded"
+                            src={postData.picture}
+                            alt="Image Description"
+                          />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </ModalBody>
+              <ModalFooter className="flex justify-center items-center">
+                <Button variant="shadow" color="primary">
+                  რედაქტირება
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+
+      <Modal
         isOpen={isOpenModalPost}
         onOpenChange={onOpenChangeModalPost}
         scrollBehavior="inside"
         size="xl"
       >
         <ModalContent>
-          {(onCloseModalPost) => (
+          {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
                 {postData.user.username} პოსტი
