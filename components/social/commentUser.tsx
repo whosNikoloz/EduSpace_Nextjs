@@ -20,7 +20,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import toast, { Toaster } from "react-hot-toast";
-import Image from "next/image";
+import { Image } from "@nextui-org/react";
 
 interface CommentProps {
   commentId: string;
@@ -102,7 +102,13 @@ const Comment: React.FC<CommentProps> = ({
           </div>
           {pictureUrl != null ? (
             <div className="text-sm mt-0.5 text-gray-500 dark:text-gray-400 ">
-              <Image className="rounded-lg" src={pictureUrl} alt="" />
+              <Image
+                className="rounded-lg"
+                src={pictureUrl}
+                alt=""
+                width={400}
+                height={400}
+              />
             </div>
           ) : videoUrl != null ? (
             <div className="text-sm mt-0.5 text-gray-500 dark:text-gray-400 rounded">

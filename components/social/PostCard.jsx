@@ -50,6 +50,9 @@ function formatTimeAgo(timestamp) {
 
 function PostCard({ postData, onDelete }) {
   const { user } = useUser();
+
+  const post = Posts();
+
   const [IsAddingComment, setIsAddingComment] = useState(false);
 
   const {
@@ -98,7 +101,6 @@ function PostCard({ postData, onDelete }) {
   };
 
   const handleEditPost = async () => {
-    const post = Posts();
 
     setEditSuccess(true);
 
@@ -121,7 +123,6 @@ function PostCard({ postData, onDelete }) {
   };
 
   const handleDelete = async () => {
-    const post = Posts();
     setdeleteSuccessSuccess(true);
     try {
       await post.DeletePost(

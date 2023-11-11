@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Comment from "@/app/api/Social/Comment";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
+import { Textarea } from "@nextui-org/react";
 
 function CommentForm({ postid, onCommentSubmit }) {
   const fileInputRef = useRef(null);
@@ -55,6 +56,13 @@ function CommentForm({ postid, onCommentSubmit }) {
   const handleDeleteContent = () => {
     setSelectedImage(null);
     setSelectedVideo(null);
+
+    commentModel.picture = null;
+    commentModel.video = null;
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -85,24 +93,28 @@ function CommentForm({ postid, onCommentSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-        <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-          <label htmlFor="comment" className="sr-only">
-            Your comment
-          </label>
-          <textarea
+      <div className="w-full  rounded-lg">
+        <div className="px-4 ">
+          <Textarea
             id="comment"
             rows="4"
+            variant="bordered"
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
-            className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+            className="w-full px-0 text-sm "
             placeholder="დაწერე კომენტარი..."
             required
-          ></textarea>
+          ></Textarea>
           {selectedImage && (
-            <div className="px-3 py-2 border-t dark:border-gray-600">
+            <div className="px-3 py-2 ">
               <div className="flex items-center">
-                <Image src={selectedImage} alt="Selected" className="max-h-20" />
+                <Image
+                  src={selectedImage}
+                  alt="Selected"
+                  className="max-h-20"
+                  width={100}
+                  height={100}
+                />
                 <button
                   type="button"
                   className="ml-2 p-2 text-red-500 rounded-full hover:text-red-700 dark:hover:text-red-300"
@@ -128,7 +140,7 @@ function CommentForm({ postid, onCommentSubmit }) {
             </div>
           )}
           {selectedVideo && (
-            <div className="px-3 py-2 border-t dark:border-gray-600">
+            <div className="px-3 py-2">
               <div className="flex items-center">
                 <video
                   controls
@@ -162,7 +174,7 @@ function CommentForm({ postid, onCommentSubmit }) {
             </div>
           )}
         </div>
-        <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+        <div className="flex items-center justify-between px-3 py-2 ">
           <Button
             type="submit"
             isLoading={isLoading}
@@ -171,27 +183,29 @@ function CommentForm({ postid, onCommentSubmit }) {
             დაპოსტე კომენტარი
           </Button>
           <div className="flex pl-0 space-x-1 sm:pl-2">
-            <button
-              type="button"
-              className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-              onClick={handleAttachFile}
-            >
-              <svg
-                className="w-4 h-4"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 12 20"
+            {!selectedImage && !selectedVideo && (
+              <button
+                type="button"
+                className="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                onClick={handleAttachFile}
               >
-                <path
-                  stroke="currentColor"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"
-                />
-              </svg>
-              <span className="sr-only">Attach file</span>
-            </button>
+                <svg
+                  className="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 12 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"
+                  />
+                </svg>
+                <span className="sr-only">Attach file</span>
+              </button>
+            )}
             {/* Hidden file input */}
             <input
               type="file"
