@@ -25,7 +25,9 @@ export const Footer = () => {
                 EduSpace
               </span>
             </Link>
-            <AppLinks />
+            <div className="md:mr-20">
+              <AppLinks />
+            </div>
           </div>
           <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
             <div className="space-y-3">
