@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 
 const auth_API = "https://192.168.1.68:45455/api/Auth/";
+const user_API = "https://192.168.1.68:45455/api/User/";
 const auth_API_NIkoloza = "https://172.20.10.7:45456/api/Auth/";
 
 const Authentication = () => {
@@ -69,6 +70,59 @@ const Authentication = () => {
         } catch (error) {
           console.error("Error setting cookies:", error);
         }
+      } else {
+        const errorText = await response.text();
+        return errorText;
+      }
+    } catch (error) {
+      window.alert(error);
+      return error;
+    }
+  };
+
+  const handleForgotPassword = async (email: string) => {
+    try {
+      const apiUrl = `${user_API}ForgotPassword?email=${encodeURIComponent(
+        email
+      )}`;
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+      } else {
+        const errorText = await response.text();
+        return errorText;
+      }
+    } catch (error) {
+      window.alert(error);
+      return error;
+    }
+  };
+
+  const handleResetPassword = async (
+    Token: string,
+    Password: string,
+    ConfirmPassword: string
+  ) => {
+    try {
+      const response = await fetch(user_API + "ResetPassword", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Token,
+          Password,
+          ConfirmPassword,
+        }),
+      });
+
+      if (response.ok) {
       } else {
         const errorText = await response.text();
         return errorText;
@@ -181,6 +235,8 @@ const Authentication = () => {
     handleRegistration,
     handleoAuthRegistration,
     CheckeOAuthExist,
+    handleForgotPassword,
+    handleResetPassword,
   };
 };
 

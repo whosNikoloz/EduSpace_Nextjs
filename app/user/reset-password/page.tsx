@@ -6,8 +6,46 @@ import ResetPassowrd from "@/public/Reset password.png";
 import Image from "next/image";
 import { Button } from "@nextui-org/button";
 import { EduSpace } from "@/components/EduSpaceLogo";
+import Authentication from "@/app/api/User/auth";
+import { useRouter } from "next/navigation";
 
-export default function ResetPasswordPage() {
+export default function ResetPasswordPage({
+  searchParams,
+}: {
+  searchParams: {
+    token: string;
+  };
+}) {
+  const resetToken = searchParams.token;
+  const authAPI = Authentication();
+
+  const router = useRouter();
+
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [error, setError] = useState("");
+
+  const handleResetPassword = async () => {
+    setIsLoading(true);
+    var errorMessage = await authAPI.handleResetPassword(
+      resetToken,
+      password,
+      confirmPassword
+    );
+
+    if (errorMessage) {
+      setError(errorMessage.toString());
+      console.log(errorMessage);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+      setTimeout(() => {
+        router.push("/user/reset-password/resetpassword-successful");
+      }, 300);
+    }
+  };
   return (
     <section className="bg-gray-50 dark:bg-gray-900 flex flex-col md:flex-row h-screen">
       <div className="hidden md:flex md:w-1/2 items-center justify-center">
@@ -34,22 +72,6 @@ export default function ResetPasswordPage() {
           <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="#">
             <div>
               <label
-                htmlFor="email"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                მეილი
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="name@gmail.com"
-                required
-              />
-            </div>
-            <div>
-              <label
                 htmlFor="password"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
@@ -62,6 +84,7 @@ export default function ResetPasswordPage() {
                 placeholder="••••••••"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div>
@@ -72,12 +95,13 @@ export default function ResetPasswordPage() {
                 გაიმეორე პაროლი
               </label>
               <input
-                type="confirm-password"
+                type="password"
                 name="confirm-password"
                 id="confirm-password"
                 placeholder="••••••••"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
             <div className="flex items-start">
@@ -110,6 +134,8 @@ export default function ResetPasswordPage() {
               color="primary"
               variant="shadow"
               className="w-full"
+              isLoading={isLoading}
+              onClick={handleResetPassword}
             >
               შეცვლა
             </Button>

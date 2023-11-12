@@ -6,8 +6,36 @@ import Image from "next/image";
 import { EduSpace } from "@/components/EduSpaceLogo";
 import ForgotPassword from "@/public/Forgot password.png";
 import { Button } from "@nextui-org/button";
+import { useRouter } from "next/navigation";
+import Authentication from "@/app/api/User/auth";
 
 export default function ForgotPasswordPage() {
+  const authAPI = Authentication();
+  const [email, setEmail] = useState("");
+
+  const cookie = new Cookies();
+
+  const router = useRouter();
+
+  const [error, setError] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleForgotPassword = async () => {
+    setIsLoading(true);
+    var errorMessage = await authAPI.handleForgotPassword(email);
+
+    if (errorMessage) {
+      setError(errorMessage.toString());
+    } else {
+      cookie.set("forgetEmail", email);
+      setIsLoading(false);
+      setTimeout(() => {
+        router.push("/user/forgot-password/forgotpassword-successful");
+      }, 500);
+    }
+  };
+
   return (
     <section className="bg-gray-50 dark:bg-gray-900 flex flex-col md:flex-row h-screen">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 md:w-2/3">
@@ -24,7 +52,7 @@ export default function ForgotPasswordPage() {
           <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             პაროლის გადატვირთვა
           </h2>
-          <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="#">
+          <div className="mt-4 space-y-4 lg:mt-5 md:space-y-5">
             <div>
               <label
                 htmlFor="email"
@@ -39,6 +67,7 @@ export default function ForgotPasswordPage() {
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="name@gmail.com"
                 required
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -72,10 +101,12 @@ export default function ForgotPasswordPage() {
               color="primary"
               variant="shadow"
               className="w-full"
+              onClick={handleForgotPassword}
+              isLoading={isLoading}
             >
               გადატვირთვა
             </Button>
-          </form>
+          </div>
         </div>
       </div>
       <div className="hidden md:flex md:w-1/2 items-center justify-center">
