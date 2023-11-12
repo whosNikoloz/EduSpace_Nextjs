@@ -10,6 +10,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Cookies from "universal-cookie";
 import { Button } from "@nextui-org/react";
 import { signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 
 const AuthPage: React.FC = () => {
   const router = useRouter();
@@ -140,6 +141,12 @@ const AuthPage: React.FC = () => {
               {loginError && (
                 <div className={Style["error-message"]}>{loginError}</div>
               )}
+              <Link
+                href="/user/forgot-password"
+                className="text-blue-600 ml-52 py-2"
+              >
+                პაროლის აღდგენა
+              </Link>
 
               <Button
                 color="primary"
