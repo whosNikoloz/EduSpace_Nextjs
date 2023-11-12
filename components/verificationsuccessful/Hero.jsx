@@ -22,7 +22,7 @@ export const Hero = ({ userEmail, userName }) => {
 
   return (
     <>
-      <div className="flex flex-wrap md:mt-20">
+      <div className="flex flex-wrap md:mt-36">
         {/* Image for small screens */}
         <div className="w-full md:hidden">
           <div className="mx-auto flex items-center justify-center bounce-img">
