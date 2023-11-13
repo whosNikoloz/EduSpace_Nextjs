@@ -27,11 +27,21 @@ export default function Home() {
 
   // Simulate loading by setting isLoading to false after some time
   useEffect(() => {
-    setIsLoading(false);
+    // Set a timeout to change isLoading to false after 2000 milliseconds (2 seconds)
+    const timeoutId = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+
+    // Cleanup the timeout if the component unmounts before the timeout is reached
+    return () => {
+      clearTimeout(timeoutId);
+    };
+
+    // The empty dependency array ensures that this effect runs only once, similar to componentDidMount
   }, []);
   return (
     <>
-      {isLoading && (
+      {isLoading ? (
         <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 mt-20">
           <div className={Styles.Loader}>
             <Image
@@ -42,105 +52,102 @@ export default function Home() {
             />
           </div>
         </section>
-      )}
-      {!isLoading && (
-        <>
-          <MainLayout>
-            <div className="mb-56">
-              <Hero />
+      ) : (
+        <MainLayout>
+          <div className="mb-56">
+            <Hero />
+          </div>
+          <div className="hidden md:block">
+            <ConnectorFirst text="კოდის ყოველი ხაზი არის ინოვაციასთან უფრო ახლოს." />
+          </div>
+          <section className=" items-center justify-center">
+            <div className="mt-7 ">
+              <CustomTitle
+                title1={"ჩვენი"}
+                title2={"კურსები"}
+                margin={12}
+                direct="right"
+              />
+              <div className="mt-20 mb-20">
+                <AutoScrollCarousel />
+              </div>
             </div>
-            <div className="hidden md:block">
-              <ConnectorFirst text="კოდის ყოველი ხაზი არის ინოვაციასთან უფრო ახლოს." />
+          </section>
+          <div className="hidden md:block">
+            <ConnectorSecond text="ყველა საიდანღაც იწყებს" />
+          </div>
+          <section className=" items-center justify-center gap-4 py-8 md:py-10">
+            <div className="mt-7">
+              <CustomTitle
+                title1={"ჩვენი"}
+                title2={"გუნდი"}
+                margin={12}
+                direct="left"
+              />
+              <Team />
             </div>
-            <section className=" items-center justify-center">
-              <div className="mt-7 ">
+          </section>
+          <div className="hidden md:block">
+            <ConnectorFirst text="არ არსებობს იდეალური დრო" />
+          </div>
+          <section className=" items-center justify-center gap-4 py-8 md:py-10">
+            <div className="mt-7 ">
+              <CompilerSection />
+            </div>
+          </section>
+          <div className="hidden md:block">
+            <ConnectorSecond text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
+          </div>
+          <section
+            className=" items-center justify-center gap-4 py-8 md:py-10"
+            id="step-section"
+          >
+            <div className="mt-7 ">
+              <CustomTitle
+                title1={"მიყევი"}
+                title2={"ინსტრუქციას"}
+                margin={12}
+                direct="left"
+              />
+              <div className="mt-10">
+                <Steps />
+              </div>
+            </div>
+          </section>
+          <div className="hidden md:block">
+            <ConnectorFirst text="გააგრძელეთ კოდირება, განაგრძეთ სწავლა და განაგრძეთ ზრდა." />
+          </div>
+          <section className=" items-center justify-center gap-4 py-8 md:py-10">
+            <div className="mt-7 ">
+              <div className="mt-10">
                 <CustomTitle
-                  title1={"ჩვენი"}
-                  title2={"კურსები"}
+                  title1={"პროექტის"}
+                  title2={"სტატისტიკა"}
                   margin={12}
                   direct="right"
                 />
-                <div className="mt-20 mb-20">
-                  <AutoScrollCarousel />
-                </div>
+                <Stats />
               </div>
-            </section>
-            <div className="hidden md:block">
-              <ConnectorSecond text="ყველა საიდანღაც იწყებს" />
             </div>
-            <section className=" items-center justify-center gap-4 py-8 md:py-10">
-              <div className="mt-7">
-                <CustomTitle
-                  title1={"ჩვენი"}
-                  title2={"გუნდი"}
-                  margin={12}
-                  direct="left"
-                />
-                <Team />
+          </section>
+          <div className="hidden md:block">
+            <ConnectorSecond text="წარუმატებლობა მხოლოდ დროებითი შეცდომაა" />
+          </div>
+          <section className=" items-center justify-center gap-4 py-8 md:py-10">
+            <div className="mt-7 text-center   justify-center">
+              <CustomTitle
+                title1={"ჩვენი"}
+                title2={"მომხმარებლები"}
+                margin={12}
+                direct="left"
+              />
+              <div className="mt-10">
+                <Review />
               </div>
-            </section>
-            <div className="hidden md:block">
-              <ConnectorFirst text="არ არსებობს იდეალური დრო" />
             </div>
-            <section className=" items-center justify-center gap-4 py-8 md:py-10">
-              <div className="mt-7 ">
-                <CompilerSection />
-              </div>
-            </section>
-            <div className="hidden md:block">
-              <ConnectorSecond text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
-            </div>
-            <section
-              className=" items-center justify-center gap-4 py-8 md:py-10"
-              id="step-section"
-            >
-              <div className="mt-7 ">
-                <CustomTitle
-                  title1={"მიყევი"}
-                  title2={"ინსტრუქციას"}
-                  margin={12}
-                  direct="left"
-                />
-                <div className="mt-10">
-                  <Steps />
-                </div>
-              </div>
-            </section>
-            <div className="hidden md:block">
-              <ConnectorFirst text="გააგრძელეთ კოდირება, განაგრძეთ სწავლა და განაგრძეთ ზრდა." />
-            </div>
-            <section className=" items-center justify-center gap-4 py-8 md:py-10">
-              <div className="mt-7 ">
-                <div className="mt-10">
-                  <CustomTitle
-                    title1={"პროექტის"}
-                    title2={"სტატისტიკა"}
-                    margin={12}
-                    direct="right"
-                  />
-                  <Stats />
-                </div>
-              </div>
-            </section>
-            <div className="hidden md:block">
-              <ConnectorSecond text="წარუმატებლობა მხოლოდ დროებითი შეცდომაა" />
-            </div>
-            <section className=" items-center justify-center gap-4 py-8 md:py-10">
-              <div className="mt-7 text-center   justify-center">
-                <CustomTitle
-                  title1={"ჩვენი"}
-                  title2={"მომხმარებლები"}
-                  margin={12}
-                  direct="left"
-                />
-                <div className="mt-10">
-                  <Review />
-                </div>
-              </div>
-            </section>
-            <ScrollToTopButton />
-          </MainLayout>
-        </>
+          </section>
+          <ScrollToTopButton />
+        </MainLayout>
       )}
     </>
   );
