@@ -123,8 +123,6 @@ export default function CreatePost({ setPosts }) {
       if (!newPostResponse.error) {
         const newPost = newPostResponse;
 
-        console.log("last post", newPost);
-
         // Prepend the new post to the beginning of the posts array
         setPosts((prevPosts) => [newPost, ...prevPosts]);
 
@@ -236,7 +234,7 @@ export default function CreatePost({ setPosts }) {
                       {/* dialog close icon button  */}
                       <div className="absolute right-0 p-2">
                         <button
-                          className="p-2  rounded-full text-black bg-white dark:text-white"
+                          className="p-2  rounded-full text-black  dark:text-white"
                           onClick={() => {
                             setIsOpen(false);
                             setPostModel({

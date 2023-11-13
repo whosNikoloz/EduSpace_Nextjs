@@ -77,6 +77,8 @@ function FileUpload({ onFileSelect, onCancelUpload }) {
               alt="Uploaded"
               className="w-64 h-64 rounded-lg object-cover cursor-pointer"
               onClick={() => document.getElementById("dropzone-file").click()}
+              width={200}
+              height={200}
             />
           ) : (
             <video
@@ -98,7 +100,7 @@ function FileUpload({ onFileSelect, onCancelUpload }) {
       ) : (
         <label
           htmlFor="dropzone-file"
-          className="flex flex-col items-center justify-center w-64 h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500"
+          className="flex flex-col items-center justify-center w-64 h-44 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
             <svg
@@ -117,7 +119,8 @@ function FileUpload({ onFileSelect, onCancelUpload }) {
               />
             </svg>
             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-              <span className="font-semibold">დააჭირე რათა ატვირთო</span> ან ჩააგდე
+              <span className="font-semibold">დააჭირე რათა ატვირთო</span> ან
+              ჩააგდე
             </p>
             <p className="text-xs text-gray-500 dark:text-gray-400">
               MP4, PNG, JPG ან GIF

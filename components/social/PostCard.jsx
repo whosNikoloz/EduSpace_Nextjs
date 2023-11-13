@@ -26,7 +26,7 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
-import Image from "next/image";
+import { Image } from "@nextui-org/react";
 import toast, { Toaster } from "react-hot-toast";
 
 function formatTimeAgo(timestamp) {
@@ -101,7 +101,6 @@ function PostCard({ postData, onDelete }) {
   };
 
   const handleEditPost = async () => {
-
     setEditSuccess(true);
 
     var errorMessage = await post.EditPost(
@@ -411,11 +410,13 @@ function PostCard({ postData, onDelete }) {
                           />
                         )}
                         {postData.picture && (
-                          <Image
-                            className="max-w-lg max-h-screen rounded"
-                            src={postData.picture}
-                            alt="Image Description"
-                          />
+                          <>
+                            <Image
+                              className="max-w-lg max-h-screen rounded"
+                              src={postData.picture}
+                              alt="Image Description"
+                            />
+                          </>
                         )}
                       </div>
                     )}
