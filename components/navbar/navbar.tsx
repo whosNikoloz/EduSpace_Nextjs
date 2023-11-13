@@ -183,7 +183,7 @@ export const Navbar = () => {
                       className="bg-blue-600 text-white"
                       as={Link}
                       color="primary"
-                      variant="ghost"
+                      variant="shadow"
                     >
                       დაწყება
                     </Button>

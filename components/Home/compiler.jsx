@@ -163,6 +163,7 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
         <div className="text-3xl font-bold p-2 text-right">
           <Button
             color="primary"
+            variant="shadow"
             isLoading={isRunning}
             onClick={() => handelCompile()}
           >

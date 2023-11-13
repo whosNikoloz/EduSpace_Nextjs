@@ -3,31 +3,19 @@
 import { useState, useEffect } from "react";
 import Ilustration from "@/public/ProgiLust1.png";
 import Image from "next/image";
-import gsap from "gsap";
+import { Reveal } from "../RevealFramer";
 
 export const Hero = ({ userEmail, userName }) => {
-  useEffect(() => {
-    const bounceAnimation = () => {
-      gsap.to(".bounce-img", {
-        y: -40, // Adjust the bounce height as needed
-        duration: 1,
-        yoyo: true,
-        repeat: -1, // -1 means infinite repeat
-        ease: "power1.inOut",
-      });
-    };
-
-    bounceAnimation();
-  }, []);
-
   return (
     <>
       <div className="flex flex-wrap md:mt-36">
         {/* Image for small screens */}
         <div className="w-full md:hidden">
-          <div className="mx-auto flex items-center justify-center bounce-img">
-            <Image src={Ilustration} alt="error" />
-          </div>
+          <Reveal direction="up">
+            <div className="mx-auto flex items-center justify-center bounce-img">
+              <Image src={Ilustration} alt="error" />
+            </div>
+          </Reveal>
         </div>
 
         {/* Title and content for medium screens and above */}

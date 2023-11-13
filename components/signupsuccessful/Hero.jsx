@@ -4,23 +4,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
 import Ilustration from "@/public/ProgiLust3.png";
 import Image from "next/image";
-import gsap from "gsap";
 
 export const Hero = ({ userEmail, userName }) => {
-  useEffect(() => {
-    const bounceAnimation = () => {
-      gsap.to(".bounce-img", {
-        y: -40, // Adjust the bounce height as needed
-        duration: 1,
-        yoyo: true,
-        repeat: -1, // -1 means infinite repeat
-        ease: "power1.inOut",
-      });
-    };
-
-    bounceAnimation();
-  }, []);
-
   return (
     <>
       <div className="flex flex-wrap md:mt-20">
