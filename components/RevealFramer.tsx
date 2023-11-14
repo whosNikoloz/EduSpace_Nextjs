@@ -23,8 +23,6 @@ export const Reveal = ({
   useEffect(() => {
     if (isInView) {
       mainControls.start("visible");
-    } else {
-      mainControls.start("hidden");
     }
   }, [isInView]);
 

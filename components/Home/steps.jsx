@@ -67,13 +67,13 @@ export const Steps = () => {
               </svg>
             </div>
             <div className="flex flex-col justify-center max-w-3xl text-center col-span-full lg:col-span-3 lg:text-left">
-              <span className="text-xs tracki uppercase dark:text-blue-400">
+              <span className="text-xs  uppercase dark:text-blue-400">
                 Step 1 &rarr;
               </span>
               <span className="text-xl font-bold md:text-2xl">
                 შეისწავლეთ ხელმისაწვდომი საგნები
               </span>
-              <ul className="mt-4 dark:text-gray-300">
+              <ul className="mt-4 dark:text-gray-300 text-left">
                 <li>• აირჩიეთ თქვენთვის საინტერესო საგანი.</li>
                 <li>• აღმოაჩინეთ პროგრამირების თემების ფართო სპექტრი.</li>
                 <li>
@@ -144,7 +144,7 @@ export const Steps = () => {
               <span className="text-xl font-bold md:text-2xl">
                 აირჩიეთ პროგრამირების ენა
               </span>
-              <ul className="mt-4 dark:text-gray-300">
+              <ul className="mt-4 dark:text-gray-300 text-left">
                 <li>• შეარჩიეთ პროგრამირების ენა თქვენი არჩეული საგნისთვის.</li>
                 <li>
                   • დარწმუნდით, რომ თქვენი ენა შეესაბამება თქვენს სასწავლო
@@ -192,7 +192,7 @@ export const Steps = () => {
               <span className="text-xl font-bold md:text-2xl">
                 დაიწყეთ თქვენი სასწავლო მოგზაურობა
               </span>
-              <ul className="mt-4 dark:text-gray-300">
+              <ul className="mt-4 dark:text-gray-300 text-left">
                 <li>• დაიწყეთ სწავლა შესავალი კურსებით.</li>
                 <li>• შექმენით მყარი საფუძველი თქვენს არჩეულ თემაზე.</li>
                 <li>• აკონტროლეთ თქვენი პროგრესი წინსვლისას.</li>
@@ -231,7 +231,7 @@ export const Steps = () => {
               <span className="text-xl font-bold md:text-2xl">
                 ჩაერთეთ კითხვა-პასუხში და დისკუსიაში
               </span>
-              <ul className="mt-4 dark:text-gray-300">
+              <ul className="mt-4 dark:text-gray-300 text-left">
                 <li>• აქტიური მონაწილეობა სასწავლო საზოგადოებაში.</li>
                 <li>
                   • დასვით კითხვები, გაუზიარეთ ცოდნა და მოიძიეთ განმარტებები.
@@ -253,7 +253,7 @@ export const Steps = () => {
               <span className="text-xl font-bold md:text-2xl">
                 მიიღეთ სერთიფიკატები
               </span>
-              <ul className="mt-4 dark:text-gray-300">
+              <ul className="mt-4 dark:text-gray-300 text-left">
                 <li>• დაასრულეთ კურსები, დავალებები და ვიქტორინები.</li>
                 <li>• აჩვენეთ თქვენი ცოდნა გამოცდების საშუალებით.</li>
                 <li>• მიიღეთ ღირებული სერთიფიკატები თქვენი რეზიუმესთვის.</li>

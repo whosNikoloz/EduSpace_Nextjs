@@ -109,7 +109,7 @@ const AutoScrollCarousel = () => {
                   <div className="slide-content">
                     <div className="max-w-xsborder  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                       <Link href="#">
-                        <div className="flex items-center justify-center h-48 mb-4 rounded dark:bg-gray-700">
+                        <div className="flex items-center justify-center h-24 md:h-48 mb-4 rounded dark:bg-gray-700">
                           <svg
                             className="w-10 h-10 text-gray-200 dark:text-gray-600"
                             aria-hidden="true"
@@ -134,7 +134,7 @@ const AutoScrollCarousel = () => {
                   <div className="slide-content">
                     <div className="max-w-xsborder  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                       <Link href="#">
-                        <div className="flex items-center justify-center h-48 mb-4 rounded dark:bg-gray-700">
+                        <div className="flex items-center justify-center h-24 md:h-48 mb-4 rounded dark:bg-gray-700">
                           <svg
                             className="w-10 h-10 text-gray-200 dark:text-gray-600"
                             aria-hidden="true"

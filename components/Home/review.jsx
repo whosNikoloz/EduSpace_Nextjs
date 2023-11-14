@@ -10,7 +10,7 @@ const Review = () => {
   return (
     <>
       <div className="flex flex-wrap gap-6">
-        <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 bg-gray-50 dark:bg-gray-900 dark:text-white review1">
+        <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700  dark:text-white review1">
           <Reveal direction="right">
             <div className="flex justify-between p-4">
               <div className="flex space-x-4">
@@ -49,7 +49,7 @@ const Review = () => {
             </div>
           </Reveal>
         </div>
-        <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md  divide-gray-700 bg-gray-50 dark:bg-gray-900 dark:text-white review2">
+        <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md  divide-gray-700  dark:text-white review2">
           <Reveal direction="left">
             <div className="flex justify-between p-4">
               <div className="flex space-x-4">
@@ -90,7 +90,7 @@ const Review = () => {
             </div>
           </Reveal>
         </div>
-        <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md  divide-gray-700 bg-gray-50 dark:bg-gray-900 dark:text-white review1">
+        <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md  divide-gray-700  dark:text-white review1">
           <Reveal direction="up">
             <div className="flex justify-between p-4">
               <div className="flex space-x-4">
