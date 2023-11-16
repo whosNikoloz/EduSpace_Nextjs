@@ -2,8 +2,8 @@ import React from "react";
 import Cookies from "universal-cookie";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 
-const auth_API = "https://192.168.1.68:45455/api/Auth/";
-const user_API = "https://192.168.1.68:45455/api/User/";
+const auth_API = "https://192.168.1.68:45456/api/Auth/";
+const user_API = "https://192.168.1.68:45456/api/User/";
 const auth_API_NIkoloza = "https://172.20.10.7:45456/api/Auth/";
 
 const Authentication = () => {
