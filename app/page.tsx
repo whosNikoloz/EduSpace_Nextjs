@@ -54,7 +54,7 @@ export default function Home() {
         </section>
       ) : (
         <MainLayout>
-          <div className="mb-56">
+          <div className="mb-56 container mx-auto max-w-7xl pt-9 px-6 flex-grow">
             <Hero />
           </div>
           <div className="hidden md:block">
@@ -68,7 +68,7 @@ export default function Home() {
                 margin={12}
                 direct="right"
               />
-              <div className="mt-20 mb-20">
+              <div className="mt-20 mb-7">
                 <AutoScrollCarousel />
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function Home() {
           <div className="hidden md:block">
             <ConnectorFirst text="არ არსებობს იდეალური დრო" />
           </div>
-          <section className=" items-center justify-center gap-4 py-8 md:py-10">
+          <section className=" items-center justify-center gap-4 py-8 md:py-10 container mx-auto max-w-7xl pt-9 px-6 flex-grow">
             <div className="mt-7 ">
               <CompilerSection />
             </div>

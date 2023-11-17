@@ -5,8 +5,6 @@ import { isMobile } from "react-device-detect";
 export const CustomTitle = ({ title1, title2, margin, direct }) => {
   const direction = isMobile ? "center" : direct;
 
-  console.log(direction);
-
   const titleDirectionClass =
     direction === "right"
       ? "text-right mr-28"
@@ -15,9 +13,9 @@ export const CustomTitle = ({ title1, title2, margin, direct }) => {
       : "text-center";
   const svgDirectionStyle =
     direction === "right"
-      ? { float: "right", marginRight: "180px" }
+      ? { float: "right", marginRight: "230px" }
       : direction === "left"
-      ? { float: "left", marginLeft: "180px" }
+      ? { float: "left", marginLeft: "230px" }
       : {};
   return (
     <>
