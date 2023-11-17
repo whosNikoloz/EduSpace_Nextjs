@@ -49,12 +49,12 @@ const AutoScrollCarousel = () => {
   }, []);
 
   useEffect(() => {
-    const perPage = isMobile ? 3 : 5; // Adjust perPage based on the device type.
+    const perPage = isMobile ? 4 : 6; // Adjust perPage based on the device type.
 
     const splide = new Splide(".splide", {
       type: "loop",
       drag: "free",
-      gap: "1rem",
+      gap: "0.5rem",
       pauseOnHover: false,
       focus: "center",
       perPage: perPage,
