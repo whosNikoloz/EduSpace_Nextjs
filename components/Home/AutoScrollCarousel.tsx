@@ -109,7 +109,7 @@ const AutoScrollCarousel = () => {
                   <div className="slide-content">
                     <div className="max-w-xsborder  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                       <Link href="#">
-                        <div className="flex items-center justify-center h-24 md:h-48 mb-4 rounded dark:bg-gray-700">
+                        <div className="flex items-center animate-pulse justify-center h-24 md:h-48 mb-4 rounded dark:bg-gray-700">
                           <svg
                             className="w-10 h-10 text-gray-200 dark:text-gray-600"
                             aria-hidden="true"
@@ -122,10 +122,8 @@ const AutoScrollCarousel = () => {
                           </svg>
                         </div>
                       </Link>
-                      <div className="p-3">
-                        <Skeleton className="w-4/5 rounded-lg">
-                          <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
-                        </Skeleton>
+                      <div className="p-3 animate-pulse">
+                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
                       </div>
                     </div>
                   </div>
@@ -134,7 +132,7 @@ const AutoScrollCarousel = () => {
                   <div className="slide-content">
                     <div className="max-w-xsborder  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                       <Link href="#">
-                        <div className="flex items-center justify-center h-24 md:h-48 mb-4 rounded dark:bg-gray-700">
+                        <div className="flex items-center animate-pulse justify-center h-24 md:h-48 mb-4 rounded dark:bg-gray-700">
                           <svg
                             className="w-10 h-10 text-gray-200 dark:text-gray-600"
                             aria-hidden="true"
@@ -147,10 +145,8 @@ const AutoScrollCarousel = () => {
                           </svg>
                         </div>
                       </Link>
-                      <div className="p-3">
-                        <Skeleton className="w-4/5 rounded-lg">
-                          <div className="h-3 w-4/5 rounded-lg"></div>
-                        </Skeleton>
+                      <div className="p-3 animate-pulse">
+                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
                       </div>
                     </div>
                   </div>
