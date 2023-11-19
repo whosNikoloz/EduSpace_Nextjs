@@ -10,7 +10,7 @@ export const UpVectorIcon = ({ size }) => {
       id="up-direction"
       data-name="Flat Color"
       xmlns="http://www.w3.org/2000/svg"
-      class="icon flat-color"
+      className="icon flat-color"
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g

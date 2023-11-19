@@ -110,15 +110,15 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
           >
             {notifications.length === 0 ? ( // Check if there are no notifications
               <div>
-                <a className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 mx-2">
+                <p className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 mx-2">
                   თქვენ არ გაქვთ შეტყობინება
-                </a>
+                </p>
               </div>
             ) : (
               <>
                 {notifications.map((notification) => (
                   <div key={notification.notificationId}>
-                    <a className="flex items-center px-4 py-3 hover:bg-zinc-200  dark:hover:bg-zinc-600 -mx-2">
+                    <div className="flex items-center px-4 py-3 hover:bg-zinc-200  dark:hover:bg-zinc-600 -mx-2">
                       <Image
                         className="h-8 w-8 rounded-full object-cover mx-1"
                         src={notification.commentAuthorPicture}
@@ -135,7 +135,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                         {"   "}
                         {formatTimeAgo(notification.createdAt)}
                       </p>
-                    </a>
+                    </div>
                   </div>
                 ))}
               </>

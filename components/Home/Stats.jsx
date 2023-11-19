@@ -54,7 +54,7 @@ const Stats = () => {
                     <svg
                       stroke="currentColor"
                       fill="currentColor"
-                      stroke-width="0"
+                      strokeWidth="0"
                       viewBox="0 0 24 24"
                       className="h-6 w-6"
                       height="1em"
@@ -83,7 +83,7 @@ const Stats = () => {
                     <svg
                       stroke="currentColor"
                       fill="currentColor"
-                      stroke-width="0"
+                      strokeWidth="0"
                       viewBox="0 0 24 24"
                       className="h-7 w-7"
                       height="1em"
@@ -112,7 +112,7 @@ const Stats = () => {
                     <svg
                       stroke="currentColor"
                       fill="currentColor"
-                      stroke-width="0"
+                      strokeWidth="0"
                       viewBox="0 0 512 512"
                       className="h-6 w-6"
                       height="1em"

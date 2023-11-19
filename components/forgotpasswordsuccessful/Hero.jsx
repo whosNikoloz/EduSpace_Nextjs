@@ -33,8 +33,11 @@ export const Hero = ({ userEmail }) => {
               პაროლის აღსადგენად.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a href="https://mail.google.com/">
-                <Button className="bg-blue-600 text-white">აღდგენა</Button>
+              <a
+                href="https://mail.google.com/"
+                className="bg-blue-600 text-white inline-block py-2 px-4 rounded"
+              >
+                აღდგენა
               </a>
               <a
                 href="#"
