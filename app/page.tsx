@@ -20,8 +20,7 @@ import Image from "next/image";
 import Styles from "@/styles/loader.module.css";
 import EduSpace from "@/public/EduSpaceLogo.png";
 import dynamic from "next/dynamic";
-import ScrollToTopButton from "@/components/ScrollToTop";
-import { ChatAI } from "@/components/chatai/ChatAI";
+import FAB from "@/components/FAB";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -55,7 +54,6 @@ export default function Home() {
         </section>
       ) : (
         <MainLayout>
-          <ChatAI />
           <div className="mb-56 container mx-auto max-w-7xl pt-9 px-6 flex-grow">
             <Hero />
           </div>
@@ -148,7 +146,7 @@ export default function Home() {
               </div>
             </div>
           </section>
-          <ScrollToTopButton />
+          <FAB />
         </MainLayout>
       )}
     </>

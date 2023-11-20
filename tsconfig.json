@@ -39,6 +39,6 @@
     "components/Learn/subject.jsx",
     "components/Learn/Lesson/ArrowIcon.jsx",
     "components/navbar/BeginnerIcon.jsx"
-, "components/AnimatedText.jsx"  ],
+, "components/AnimatedText.jsx", "components/chatai/ChatAI.jsx"  ],
   "exclude": ["node_modules"]
 }

@@ -57,6 +57,7 @@
     "react-hot-toast": "^2.4.1",
     "react-query": "^3.39.3",
     "react-responsive": "^9.0.2",
+    "react-tiny-fab": "^4.0.4",
     "tailwind-variants": "^0.1.13",
     "tailwindcss": "3.3.3",
     "typescript": "5.0.4",
