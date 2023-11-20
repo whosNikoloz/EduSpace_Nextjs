@@ -30,9 +30,9 @@ function MultiLevelDropdown() {
         width={undefined}
       />
     ),
-    Beginner: <BeginnerIcon height={16} width={16} />,
-    advanced: <AdvancedIcon height={16} width={16} />,
-    intermediate: <IntermediateIcon height={16} width={16} />,
+    Beginner: <BeginnerIcon height={30} width={30} />,
+    advanced: <AdvancedIcon height={30} width={30} />,
+    intermediate: <IntermediateIcon height={30} width={30} />,
   };
 
   return (

@@ -28,9 +28,9 @@ function SideNavBarWithDropDown() {
         width={undefined}
       />
     ),
-    Beginner: <BeginnerIcon height={16} width={16} />,
-    advanced: <AdvancedIcon height={16} width={16} />,
-    intermediate: <IntermediateIcon height={16} width={16} />,
+    Beginner: <BeginnerIcon height={30} width={30} />,
+    advanced: <AdvancedIcon height={30} width={30} />,
+    intermediate: <IntermediateIcon height={30} width={30} />,
   };
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
@@ -86,7 +86,7 @@ function SideNavBarWithDropDown() {
         <NavbarMenuItem>
           <Link
             color="foreground"
-            className="w-full"
+            className="w-full gap-2"
             href="#"
             size="sm"
             onClick={toggleSubSubMenu1}
@@ -135,7 +135,7 @@ function SideNavBarWithDropDown() {
           )}
           <Link
             color="foreground"
-            className="w-full"
+            className="w-full gap-2"
             href="#"
             size="sm"
             onClick={toggleSubSubMenu2}
@@ -184,7 +184,7 @@ function SideNavBarWithDropDown() {
           )}
           <Link
             color="foreground"
-            className="w-full"
+            className="w-full gap-2"
             href="#"
             size="sm"
             onClick={toggleSubSubMenu3}
@@ -234,18 +234,18 @@ function SideNavBarWithDropDown() {
         </NavbarMenuItem>
       )}
       <NavbarMenuItem>
-        <Link color="foreground" className="w-full" href="/social" size="lg">
-          {"სოციალური"}
-        </Link>
-      </NavbarMenuItem>
-      <NavbarMenuItem>
         <Link
           color="foreground"
           className="w-full"
           href="/compiler/csharp"
           size="lg"
         >
-          {"compiler"}
+          {"Compiler"}
+        </Link>
+      </NavbarMenuItem>
+      <NavbarMenuItem>
+        <Link color="foreground" className="w-full" href="/social" size="lg">
+          {"სოციალური"}
         </Link>
       </NavbarMenuItem>
     </NavbarMenu>

@@ -11,9 +11,9 @@ export const AdvancedIcon = ({
   return (
     <svg
       viewBox="0 0 32 32"
-      size={size}
-      width={width}
-      height={height}
+      size={size || 24}
+      width={width || 24}
+      height={height || 24}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
