@@ -21,12 +21,12 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
 
   // Update the background color when DarkMode changes
   useEffect(() => {
-    if (!DarkMode) {
-      setBackgroundColor("#fff");
-    } else {
+    if (DarkMode) {
       setBackgroundColor("#24292E");
+    } else {
+      setBackgroundColor("#fff");
     }
-  }, [!DarkMode]);
+  }, [DarkMode]);
 
   // Set text color to red if Error is true, otherwise keep it white
   useEffect(() => {

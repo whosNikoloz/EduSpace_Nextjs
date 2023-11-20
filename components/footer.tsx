@@ -43,7 +43,7 @@ export const Footer = () => {
                     C# შესავალი
                   </Link>
                 </li>
-                <li>
+                <li> 
                   <Link
                     rel="noopener noreferrer"
                     href="/learn/course/python-beginner"

@@ -42,7 +42,7 @@ export default function CplusAdvancedPage() {
     };
 
     fetchCourse();
-  }, [user]); // Fetch course when user changes
+  }, [user, courses]); // Fetch course when user changes
 
   useEffect(() => {
     if (user && course) {
@@ -64,7 +64,7 @@ export default function CplusAdvancedPage() {
 
       return () => clearInterval(intervalId); // Clean up on unmount or when dependencies change
     }
-  }, [user, course]); // Fetch user progress when user or course changes
+  }, [user, course, progresses]); // Fetch user progress when user or course changes
 
   return (
     <MainLayout>

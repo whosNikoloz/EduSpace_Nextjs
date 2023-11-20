@@ -134,7 +134,7 @@ export default function CplusAdvancedLessonPage({
     };
 
     fetchLearnMaterial();
-  }, [lessonIdAsNumber]);
+  }, [lessonIdAsNumber, learnAPI]);
 
   useEffect(() => {
     const updatedProgress = (currentPage / totalPage) * 100;

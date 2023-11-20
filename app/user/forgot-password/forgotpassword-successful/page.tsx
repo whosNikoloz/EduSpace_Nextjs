@@ -12,7 +12,7 @@ export default function VerificationSuccessfulPage() {
     setUserEmail(cookie.get("forgetEmail"));
 
     cookie.remove("forgetEmail");
-  });
+  },[setUserEmail]);
 
   return <Hero userEmail={userEmail} />;
 }

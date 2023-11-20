@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/button";
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import Notifications from "@/app/api/Social/Notification";
 import { Badge } from "@nextui-org/react";
 import { NotificationIcon } from "./NotificationIcon";
@@ -41,21 +41,21 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
 
   const [notifications, setNotifications] = useState<NotificationProps[]>([]);
 
-  async function fetchNotifications() {
-    const notifications = notf.GetNotifications(userid);
-    setNotifications(await notifications);
-  }
+  const fetchNotifications = useCallback(async () => {
+    const notifications = await notf.GetNotifications(userid);
+    setNotifications(notifications);
+  }, [userid, notf]); // don't forget to include all the dependencies here
 
   useEffect(() => {
     fetchNotifications();
-  });
+  }, [fetchNotifications]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchNotifications(); // This will run every 5 seconds
     }, 5000);
     return () => clearInterval(intervalId); // Clear interval on unmount
-  }, [userid]);
+  }, [userid, fetchNotifications]);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   return (

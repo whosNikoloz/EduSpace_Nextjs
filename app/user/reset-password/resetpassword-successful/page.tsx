@@ -20,7 +20,7 @@ export default function VerificationSuccessfulPage() {
     setTimeout(() => {
       router.push("/user/auth");
     }, 3000);
-  });
+  }, [setUserEmail,router]);
 
   return <Hero userEmail={userEmail} />;
 }
