@@ -60,7 +60,7 @@ export default function SocialPage() {
 
     // Update the filteredPosts array with the new post
     setSearchQuery(""); // Clear the search query to show all posts
-  }, [data]);
+  }, [data, posts]);
 
   useEffect(() => {
     const pollingInterval = setInterval(async () => {
@@ -135,7 +135,13 @@ export default function SocialPage() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isLoadingNewPosts, isLoadingMore, hasMorePages, scrollPosition]);
+  }, [
+    isLoadingNewPosts,
+    isLoadingMore,
+    hasMorePages,
+    scrollPosition,
+    handleScroll,
+  ]);
 
   return (
     <MainLayout>

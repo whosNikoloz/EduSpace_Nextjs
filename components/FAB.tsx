@@ -162,9 +162,9 @@ const FAB: React.FC = () => {
                         <span className="block font-bold text-gray-700">
                           AI{" "}
                         </span>
-                        Sorry, I couldn't find any information in the
-                        documentation about that. Expect answer to be less
-                        accurateI could not find the answer to this in the
+                        Sorry, I couldn&apos;t find any information in the
+                        documentation about that. Expect the answer to be less
+                        accurate. I could not find the answer to this in the
                         verified sources.
                       </p>
                     </div>

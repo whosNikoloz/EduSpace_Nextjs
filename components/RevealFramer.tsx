@@ -24,7 +24,7 @@ export const Reveal = ({
     if (isInView) {
       mainControls.start("visible");
     }
-  }, [isInView]);
+  }, [isInView,mainControls]);
 
   const getAnimationVariants = () => {
     switch (direction) {
