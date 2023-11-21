@@ -4,8 +4,8 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Reveal } from "../RevealFramer";
-
-// Define a TypeScript interface for the props
+import Image from "next/image";
+import Programming from "@/public/ProgrammingIMG.jpg";
 
 function Number({ n }) {
   const numberRef = useRef(null);
@@ -44,98 +44,61 @@ function Number({ n }) {
 const Stats = () => {
   return (
     <>
-      <Reveal direction="up">
-        <div className="flex flex-col justify-center items-center  pt-4">
-          <div className="min-w-[175px] md:min-w-[300px] xl:min-w-[800px] mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
-            <div className="relative flex flex-grow !flex-row flex-col items-center rounded-[10px] border-[1px] border-gray-200 bg-gray-50 dark:bg-gray-900 bg-clip-border shadow-md shadow-[#F3F3F3] dark:border-[#ffffff33] dark:!bg-navy-800 dark:text-white dark:shadow-none">
-              <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
-                <div className="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
-                  <span className="flex items-center text-brand-500 dark:text-blue-600">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      strokeWidth="0"
-                      viewBox="0 0 24 24"
-                      className="h-6 w-6"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path fill="none" d="M0 0h24v24H0z"></path>
-                      <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"></path>
-                    </svg>
-                  </span>
+      <div className="container mx-auto text-center lg:text-left xl:px-32">
+        <div className="grid items-center lg:grid-cols-2">
+          <div className="mb-12 lg:mb-0">
+            <div className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20 md:px-12 lg:-mr-14 backdrop-blur-[30px]">
+              <h2 className="mb-6 text-4xl font-bold">Why is it so great?</h2>
+              <p className="mb-12 text-neutral-500 dark:text-neutral-300">
+                Nunc tincidunt vulputate elit. Mauris varius purus malesuada
+                neque iaculis malesuada. Aenean gravida magna orci, non
+                efficitur est porta id. Donec magna diam.
+              </p>
+
+              <div className="grid gap-x-6 md:grid-cols-3">
+                <div className="mb-12 md:mb-0">
+                  <h2 className="text-dark mb-4 text-3xl font-bold">
+                    <Number n={200} />%
+                  </h2>
+                  <h5 className="mb-0 text-lg font-medium text-neutral-500 dark:text-neutral-300">
+                    Less sugar
+                  </h5>
                 </div>
-              </div>
-              <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-                <p className="font-dm text-sm font-medium text-brand-200  dark:text-blue-300">
-                  Stats
-                </p>
-                <h4 className="text-xl font-bold text-navy-700 dark:text-blue-600">
-                  <Number n={1000} />
-                </h4>
-              </div>
-            </div>
-            <div className="relative flex flex-grow !flex-row flex-col items-center rounded-[10px]  border-[1px] border-gray-200 bg-gray-50 dark:bg-gray-900 bg-clip-border shadow-md shadow-[#F3F3F3] dark:border-[#ffffff33] dark:!bg-navy-800 dark:text-white dark:shadow-none">
-              <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
-                <div className="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
-                  <span className="flex items-center text-brand-500 dark:text-blue-600">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      strokeWidth="0"
-                      viewBox="0 0 24 24"
-                      className="h-7 w-7"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path fill="none" d="M0 0h24v24H0z"></path>
-                      <path d="M4 9h4v11H4zM16 13h4v7h-4zM10 4h4v16h-4z"></path>
-                    </svg>
-                  </span>
+
+                <div className="mb-12 md:mb-0">
+                  <h2 className="text-dark mb-4 text-3xl font-bold">
+                    <Number n={70} />%
+                  </h2>
+                  <h5 className="mb-0 text-lg font-medium text-neutral-500 dark:text-neutral-300">
+                    More flavor
+                  </h5>
                 </div>
-              </div>
-              <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-                <p className="font-dm text-sm font-medium text-brand-200  dark:text-blue-300">
-                  აქტიური სტუდენტი
-                </p>
-                <h4 className="text-xl font-bold text-navy-700 dark:text-blue-600">
-                  <Number n={145} />
-                </h4>
-              </div>
-            </div>
-            <div className="relative flex flex-grow !flex-row flex-col items-center rounded-[10px]  border-[1px] border-gray-200 bg-gray-50 dark:bg-gray-900 bg-clip-border shadow-md shadow-[#F3F3F3] dark:border-[#ffffff33] dark:!bg-navy-800 dark:text-white dark:shadow-none">
-              <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
-                <div className="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
-                  <span className="flex items-center text-brand-500 dark:text-blue-600">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      strokeWidth="0"
-                      viewBox="0 0 512 512"
-                      className="h-6 w-6"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M208 448V320h96v128h97.6V256H464L256 64 48 256h62.4v192z"></path>
-                    </svg>
-                  </span>
+
+                <div className="">
+                  <h2 className="text-dark mb-4 text-3xl font-bold">
+                    <Number n={10} />%
+                  </h2>
+                  <h5 className="mb-0 text-lg font-medium text-neutral-500 dark:text-neutral-300">
+                    Gluten
+                  </h5>
                 </div>
-              </div>
-              <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-                <p className="font-dm text-sm font-medium text-brand-200  dark:text-blue-300">
-                  აქტიური კურსები
-                </p>
-                <h4 className="text-xl font-bold text-navy-700 dark:text-blue-600">
-                  <Number n={2423} />
-                </h4>
               </div>
             </div>
           </div>
+          <Reveal direction="left">
+            <div>
+              <Image
+                src={Programming}
+                className="rounded-lg sm:rounded-[36% 41% 59% 64%] rotate-lg-6 w-full shadow-lg blocked dark:shadow-black/20"
+                alt=""
+              />
+            </div>
+          </Reveal>
         </div>
-      </Reveal>
+      </div>
+
+
+      
     </>
   );
 };

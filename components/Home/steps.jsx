@@ -11,11 +11,11 @@ import {
 
 export const Steps = () => {
   return (
-    <section className="dark:bg-black dark:text-gray-100">
+    <section className="shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px]   ">
       <div className="container mx-auto flex flex-col p-4">
         <div className="divide-y divide-gray-700">
           <Reveal direction="left">
-            <div className="grid justify-center bg-slate-200 dark:bg-black grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0 steps">
+            <div className="grid justify-center shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px] grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0 steps">
               <div className="flex items-center justify-center lg:col-span-1 col-span-full">
                 <svg
                   viewBox="0 0 1024 1024"
@@ -53,7 +53,7 @@ export const Steps = () => {
             </div>
           </Reveal>
           <Reveal direction="left">
-            <div className="grid justify-center bg-slate-200 dark:bg-black grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0 steps">
+            <div className="grid justify-center  shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px]  grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0 steps">
               <div className="flex items-center justify-center lg:col-span-1 col-span-full">
                 <svg
                   viewBox="0 0 16 16"
@@ -129,7 +129,7 @@ export const Steps = () => {
             </div>
           </Reveal>
           <Reveal direction="left">
-            <div className="grid justify-center bg-slate-200 dark:bg-black grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0 steps">
+            <div className="grid justify-center  shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px]  grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0 steps">
               <div className="flex items-center justify-center lg:col-span-1 col-span-full">
                 <svg
                   viewBox="0 0 24 24"
@@ -176,7 +176,7 @@ export const Steps = () => {
             </div>
           </Reveal>
           <Reveal direction="left">
-            <div className="grid justify-center bg-slate-200 dark:bg-black grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0 steps">
+            <div className="grid justify-center  shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px]  grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0 steps">
               <div className="flex items-center justify-center lg:col-span-1 col-span-full">
                 <svg
                   viewBox="0 0 24 24"
@@ -222,7 +222,7 @@ export const Steps = () => {
             </div>
           </Reveal>
           <Reveal direction="left">
-            <div className="grid justify-center bg-slate-200 dark:bg-black grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0 steps">
+            <div className="grid justify-center  shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px]  grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0 steps">
               <div className="flex items-center justify-center lg:col-span-1 col-span-full">
                 <CertificationIcon size={60} />
               </div>

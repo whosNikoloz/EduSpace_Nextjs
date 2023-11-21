@@ -11,7 +11,7 @@ export const ConnectorSecond = ({ text }) => {
       <div className="w-2/6 md:w-1/2 lg:w-4/6 relative">
         <Reveal direction="down">
           <div className="h-10 md:h-36 lg:h-56 border-blue-600 border-r-4  w-full ">
-            <span className="absolute bottom-2 text-center w-full text-sm sm:text-lg">
+            <span className="absolute bottom-2 text-center w-full text-sm sm:text-lg font-mono font-bold">
               {text}
             </span>
           </div>

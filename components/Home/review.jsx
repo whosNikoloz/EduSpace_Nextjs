@@ -9,125 +9,99 @@ import { Reveal } from "../RevealFramer";
 const Review = () => {
   return (
     <>
-      <div className="flex flex-wrap gap-6">
-        <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700  dark:text-white review1">
-          <Reveal direction="right">
-            <div className="flex justify-between p-4">
-              <div className="flex space-x-4">
-                <div>
-                  <Image
-                    src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar1.png"
-                    alt=""
-                    width={500}
-                    height={300}
-                    className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
-                  />
-                </div>
-                <div>
-                  <h4 className="font-bold">CodingNewbie123</h4>
-                  <span className="text-xs dark:text-gray-400">2 დღის წინ</span>
-                </div>
-              </div>
-              <div className="flex items-center space-x-2 dark:text-yellow-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                  className="w-5 h-5 fill-current"
-                >
-                  <path d="M494,198.671a40.536,40.536,0,0,0-32.174-27.592L345.917,152.242,292.185,47.828a40.7,40.7,0,0,0-72.37,0L166.083,152.242,50.176,171.079a40.7,40.7,0,0,0-22.364,68.827l82.7,83.368-17.9,116.055a40.672,40.672,0,0,0,58.548,42.538L256,428.977l104.843,52.89a40.69,40.69,0,0,0,58.548-42.538l-17.9-116.055,82.7-83.368A40.538,40.538,0,0,0,494,198.671Zm-32.53,18.7L367.4,312.2l20.364,132.01a8.671,8.671,0,0,1-12.509,9.088L256,393.136,136.744,453.3a8.671,8.671,0,0,1-12.509-9.088L144.6,312.2,50.531,217.37a8.7,8.7,0,0,1,4.778-14.706L187.15,181.238,248.269,62.471a8.694,8.694,0,0,1,15.462,0L324.85,181.238l131.841,21.426A8.7,8.7,0,0,1,461.469,217.37Z"></path>
-                </svg>
-                <span className="text-xl font-bold">3.5</span>
+      <div className=" flex items-center justify-center ">
+        <div className="w-full shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]   backdrop-blur-[30px]     px-5 py-16 md:py-24 dark:text-white text-black">
+          <div className="w-full max-w-6xl mx-auto">
+            <div className="text-center max-w-xl mx-auto">
+              <h1 className="text-6xl md:text-7xl font-bold mb-5 dark:text-white text-black">
+                What people <br />
+                are saying.
+              </h1>
+              <h3 className="text-xl mb-5 font-light">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </h3>
+              <div className="text-center mb-10">
+                <span className="inline-block w-1 h-1 rounded-full bg-blue-600 ml-1"></span>
+                <span className="inline-block w-3 h-1 rounded-full bg-blue-600 ml-1"></span>
+                <span className="inline-block w-40 h-1 rounded-full bg-blue-600 ml-1"></span>
+                <span className="inline-block w-3 h-1 rounded-full bg-blue-600 ml-1"></span>
+                <span className="inline-block w-1 h-1 rounded-full bg-blue-600 ml-1"></span>
               </div>
             </div>
-            <div className="p-4 space-y-2 text-sm dark:text-white">
-              <p>
-                EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ
-                გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების
-                კონცეფციების სწრაფად გააზრებაში. გმადლობთ, EduSpace, რომ
-                გადამაქციე კოდირების ენთუზიასტად!
-              </p>
-            </div>
-          </Reveal>
-        </div>
-        <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md  divide-gray-700  dark:text-white review2">
-          <Reveal direction="left">
-            <div className="flex justify-between p-4">
-              <div className="flex space-x-4">
-                <div>
-                  <Image
-                    src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar2.png"
-                    alt=""
-                    width={500}
-                    height={300}
-                    className="object-cover w-12 h-12 rounded-full dark:bg-black"
-                  />
+            <Reveal direction="left">
+              <div className="-mx-3 md:flex items-start">
+                <div className="px-3 md:w-1/3">
+                  <div className="w-full mx-auto rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px]  p-5 text-gray-800  font-light mb-6">
+                    <div className="w-full flex mb-4 items-center">
+                      <div className="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
+                        <img src="https://i.pravatar.cc/100?img=1" alt="" />
+                      </div>
+                      <div className="flex-grow pl-3">
+                        <h6 className="font-bold text-sm uppercase text-gray-600 dark:text-white">
+                          Kenzie Edgar.
+                        </h6>
+                      </div>
+                    </div>
+                    <div className="w-full">
+                      <p className="text-sm leading-tight text-black dark:text-white">
+                        &ldquo; EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი!
+                        ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები
+                        დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.
+                        გმადლობთ, EduSpace, რომ გადამაქციე კოდირების
+                        ენთუზიასტად! &rdquo;
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold">DevPro2023</h4>
-                  <span className="text-xs dark:text-gray-400">
-                    1 კვირის წინ
-                  </span>
+                <div className="px-3 md:w-1/3">
+                  <div className="w-full mx-auto rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px]   p-5 text-gray-800  font-light mb-6">
+                    <div className="w-full flex mb-4 items-center">
+                      <div className="overflow-hidden rounded-full w-10 h-10   ">
+                        <img src="https://i.pravatar.cc/100?img=3" alt="" />
+                      </div>
+                      <div className="flex-grow pl-3">
+                        <h6 className="font-bold text-sm uppercase text-gray-600 dark:text-white">
+                          Tommie Ewart.
+                        </h6>
+                      </div>
+                    </div>
+                    <div className="w-full">
+                      <p className="text-sm leading-tight text-black dark:text-white">
+                        &ldquo; EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი!
+                        ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები
+                        დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.
+                        გმადლობთ, EduSpace, რომ გადამაქციე კოდირების
+                        ენთუზიასტად! &rdquo;
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="px-3 md:w-1/3">
+                  <div className="w-full mx-auto rounded-lg  shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px] p-5 text-gray-800  font-light mb-6">
+                    <div className="w-full flex mb-4 items-center">
+                      <div className="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
+                        <img src="https://i.pravatar.cc/100?img=5" alt="" />
+                      </div>
+                      <div className="flex-grow pl-3">
+                        <h6 className="font-bold text-sm uppercase text-gray-600 dark:text-white">
+                          Nevada Herbertson.
+                        </h6>
+                      </div>
+                    </div>
+                    <div className="w-full">
+                      <p className="text-sm leading-tight text-black dark:text-white">
+                        &ldquo; EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი!
+                        ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები
+                        დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.
+                        გმადლობთ, EduSpace, რომ გადამაქციე კოდირების
+                        ენთუზიასტად! &rdquo;
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center space-x-2 dark:text-yellow-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                  className="w-5 h-5 fill-current"
-                >
-                  <path d="M494,198.671a40.536,40.536,0,0,0-32.174-27.592L345.917,152.242,292.185,47.828a40.7,40.7,0,0,0-72.37,0L166.083,152.242,50.176,171.079a40.7,40.7,0,0,0-22.364,68.827l82.7,83.368-17.9,116.055a40.672,40.672,0,0,0,58.548,42.538L256,428.977l104.843,52.89a40.69,40.69,0,0,0,58.548-42.538l-17.9-116.055,82.7-83.368A40.538,40.538,0,0,0,494,198.671Zm-32.53,18.7L367.4,312.2l20.364,132.01a8.671,8.671,0,0,1-12.509,9.088L256,393.136,136.744,453.3a8.671,8.671,0,0,1-12.509-9.088L144.6,312.2,50.531,217.37a8.7,8.7,0,0,1,4.778-14.706L187.15,181.238,248.269,62.471a8.694,8.694,0,0,1,15.462,0L324.85,181.238l131.841,21.426A8.7,8.7,0,0,1,461.469,217.37Z"></path>
-                </svg>
-                <span className="text-xl font-bold">5</span>
-              </div>
-            </div>
-            <div className="p-4 space-y-2 text-sm dark:text-white">
-              <p>
-                EduSpace არის ჩემი გამოსაყენებელი აპლიკაცია პროგრამირების
-                უნარების შესწავლისა და დახვეწისთვის. გათამაშებული სწავლის
-                მიდგომა მაძლევს მოტივაციას და საზოგადოების მხარდაჭერა
-                ფანტასტიკურია. რეკომენდირებულია დამწყებ კოდირებისთვის
-              </p>
-            </div>
-          </Reveal>
-        </div>
-        <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md  divide-gray-700  dark:text-white review1">
-          <Reveal direction="up">
-            <div className="flex justify-between p-4">
-              <div className="flex space-x-4">
-                <div>
-                  <Image
-                    src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar3.png"
-                    alt=""
-                    width={500}
-                    height={300}
-                    className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
-                  />
-                </div>
-                <div>
-                  <h4 className="font-bold">CodingNinja99</h4>
-                  <span className="text-xs dark:text-gray-400">1 თვის წინ</span>
-                </div>
-              </div>
-              <div className="flex items-center space-x-2 dark:text-yellow-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                  className="w-5 h-5 fill-current"
-                >
-                  <path d="M494,198.671a40.536,40.536,0,0,0-32.174-27.592L345.917,152.242,292.185,47.828a40.7,40.7,0,0,0-72.37,0L166.083,152.242,50.176,171.079a40.7,40.7,0,0,0-22.364,68.827l82.7,83.368-17.9,116.055a40.672,40.672,0,0,0,58.548,42.538L256,428.977l104.843,52.89a40.69,40.69,0,0,0,58.548-42.538l-17.9-116.055,82.7-83.368A40.538,40.538,0,0,0,494,198.671Zm-32.53,18.7L367.4,312.2l20.364,132.01a8.671,8.671,0,0,1-12.509,9.088L256,393.136,136.744,453.3a8.671,8.671,0,0,1-12.509-9.088L144.6,312.2,50.531,217.37a8.7,8.7,0,0,1,4.778-14.706L187.15,181.238,248.269,62.471a8.694,8.694,0,0,1,15.462,0L324.85,181.238l131.841,21.426A8.7,8.7,0,0,1,461.469,217.37Z"></path>
-                </svg>
-                <span className="text-xl font-bold">4.5</span>
-              </div>
-            </div>
-            <div className="p-4 space-y-2 text-sm dark:text-white">
-              <p>
-                EduSpace არის ნამდვილი ძვირფასი ქვა, როგორც დამწყებთათვის, ასევე
-                ექსპერტებისთვის. პერსონალიზებული სასწავლო გზა და მენტორებთან
-                წვდომა ფასდაუდებელია. მე გავიზარდე როგორც პროგრამისტი ამ
-                აპლიკაციის წყალობით.
-              </p>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </div>
     </>

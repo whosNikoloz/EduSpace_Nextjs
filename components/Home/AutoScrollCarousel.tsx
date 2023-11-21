@@ -107,7 +107,7 @@ const AutoScrollCarousel = () => {
               <>
                 <li className="splide__slide">
                   <div className="slide-content">
-                    <div className="max-w-xsborder  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div className="max-w-xsborder  rounded-lg shadow bg-gray-800 border-gray-700">
                       <Link href="#">
                         <div className="flex items-center animate-pulse justify-center h-24 md:h-48 mb-4 rounded dark:bg-gray-700">
                           <svg
@@ -130,7 +130,7 @@ const AutoScrollCarousel = () => {
                 </li>
                 <li className="splide__slide">
                   <div className="slide-content">
-                    <div className="max-w-xsborder  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div className="max-w-xsborder  rounded-lg shadow bg-gray-800 border-gray-700 ">
                       <Link href="#">
                         <div className="flex items-center animate-pulse justify-center h-24 md:h-48 mb-4 rounded dark:bg-gray-700">
                           <svg

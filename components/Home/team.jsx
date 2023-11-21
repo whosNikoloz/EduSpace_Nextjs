@@ -26,8 +26,8 @@ export const Team = () => {
                       src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar1.png"
                       className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
                       alt="title image"
-                      width={150}
-                      height={150}
+                      width={120}
+                      height={120}
                     />
                   </div>
                   <div className="pt-6 text-center">
@@ -138,8 +138,8 @@ export const Team = () => {
                       src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar3.png"
                       className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
                       alt="title image"
-                      width={150}
-                      height={150}
+                      width={120}
+                      height={120}
                     />
                   </div>
                   <div className="pt-6 text-center">
@@ -251,8 +251,8 @@ export const Team = () => {
                       src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar2.png"
                       className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
                       alt="title image"
-                      width={150}
-                      height={150}
+                      width={120}
+                      height={120}
                     />
                   </div>
                   <div className="pt-6 text-center">
@@ -364,8 +364,8 @@ export const Team = () => {
                       src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar4.png"
                       className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
                       alt="title image"
-                      width={150}
-                      height={150}
+                      width={120}
+                      height={120}
                     />
                   </div>
                   <div className="pt-6 text-center">
