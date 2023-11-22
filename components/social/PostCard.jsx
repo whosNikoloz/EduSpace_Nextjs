@@ -132,6 +132,7 @@ function PostCard({ postData, onDelete }) {
       );
       onDelete(postData.postId); // Notify the parent component about the deletion
       setdeleteSuccessSuccess(false);
+      onOpenChangeWarning(false);
     } catch (error) {
       console.error("Error deleting post:", error);
     }
