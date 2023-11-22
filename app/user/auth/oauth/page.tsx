@@ -91,10 +91,10 @@ export default function OauthPage() {
       }
     }
     oauth();
-  }, [session,auth]);
+  }, [session, auth]);
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 mt-20">
+    <section className="flex flex-col items-center bg-black justify-center gap-4 py-8 md:py-10 mt-20">
       <div className={Styles.Loader}>
         <Image
           src={EduSpace}
