@@ -1,26 +1,45 @@
 "use client";
 
-const MainLayout = dynamic(() => import("@/app/layouts/Mainlayout"));
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+import Styles from "@/styles/loader.module.css";
+import EduSpace from "@/public/EduSpaceLogo.png";
+import { Hero } from "@/components/Home/hero";
+import MainLayout from "@/app/layouts/Mainlayout";
+
+// Lazy load MainLayout and AutoScrollCarousel
+
+const FAB = dynamic(() => import("@/components/FAB"));
 const AutoScrollCarousel = dynamic(
   () => import("@/components/Home/AutoScrollCarousel")
 );
-import { Team } from "@/components/Home/team";
-import Stats from "@/components/Home/Stats";
-import Macbook from "@/components/Home/Macbook";
-import { Steps } from "@/components/Home/steps";
-import { Hero } from "@/components/Home/Hero";
-import { Pricing } from "@/components/Home/pricing";
-import { CustomTitle } from "@/components/CustomTitle";
-import Review from "@/components/Home/review";
-import CompilerSection from "@/components/Home/compilerSection";
-import { ConnectorFirst } from "@/components/Home/ConnectorFirst";
-import { ConnectorSecond } from "@/components/Home/ConnectorSecond";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import Styles from "@/styles/loader.module.css";
-import EduSpace from "@/public/EduSpaceLogo.png";
-import dynamic from "next/dynamic";
-import FAB from "@/components/FAB";
+
+// Lazy load Review component
+const Review = dynamic(() => import("@/components/Home/review"));
+
+// Lazy load Team, CompilerSection, Stats, and Steps components
+const Team = dynamic(() =>
+  import("@/components/Home/team").then((module) => module.Team)
+);
+const CompilerSection = dynamic(
+  () => import("@/components/Home/compilerSection")
+);
+const ConnectorFirst = dynamic(() =>
+  import("@/components/Home/connectorFirst").then(
+    (module) => module.ConnectorFirst
+  )
+);
+const ConnectorSecond = dynamic(() =>
+  import("@/components/Home/connectorSecond").then(
+    (module) => module.ConnectorSecond
+  )
+);
+
+const Stats = dynamic(() => import("@/components/Home/Stats"));
+const Steps = dynamic(() =>
+  import("@/components/Home/steps").then((module) => module.Steps)
+);
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);

@@ -3,13 +3,29 @@
 import MainLayout from "@/app/layouts/Mainlayout";
 import React, { Key, useState, useEffect, useRef } from "react";
 const PostCard = React.lazy(() => import("@/components/social/PostCard"));
-import CreatePost from "@/components/social/CreatePost";
-import SearchSubject from "@/components/social/SearchSubject";
+import dynamic from "next/dynamic";
 import Social from "../api/Social/Post";
 import { useQuery } from "react-query";
-import PostCardSkeleton from "@/components/social/PostCardSkeleton";
-import { CustomTitle } from "@/components/CustomTitle";
 import toast, { Toaster } from "react-hot-toast";
+
+const CreatePost = dynamic(() =>
+  import("@/components/social/CreatePost").then((module) => module.default)
+);
+
+const SearchSubject = dynamic(
+  () => import("@/components/social/SearchSubject")
+);
+
+// Lazy load Review component
+const PostCardSkeleton = dynamic(
+  () => import("@/components/social/PostCardSkeleton")
+);
+
+// Lazy load Team, CompilerSection, Stats, and Steps components
+const CustomTitle = dynamic(() =>
+  import("@/components/CustomTitle").then((module) => module.CustomTitle)
+);
+
 
 export default function SocialPage() {
   const [pageNumber, setPageNumber] = useState(1);
