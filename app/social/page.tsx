@@ -2,92 +2,69 @@
 
 import MainLayout from "@/app/layouts/Mainlayout";
 import React, { Key, useState, useEffect, useRef } from "react";
-const PostCard = React.lazy(() => import("@/components/social/PostCard"));
-import dynamic from "next/dynamic";
 import Social from "../api/Social/Post";
-import { useQuery } from "react-query";
+import { useInfiniteQuery, useQuery, useQueryClient } from "react-query";
 import toast, { Toaster } from "react-hot-toast";
+import Styles from "@/styles/loader.module.css";
+import Image from "next/image";
+import EduSpace from "@/public/EduSpaceLogo.png";
 
-const CreatePost = dynamic(() =>
-  import("@/components/social/CreatePost").then((module) => module.default)
-);
+import CreatePost from "@/components/social/CreatePost";
 
-const SearchSubject = dynamic(
-  () => import("@/components/social/SearchSubject")
-);
+import SearchSubject from "@/components/social/SearchSubject";
 
-// Lazy load Review component
-const PostCardSkeleton = dynamic(
-  () => import("@/components/social/PostCardSkeleton")
-);
+import PostCardSkeleton from "@/components/social/PostCardSkeleton";
 
-// Lazy load Team, CompilerSection, Stats, and Steps components
-const CustomTitle = dynamic(() =>
-  import("@/components/CustomTitle").then((module) => module.CustomTitle)
-);
+const PostCard = React.lazy(() => import("@/components/social/PostCard"));
 
+import { CustomTitle } from "@/components/CustomTitle";
 
 export default function SocialPage() {
-  const [pageNumber, setPageNumber] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [posts, setPosts] = useState<
     Array<{ postId: Key | null | undefined; subject: string }>
   >([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [hasMorePages, setHasMorePages] = useState(true);
-  const [isLoadingNewPosts, setIsLoadingNewPosts] = useState(false);
 
-  const [scrollPosition, setScrollPosition] = useState(0); // Store the scroll position
-
-  const fetchPosts = async () => {
+  const fetchPosts = async ({ pageParam = 1 }) => {
     const post = Social();
-    const response = await post.GetPosts(pageNumber, 10);
-    return response;
+    const response = await post.GetPosts(pageParam, 2);
+    return { posts: response, hasNextPage: response.length > 0 };
   };
 
-  const { data, isLoading, isError } = useQuery(
-    ["posts", pageNumber],
-    fetchPosts,
-    {
-      staleTime: 60000,
-      refetchOnWindowFocus: false,
-      refetchInterval: 10000,
-    }
-  );
+  const { data, fetchNextPage, hasNextPage, isLoading, isError, isFetching } =
+    useInfiniteQuery(["posts"], fetchPosts, {
+      getNextPageParam: (lastPage, pages) => {
+        if (!lastPage.hasNextPage) return undefined;
+        return pages.length + 1;
+      },
+    });
 
   useEffect(() => {
     if (data) {
-      if (data.length === 0) {
-        setHasMorePages(false);
-      } else {
-        // Filter out duplicate posts based on their postId
-        const uniqueData = data.filter(
-          (newPost: { postId: React.Key | null | undefined }) => {
-            return !posts.some((post) => post.postId === newPost.postId);
-          }
-        );
-
-        // Prepend the new unique posts to the existing posts array
-        setPosts((prevPosts) => [...uniqueData, ...prevPosts]);
-        setIsLoadingMore(false);
-        setIsLoadingNewPosts(false);
-      }
+      setPosts(data.pages.flatMap((page) => page.posts));
     }
-
-    // Update the filteredPosts array with the new post
-    setSearchQuery(""); // Clear the search query to show all posts
-  }, [data, posts]);
+  }, [data]);
 
   useEffect(() => {
-    const pollingInterval = setInterval(async () => {
-      const updatedPosts = await fetchPosts(); // Make an API call to get the latest posts
-      setPosts(updatedPosts);
-    }, 5000); // Polling interval, e.g., every 5 seconds
-
-    return () => {
-      clearInterval(pollingInterval); // Clear the interval when the component unmounts
+    const handleScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+        hasNextPage
+      ) {
+        fetchNextPage();
+      }
     };
-  });
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasNextPage, fetchNextPage]);
+
+  const handleDeletePost = (postId: any) => {
+    setPosts((oldPosts) => oldPosts.filter((post) => post.postId !== postId));
+
+    toast.success("წარმატებით წაიშალა");
+  };
 
   const filteredPosts = searchQuery
     ? posts.filter((post) =>
@@ -95,107 +72,50 @@ export default function SocialPage() {
       )
     : posts;
 
-  const endOfListRef = useRef<HTMLDivElement | null>(null);
-
-  const handleScroll = () => {
-    setScrollPosition(window.scrollY); // Store the current scroll position
-
-    if (
-      endOfListRef.current &&
-      window.innerHeight + window.scrollY >= endOfListRef.current.offsetTop &&
-      !isLoadingNewPosts && // Only fetch new posts if not already loading
-      !isLoadingMore && // Only fetch new posts if not already loading more
-      hasMorePages
-    ) {
-      fetchNewPosts();
-    }
-  };
-
-  const fetchNewPosts = async () => {
-    setIsLoadingMore(true);
-    setIsLoadingNewPosts(true);
-
-    try {
-      const post = Social();
-      const response = await post.GetPosts(pageNumber + 1, 10); // Fetch the next page
-      if (response.length === 0) {
-        setHasMorePages(false);
-      } else {
-        await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate loading
-        // Update the posts state with the new posts
-        setPosts((prevPosts) => [...prevPosts, ...response]);
-        setPageNumber((prevPage) => prevPage + 1);
-        // Restore the scroll position after loading new posts
-        window.scrollTo(0, scrollPosition);
-        console.log("New posts fetched:", response);
-        console.log("posts fetched:", filteredPosts);
-      }
-    } catch (error) {
-      // Handle error here and set isError state
-      console.error("Error fetching new posts:", error);
-    } finally {
-      setIsLoadingMore(false);
-      setIsLoadingNewPosts(false);
-    }
-  };
-
-  const handleDeletePost = (postId: Key | null | undefined) => {
-    // Remove the deleted post from the posts array
-    setPosts((prevPosts) => prevPosts.filter((post) => post.postId !== postId));
-
-    toast.success("წარმატებით წაიშალა");
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [
-    isLoadingNewPosts,
-    isLoadingMore,
-    hasMorePages,
-    scrollPosition,
-    handleScroll,
-  ]);
-
   return (
-    <MainLayout>
-      <SearchSubject searchPostFunction={setSearchQuery} />
-      <br />
-      <CreatePost setPosts={setPosts} />
+    <>
       {isLoading ? (
-        <>
+        <MainLayout>
+          <SearchSubject searchPostFunction={setSearchQuery} />
+          <br />
           <PostCardSkeleton />
           <PostCardSkeleton />
           <PostCardSkeleton />
-          <PostCardSkeleton />
-        </>
+        </MainLayout>
       ) : isError ? (
-        <p>Error fetching data</p>
+        <MainLayout>
+          <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 mt-20">
+            <div className={Styles.Loader}>
+              <h1>Failed To Load</h1>
+            </div>
+          </section>
+        </MainLayout>
       ) : (
-        <>
-          {searchQuery && (
-            <CustomTitle
-              title1={"გაიფილტრა"}
-              title2={searchQuery}
-              margin={14}
-              direct={"center"}
-            />
-          )}
-          {filteredPosts.map((post: { postId: Key | null | undefined }) => (
-            <PostCard
-              key={post.postId}
-              postData={post}
-              onDelete={handleDeletePost}
-            />
-          ))}
-          <Toaster position="bottom-left" reverseOrder={false} />
-          {isLoadingNewPosts && <PostCardSkeleton />}
-
-          <div ref={endOfListRef}></div>
-        </>
+        <MainLayout>
+          <SearchSubject searchPostFunction={setSearchQuery} />
+          <br />
+          <CreatePost setPosts={setPosts} />
+          <>
+            {searchQuery && (
+              <CustomTitle
+                title1={"გაიფილტრა"}
+                title2={searchQuery}
+                margin={14}
+                direct={"center"}
+              />
+            )}
+            {filteredPosts.map((post: { postId: Key | null | undefined }) => (
+              <PostCard
+                key={post.postId}
+                postData={post}
+                onDelete={handleDeletePost}
+              />
+            ))}
+            <Toaster position="bottom-left" reverseOrder={false} />
+            {isFetching && <PostCardSkeleton />}
+          </>
+        </MainLayout>
       )}
-    </MainLayout>
+    </>
   );
 }

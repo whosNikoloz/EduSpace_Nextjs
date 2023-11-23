@@ -6,13 +6,9 @@ import dynamic from "next/dynamic";
 import CoursesAPI from "@/app/api/Learn/Course";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import ProgressAPI from "@/app/api/Learn/Progress";
-
-const MainLayout = dynamic(() => import("@/app/layouts/Mainlayout"));
-const Hero = dynamic(() =>
-  import("@/components/Learn/Hero").then((module) => module.Hero)
-);
-const Subject = dynamic(() => import("@/components/Learn/subject"));
-
+import MainLayout from "@/app/layouts/Mainlayout";
+import { Hero } from "@/components/Learn/Hero";
+import Subject from "@/components/Learn/subject";
 
 interface Course {
   courseId: number;
