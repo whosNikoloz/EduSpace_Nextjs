@@ -85,7 +85,7 @@ const FAB: React.FC = () => {
                     className="pr-4 h-[474px]"
                     style={{ minWidth: "100%", display: "table" }}
                   >
-                    <div className="flex gap-3 my-4 text-gray-600 text-sm flex-1">
+                    <div className="flex gap-3 my-4 text-gray-600 dark:text-white text-sm flex-1">
                       <span className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8">
                         <div className="rounded-full bg-gray-100 border p-1">
                           <svg
@@ -106,8 +106,8 @@ const FAB: React.FC = () => {
                           </svg>
                         </div>
                       </span>
-                      <p className="leading-relaxed">
-                        <span className="block font-bold text-gray-700">
+                      <p className="leading-relaxed dark:text-white">
+                        <span className="block font-bold text-gray-700 dark:text-blue-600">
                           AI{" "}
                         </span>
                         Hi, how can I help you today?
@@ -130,8 +130,8 @@ const FAB: React.FC = () => {
                           </svg>
                         </div>
                       </span>
-                      <p className="leading-relaxed">
-                        <span className="block font-bold text-gray-700">
+                      <p className="leading-relaxed dark:text-white">
+                        <span className="block font-bold text-gray-700 dark:text-blue-600">
                           You{" "}
                         </span>
                         fewafef
@@ -158,8 +158,8 @@ const FAB: React.FC = () => {
                           </svg>
                         </div>
                       </span>
-                      <p className="leading-relaxed">
-                        <span className="block font-bold text-gray-700">
+                      <p className="leading-relaxed dark:text-white">
+                        <span className="block font-bold text-gray-700 dark:text-blue-600">
                           AI{" "}
                         </span>
                         Sorry, I couldn&apos;t find any information in the
@@ -174,13 +174,13 @@ const FAB: React.FC = () => {
                   <div className="flex items-center pt-0">
                     <form className="flex items-center justify-center w-full space-x-2">
                       <input
-                        className="flex h-10 w-full rounded-md border border-[#e5e7eb] px-3 py-2 text-sm placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#9ca3af] disabled:cursor-not-allowed disabled:opacity-50 text-[#030712] focus-visible:ring-offset-2"
+                        className="flex h-10 w-full rounded-lg border border-[#e5e7eb] px-3 py-2 text-sm placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#9ca3af] disabled:cursor-not-allowed disabled:opacity-50 text-[#030712] focus-visible:ring-offset-2"
                         placeholder="Type your message"
                         value=""
                       />
-                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium text-[#f9fafb] disabled:pointer-events-none disabled:opacity-50 bg-black hover:bg-[#111827E6] h-10 px-4 py-2">
+                      <Button className="text-sm font-medium bg-black text-white  hover:bg-blue-600 h-10 px-4 py-2">
                         Send
-                      </button>
+                      </Button>
                     </form>
                   </div>
                 </ModalFooter>
