@@ -5,7 +5,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import Styles from "@/styles/loader.module.css";
 import EduSpace from "@/public/EduSpaceLogo.png";
-import { Hero } from "@/components/Home/hero";
+import { Hero } from "@/components/Home/Hero";
 import MainLayout from "@/app/layouts/Mainlayout";
 
 // Lazy load MainLayout and AutoScrollCarousel
@@ -26,12 +26,12 @@ const CompilerSection = dynamic(
   () => import("@/components/Home/compilerSection")
 );
 const ConnectorFirst = dynamic(() =>
-  import("@/components/Home/connectorFirst").then(
+  import("@/components/Home/ConnectorFirst").then(
     (module) => module.ConnectorFirst
   )
 );
 const ConnectorSecond = dynamic(() =>
-  import("@/components/Home/connectorSecond").then(
+  import("@/components/Home/ConnectorSecond").then(
     (module) => module.ConnectorSecond
   )
 );
