@@ -5,19 +5,29 @@ import React, { useState, useEffect } from "react";
 import FileUpload from "@/components/social/fileuploade";
 import { Textarea } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
-import { Button } from "@nextui-org/button";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import Posts from "@/app/api/Social/Post";
 import { Skeleton } from "@nextui-org/react";
 import { Avatar, User } from "@nextui-org/react";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+  RadioGroup,
+  Radio,
+} from "@nextui-org/react";
 
 export default function CreatePost({ setPosts }) {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isCreateLoading, setCreateLoading] = useState(false);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
 
   useEffect(() => {
@@ -104,6 +114,26 @@ export default function CreatePost({ setPosts }) {
         picture: null,
       };
     });
+  };
+
+  const resetState = () => {
+    setPostModel({
+      subject: "",
+      content: "",
+      video: null,
+      picture: null,
+      Userid: "",
+    });
+    setSelectedLanguage("");
+    setPostModelError("");
+  };
+
+  const handleModalChange = (isOpen) => {
+    if (!isOpen) {
+      resetState();
+      isOpen = false;
+    }
+    onOpenChange(isOpen);
   };
 
   const handlePost = async () => {
@@ -194,7 +224,7 @@ export default function CreatePost({ setPosts }) {
                     </div>
                     <div
                       className="w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full cursor-pointer"
-                      onClick={() => setIsOpen(true)}
+                      onClick={() => onOpen()}
                     >
                       <h3 className="md:text-md text-gray-500">
                         რა არის შენი კითხვა, {user.userName}?
@@ -204,136 +234,89 @@ export default function CreatePost({ setPosts }) {
                 </div>
               </div>
 
-              {/* create post dialog  */}
-
-              <Dialog
-                open={isOpen}
-                onClose={() => {
-                  setIsOpen(false);
-                  setPostModel({
-                    subject: "",
-                    content: "",
-                    video: null,
-                    picture: null,
-                    Userid: "",
-                  });
-                }}
-                className="fixed z-10 inset-0"
+              <Modal
+                isOpen={isOpen}
+                onOpenChange={handleModalChange}
+                scrollBehavior="inside"
+                backdrop="blur"
               >
-                <div className="flex items-center justify-center min-h-[80vh] mt-10">
-                  {/* dialog overlay  */}
-                  <Dialog.Overlay className="fixed inset-0 bg-black opacity-20 " />
-                  {/* dialog card  */}
-                  <div className="relative bg-white w-96 rounded-lg dark:bg-gray-800 mt-6">
-                    {/* dialog header  */}
-                    <div className="flex justify-center relative ">
-                      {/* dialog title  */}
-                      <Dialog.Title className=" py-4 text-xl font-bold dark:text-white">
+                <ModalContent>
+                  {(onClose) => (
+                    <>
+                      <ModalHeader className="flex flex-col gap-1">
                         დაპოსტვა
-                      </Dialog.Title>
-                      {/* dialog close icon button  */}
-                      <div className="absolute right-0 p-2">
-                        <button
-                          className="p-2  rounded-full text-black  dark:text-white"
-                          onClick={() => {
-                            setIsOpen(false);
-                            setPostModel({
-                              subject: "",
-                              content: "",
-                              video: null,
-                              picture: null,
-                              Userid: "",
-                            });
-                          }}
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                    {/* dialog body  */}
-                    <Dialog.Description>
-                      {/* post author profile */}
-                      <div className="my-2 px-4 flex items-center space-x-2">
-                        <User
-                          className="transition-transform"
-                          name={
-                            user.firstname && user.lastname
-                              ? user.firstName + " " + user.lastName
-                              : user.userName
-                          }
-                          size="sm"
-                          avatarProps={{
-                            src: user.picture,
-                          }}
-                        />
-                      </div>
-                      <div className="my-2 px-4 flex items-center space-x-2">
-                        <Select
-                          label="აირჩიე ენა"
-                          variant="bordered"
-                          className="max-w-xs"
-                          value={selectedLanguage}
-                          onChange={handleLanguageSelect}
-                        >
-                          <SelectItem value="C#">C#</SelectItem>
-                          <SelectItem value="Swift">Swift</SelectItem>
-                          <SelectItem value="Python">Python</SelectItem>
-                          <SelectItem value="C++">C++</SelectItem>
-                        </Select>
-                      </div>
-                      {/* create post interface */}
-                      <div className="px-4 py-2">
-                        <div className="mb-4">
-                          <Textarea
-                            label="კითხვა"
-                            variant="bordered"
-                            labelPlacement="outside"
-                            placeholder="დასვი კითხვა"
-                            className="max-w-xs"
-                            value={PostModel.content}
-                            onChange={(e) =>
-                              setPostModel({
-                                ...PostModel,
-                                content: e.target.value,
-                              })
+                      </ModalHeader>
+                      <ModalBody>
+                        <div className="my-2 px-4 flex items-center space-x-2">
+                          <User
+                            className="transition-transform"
+                            name={
+                              user.firstname && user.lastname
+                                ? user.firstName + " " + user.lastName
+                                : user.userName
                             }
+                            size="sm"
+                            avatarProps={{
+                              src: user.picture,
+                            }}
                           />
                         </div>
+                        <div className="my-2 px-4 flex items-center space-x-2">
+                          <Select
+                            label="აირჩიე ენა"
+                            variant="bordered"
+                            className="max-w-xs"
+                            value={selectedLanguage}
+                            onChange={handleLanguageSelect}
+                          >
+                            <SelectItem value="C#">C#</SelectItem>
+                            <SelectItem value="Swift">Swift</SelectItem>
+                            <SelectItem value="Python">Python</SelectItem>
+                            <SelectItem value="C++">C++</SelectItem>
+                          </Select>
+                        </div>
+                        {/* create post interface */}
+                        <div className="px-4 py-2">
+                          <div className="mb-4">
+                            <Textarea
+                              label="კითხვა"
+                              variant="bordered"
+                              labelPlacement="outside"
+                              placeholder="დასვი კითხვა"
+                              className="max-w-xs"
+                              value={PostModel.content}
+                              onChange={(e) =>
+                                setPostModel({
+                                  ...PostModel,
+                                  content: e.target.value,
+                                })
+                              }
+                            />
+                          </div>
 
-                        <FileUpload
-                          onFileSelect={handleFileSelect}
-                          onCancelUpload={CanceleUpload}
-                        />
-                      </div>
-
-                      <div className="my-2 px-4">
-                        <Button
-                          color="primary"
-                          className="w-full py-2"
-                          onClick={handlePost}
-                          isDisabled={!selectedLanguage || !PostModel.content}
-                          isLoading={isCreateLoading}
-                        >
-                          დაპოსტვა
-                        </Button>
-                      </div>
-                    </Dialog.Description>
-                  </div>
-                </div>
-              </Dialog>
+                          <FileUpload
+                            onFileSelect={handleFileSelect}
+                            onCancelUpload={CanceleUpload}
+                          />
+                        </div>
+                      </ModalBody>
+                      <ModalFooter>
+                        <div className="my-2 px-4">
+                          <Button
+                            color="primary"
+                            className="w-full py-2"
+                            onClick={handlePost}
+                            isDisabled={!selectedLanguage || !PostModel.content}
+                            isLoading={isCreateLoading}
+                          >
+                            დაპოსტვა
+                          </Button>
+                        </div>
+                      </ModalFooter>
+                    </>
+                  )}
+                </ModalContent>
+              </Modal>
             </>
           ) : (
             // Render this content if user is null
