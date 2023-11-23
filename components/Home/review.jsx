@@ -34,7 +34,7 @@ const Review = () => {
                   <div className="w-full mx-auto rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px]  p-5 text-gray-800  font-light mb-6">
                     <div className="w-full flex mb-4 items-center">
                       <div className="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
-                        <img src="https://i.pravatar.cc/100?img=1" alt="" />
+                        <Image src="https://i.pravatar.cc/100?img=1" alt="" />
                       </div>
                       <div className="flex-grow pl-3">
                         <h6 className="font-bold text-sm uppercase text-gray-600 dark:text-white">
@@ -57,7 +57,7 @@ const Review = () => {
                   <div className="w-full mx-auto rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px]   p-5 text-gray-800  font-light mb-6">
                     <div className="w-full flex mb-4 items-center">
                       <div className="overflow-hidden rounded-full w-10 h-10   ">
-                        <img src="https://i.pravatar.cc/100?img=3" alt="" />
+                        <Image src="https://i.pravatar.cc/100?img=3" alt="" />
                       </div>
                       <div className="flex-grow pl-3">
                         <h6 className="font-bold text-sm uppercase text-gray-600 dark:text-white">
@@ -80,7 +80,7 @@ const Review = () => {
                   <div className="w-full mx-auto rounded-lg  shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20  backdrop-blur-[30px] p-5 text-gray-800  font-light mb-6">
                     <div className="w-full flex mb-4 items-center">
                       <div className="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
-                        <img src="https://i.pravatar.cc/100?img=5" alt="" />
+                        <Image src="https://i.pravatar.cc/100?img=5" alt="" />
                       </div>
                       <div className="flex-grow pl-3">
                         <h6 className="font-bold text-sm uppercase text-gray-600 dark:text-white">

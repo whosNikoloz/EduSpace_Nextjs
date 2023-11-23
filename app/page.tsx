@@ -9,11 +9,11 @@ import { Hero } from "@/components/Home/Hero";
 import MainLayout from "@/app/layouts/Mainlayout";
 import FAB from "@/components/FAB";
 
-
 const AutoScrollCarousel = dynamic(
   () => import("@/components/Home/AutoScrollCarousel")
 );
 
+const Feature = dynamic(() => import("@/components/Home/Feature"));
 // Lazy load Review component
 const Review = dynamic(() => import("@/components/Home/review"));
 
@@ -88,11 +88,12 @@ export default function Home() {
           <div className="hidden md:block">
             <ConnectorSecond text="ყველა საიდანღაც იწყებს" />
           </div>
-          <section className=" items-center justify-center gap-4 py-8 md:py-10">
-            <div className="mt-7">
-              <Team />
+
+          <div className="mt-7 ">
+            <div className="mt-20 mb-7">
+              <Feature />
             </div>
-          </section>
+          </div>
           <div className="hidden md:block">
             <ConnectorFirst text="არ არსებობს იდეალური დრო" />
           </div>
@@ -104,6 +105,15 @@ export default function Home() {
           <div className="hidden md:block">
             <ConnectorSecond text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
           </div>
+          <section className=" items-center justify-center gap-4 py-8 md:py-10">
+            <div className="mt-7">
+              <Team />
+            </div>
+          </section>
+
+          <div className="hidden md:block">
+            <ConnectorFirst text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
+          </div>
           <section
             className=" items-center justify-center gap-4 py-8 md:py-10"
             id="step-section"
@@ -114,8 +124,9 @@ export default function Home() {
               </div>
             </div>
           </section>
+
           <div className="hidden md:block">
-            <ConnectorFirst text="გააგრძელეთ კოდირება, განაგრძეთ სწავლა და განაგრძეთ ზრდა." />
+            <ConnectorSecond text="გააგრძელეთ კოდირება, განაგრძეთ სწავლა და განაგრძეთ ზრდა." />
           </div>
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
             <div className="mt-7 ">
@@ -125,7 +136,7 @@ export default function Home() {
             </div>
           </section>
           <div className="hidden md:block">
-            <ConnectorSecond text="წარუმატებლობა მხოლოდ დროებითი შეცდომაა" />
+            <ConnectorFirst text="წარუმატებლობა მხოლოდ დროებითი შეცდომაა" />
           </div>
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
             <div className=" text-center   justify-center">
