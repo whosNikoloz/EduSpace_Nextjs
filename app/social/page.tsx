@@ -111,6 +111,14 @@ export default function SocialPage() {
                 onDelete={handleDeletePost}
               />
             ))}
+            {!hasNextPage && (
+              <CustomTitle
+                title1={"ვსო"}
+                title2={searchQuery}
+                margin={14}
+                direct={"center"}
+              />
+            )}
             <Toaster position="bottom-left" reverseOrder={false} />
             {isFetching && <PostCardSkeleton />}
           </>
