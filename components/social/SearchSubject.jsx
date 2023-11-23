@@ -50,7 +50,7 @@ const SearchSubject = ({ searchPostFunction }) => {
         ))}
       </datalist>
       <br />
-      <Button radius="full" color="primary" onClick={handleSearch}>
+      <Button  color="primary" onClick={handleSearch}>
         ძებნა
       </Button>
     </div>

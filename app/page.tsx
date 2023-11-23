@@ -7,10 +7,9 @@ import Styles from "@/styles/loader.module.css";
 import EduSpace from "@/public/EduSpaceLogo.png";
 import { Hero } from "@/components/Home/Hero";
 import MainLayout from "@/app/layouts/Mainlayout";
+import FAB from "@/components/FAB";
 
-// Lazy load MainLayout and AutoScrollCarousel
 
-const FAB = dynamic(() => import("@/components/FAB"));
 const AutoScrollCarousel = dynamic(
   () => import("@/components/Home/AutoScrollCarousel")
 );
