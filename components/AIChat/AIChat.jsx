@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useChat } from "ai/react";
 import { useUser } from "@/app/dbcontext/UserdbContext";
+import { EduSpace } from "./EduSpaceLogo";
 
 import {
   Modal,
