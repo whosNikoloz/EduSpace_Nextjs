@@ -18,7 +18,7 @@ export const UserCard: FC<UserCardProps> = ({
   createdate,
   onSelectionChange,
 }) => {
-  const [selectedOption, setSelectedOption] = useState("Edit"); // Default selection
+  const [selectedOption, setSelectedOption] = useState("Main"); // Default selection
 
   const handleButtonClick = (option: string) => {
     setSelectedOption(option);
@@ -34,7 +34,7 @@ export const UserCard: FC<UserCardProps> = ({
               isBordered
               className="w-24 h-24"
               color="primary"
-              src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
+              src={profilepicture}
             />
             <h1 className="text-2xl font-bold dark:text-white mt-4">
               @{username}

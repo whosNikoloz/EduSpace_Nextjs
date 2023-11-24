@@ -159,7 +159,12 @@ export const Navbar = () => {
                       <p className="font-semibold">შესულიხარ როგორც</p>
                       <p className="font-semibold">{user.email}</p>
                     </DropdownItem>
-                    <DropdownItem key="settings">პარამეტრები</DropdownItem>
+                    <DropdownItem key="settings">
+                      <Link href={`/user/profile`}>
+                        პარამეტრები
+                      </Link>
+                    </DropdownItem>
+
                     <DropdownItem key="help_and_feedback">
                       დახმარება
                     </DropdownItem>

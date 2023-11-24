@@ -6,9 +6,11 @@ import { UserCard } from "@/components/profile/userCard";
 import { UserEdit } from "@/components/profile/userEdit";
 import { UserProgress } from "@/components/profile/userProgress";
 import MainLayout from "@/app/layouts/Mainlayout";
+import { useUser } from "@/app/dbcontext/UserdbContext";
 
 export default function ProfilePage() {
-  const [selectedOption, setSelectedOption] = useState("Edit");
+  const [selectedOption, setSelectedOption] = useState("Main");
+  const { user } = useUser();
 
   const handleSelectionChange = (option: string) => {
     setSelectedOption(option);
@@ -19,10 +21,10 @@ export default function ProfilePage() {
         <div className="container mx-auto py-8">
           <div className="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
             <UserCard
-              username="nika_kobaidze"
-              firstname="Nika"
-              lastname="Kobaidze"
-              profilepicture="https://example.com/profile.jpg"
+              username={user?.userName || ""}
+              firstname={user?.firstName || ""}
+              lastname={user?.lastName || ""}
+              profilepicture={user?.picture || ""}
               createdate="2023-11-24"
               onSelectionChange={handleSelectionChange}
             />
