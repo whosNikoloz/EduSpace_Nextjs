@@ -14,6 +14,7 @@ class User {
   lastName: string;
   picture: string;
   email: string;
+  oauth: boolean;
   role: string;
   posts: Array<{
     postId: number;
@@ -43,6 +44,7 @@ class User {
     lastName: string,
     picture: string,
     email: string,
+    oauth: boolean,
     role: string,
     posts: {
       postId: number;
@@ -70,6 +72,7 @@ class User {
     this.lastName = lastName;
     this.picture = picture;
     this.email = email;
+    this.oauth = oauth;
     this.role = role;
     this.posts = posts;
     this.notification = notification;

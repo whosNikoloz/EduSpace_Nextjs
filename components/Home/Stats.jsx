@@ -47,7 +47,7 @@ const Stats = () => {
       <div className="container mx-auto text-center lg:text-left xl:px-32">
         <div className="grid items-center lg:grid-cols-2">
           <div className="mb-12 lg:mb-0">
-            <div className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-black/20 md:px-12 lg:-mr-14 backdrop-blur-[30px]">
+            <div className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[#1d1d1d] dark:shadow-black/20 md:px-12 lg:-mr-14 backdrop-blur-[30px]">
               <h2 className="mb-6 text-4xl font-bold">Why is it so great?</h2>
               <p className="mb-12 text-neutral-500 dark:text-neutral-300">
                 Nunc tincidunt vulputate elit. Mauris varius purus malesuada
@@ -96,9 +96,6 @@ const Stats = () => {
           </Reveal>
         </div>
       </div>
-
-
-      
     </>
   );
 };

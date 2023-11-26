@@ -143,7 +143,7 @@ const AuthPage: React.FC = () => {
               )}
 
               <Link
-                className="text-blue-600 ml-auto md:ml-0 py-2 md:ml-52"
+                className="text-blue-600 ml-auto py-2 md:ml-52"
                 href="/user/forgot-password"
               >
                 პაროლი დაგავიწყდა ?
@@ -310,8 +310,8 @@ const AuthPage: React.FC = () => {
             <div className={Style.content}>
               <h3>ახალი ხარ ?</h3>
               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Debitis, ex ratione. Aliquid!
+                ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი
+                ტექსტი
               </p>
               <button
                 className={`${Style.btn} ${Style.transparent}`}
@@ -327,8 +327,8 @@ const AuthPage: React.FC = () => {
             <div className={Style.content}>
               <h3>ერთ-ერთი ჩვენგანი ხარ ?</h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-                laboriosam ad deleniti.
+                ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი
+                ტექსტი
               </p>
               <button
                 className={`${Style.btn} ${Style.transparent}`}

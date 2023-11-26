@@ -1,8 +1,3 @@
-"use client";
-
-import { useState } from "react";
-import { Button } from "@nextui-org/react";
-
 export const AppLinks = () => {
   return (
     <section className="py-6 dark:bg-black dark:text-white">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Compiler } from "@/components/Home/compiler";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";

@@ -1,13 +1,6 @@
-"use client";
-
 import React from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { GithubIcon } from "@/components/icons";
 import { Reveal } from "../RevealFramer";
-import {
-  CertificationIcon,
-  VectorIcon,
-} from "@/components/Learn/CertificationIcon";
+import { CertificationIcon } from "@/components/Learn/CertificationIcon";
 
 export const Steps = () => {
   return (

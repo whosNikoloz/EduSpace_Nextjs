@@ -1,8 +1,4 @@
-"use client";
-
-import React, { useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React from "react";
 import { Reveal } from "../RevealFramer";
 
 export const ConnectorSecond = ({ text }) => {

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import { GitBashIcon } from "@/components/Home/GitBashIcon";
