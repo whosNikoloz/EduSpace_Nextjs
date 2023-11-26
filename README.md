@@ -1,6 +1,6 @@
-# Next.js & NextUI Template
+# Eduspace: Next.js
 
-This is a template for creating applications using Next.js 13 (app directory) and NextUI (v2).
+This template is designed for developing applications within the Eduspace project, focusing on Programming online with AI. Eduspace also features a social platform where users can ask questions and engage in discussions.
 
 ## Technologies Used
 
@@ -14,27 +14,11 @@ This is a template for creating applications using Next.js 13 (app directory) an
 
 ## How to Use
 
-
 ### Use the template with create-next-app
 
-To create a new project based on this template using `create-next-app`, run the following command:
-
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
-
-### Install dependencies
-
-```bash
-npm install
-```
-
-### Run the development server
-
-```bash
-npm run dev
-```
+- [Programming with AI](Eduspace provides a platform for online programming, incorporating AI features to enhance the learning experience.)
+- [Social Platform](Engage with the community through the social platform where users can ask questions, participate in discussions, and share knowledge.)
 
 ## License
 
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
+This template is licensed under the MIT license. Customize and use it for your Eduspace project. For any questions or issues, please refer to the repository for more information.
