@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { Hero } from "@/components/Home/Hero";
 import MainLayout from "@/app/layouts/Mainlayout";
-import FAB from "@/components/FAB";
+const Fab = dynamic(() => import("@/components/FAB"), { ssr: false });
 import { ConnectorFirst } from "@/components/Home/ConnectorFirst";
 
 const AutoScrollCarousel = dynamic(
@@ -109,7 +109,7 @@ export default function Home() {
             <Review />
           </div>
         </section>
-        <FAB />
+        <Fab />
       </MainLayout>
     </>
   );
