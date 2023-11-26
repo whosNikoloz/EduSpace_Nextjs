@@ -9,6 +9,7 @@ import Styles from "@/styles/loader.module.css";
 import Image from "next/image";
 import EduSpace from "@/public/EduSpaceLogo.png";
 import { useRouter } from "next/navigation";
+import UserCardSkeleton from "@/components/profile/userCardSkeleton";
 
 export default function ProfilePage() {
   const [selectedOption, setSelectedOption] = useState("Main");
@@ -35,16 +36,28 @@ export default function ProfilePage() {
 
   if (isLoading || !user) {
     return (
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 mt-20">
-        <div className={Styles.Loader}>
-          <Image
-            src={EduSpace}
-            alt="Description of the image"
-            width={100}
-            height={100}
-          />
+      <div className="container mx-auto py-8">
+        <div className="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
+          <UserCardSkeleton />
+          {/* Render content based on the selected option */}
+          {selectedOption === "Edit" ? (
+            <>
+              <UserEdit
+                username={""}
+                firstname={""}
+                lastname={""}
+                profilepicture={""}
+                createdate={""}
+                onSelectionChange={function (selectedOption: string): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
+            </>
+          ) : (
+            <UserProgress />
+          )}
         </div>
-      </section>
+      </div>
     );
   }
 

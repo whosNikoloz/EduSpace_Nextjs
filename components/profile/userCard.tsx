@@ -46,6 +46,7 @@ export const UserCard: FC<UserCardProps> = ({
               <ButtonGroup>
                 <Button
                   color="primary"
+                  className="dark:text-white"
                   variant={selectedOption === "Edit" ? "shadow" : "ghost"}
                   onClick={() => handleButtonClick("Edit")}
                 >
@@ -53,6 +54,7 @@ export const UserCard: FC<UserCardProps> = ({
                 </Button>
                 <Button
                   color="primary"
+                  className="dark:text-white"
                   variant={selectedOption === "Main" ? "shadow" : "ghost"}
                   onClick={() => handleButtonClick("Main")}
                 >
