@@ -3,6 +3,7 @@ import { Button, Avatar } from "@nextui-org/react";
 import UploadProfilePic from "@/components/profile/uploadProfilePic";
 import { Reveal } from "../RevealFramer";
 import NameEdit from "./nameEdit";
+import PasswordEdit from "./passwordEdit";
 
 interface UserEditProps {
   username: string;
@@ -50,11 +51,7 @@ export const UserEdit: FC<UserEditProps> = ({
         <div className="shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
           <Reveal direction="up">
             <div className=" bg-[hsla(0,0%,100%,0.8)]  dark:bg-[#1f1e1e] dark:shadow-black/20 backdrop-blur-[30px] rounded-lg p-6 ">
-              <UploadProfilePic
-                onFileSelect={undefined}
-                onCancelUpload={undefined}
-                profilePic={profilepicture}
-              />
+              <PasswordEdit />
             </div>
           </Reveal>
         </div>
