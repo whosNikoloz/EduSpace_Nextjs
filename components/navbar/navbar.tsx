@@ -122,7 +122,7 @@ export const Navbar = () => {
             <NavbarItem>
               <div className="max-w-[300px] w-full flex items-center gap-3">
                 <div>
-                  <div className="flex items-center mt-4 space-x-3 mb-2.5">
+                  <div className="flex items-center mt-4 space-x-3 mb-2.5 animate-pulse">
                     <svg
                       className="w-10 h-10 text-gray-200 dark:text-gray-700"
                       aria-hidden="true"

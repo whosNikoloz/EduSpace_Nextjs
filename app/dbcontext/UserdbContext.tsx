@@ -36,6 +36,7 @@ class User {
     commentAuthorPicture: string;
     userId: number;
   }>;
+  joinedAt: string;
 
   constructor(
     userId: number,
@@ -64,7 +65,8 @@ class User {
       commentAuthorUsername: string;
       commentAuthorPicture: string;
       userId: number;
-    }[]
+    }[],
+    joinedAt: string
   ) {
     this.userId = userId;
     this.userName = userName;
@@ -76,6 +78,7 @@ class User {
     this.role = role;
     this.posts = posts;
     this.notification = notification;
+    this.joinedAt = joinedAt;
   }
 }
 

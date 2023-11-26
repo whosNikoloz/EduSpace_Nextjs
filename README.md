@@ -16,8 +16,8 @@ This template is designed for developing applications within the Eduspace projec
 
 ### Use the template with create-next-app
 
-- [Programming with AI](Eduspace provides a platform for online programming, incorporating AI features to enhance the learning experience.)
-- [Social Platform](Engage with the community through the social platform where users can ask questions, participate in discussions, and share knowledge.)
+- Programming with AI : Eduspace provides a platform for online programming, incorporating AI features to enhance the learning experience.
+- Social Platform : Engage with the community through the social platform where users can ask questions, participate in discussions, and share knowledge.
 
 ## License
 

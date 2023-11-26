@@ -69,7 +69,7 @@ export default function ProfilePage() {
           firstname={user.firstName}
           lastname={user.lastName}
           profilepicture={user.picture}
-          createdate="2023-11-24"
+          joinedAt={user.joinedAt}
           onSelectionChange={handleSelectionChange}
         />
         {/* Render content based on the selected option */}

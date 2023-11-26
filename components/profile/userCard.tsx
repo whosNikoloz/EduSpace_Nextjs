@@ -6,7 +6,7 @@ interface UserCardProps {
   firstname: string;
   lastname: string;
   profilepicture: string;
-  createdate: string;
+  joinedAt: string;
   onSelectionChange: (selectedOption: string) => void;
 }
 
@@ -15,10 +15,16 @@ export const UserCard: FC<UserCardProps> = ({
   firstname,
   lastname,
   profilepicture,
-  createdate,
+  joinedAt,
   onSelectionChange,
 }) => {
   const [selectedOption, setSelectedOption] = useState("Main"); // Default selection
+
+  const date = new Date(joinedAt);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1; // getMonth() returns 0-11, so we add 1
+  const day = date.getDate();
+  const formattedDate = `${year}-${day}-${month < 10 ? "0" + month : month}`; // Outputs: 2023-16-11
 
   const handleButtonClick = (option: string) => {
     setSelectedOption(option);
@@ -68,7 +74,7 @@ export const UserCard: FC<UserCardProps> = ({
               Last active 5 months ago
             </span>
             <span className="text-gray-400  font-bold text-sm   mb-2">
-              Joined {createdate}
+              Joined {formattedDate}
             </span>
           </div>
         </div>
