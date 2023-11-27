@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import UserCardSkeleton from "@/components/profile/userCardSkeleton";
 import MainSkeleton from "@/components/profile/mainSkeleton";
 import toast, { Toaster } from "react-hot-toast";
+import Authentication from "@/app/api/User/auth";
 
 export default function ProfilePage() {
   const [selectedOption, setSelectedOption] = useState("Main");
@@ -19,10 +20,25 @@ export default function ProfilePage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
+  const RefreshUser = Authentication();
+  // Move the useState hook for generalInfo outside the conditional block
+  const [generalInfo, setGeneralInfo] = useState({
+    userName: user?.userName,
+    firstname: user?.firstName,
+    lastname: user?.lastName,
+    number: user?.phoneNumber,
+  });
+
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(async () => {
       if (!user) {
         router.push("/user/auth");
+      } else {
+        try {
+          await RefreshUser.UpdatedUser(user.userId);
+        } catch (error) {
+          console.error(error);
+        }
       }
       setIsLoading(false);
     }, 500);
@@ -30,10 +46,19 @@ export default function ProfilePage() {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [user, router]);
+  }, [user, router, RefreshUser]);
 
   const handleSelectionChange = (option: string) => {
     setSelectedOption(option);
+  };
+
+  const handleGeneralInfoChange = (updatedInfo: {
+    userName: string;
+    firstname: string;
+    lastname: string;
+    number: string;
+  }) => {
+    setGeneralInfo(updatedInfo);
   };
 
   if (isLoading || !user) {
@@ -51,9 +76,11 @@ export default function ProfilePage() {
     <div className="container mx-auto py-8">
       <div className="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
         <UserCard
-          username={user.userName}
-          firstname={user.firstName}
-          lastname={user.lastName}
+          username={generalInfo.userName ? generalInfo.userName : user.userName}
+          firstname={
+            generalInfo.firstname ? generalInfo.firstname : user.firstName
+          }
+          lastname={generalInfo.lastname ? generalInfo.lastname : user.lastName}
           profilepicture={user.picture}
           joinedAt={user.joinedAt}
           onSelectionChange={handleSelectionChange}
@@ -66,8 +93,8 @@ export default function ProfilePage() {
               firstname={user.firstName}
               lastname={user.lastName}
               profilepicture={user.picture}
-              phonenumber="577602399"
-              onSelectionChange={handleSelectionChange}
+              phonenumber={user.phoneNumber}
+              onGeneralInfoChange={handleGeneralInfoChange}
               email={user.email}
               oatuh={user.oauth}
               userid={user.userId}

@@ -1,4 +1,6 @@
-import React, { FC } from "react";
+"use Client";
+
+import React, { FC, useState } from "react";
 import { Button, Avatar } from "@nextui-org/react";
 import UploadProfilePic from "@/components/profile/uploadProfilePic";
 import { Reveal } from "../RevealFramer";
@@ -15,7 +17,12 @@ interface UserEditProps {
   lastname: string;
   phonenumber: string;
   profilepicture: string;
-  onSelectionChange: (selectedOption: string) => void;
+  onGeneralInfoChange: (updatedInfo: {
+    userName: string;
+    firstname: string;
+    lastname: string;
+    number: string;
+  }) => void;
 }
 
 export const UserEdit: FC<UserEditProps> = ({
@@ -27,8 +34,21 @@ export const UserEdit: FC<UserEditProps> = ({
   lastname,
   profilepicture,
   phonenumber,
-  onSelectionChange,
+  onGeneralInfoChange,
 }) => {
+  const [generalInfo, setGeneralInfo] = useState({
+    userName: username,
+    firstname: firstname,
+    lastname: lastname,
+    number: phonenumber,
+  });
+
+  const handleGeneralInfoChange = (updatedInfo: any) => {
+    setGeneralInfo(updatedInfo);
+    // Call the callback function to notify the parent
+    onGeneralInfoChange(updatedInfo);
+  };
+
   return (
     <>
       <div className="col-span-4 sm:col-span-9 grid lg:grid-cols-2 gap-2">
@@ -46,10 +66,12 @@ export const UserEdit: FC<UserEditProps> = ({
           <Reveal direction="up">
             <div className=" bg-[hsla(0,0%,100%,0.8)]  dark:bg-[#1f1e1e] dark:shadow-black/20 backdrop-blur-[30px] rounded-lg p-6 ">
               <GeneralEdit
-                userName={username}
-                firstname={firstname}
-                lastname={lastname}
-                number={phonenumber}
+                userName={generalInfo.userName}
+                firstname={generalInfo.firstname}
+                lastname={generalInfo.lastname}
+                number={generalInfo.number}
+                userid={userid}
+                onChange={handleGeneralInfoChange}
               />
             </div>
           </Reveal>

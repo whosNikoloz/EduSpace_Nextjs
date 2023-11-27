@@ -263,6 +263,75 @@ const Authentication = () => {
     }
   };
 
+  const handleChangeGeneral = async (
+    userid: number,
+    UserName: string,
+    FirstName: string,
+    LastName: string,
+    PhoneNumber: string
+  ) => {
+    try {
+      const token = localStorage.getItem("jwt_token");
+      const response = await fetch(user_API + "ChangeGeneral", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          // Include the bearer token in the Authorization header
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          userid,
+          UserName,
+          FirstName,
+          LastName,
+          PhoneNumber,
+        }),
+      });
+
+      if (response.ok) {
+      } else {
+        const errorText = await response.text();
+        return errorText;
+      }
+    } catch (error) {
+      window.alert(error);
+      return error;
+    }
+  };
+
+  const UpdatedUser = async (userid: number) => {
+    try {
+      const apiUrl = `${user_API}${userid}`; // Construct the URL with query parameters
+      const token = localStorage.getItem("jwt_token");
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Include the bearer token in the Authorization header
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const userData = data.user;
+
+        try {
+          localStorage.setItem("jwt_token", data.token);
+          loginContext(userData);
+        } catch (error) {
+          console.error("Error setting cookies:", error);
+        }
+      } else {
+        const errorText = await response.text();
+        return errorText;
+      }
+    } catch (error) {
+      window.alert(error);
+      return error;
+    }
+  };
+
   return {
     handleLogin,
     handleOAuthLogin,
@@ -272,6 +341,8 @@ const Authentication = () => {
     handleForgotPassword,
     handleResetPassword,
     handleChangePassowrd,
+    handleChangeGeneral,
+    UpdatedUser,
   };
 };
 
