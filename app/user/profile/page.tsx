@@ -11,6 +11,7 @@ import EduSpace from "@/public/EduSpaceLogo.png";
 import { useRouter } from "next/navigation";
 import UserCardSkeleton from "@/components/profile/userCardSkeleton";
 import MainSkeleton from "@/components/profile/mainSkeleton";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function ProfilePage() {
   const [selectedOption, setSelectedOption] = useState("Main");
@@ -69,11 +70,13 @@ export default function ProfilePage() {
               onSelectionChange={handleSelectionChange}
               email={user.email}
               oatuh={user.oauth}
+              userid={user.userId}
             />
           </>
         ) : (
           <UserProgress />
         )}
+        <Toaster position="bottom-left" reverseOrder={false} />
       </div>
     </div>
   );

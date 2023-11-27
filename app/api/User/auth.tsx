@@ -229,6 +229,40 @@ const Authentication = () => {
     }
   };
 
+  const handleChangePassowrd = async (
+    userid: number,
+    OldPassword: string,
+    Password: string,
+    ConfirmPassword: string
+  ) => {
+    try {
+      const token = localStorage.getItem("jwt_token");
+      const response = await fetch(user_API + "ChangePassword", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          // Include the bearer token in the Authorization header
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          userid,
+          OldPassword,
+          Password,
+          ConfirmPassword,
+        }),
+      });
+
+      if (response.ok) {
+      } else {
+        const errorText = await response.text();
+        return errorText;
+      }
+    } catch (error) {
+      window.alert(error);
+      return error;
+    }
+  };
+
   return {
     handleLogin,
     handleOAuthLogin,
@@ -237,6 +271,7 @@ const Authentication = () => {
     CheckeOAuthExist,
     handleForgotPassword,
     handleResetPassword,
+    handleChangePassowrd,
   };
 };
 

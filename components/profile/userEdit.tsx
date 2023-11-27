@@ -7,6 +7,7 @@ import PasswordEdit from "./passwordEdit";
 import EmailEdit from "./emailEdit";
 
 interface UserEditProps {
+  userid: number;
   email: string;
   oatuh: boolean;
   username: string;
@@ -18,6 +19,7 @@ interface UserEditProps {
 }
 
 export const UserEdit: FC<UserEditProps> = ({
+  userid,
   username,
   email,
   oatuh,
@@ -34,7 +36,7 @@ export const UserEdit: FC<UserEditProps> = ({
           <Reveal direction="up">
             <div className=" bg-[hsla(0,0%,100%,0.8)]  dark:bg-[#1f1e1e] dark:shadow-black/20 backdrop-blur-[30px] rounded-lg p-6 ">
               <div className=" bg-[hsla(0,0%,100%,0.8)]  dark:bg-[#1f1e1e] dark:shadow-black/20 backdrop-blur-[30px] rounded-lg p-6 ">
-                <PasswordEdit />
+                <PasswordEdit oauth={oatuh} userid={userid} />
               </div>
             </div>
           </Reveal>
