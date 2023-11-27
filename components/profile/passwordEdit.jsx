@@ -4,16 +4,17 @@ import { Avatar, Button, Input } from "@nextui-org/react";
 function passwordEdit({}) {
   return (
     <>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center h-80">
         <div className="max-w-md">
-          <h1 className="text-xl font-semibold text-start mb-6">
+          <h1 className="text-xl font-semibold text-start mb-8">
             Password information
           </h1>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
             <div>
               <Input
                 type="password"
+                isClearable
                 label="Current password"
                 labelPlacement="outside"
               />
@@ -21,6 +22,7 @@ function passwordEdit({}) {
             <div>
               <Input
                 type="password"
+                isClearable
                 label="New password"
                 labelPlacement="outside"
               />
@@ -28,6 +30,7 @@ function passwordEdit({}) {
             <div className="sm:col-span-2 mb-4 ">
               <Input
                 type="password"
+                isClearable
                 label="Confirm password"
                 labelPlacement="outside"
               />
@@ -41,7 +44,7 @@ function passwordEdit({}) {
           </span>
           <br />
 
-          <p className="text-xs ml-16 text-slate-500 max-w-md">
+          <p className="text-xs ml-8 lg:ml-16 text-slate-500 max-w-md">
             At least 10 characters (and up to 100 characters) At least one
             lowercase character Inclusion of at least one special character,
             e.g., ! @ # ? Some text here zoltan

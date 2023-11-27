@@ -38,7 +38,13 @@
     "components/compiler/RunIcon.jsx",
     "components/Learn/subject.jsx",
     "components/Learn/Lesson/ArrowIcon.jsx",
-    "components/navbar/BeginnerIcon.jsx"
-, "components/AnimatedText.jsx", "components/chatai/ChatAI.jsx", "app/not-found.tsx", "components/profile/uploadProfilePic.jsx", "components/profile/nameEdit.jsx", "components/profile/userCardSkeleton.jsx"  ],
+    "components/navbar/BeginnerIcon.jsx",
+    "components/AnimatedText.jsx",
+    "components/chatai/ChatAI.jsx",
+    "app/not-found.tsx",
+    "components/profile/uploadProfilePic.jsx",
+    "components/profile/generalEdit.jsx",
+    "components/profile/userCardSkeleton.jsx"
+  ],
   "exclude": ["node_modules"]
 }

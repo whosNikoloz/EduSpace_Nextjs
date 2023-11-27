@@ -10,6 +10,7 @@ import Image from "next/image";
 import EduSpace from "@/public/EduSpaceLogo.png";
 import { useRouter } from "next/navigation";
 import UserCardSkeleton from "@/components/profile/userCardSkeleton";
+import MainSkeleton from "@/components/profile/mainSkeleton";
 
 export default function ProfilePage() {
   const [selectedOption, setSelectedOption] = useState("Main");
@@ -39,23 +40,7 @@ export default function ProfilePage() {
       <div className="container mx-auto py-8">
         <div className="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
           <UserCardSkeleton />
-          {/* Render content based on the selected option */}
-          {selectedOption === "Edit" ? (
-            <>
-              <UserEdit
-                username={""}
-                firstname={""}
-                lastname={""}
-                profilepicture={""}
-                createdate={""}
-                onSelectionChange={function (selectedOption: string): void {
-                  throw new Error("Function not implemented.");
-                }}
-              />
-            </>
-          ) : (
-            <UserProgress />
-          )}
+          <MainSkeleton />
         </div>
       </div>
     );
@@ -80,8 +65,10 @@ export default function ProfilePage() {
               firstname={user.firstName}
               lastname={user.lastName}
               profilepicture={user.picture}
-              createdate="2023-11-24"
+              phonenumber="577602399"
               onSelectionChange={handleSelectionChange}
+              email={user.email}
+              oatuh={user.oauth}
             />
           </>
         ) : (
