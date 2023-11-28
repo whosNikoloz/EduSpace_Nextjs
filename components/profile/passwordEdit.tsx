@@ -33,6 +33,12 @@ function PasswordEdit({ oauth, userid }: PasswordEditProps) {
       confirmpasswordError: "",
     });
 
+    if (!password.currentPassword || !password.newPassword || !password.confirmPassword) {
+      toast.error("All fields must be filled");
+      setIsLoading(false);
+      return;
+    }
+
     if (password.newPassword.length < 6) {
       setError({
         ...error,
