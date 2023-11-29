@@ -1,12 +1,21 @@
 "use Client";
 
 import React, { FC, useState } from "react";
-import { Button, Avatar } from "@nextui-org/react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
 import UploadProfilePic from "@/components/profile/uploadProfilePic";
 import { Reveal } from "../RevealFramer";
 import GeneralEdit from "./generalEdit";
 import PasswordEdit from "./passwordEdit";
 import EmailEdit from "./emailEdit";
+import OtpEmail from "./otpEmail";
 
 interface UserEditProps {
   userid: number;
@@ -43,10 +52,24 @@ export const UserEdit: FC<UserEditProps> = ({
     number: phonenumber,
   });
 
+  const [changeemail, setChangeEmail] = useState(email);
+
   const handleGeneralInfoChange = (updatedInfo: any) => {
     setGeneralInfo(updatedInfo);
     // Call the callback function to notify the parent
     onGeneralInfoChange(updatedInfo);
+  };
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [selectedEmail, setSelectedEmail] = useState(email);
+
+  const handleEmailChange = (newEmail: any) => {
+    setSelectedEmail(newEmail);
+  };
+
+  const handleSuccessEmailChange = (newEmail: any) => {
+    setSelectedEmail(newEmail);
   };
 
   return (
@@ -90,7 +113,12 @@ export const UserEdit: FC<UserEditProps> = ({
         <div className="shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
           <Reveal direction="up">
             <div className=" bg-[hsla(0,0%,100%,0.8)]  dark:bg-[#1f1e1e] dark:shadow-black/20 backdrop-blur-[30px] rounded-lg p-6 ">
-              <EmailEdit Email={username} oauth={oatuh} />
+              <EmailEdit
+                Email={changeemail}
+                oauth={oatuh}
+                onEmailChange={handleEmailChange}
+                userid={userid}
+              />
             </div>
           </Reveal>
         </div>

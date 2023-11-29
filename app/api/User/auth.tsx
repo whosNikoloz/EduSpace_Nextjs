@@ -332,6 +332,87 @@ const Authentication = () => {
     }
   };
 
+  const ReLogin = async (password: string) => {
+    try {
+      const encodedPassword = encodeURIComponent(password);
+      const apiUrl = `${user_API}ReLogin/${encodedPassword}`; // Construct the URL with query parameters
+      const token = localStorage.getItem("jwt_token");
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Include the bearer token in the Authorization header
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+      } else {
+        const errorText = await response.text();
+        return errorText;
+      }
+    } catch (error) {
+      window.alert(error);
+      return error;
+    }
+  };
+
+  const ChangeEmailRequest = async (email: string) => {
+    try {
+      const encodedPassword = encodeURIComponent(email);
+      const apiUrl = `${user_API}ChangeEmailRequest/${encodedPassword}`; // Construct the URL with query parameters
+      const token = localStorage.getItem("jwt_token");
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Include the bearer token in the Authorization header
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const verificationCode = await response.text();
+        sessionStorage.setItem(
+          "verificationCode",
+          encodeURIComponent(verificationCode)
+        );
+      } else {
+        const errorText = await response.text();
+        return errorText;
+      }
+    } catch (error) {
+      window.alert(error);
+      return error;
+    }
+  };
+
+  const ChangeEmail = async (email: string) => {
+    try {
+      const encodedPassword = encodeURIComponent(email);
+      const apiUrl = `${user_API}ChangeEmail/${encodedPassword}`; // Construct the URL with query parameters
+      const token = localStorage.getItem("jwt_token");
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Include the bearer token in the Authorization header
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        return;
+      } else {
+        const errorText = await response.text();
+        return errorText;
+      }
+    } catch (error) {
+      window.alert(error);
+      return error;
+    }
+  };
+
   return {
     handleLogin,
     handleOAuthLogin,
@@ -343,6 +424,9 @@ const Authentication = () => {
     handleChangePassowrd,
     handleChangeGeneral,
     UpdatedUser,
+    ReLogin,
+    ChangeEmailRequest,
+    ChangeEmail,
   };
 };
 
