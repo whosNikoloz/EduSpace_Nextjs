@@ -80,7 +80,7 @@ function OtpEmail({
             <div className="flex flex-col space-y-16">
               <div className="flex flex-row items-center justify-between mx-auto w-full max-w-xs">
                 {Array.from({ length: 4 }, (_, i) => (
-                  <div className="w-16 h-16">
+                  <div key={i} className="w-16 h-16">
                     <input
                       id={`otp-input-${i}`}
                       className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg dark:bg-[#1f1e1e] focus:bg-gray-50 focus:ring-1 ring-blue-700"

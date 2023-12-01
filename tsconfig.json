@@ -42,9 +42,9 @@
     "components/AnimatedText.jsx",
     "components/chatai/ChatAI.jsx",
     "app/not-found.tsx",
-    "components/profile/uploadProfilePic.jsx",
-    "components/profile/generalEdit.tsx",
+    "components/profile/UploadImg/uploadProfilePic.tsx",
+    "components/profile/UploadGeneral/generalEdit.tsx",
     "components/profile/userCardSkeleton.jsx"
-  ],
+, "components/profile/UploadImg/cropimg.tsx", "components/profile/ChangeEmail/confirmAccess.tsx"  ],
   "exclude": ["node_modules"]
 }

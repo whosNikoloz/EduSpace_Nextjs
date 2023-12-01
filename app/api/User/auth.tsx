@@ -1,6 +1,31 @@
 import React from "react";
 import Cookies from "universal-cookie";
 import { useUser } from "@/app/dbcontext/UserdbContext";
+import "firebase/auth";
+import { initializeApp } from "firebase/app";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  deleteObject,
+  getDownloadURL,
+  uploadBytesResumable,
+  listAll,
+  deleteObject as deleteFirebaseObject,
+} from "firebase/storage";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCpTtUB_NqmFfsoccOBozkZ8tMlpzTd0U0",
+  authDomain: "eduspace-a81b5.firebaseapp.com",
+  projectId: "eduspace-a81b5",
+  storageBucket: "eduspace-a81b5.appspot.com",
+  messagingSenderId: "121358878167",
+  appId: "1:121358878167:web:789c88cd50bdc3ada3b792",
+  measurementId: "G-F18D5YQKCK",
+};
+
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 
 const auth_API = "https://192.168.1.68:45455/api/Auth/";
 const user_API = "https://192.168.1.68:45455/api/User/";
@@ -410,6 +435,127 @@ const Authentication = () => {
     }
   };
 
+  const ChangeProfilePicture = async (
+    picture: File,
+    oldpicture: string,
+    userId: number
+  ) => {
+    try {
+      if (oldpicture) {
+        try {
+          await deleteFileFromFirebaseStorage(oldpicture);
+          console.log("Old picture deleted successfully");
+        } catch (error) {
+          console.error("Error deleting old picture:", error);
+        }
+      }
+
+      const pictureUrl = picture
+        ? await uploadFileToFirebaseStorage(picture, "UserProfiles")
+        : null;
+
+      console.log(pictureUrl);
+      console.log(userId);
+
+      const token = localStorage.getItem("jwt_token");
+      const response = await fetch(user_API + "UploadImage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Include the bearer token in the Authorization header
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          userId,
+          pictureUrl,
+        }),
+      });
+
+      if (response.ok) {
+        return;
+      } else {
+        const errorText = await response.text();
+        return errorText;
+      }
+    } catch (error) {
+      window.alert(error);
+      return error;
+    }
+  };
+
+  const uploadFileToFirebaseStorage = async (
+    file: File,
+    folderName: string
+  ) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const uniqueFileName = `${Date.now()}-${Math.random()
+          .toString(36)
+          .substring(2)}-${file.name}`;
+        const fileRef = ref(storage, `${folderName}/${uniqueFileName}`);
+        const uploadTask = uploadBytesResumable(fileRef, file);
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            // You can monitor the progress here if needed.
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log(`Upload is ${progress}% done`);
+          },
+          (error) => {
+            console.error("Error uploading file:", error);
+            reject(error);
+          },
+          async () => {
+            try {
+              // Upload completed successfully, get the download URL.
+              const downloadURL = await getDownloadURL(fileRef);
+              console.log(
+                "File uploaded successfully. Download URL:",
+                downloadURL
+              );
+              resolve(downloadURL);
+            } catch (error) {
+              console.error("Error getting download URL:", error);
+              reject(error);
+            }
+          }
+        );
+
+        // Wait for the upload to complete.
+        await uploadTask;
+      } catch (error) {
+        console.error("Error uploading file to Firebase Storage:", error);
+        reject(error);
+      }
+    });
+  };
+
+  const deleteFileFromFirebaseStorage = async (fileUrl: string) => {
+    try {
+      const storage = getStorage();
+      const fileRef = ref(storage, fileUrl);
+
+      // Check if the file exists
+      const url = await getDownloadURL(fileRef);
+      if (url) {
+        // Delete the file
+        await deleteObject(fileRef);
+        console.log("File deleted successfully");
+      }
+    } catch (error) {
+      if ((error as { code: string }).code === "storage/object-not-found") {
+        // File doesn't exist
+        console.log("File doesn't exist");
+      } else {
+        // Some other error occurred
+        console.error("Error deleting file:", error);
+      }
+    }
+  };
+
   return {
     handleLogin,
     handleOAuthLogin,
@@ -424,6 +570,7 @@ const Authentication = () => {
     ReLogin,
     ChangeEmailRequest,
     ChangeEmail,
+    ChangeProfilePicture,
   };
 };
 
