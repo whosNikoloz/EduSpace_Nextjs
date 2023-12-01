@@ -373,13 +373,10 @@ const Authentication = () => {
 
       if (response.ok) {
         const verificationCode = await response.text();
-        sessionStorage.setItem(
-          "verificationCode",
-          encodeURIComponent(verificationCode)
-        );
+        return { ok: true, data: verificationCode };
       } else {
         const errorText = await response.text();
-        return errorText;
+        return { ok: false, error: errorText };
       }
     } catch (error) {
       window.alert(error);
