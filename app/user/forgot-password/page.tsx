@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import Image from "next/image";
 import { EduSpace } from "@/components/EduSpaceLogo";
 import ForgotPassword from "@/public/Forgot password.png";
-import { Button } from "@nextui-org/button";
+import { Button, Input } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import Authentication from "@/app/api/User/auth";
 
@@ -18,15 +18,29 @@ export default function ForgotPasswordPage() {
   const router = useRouter();
 
   const [error, setError] = useState("");
+  const [Terms, setTerms] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
 
   const handleForgotPassword = async () => {
     setIsLoading(true);
+    if (!email) {
+      setError("შეიყვანეთ ელ-ფოსტა");
+      setIsLoading(false);
+      return;
+    }
+
+    if (!Terms) {
+      setError("დაეთანხმეთ წესებს");
+      setIsLoading(false);
+      return;
+    }
+
     var errorMessage = await authAPI.handleForgotPassword(email);
 
     if (errorMessage) {
       setError(errorMessage.toString());
+      setIsLoading(false);
     } else {
       cookie.set("forgetEmail", email);
       setIsLoading(false);
@@ -53,23 +67,22 @@ export default function ForgotPasswordPage() {
             პაროლის გადატვირთვა
           </h2>
           <div className="mt-4 space-y-4 lg:mt-5 md:space-y-5">
-            <div>
-              <label
-                htmlFor="email"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                მეილი
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="name@gmail.com"
-                required
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+            <Input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="name@gmail.com"
+              variant="bordered"
+              required
+              isClearable
+              onChange={(e: { target: { value: SetStateAction<string> } }) =>
+                setEmail(e.target.value)
+              }
+              isInvalid={error ? true : false}
+              value={email}
+              onClear={() => setEmail("")}
+              errorMessage={error ? error : null}
+            />
 
             <div className="flex items-start">
               <div className="flex items-center h-5">
@@ -79,6 +92,9 @@ export default function ForgotPasswordPage() {
                   type="checkbox"
                   className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                   required
+                  onChange={(e) => {
+                    setTerms(e.target.checked);
+                  }}
                 />
               </div>
               <div className="ml-3 text-sm">
