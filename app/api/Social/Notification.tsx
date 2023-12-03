@@ -3,11 +3,13 @@ import React from "react";
 const social_API = "https://192.168.1.68:45455/api/Social/";
 const social_API_NIkoloza = "https://172.20.10.7:45456/api/Social/";
 
+const mac_social_API = "https://localhost:7163/api/Social/";
+
 const Notifications = () => {
   const GetNotifications = async (userid: number) => {
     try {
       const token = localStorage.getItem("jwt_token");
-      const response = await fetch(social_API + "Notifications/" + userid, {
+      const response = await fetch(mac_social_API + "Notifications/" + userid, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

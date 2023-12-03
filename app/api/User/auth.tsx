@@ -29,7 +29,9 @@ const storage = getStorage(app);
 
 const auth_API = "https://192.168.1.68:45455/api/Auth/";
 const user_API = "https://192.168.1.68:45455/api/User/";
-const auth_API_NIkoloza = "https://172.20.10.7:45456/api/Auth/";
+
+const mac_auth_API = "https://localhost:7163/api/Auth/";
+const mac_user_API = "https://localhost:7163/api/User/";
 
 const Authentication = () => {
   const cookies = new Cookies();
@@ -37,7 +39,7 @@ const Authentication = () => {
 
   const handleLogin = async (email: any, password: any) => {
     try {
-      const response = await fetch(auth_API + "Email", {
+      const response = await fetch(mac_auth_API + "Email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +75,7 @@ const Authentication = () => {
     oAuthproviderId: string
   ) => {
     try {
-      const response = await fetch(auth_API + "OAuthEmail", {
+      const response = await fetch(mac_auth_API + "OAuthEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +109,7 @@ const Authentication = () => {
 
   const handleForgotPassword = async (email: string) => {
     try {
-      const apiUrl = `${user_API}ForgotPassword?email=${encodeURIComponent(
+      const apiUrl = `${mac_user_API}ForgotPassword?email=${encodeURIComponent(
         email
       )}`;
 
@@ -135,7 +137,7 @@ const Authentication = () => {
     ConfirmPassword: string
   ) => {
     try {
-      const response = await fetch(user_API + "ResetPassword", {
+      const response = await fetch(mac_user_API + "ResetPassword", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -165,7 +167,7 @@ const Authentication = () => {
     confirmPassword: string
   ) => {
     try {
-      const response = await fetch(auth_API + "register", {
+      const response = await fetch(mac_auth_API + "register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -196,7 +198,7 @@ const Authentication = () => {
     oAuthProviderId: string
   ) => {
     try {
-      const response = await fetch(auth_API + "OAuth2Exist", {
+      const response = await fetch(mac_auth_API + "OAuth2Exist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -226,7 +228,7 @@ const Authentication = () => {
     oAuthProviderId: string
   ) => {
     try {
-      const response = await fetch(auth_API + "RegisterOAuth2", {
+      const response = await fetch(mac_auth_API + "RegisterOAuth2", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -262,7 +264,7 @@ const Authentication = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt_token");
-      const response = await fetch(user_API + "ChangePassword", {
+      const response = await fetch(mac_user_API + "ChangePassword", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -297,7 +299,7 @@ const Authentication = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt_token");
-      const response = await fetch(user_API + "ChangeGeneral", {
+      const response = await fetch(mac_user_API + "ChangeGeneral", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -326,7 +328,7 @@ const Authentication = () => {
 
   const UpdatedUser = async (userid: number) => {
     try {
-      const apiUrl = `${user_API}${userid}`; // Construct the URL with query parameters
+      const apiUrl = `${mac_user_API}${userid}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt_token");
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -360,7 +362,7 @@ const Authentication = () => {
   const ReLogin = async (password: string) => {
     try {
       const encodedPassword = encodeURIComponent(password);
-      const apiUrl = `${user_API}ReLogin/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${mac_user_API}ReLogin/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt_token");
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -385,7 +387,7 @@ const Authentication = () => {
   const ChangeEmailRequest = async (email: string) => {
     try {
       const encodedPassword = encodeURIComponent(email);
-      const apiUrl = `${user_API}ChangeEmailRequest/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${mac_user_API}ChangeEmailRequest/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt_token");
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -412,7 +414,7 @@ const Authentication = () => {
   const ChangeEmail = async (email: string) => {
     try {
       const encodedPassword = encodeURIComponent(email);
-      const apiUrl = `${user_API}ChangeEmail/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${mac_user_API}ChangeEmail/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt_token");
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -458,7 +460,7 @@ const Authentication = () => {
       console.log(userId);
 
       const token = localStorage.getItem("jwt_token");
-      const response = await fetch(user_API + "UploadImage", {
+      const response = await fetch(mac_user_API + "UploadImage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

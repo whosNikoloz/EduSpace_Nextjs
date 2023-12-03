@@ -13,6 +13,8 @@ import {
 const social_API = "https://192.168.1.68:45455/api/Social/";
 const social_API_NIkoloza = "https://172.20.10.7:45456/api/Social/";
 
+const mac_social_API = "https://localhost:7163/api/Social/";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCpTtUB_NqmFfsoccOBozkZ8tMlpzTd0U0",
   authDomain: "eduspace-a81b5.firebaseapp.com",
@@ -29,7 +31,7 @@ const storage = getStorage(app);
 const Posts = () => {
   const GetPosts = async (page: number, pageSize: number) => {
     try {
-      const apiUrl = `${social_API}Posts?page=${page}&pageSize=${pageSize}`;
+      const apiUrl = `${mac_social_API}Posts?page=${page}&pageSize=${pageSize}`;
 
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -117,7 +119,7 @@ const Posts = () => {
         ? await uploadFileToFirebaseStorage(picture, "PostContent")
         : null;
 
-      const response = await fetch(social_API + "Posts/", {
+      const response = await fetch(mac_social_API + "Posts/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -156,7 +158,7 @@ const Posts = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt_token");
-      const response = await fetch(social_API + "Posts/", {
+      const response = await fetch(mac_social_API + "Posts/", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -189,7 +191,7 @@ const Posts = () => {
 
   const GetLastPost = async () => {
     try {
-      const response = await fetch(social_API + "LastPost", {
+      const response = await fetch(mac_social_API + "LastPost", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -217,7 +219,7 @@ const Posts = () => {
   ) => {
     try {
       const encodedSubject = encodeURIComponent(subject);
-      const apiUrl = `${social_API}Posts/${encodedSubject}?page=${page}&pageSize=${pageSize}`;
+      const apiUrl = `${mac_social_API}Posts/${encodedSubject}?page=${page}&pageSize=${pageSize}`;
       console.log(apiUrl);
 
       const response = await fetch(apiUrl, {
@@ -281,7 +283,7 @@ const Posts = () => {
       }
 
       // Delete the post itself
-      const postResponse = await fetch(social_API + "Posts/" + postid, {
+      const postResponse = await fetch(mac_social_API + "Posts/" + postid, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
