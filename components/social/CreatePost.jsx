@@ -26,7 +26,7 @@ export default function CreatePost({ setPosts }) {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isCreateLoading, setCreateLoading] = useState(false);
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
   const { user } = useUser();
 
@@ -165,8 +165,7 @@ export default function CreatePost({ setPosts }) {
           picture: null,
           Userid: "",
         });
-
-        setIsOpen(false);
+        onClose();
         setCreateLoading(false);
       } else {
         setPostModelError("Error fetching new post");

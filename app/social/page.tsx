@@ -28,7 +28,7 @@ export default function SocialPage() {
 
   const fetchPosts = async ({ pageParam = 1 }) => {
     const post = Social();
-    const response = await post.GetPosts(pageParam, 2);
+    const response = await post.GetPosts(pageParam, 5);
     return { posts: response, hasNextPage: response.length > 0 };
   };
 
