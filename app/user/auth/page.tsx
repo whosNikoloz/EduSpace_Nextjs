@@ -76,6 +76,7 @@ const AuthPage: React.FC = () => {
     );
     if (errorMessage) {
       setRegError("Email or UserName Already Exists");
+      setIsLoading(false);
     } else {
       setIsLoading(false);
       var cookie = new Cookies();

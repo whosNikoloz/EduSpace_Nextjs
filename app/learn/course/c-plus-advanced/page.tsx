@@ -19,7 +19,7 @@ interface Course {
   formattedCourseName: string;
   levelId: number;
 }
-interface userProgress {
+interface UserProgress {
   progressId: number;
   subjectId: number;
   lessonId: number;
@@ -28,59 +28,46 @@ interface userProgress {
 
 export default function CplusAdvancedPage() {
   const { user } = useUser();
-  const courses = CoursesAPI();
   const [course, setCourse] = useState<Course | null>(null);
-  const progresses = ProgressAPI();
-  const [progress, setProgress] = useState<userProgress | null>(null);
+  const [progress, setProgress] = useState<UserProgress | null>(null);
 
+  // Combine the two useEffects into one
   useEffect(() => {
-    const fetchCourse = async () => {
+    const fetchCourseAndProgress = async () => {
+      if (!user) return;
+
       try {
-        const courseResponse = await courses.GetCourse("c-plus-advanced");
+        const courseResponse = await CoursesAPI().GetCourse("c-plus-advanced");
         setCourse(courseResponse);
+
+        const userProgress = await ProgressAPI().GetProgress(
+          { userid: user.userId },
+          { courseid: courseResponse.courseId }
+        );
+        setProgress(userProgress);
       } catch (error) {
-        console.error("Error fetching course:", error);
+        console.error("Error fetching course or user progress:", error);
       }
     };
 
-    fetchCourse();
-  }, [user, courses]); // Fetch course when user changes
+    fetchCourseAndProgress(); // Fetch course and user progress instantly
 
-  useEffect(() => {
-    if (user && course) {
-      const fetchUserProgress = async () => {
-        try {
-          const userProgress = await progresses.GetProgress(
-            { userid: user.userId },
-            { courseid: course.courseId }
-          );
-          setProgress(userProgress);
-        } catch (error) {
-          console.error("Error fetching user progress:", error);
-        }
-      };
+    const intervalId = setInterval(fetchCourseAndProgress, 30000); // Then fetch course and user progress every 30 seconds
 
-      fetchUserProgress(); // Fetch user progress instantly
-
-      const intervalId = setInterval(fetchUserProgress, 30000); // Then fetch user progress every 30 seconds
-
-      return () => clearInterval(intervalId); // Clean up on unmount or when dependencies change
-    }
-  }, [user, course, progresses]); // Fetch user progress when user or course changes
+    return () => clearInterval(intervalId); // Clean up on unmount or when dependencies change
+  }, [user]); // Fetch course and user progress when user changes
 
   return (
     <MainLayout>
       {course && (
-        <>
-          <div className="flex flex-col items-center justify-center ">
-            <Hero
-              logo={course.courseLogo}
-              courseName={course.courseName}
-              description={course.description}
-            />
-            <Subject courseData={course} userProgress={progress} />
-          </div>
-        </>
+        <div className="flex flex-col items-center justify-center ">
+          <Hero
+            logo={course.courseLogo}
+            courseName={course.courseName}
+            description={course.description}
+          />
+          <Subject courseData={course} userProgress={progress} />
+        </div>
       )}
     </MainLayout>
   );

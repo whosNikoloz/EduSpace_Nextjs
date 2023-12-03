@@ -157,7 +157,7 @@ export const Navbar = () => {
                   <DropdownMenu aria-label="Profile Actions" variant="flat">
                     <DropdownItem key="profile" className="h-14 gap-2">
                       <p className="font-semibold">შესულიხარ როგორც</p>
-                      <p className="font-semibold">{user.email}</p>
+                      <p className="font-semibold">{user.userName}</p>
                     </DropdownItem>
                     <DropdownItem key="settings">
                       <Link href={`/user/profile`}>

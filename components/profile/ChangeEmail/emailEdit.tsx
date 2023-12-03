@@ -35,19 +35,23 @@ function EmailEdit({
 }) {
   const AuthAPI = Authentication();
 
+  const [error, setError] = useState("");
+
   const onConfirm = async () => {
-    onCloseAccess();
-    onOpenOtp();
     const response = (await AuthAPI.ChangeEmailRequest(email)) as ResponseType;
 
     if (response.ok) {
       if (!response.data) {
         return;
       }
+      onCloseAccess();
+      onOpenOtp();
       setVerificationCode(response.data);
       console.log(response.data);
-    } else {
-      toast.error(response.error || "პრობლემა დაფიქსირდა");
+    } else if (response.error) {
+      onCloseAccess();
+      toast.error(response.error);
+      setError(response.error);
     }
   };
 
@@ -115,10 +119,10 @@ function EmailEdit({
                 isClearable
                 className="w-full"
                 label="Email"
-                //isInvalid={error.emailError ? true : false}
+                isInvalid={error ? true : false}
                 value={email}
                 onClear={() => setEmail("")}
-                //errorMessage={error.emailError ? error.emailError : null}
+                errorMessage={error ? error : null}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
