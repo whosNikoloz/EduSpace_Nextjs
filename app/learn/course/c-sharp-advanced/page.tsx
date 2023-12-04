@@ -1,5 +1,4 @@
 "use client";
-
 import MainLayout from "@/app/layouts/Mainlayout";
 import React, { useState, useEffect } from "react";
 import { CustomTitle } from "@/components/CustomTitle";
@@ -15,7 +14,7 @@ interface Course {
   levelId: number;
 }
 
-export default function CsharpAdvancedPage() {
+export default function CsharpIntermediatePage() {
   const courses = CoursesAPI();
   const [course, setCourse] = useState<Course | null>(null);
   useEffect(() => {

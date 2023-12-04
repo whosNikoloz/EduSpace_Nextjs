@@ -201,7 +201,7 @@ export default function CplusAdvancedLessonPage({
         courseIdAsNumber || 0,
         lessonIdAsNumber || 0
       );
-      router.push("/learn/course/c-plus-advanced");
+      router.push("/learn/course/c-plus-expert");
     } catch (error) {
       console.error("Error fetching Progress data:", error);
     }

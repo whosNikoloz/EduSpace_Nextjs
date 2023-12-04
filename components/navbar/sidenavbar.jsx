@@ -141,59 +141,10 @@ function SideNavBarWithDropDown() {
             onClick={toggleSubSubMenu2}
           >
             {icons.advanced}
-            {"შუალედური"}
+            {"მოწინავე"}
             {icons.chevron}
           </Link>
           {isSubSubMenu2Open && (
-            <>
-              <NavbarMenuItem className="ml-8">
-                <Link
-                  color="foreground"
-                  className="w-full"
-                  href="/learn/course/c-sharp-intermediate"
-                  size="xs"
-                >
-                  {"C# შუალედური"}
-                </Link>
-                <Link
-                  color="foreground"
-                  className="w-full"
-                  href="/learn/course/python-intermediate"
-                  size="xs"
-                >
-                  {"Python შუალედური"}
-                </Link>
-                <Link
-                  color="foreground"
-                  className="w-full"
-                  href="/learn/course/c-plus-intermediate"
-                  size="xs"
-                >
-                  {"C++ შუალედური"}
-                </Link>
-                <Link
-                  color="foreground"
-                  className="w-full"
-                  href="/learn/course/swift-intermediate"
-                  size="xs"
-                >
-                  {"Swift შუალედური"}
-                </Link>
-              </NavbarMenuItem>
-            </>
-          )}
-          <Link
-            color="foreground"
-            className="w-full gap-2"
-            href="#"
-            size="sm"
-            onClick={toggleSubSubMenu3}
-          >
-            {icons.intermediate}
-            {" მოწინავე"}
-            {icons.chevron}
-          </Link>
-          {isSubSubMenu3Open && (
             <>
               <NavbarMenuItem className="ml-8">
                 <Link
@@ -227,6 +178,55 @@ function SideNavBarWithDropDown() {
                   size="xs"
                 >
                   {"Swift მოწინავე"}
+                </Link>
+              </NavbarMenuItem>
+            </>
+          )}
+          <Link
+            color="foreground"
+            className="w-full gap-2"
+            href="#"
+            size="sm"
+            onClick={toggleSubSubMenu3}
+          >
+            {icons.intermediate}
+            {" ექსპერტი"}
+            {icons.chevron}
+          </Link>
+          {isSubSubMenu3Open && (
+            <>
+              <NavbarMenuItem className="ml-8">
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/c-sharp-expert"
+                  size="xs"
+                >
+                  {"C# ექსპერტი"}
+                </Link>
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/python-expert"
+                  size="xs"
+                >
+                  {"Python ექსპერტი"}
+                </Link>
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/c-plus-expert"
+                  size="xs"
+                >
+                  {"C++ ექსპერტი"}
+                </Link>
+                <Link
+                  color="foreground"
+                  className="w-full"
+                  href="/learn/course/swift-expert"
+                  size="xs"
+                >
+                  {"Swift ექსპერტი"}
                 </Link>
               </NavbarMenuItem>
             </>

@@ -15,13 +15,13 @@ interface Course {
   levelId: number;
 }
 
-export default function PythonIntermediatePage() {
+export default function PythonAdvancedPage() {
   const courses = CoursesAPI();
   const [course, setCourse] = useState<Course | null>(null);
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await courses.GetCourse("python-intermediate");
+        const response = await courses.GetCourse("python-expert");
         setCourse(response); // Assuming the API response is an array of Course objects
         console.log(response);
       } catch (error) {

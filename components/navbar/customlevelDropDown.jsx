@@ -125,61 +125,6 @@ function MultiLevelDropdown() {
                 radius="sm"
                 variant="light"
               >
-                შუალედური
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Dynamic Actions">
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/c-sharp-intermediate";
-                }}
-              >
-                C# შუალედური
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/python-intermediate";
-                }}
-              >
-                Python შუალედური
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/c-plus-intermediate";
-                }}
-              >
-                C++ შუალედური
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/swift-intermediate";
-                }}
-              >
-                Swift შუალედური
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </DropdownItem>
-
-        <DropdownItem
-          key="99_uptime"
-          description="გახდი საუკეთესო პროგრამირებში"
-          startContent={icons.intermediate}
-        >
-          <Dropdown>
-            <DropdownTrigger>
-              <Button
-                size="sm"
-                disableRipple
-                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                endContent={icons.chevron}
-                radius="sm"
-                variant="light"
-              >
                 მოწინავე
               </Button>
             </DropdownTrigger>
@@ -215,6 +160,61 @@ function MultiLevelDropdown() {
                 }}
               >
                 Swift მოწინავე
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </DropdownItem>
+
+        <DropdownItem
+          key="99_uptime"
+          description="გახდი საუკეთესო პროგრამირებში"
+          startContent={icons.intermediate}
+        >
+          <Dropdown>
+            <DropdownTrigger>
+              <Button
+                size="sm"
+                disableRipple
+                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                endContent={icons.chevron}
+                radius="sm"
+                variant="light"
+              >
+                ექსპერტი
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Dynamic Actions">
+              <DropdownItem
+                color="default"
+                onClick={() => {
+                  window.location.href = "/learn/course/c-sharp-expert";
+                }}
+              >
+                C# ექსპერტი
+              </DropdownItem>
+              <DropdownItem
+                color="default"
+                onClick={() => {
+                  window.location.href = "/learn/course/python-expert";
+                }}
+              >
+                Python ექსპერტი
+              </DropdownItem>
+              <DropdownItem
+                color="default"
+                onClick={() => {
+                  window.location.href = "/learn/course/c-plus-expert";
+                }}
+              >
+                C++ ექსპერტი
+              </DropdownItem>
+              <DropdownItem
+                color="default"
+                onClick={() => {
+                  window.location.href = "/learn/course/swift-expert";
+                }}
+              >
+                Swift ექსპერტი
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>

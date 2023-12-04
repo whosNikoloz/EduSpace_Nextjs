@@ -15,7 +15,7 @@ interface Course {
   levelId: number;
 }
 
-export default function SwiftAdvancedPage() {
+export default function SwiftIntermediatePage() {
   const courses = CoursesAPI();
   const [course, setCourse] = useState<Course | null>(null);
   useEffect(() => {
