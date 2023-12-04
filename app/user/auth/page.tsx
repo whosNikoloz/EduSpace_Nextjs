@@ -49,7 +49,6 @@ const AuthPage: React.FC = () => {
       console.log(errorMessage);
       setIsLoading(false);
     } else {
-      setIsLoading(false);
       const redirectUrl = sessionStorage.getItem("redirect_url");
       if (redirectUrl) {
         sessionStorage.removeItem("redirect_url");
@@ -57,6 +56,7 @@ const AuthPage: React.FC = () => {
       } else {
         router.push("/");
       }
+      setIsLoading(false);
     }
   };
 
@@ -78,11 +78,11 @@ const AuthPage: React.FC = () => {
       setRegError("Email or UserName Already Exists");
       setIsLoading(false);
     } else {
-      setIsLoading(false);
       var cookie = new Cookies();
       cookie.set("regEmail", registrationState.email);
       cookie.set("regUserName", registrationState.username);
       router.push("/user/auth/signup-successful");
+      setIsLoading(false);
     }
   };
 
