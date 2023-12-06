@@ -38,7 +38,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
   return (
     <div>
       <h4
-        className={`cursor-pointer pb-5 flex items-center justify-between text-lg text-white font-medium ${
+        className={`cursor-pointer pb-5 flex items-center justify-between text-lg dark:text-white text-black  font-medium ${
           isCurrentSubject ? "text-blue-600" : ""
         }`}
         onClick={handleToggleContainer}
@@ -55,7 +55,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className={`h-5 w-5 text-white ml-2 transform transition-transform ${
+          className={`h-5 w-5 dark:text-white text-black ml-2 transform transition-transform ${
             containerVisible ? "rotate-180" : "rotate-0"
           }`}
           fill="none"
@@ -104,7 +104,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                         <p className="text-slate-400 text-[8px] lg-text-[10px]">
                           გაკვეთილი
                         </p>
-                        <p className="text-white sm:text-lg lg:text-xl">
+                        <p className="dark:text-white text-black sm:text-lg lg:text-xl">
                           {lesson.lessonName}
                         </p>
                       </div>
@@ -121,7 +121,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                         <p className="text-slate-400 text-[8px] lg-text-[10px]">
                           გაკვეთილი
                         </p>
-                        <p className="text-white sm:text-lg lg:text-xl">
+                        <p className="dark:text-white text-black sm:text-lg lg:text-xl">
                           {lesson.lessonName}
                         </p>
                         <div className="rounded-2xl font-medium border lg:w-12 lg:h-6 w-10 h-5 flex items-center justify-center">
@@ -188,8 +188,10 @@ const SubjectComponent = ({ courseData, userProgress }) => {
         <div className="px-5 py-4 bg-white gap-4 dark:bg-gray-800 shadow justify-center items-center rounded-lg mb-4 text-center flex space-y-4">
           <div className="flex flex-col items-center">
             <CertificationIcon size={100} />
-            <h1 className="text-white mt-4">თქვენი სერთიფიკატი ახლოს არის</h1>
-            <p className="text-white mt-3 mb-4">
+            <h1 className="dark:text-white text-black mt-4">
+              თქვენი სერთიფიკატი ახლოს არის
+            </h1>
+            <p className="dark:text-white text-black mt-3 mb-4">
               მშვენივრად აკეთებ! განაგრძეთ სწავლა თქვენი სერტიფიკატის
               აღებისთვის!
             </p>

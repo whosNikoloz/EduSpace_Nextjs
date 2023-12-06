@@ -219,8 +219,8 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
 
   return (
     <>
-      <footer className="rounded-lg shadow">
-        <hr className="my-4 md:my-6 lg:my-8 border-gray-200 dark:border-gray-700" />
+      <footer>
+        <hr className="my-4 md:my-6 lg:my-8 border-t border-gray-500 dark:border-gray-700" />
         <div className="flex flex-row items-center justify-center gap-4  lg:gap-24">
           {footerContent}
         </div>
