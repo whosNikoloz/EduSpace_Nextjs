@@ -51,7 +51,7 @@ export const Answers: React.FC<AnswerProps> = ({
                 : "primary"
             } // Change color based on the correctness of the selected answer
             size="lg"
-            variant={selectedAnswer === index ? "shadow" : "ghost"}
+            variant="shadow"
             onClick={() => handleAnswerClick(index)}
             className="rounded-md"
           >
