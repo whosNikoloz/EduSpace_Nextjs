@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
 
 interface Answer {
@@ -14,12 +14,14 @@ interface AnswerProps {
   answers: Answer[];
   onAnswerSelected: (isAnswerSelected: boolean) => void;
   IsCorrect: (isAnswerSelected: boolean) => void;
+  onTryAgain: number;
 }
 
 export const Answers: React.FC<AnswerProps> = ({
   answers,
   onAnswerSelected,
   IsCorrect,
+  onTryAgain,
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
@@ -31,6 +33,10 @@ export const Answers: React.FC<AnswerProps> = ({
     onAnswerSelected(true);
     IsCorrect(answers[index].isCorrect);
   };
+
+  useEffect(() => {
+    setSelectedAnswer(null);
+  }, [onTryAgain]);
 
   return (
     <div className="gap-5 flex flex-col lg:flex-row justify-center items-center mt-20">

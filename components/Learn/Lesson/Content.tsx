@@ -1,9 +1,10 @@
 "use client";
 
 import CodeEditor from "@uiw/react-textarea-code-editor";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Answers } from "./Answers";
 import { ScrollShadow } from "@nextui-org/react";
+import { connectStorageEmulator } from "firebase/storage";
 
 interface LearnMaterialDataProps {
   learnMaterialData: LearnMaterialData;
@@ -49,6 +50,7 @@ interface LearnMaterialDataProps {
   contentType: string;
   onAnswerSelected: (isAnswerSelected: boolean) => void;
   onCorrectAnswer: (isAnswerCorrect: boolean) => void;
+  onTryAgain: number;
 }
 
 export const Content: React.FC<LearnMaterialDataProps> = ({
@@ -56,6 +58,7 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
   contentType,
   onAnswerSelected,
   onCorrectAnswer,
+  onTryAgain,
 }) => {
   const handleAnswerSelected = () => {
     onAnswerSelected(true);
@@ -64,6 +67,25 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
   const handleIsCorrect = (isCorrect: boolean) => {
     onCorrectAnswer(isCorrect);
   };
+
+  const [shuffledAnswers, setShuffledAnswers] = useState(
+    learnMaterialData.test.answers
+  );
+
+  const shuffleArray = (array: any[]) => {
+    let copy = [...array]; // Create a copy of the array
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  };
+
+  useEffect(() => {
+    setShuffledAnswers(shuffleArray(learnMaterialData.test.answers));
+    onAnswerSelected(false);
+    onCorrectAnswer(false);
+  }, [onTryAgain]);
 
   return (
     <ScrollShadow
@@ -108,9 +130,10 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
 
           {contentType === "test" && (
             <Answers
-              answers={learnMaterialData.test.answers}
+              answers={shuffledAnswers}
               onAnswerSelected={handleAnswerSelected}
               IsCorrect={handleIsCorrect}
+              onTryAgain={onTryAgain}
             />
           )}
         </div>

@@ -12,6 +12,7 @@ type FooterLessonProps = {
   onContinue: () => void;
   contentFooter: string;
   onFinish: () => void;
+  onTryAgain: () => void;
   onFinished: () => void;
   answerSelected: boolean;
   answerSelectedCorrect: boolean;
@@ -23,6 +24,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
   onContinue,
   onFinish,
   onFinished,
+  onTryAgain,
   Hint,
   contentFooter,
   answerSelected,
@@ -99,6 +101,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                 size="md"
                 variant="shadow"
                 className="w-auto"
+                onClick={onTryAgain}
               >
                 თავიდან ცდა
               </Button>
@@ -159,6 +162,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                 size="md"
                 variant="shadow"
                 className="w-auto"
+                onClick={onTryAgain}
               >
                 Try Again
               </Button>

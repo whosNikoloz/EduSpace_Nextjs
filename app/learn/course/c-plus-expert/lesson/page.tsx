@@ -77,6 +77,8 @@ export default function CplusAdvancedLessonPage({
   const [answerSelected, setAnswerSelected] = useState(false);
   const [answerSelectedCorrect, setAnswerSelectedCorrect] = useState(false);
 
+  const [tryAgain, setTryAgain] = useState(0);
+
   const [progress, setProgress] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
@@ -183,6 +185,12 @@ export default function CplusAdvancedLessonPage({
     setCurrentPage(currentPage - 1);
   };
 
+  const handleTryAgain = () => {
+    setAnswerSelected(false);
+    setAnswerSelectedCorrect(false);
+    setTryAgain(tryAgain + 1);
+  }
+
   const handleAnswerSelected = (
     selected: boolean | ((prevState: boolean) => boolean)
   ) => {
@@ -247,6 +255,7 @@ export default function CplusAdvancedLessonPage({
               contentType={contentType} // Pass content type as a prop
               onAnswerSelected={handleAnswerSelected}
               onCorrectAnswer={setAnswerSelectedCorrect}
+              onTryAgain={tryAgain}
             />
           )
         )}
@@ -261,6 +270,7 @@ export default function CplusAdvancedLessonPage({
           onFinished={handleOnFinished}
           answerSelectedCorrect={answerSelectedCorrect}
           onPrev={handlePrev}
+          onTryAgain={handleTryAgain}
         />
       </div>
     </>
