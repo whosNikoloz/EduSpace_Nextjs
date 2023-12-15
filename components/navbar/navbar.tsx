@@ -34,6 +34,7 @@ import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
 import SideNavBarWithDropDown from "@/components/navbar/sidenavbar.jsx";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import Notifications from "@/app/api/Social/Notification";
+import BottomNavigation from "@/components/navbar/bottomnavigation.jsx";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,10 +68,6 @@ export const Navbar = () => {
   return (
     <NextUINavbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent justify="start">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
         <NavbarBrand>
           <Link href="/">
             <EduSpace />
@@ -160,9 +157,7 @@ export const Navbar = () => {
                       <p className="font-semibold">{user.userName}</p>
                     </DropdownItem>
                     <DropdownItem key="settings">
-                      <Link href={`/user/profile`}>
-                        პარამეტრები
-                      </Link>
+                      <Link href={`/user/profile`}>პარამეტრები</Link>
                     </DropdownItem>
 
                     <DropdownItem key="help_and_feedback">
@@ -199,7 +194,6 @@ export const Navbar = () => {
           </>
         )}
       </NavbarContent>
-      <SideNavBarWithDropDown />
     </NextUINavbar>
   );
 };

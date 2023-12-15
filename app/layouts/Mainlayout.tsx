@@ -2,6 +2,7 @@
 
 import { Navbar } from "@/components/navbar/navbar";
 import { Footer } from "@/components/footer";
+import BottomNavigation from "@/components/navbar/bottomnavigation";
 
 export default function MainLayout({
   children,
@@ -12,7 +13,11 @@ export default function MainLayout({
     <div className="relative flex flex-col h-screen">
       <Navbar />
       {children}
+
       <Footer />
+      <div className="sm:hidden">
+        <BottomNavigation />
+      </div>
     </div>
   );
 }
