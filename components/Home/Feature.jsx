@@ -1,26 +1,26 @@
 import FeatureReview from "@/public/FeatureReview.png";
 import Image from "next/image";
 import { Reveal } from "../RevealFramer";
-import { FcAssistant, FcDatabase, FcCertificate } from "react-icons/fc";
+import { FcAssistant, FcDatabase } from "react-icons/fc";
 
 const features = [
   {
-    name: "Push to deploy.",
+    name: "Online Learning",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+      "Access a wide range of courses and materials for effective online learning.",
     icon: FcAssistant,
   },
   {
-    name: "SSL certificates.",
+    name: "Secure Platform",
     description:
-      "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
-    icon: FcAssistant, // Replace with the actual icon component
+      "Our platform ensures your data is safe with SSL certificates for secure and encrypted connections.",
+    icon: FcDatabase,
   },
   {
-    name: "Database backups.",
+    name: "Regular Testing",
     description:
-      "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.",
-    icon: FcDatabase, // Replace with the actual icon component
+      "Regular testing and quizzes to track your progress and enhance your learning experience.",
+    icon: FcDatabase,
   },
 ];
 
@@ -33,14 +33,17 @@ export default function Feature() {
             <div className="lg:pr-8 lg:pt-4 lg:ml-24">
               <div className="lg:max-w-lg">
                 <h2 className=" font-semibold leading-7 text-indigo-600">
-                  ტქსტიიიი
+                  Welcome to Our Online Learning Platform
                 </h2>
                 <p className="mt-2 text-3xl font-bold tracking-tight dark:text-white text-black sm:text-4xl">
-                  ტქსტიიიი ტქსტიიიი
+                  Enhance Your Skills, Anytime, Anywhere
                 </p>
                 <p className="mt-6 text-lg leading-8 dark:text-white text-black">
-                  ტქსტიიიი ტქსტიიიი ტქსტიიიი ტქსტიიიი ტქსტიიიი ტქსტიიიი ტქსტიიიი
-                  ტქსტიიიი
+                  Our platform provides a wide range of courses and materials
+                  for effective online learning. Regular testing and quizzes are
+                  available to track your progress and enhance your learning
+                  experience. Your data is safe with us as we ensure secure and
+                  encrypted connections.
                 </p>
                 <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 dark:text-white text-black lg:max-w-none">
                   {features.map((feature) => (
@@ -60,7 +63,7 @@ export default function Feature() {
             <Image
               src={FeatureReview}
               alt="Product screenshot"
-              className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 dark:ring-gray-100/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+              className="w-[21rem] max-w-none rounded-xl shadow-xl border  ring-1 ring-gray-400/10 dark:ring-gray-100/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
               width={2432}
               height={1442}
             />
