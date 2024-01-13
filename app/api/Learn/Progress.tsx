@@ -1,6 +1,6 @@
 import React from "react";
 
-const progress_API = "https://192.168.1.68:45455/api/Progress/";
+const progress_API = "https://192.168.1.56:45455/api/Progress/";
 const progress_API_NIkoloza = "https://172.20.10.7:45455/api/Progress/";
 
 const mac_progress_API = "https://localhost:7163/api/Progress/";
@@ -12,7 +12,7 @@ const Progresess = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt_token");
-      const apiUrl = `${mac_progress_API}GetProgress/?UserId=${userid}&CourseId=${courseid}`; // Construct the URL with query parameters
+      const apiUrl = `${progress_API}GetProgress/?UserId=${userid}&CourseId=${courseid}`; // Construct the URL with query parameters
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
@@ -45,7 +45,7 @@ const Progresess = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt_token");
-      const response = await fetch(mac_progress_API + "complete-lesson/", {
+      const response = await fetch(progress_API + "complete-lesson/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
