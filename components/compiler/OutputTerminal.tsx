@@ -42,14 +42,21 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
   }, [Error]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentText(
-        (prevText) => prevText + outputDetails.charAt(currentIndex)
-      );
-      setCurrentIndex((prevIndex) => prevIndex + 1);
-    }, 100); // adjust timing here
+    if (outputDetails && outputDetails.trim() !== "") {
+      const intervalDuration = 800 / outputDetails.length; // Adjust the factor as needed
+      const timer = setInterval(() => {
+        const char = outputDetails.charAt(currentIndex);
+        setCurrentText((prevText) =>
+          char === "\n" ? prevText + "<br />" : prevText + char
+        );
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+      }, intervalDuration);
 
-    return () => clearInterval(timer);
+      return () => clearInterval(timer);
+    } else {
+      setCurrentText("");
+      setCurrentIndex(0);
+    }
   }, [outputDetails, currentIndex]);
 
   return (
@@ -63,7 +70,10 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
       >
         <div className="flex">
           <div className="flex-1 typing items-center pl-2">
-            <span style={{ color: textColor }}>{currentText}</span>
+            <span
+              style={{ color: textColor }}
+              dangerouslySetInnerHTML={{ __html: currentText }}
+            />
           </div>
         </div>
       </div>
