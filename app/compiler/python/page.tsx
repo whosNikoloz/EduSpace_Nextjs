@@ -138,7 +138,7 @@ print("Hello Python World")
                   outputDetails="test"
                   Height="85vh"
                   DarkMode={isDarkMode}
-                  Error
+                  Error={""}
                 />
               </div>
             </div>
@@ -221,7 +221,7 @@ print("Hello Python World")
                   outputDetails="test"
                   Height="85vh"
                   DarkMode={isDarkMode}
-                  Error
+                  Error={""}
                 />
               )}
             </div>

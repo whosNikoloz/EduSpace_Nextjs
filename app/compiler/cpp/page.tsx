@@ -138,7 +138,12 @@ int main() {
                     </Button>
                   </div>
                 </div>
-                <OutputTerminal outputDetails="test" Height="85vh" DarkMode={isDarkMode} Error/>
+                <OutputTerminal
+                  outputDetails="test"
+                  Height="85vh"
+                  DarkMode={isDarkMode}
+                  Error={""}
+                />
               </div>
             </div>
           </div>
@@ -216,7 +221,12 @@ int main() {
                 />
               )}
               {selectedTab === "Output" && (
-                <OutputTerminal outputDetails="test" Height="85vh" DarkMode={isDarkMode} Error/>
+                <OutputTerminal
+                  outputDetails="test"
+                  Height="85vh"
+                  DarkMode={isDarkMode}
+                  Error={""}
+                />
               )}
             </div>
           </div>

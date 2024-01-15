@@ -141,7 +141,7 @@ public class HelloWorld {
                   outputDetails="test"
                   Height="85vh"
                   DarkMode={isDarkMode}
-                  Error
+                  Error={""}
                 />
               </div>
             </div>
@@ -224,7 +224,7 @@ public class HelloWorld {
                   outputDetails="test"
                   Height="85vh"
                   DarkMode={isDarkMode}
-                  Error
+                  Error={""}
                 />
               )}
             </div>

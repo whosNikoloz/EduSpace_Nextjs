@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LayoutNavbar from "@/app/layouts/LayoutNavbar";
 import { Link } from "@nextui-org/link";
 import CodeEditorWindow from "@/components/compiler/MonacoEditorWrapper";
@@ -13,13 +13,17 @@ import { PythonIcon } from "@/components/compiler/PythonIcon";
 import { CsharpIcon } from "@/components/compiler/CsharpIcon";
 import { CppIcon } from "@/components/compiler/CppIcon";
 import { JavaIcon } from "@/components/compiler/JavaIcon";
+import {
+  HubConnectionBuilder,
+  HubConnection,
+  LogLevel,
+} from "@microsoft/signalr";
+import { set } from "nprogress";
+import { Console } from "console";
 
 export default function CompilerPage() {
   const [code, setCode] = useState(
     `
-// Online C# Editor for free
-// Write, Edit and Run your C# code using C# Online Compiler
-    
 using System;
 
 public class HelloWorld
@@ -30,9 +34,54 @@ public class HelloWorld
     }
 }`
   );
-  const [isExpanded, setIsExpanded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [output, setOutput] = useState("");
+  const [error, setError] = useState("");
   const [selectedTab, setSelectedTab] = useState("Main.cs");
+  const [compilationStatus, setCompilationStatus] = useState("Not Started");
+  const [connection, setConnection] = useState<HubConnection | null>(null);
+
+  useEffect(() => {
+    const initializeSignalR = async () => {
+      try {
+        const conn = new HubConnectionBuilder()
+          .withUrl("https://localhost:7257/csharpTerminal")
+          .configureLogging(LogLevel.Information)
+          .build();
+
+        conn.on("ReceiveCompilationUpdate", (output: any) => {
+          console.log("ReceiveCompilationUpdate : ", output);
+          setOutput(output.output);
+        });
+
+        conn.on("terminaloutput", (output: string) => {
+          console.log("terminaloutput : ", output);
+          setOutput(output);
+        });
+
+        await conn
+          .start()
+          .then(() => {
+            setConnection(conn);
+          })
+          .catch((err) => {
+            console.error(`Error connecting to SignalR hub: ${err}`);
+          });
+      } catch (error) {
+        console.error("Error during connection:", error);
+      }
+    };
+
+    initializeSignalR();
+  }, []);
+
+  const compileCode = async () => {
+    try {
+      await connection?.invoke("CompileAndExecuteCode", code);
+    } catch (error) {
+      console.error("Error during compilation:", error);
+    }
+  };
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -42,14 +91,9 @@ public class HelloWorld
     setSelectedTab(tabName);
   };
 
-  const toggleSize = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   const handleCodeChange = (newCode: React.SetStateAction<string>) => {
     setCode(newCode);
   };
-
   return (
     <LayoutNavbar>
       <div className="flex flex-col md:flex-row">
@@ -114,7 +158,12 @@ public class HelloWorld
                         <MoonIcon size={20} />
                       )}
                     </Button>
-                    <Button color="primary" isLoading={false} className="py-2">
+                    <Button
+                      color="primary"
+                      isLoading={false}
+                      onClick={compileCode}
+                      className="py-2"
+                    >
                       <RunIcon size={20} />
                       კომპილაცია
                     </Button>
@@ -142,10 +191,10 @@ public class HelloWorld
                   </div>
                 </div>
                 <OutputTerminal
-                  outputDetails="test"
+                  outputDetails={output}
                   Height="85vh"
                   DarkMode={isDarkMode}
-                  Error
+                  Error={error}
                 />
               </div>
             </div>
@@ -201,7 +250,10 @@ public class HelloWorld
                   <Button
                     color="primary"
                     isLoading={false}
-                    onClick={() => handleTabChange("Output")}
+                    onClick={() => {
+                      handleTabChange("Output");
+                      compileCode();
+                    }}
                     isIconOnly
                   >
                     <RunIcon size={20} />
@@ -225,10 +277,10 @@ public class HelloWorld
               )}
               {selectedTab === "Output" && (
                 <OutputTerminal
-                  outputDetails="test"
+                  outputDetails={output}
                   Height="85vh"
                   DarkMode={isDarkMode}
-                  Error
+                  Error={error}
                 />
               )}
             </div>
