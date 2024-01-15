@@ -1,12 +1,10 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 
 interface OutputTerminalProps {
   outputDetails: string;
   DarkMode: boolean;
   Height: string;
-  Error: boolean;
+  Error: string;
 }
 
 const OutputTerminal: React.FC<OutputTerminalProps> = ({
@@ -16,10 +14,11 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
   Error,
 }) => {
   const [backgroundColor, setBackgroundColor] = useState("#24292E");
-  const [textColor, setTextColor] = useState("inherit"); // Default text color
-  const [dollarColor, setDollarColor] = useState("white"); // Color for the "$" symbol
+  const [textColor, setTextColor] = useState("white");
+  const [dollarColor, setDollarColor] = useState("white");
+  const [currentText, setCurrentText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Update the background color when DarkMode changes
   useEffect(() => {
     if (DarkMode) {
       setBackgroundColor("#24292E");
@@ -28,14 +27,30 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
     }
   }, [DarkMode]);
 
-  // Set text color to red if Error is true, otherwise keep it white
   useEffect(() => {
-    if (Error) {
+    if (typeof Error === "string" && Error.trim() !== "") {
       setTextColor("red");
     } else {
-      setTextColor("white"); // Set text color to white for non-error text
+      setTextColor("white");
     }
   }, [Error]);
+
+  useEffect(() => {
+    setDollarColor(
+      typeof Error === "string" && Error.trim() !== "" ? "red" : "white"
+    );
+  }, [Error]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentText(
+        (prevText) => prevText + outputDetails.charAt(currentIndex)
+      );
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    }, 100); // adjust timing here
+
+    return () => clearInterval(timer);
+  }, [outputDetails, currentIndex]);
 
   return (
     <div className="w-full">
@@ -47,11 +62,9 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
         className="inverse-toggle px-5 shadow-lg text-sm font-mono subpixel-antialiased pb-6 leading-normal overflow-hidden"
       >
         <div className="flex">
-          <p className="flex-1 typing items-center pl-2">
-            <span style={{ color: dollarColor }}>$</span>{" "}
-            <span style={{ color: textColor }}>{outputDetails}</span>
-            <br />
-          </p>
+          <div className="flex-1 typing items-center pl-2">
+            <span style={{ color: textColor }}>{currentText}</span>
+          </div>
         </div>
       </div>
     </div>

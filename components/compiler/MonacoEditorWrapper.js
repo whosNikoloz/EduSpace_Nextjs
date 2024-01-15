@@ -9,7 +9,7 @@ const CodeEditorWindow = ({ onChange, language, code, isDarkMode }) => {
 
   const handleEditorChange = (value) => {
     setValue(value);
-    onChange("code", value);
+    onChange(value);
   };
 
   // Use the useEffect hook to change the theme based on isDarkMode
