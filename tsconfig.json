@@ -44,7 +44,11 @@
     "app/not-found.tsx",
     "components/profile/UploadImg/uploadProfilePic.tsx",
     "components/profile/UploadGeneral/generalEdit.tsx",
-    "components/profile/userCardSkeleton.jsx"
-, "components/profile/UploadImg/cropimg.tsx", "components/profile/ChangeEmail/confirmAccess.tsx"  ],
+    "components/profile/userCardSkeleton.jsx",
+    "components/profile/UploadImg/cropimg.tsx",
+    "components/profile/ChangeEmail/confirmAccess.tsx",
+    "components/Home/compiler.tsx",
+    "components/Home/compilerSection.jsx"
+  ],
   "exclude": ["node_modules"]
 }

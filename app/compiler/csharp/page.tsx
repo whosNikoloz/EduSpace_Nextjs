@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import LayoutNavbar from "@/app/layouts/LayoutNavbar";
 import { Link } from "@nextui-org/link";
 import CodeEditorWindow from "@/components/compiler/MonacoEditorWrapper";
@@ -18,8 +18,6 @@ import {
   HubConnection,
   LogLevel,
 } from "@microsoft/signalr";
-import { set } from "nprogress";
-import { Console } from "console";
 
 export default function CompilerPage() {
   const [code, setCode] = useState(
@@ -30,7 +28,7 @@ public class HelloWorld
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("Hello Mono World");
+        Console.WriteLine("Hello EduSpace!");
     }
 }`
   );
@@ -38,49 +36,52 @@ public class HelloWorld
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
   const [selectedTab, setSelectedTab] = useState("Main.cs");
-  const [compilationStatus, setCompilationStatus] = useState("Not Started");
+  const [compiling, setCompiling] = useState(false);
   const [connection, setConnection] = useState<HubConnection | null>(null);
 
+  const initializeSignalR = async () => {
+    try {
+      const conn = new HubConnectionBuilder()
+        .withUrl("https://localhost:7257/csharpTerminal")
+        .configureLogging(LogLevel.Information)
+        .build();
+
+      await conn.start();
+
+      return conn; // Return the connection object after a successful start
+    } catch (error) {
+      console.error("Error during connection:", error);
+      throw error; // Propagate the error
+    }
+  };
+
   useEffect(() => {
-    const initializeSignalR = async () => {
-      try {
-        const conn = new HubConnectionBuilder()
-          .withUrl("https://localhost:7257/csharpTerminal")
-          .configureLogging(LogLevel.Information)
-          .build();
-
-        conn.on("ReceiveCompilationUpdate", (output: any) => {
-          console.log("ReceiveCompilationUpdate : ", output);
-          setOutput(output.output);
-        });
-
-        conn.on("terminaloutput", (output: string) => {
-          console.log("terminaloutput : ", output);
-          setOutput(output);
-        });
-
-        await conn
-          .start()
-          .then(() => {
-            setConnection(conn);
-          })
-          .catch((err) => {
-            console.error(`Error connecting to SignalR hub: ${err}`);
-          });
-      } catch (error) {
-        console.error("Error during connection:", error);
-      }
-    };
-
-    initializeSignalR();
-  }, []);
+    connection?.on("ReceiveCompilationUpdate", (output: any) => {
+      setOutput(output.output);
+      setError(output.error);
+      setCompiling(false);
+    });
+  }, [connection]);
 
   const compileCode = async () => {
+    setCompiling(true);
     try {
-      await connection?.invoke("CompileAndExecuteCode", code);
+      const conn = await initializeSignalR(); // Wait for the connection to be established
+      setConnection(conn);
+      setOutput("");
+      setError("");
+      setTimeout(async () => {
+        await conn?.invoke("CompileAndExecuteCode", code); // Use conn, not connection
+      }, 500);
     } catch (error) {
       console.error("Error during compilation:", error);
+      setError("Error during compilation"); // Update the error state
+      setCompiling(false);
     }
+  };
+
+  const handleClear = () => {
+    setOutput("");
   };
 
   const toggleDarkMode = () => {
@@ -160,7 +161,7 @@ public class HelloWorld
                     </Button>
                     <Button
                       color="primary"
-                      isLoading={false}
+                      isLoading={compiling}
                       onClick={compileCode}
                       className="py-2"
                     >
@@ -185,6 +186,7 @@ public class HelloWorld
                       isLoading={false}
                       color="primary"
                       className="mb-2 px-4 py-2 mt-4"
+                      onClick={handleClear}
                     >
                       გასუფთავება
                     </Button>
@@ -249,7 +251,7 @@ public class HelloWorld
                   /* This is the "if" part */
                   <Button
                     color="primary"
-                    isLoading={false}
+                    isLoading={compiling}
                     onClick={() => {
                       handleTabChange("Output");
                       compileCode();

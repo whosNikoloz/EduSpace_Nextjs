@@ -13,37 +13,25 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
   Height,
   Error,
 }) => {
-  const [backgroundColor, setBackgroundColor] = useState("#24292E");
-  const [textColor, setTextColor] = useState("white");
-  const [dollarColor, setDollarColor] = useState("white");
-  const [currentText, setCurrentText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [backgroundColor, setBackgroundColor] = useState<string>("#24292E");
+  const [textColor, setTextColor] = useState<string>("white");
+  const [dollarColor, setDollarColor] = useState<string>("white");
+  const [currentText, setCurrentText] = useState<string>("");
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   useEffect(() => {
-    if (DarkMode) {
-      setBackgroundColor("#24292E");
-    } else {
-      setBackgroundColor("#fff");
-    }
+    setBackgroundColor(DarkMode ? "#24292E" : "#fff");
   }, [DarkMode]);
 
   useEffect(() => {
-    if (typeof Error === "string" && Error.trim() !== "") {
-      setTextColor("red");
-    } else {
-      setTextColor("white");
-    }
-  }, [Error]);
-
-  useEffect(() => {
-    setDollarColor(
-      typeof Error === "string" && Error.trim() !== "" ? "red" : "white"
-    );
+    setTextColor(Error && Error.trim() !== "" ? "red" : "white");
+    setDollarColor(Error && Error.trim() !== "" ? "red" : "white");
   }, [Error]);
 
   useEffect(() => {
     if (outputDetails && outputDetails.trim() !== "") {
-      const intervalDuration = 800 / outputDetails.length; // Adjust the factor as needed
+      const intervalDuration = 800 / outputDetails.length;
+
       const timer = setInterval(() => {
         const char = outputDetails.charAt(currentIndex);
         setCurrentText((prevText) =>
@@ -57,16 +45,16 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
       setCurrentText("");
       setCurrentIndex(0);
     }
-  }, [outputDetails, currentIndex]);
+  }, [outputDetails, currentIndex, currentText]);
 
   return (
     <div className="w-full">
       <div
+        className={`inverse-toggle px-5 shadow-lg text-sm font-mono subpixel-antialiased pb-6 leading-normal overflow-hidden`}
         style={{
           height: Height,
           backgroundColor: backgroundColor,
         }}
-        className="inverse-toggle px-5 shadow-lg text-sm font-mono subpixel-antialiased pb-6 leading-normal overflow-hidden"
       >
         <div className="flex">
           <div className="flex-1 typing items-center pl-2">
@@ -74,6 +62,9 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
               style={{ color: textColor }}
               dangerouslySetInnerHTML={{ __html: currentText }}
             />
+            {Error && Error.trim() !== "" && (
+              <div style={{ color: "red" }}>Error: {Error}</div>
+            )}
           </div>
         </div>
       </div>

@@ -7,7 +7,11 @@ import OutputTerminal from "@/components/compiler/OutputTerminal";
 import { EduSpace } from "../EduSpaceLogo";
 import { Button } from "@nextui-org/react";
 import { RunIcon } from "../compiler/RunIcon";
-import CompilerApi from "@/app/api/Compiler/compiler";
+import {
+  HubConnectionBuilder,
+  HubConnection,
+  LogLevel,
+} from "@microsoft/signalr";
 
 export const Compiler = ({ code, isDarkMode, onChange }) => {
   useEffect(() => {
@@ -17,39 +21,54 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
       defineTheme("githublight");
     }
   }, [isDarkMode]);
-  const compiler = CompilerApi();
-  const [isRunning, setIsRunning] = useState(false);
+  const [Compiling, setCompiling] = useState(false);
   const [output, setOutput] = useState("");
   const [activeTab, setActiveTab] = useState("code");
-  const [errorFlag, setErrorFlag] = useState(false);
+  const [error, setError] = useState(false);
+  const [connection, setConnection] = useState(null);
+
+  const initializeSignalR = async () => {
+    try {
+      const conn = new HubConnectionBuilder()
+        .withUrl("https://localhost:7257/csharpTerminal")
+        .configureLogging(LogLevel.Information)
+        .build();
+
+      await conn.start();
+
+      return conn; // Return the connection object after a successful start
+    } catch (error) {
+      console.error("Error during connection:", error);
+      throw error; // Propagate the error
+    }
+  };
+
+  useEffect(() => {
+    connection?.on("ReceiveCompilationUpdate", (output) => {
+      setOutput(output.output);
+      setError(output.error);
+      setCompiling(false);
+    });
+  }, [connection]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
-  const handelCompile = async () => {
-    setIsRunning(true);
-
+  const compileCode = async () => {
+    setCompiling(true);
     try {
-      const response = await compiler.compilecsharp(code, "csharp", "");
-
-      if (response.success === true) {
-        setOutput(response.result);
-        setErrorFlag(false);
-      } else {
-        setOutput(response.error);
-        setErrorFlag(true);
-      }
+      const conn = await initializeSignalR(); // Wait for the connection to be established
+      setConnection(conn);
+      setOutput("");
+      setError("");
+      setTimeout(async () => {
+        await conn?.invoke("CompileAndExecuteCode", code); // Use conn, not connection
+      }, 500);
     } catch (error) {
-      // Handle any errors that may occur during compilation
-      console.error(error);
-      setErrorFlag(true);
-    } finally {
-      // Compilation is done, whether it succeeds or fails
-      setIsRunning(false);
-
-      // Switch to the 'output' tab
-      setActiveTab("output");
+      console.error("Error during compilation:", error);
+      setError("Error during compilation"); // Update the error state
+      setCompiling(false);
     }
   };
 
@@ -106,7 +125,7 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
                 Height="37vh"
                 DarkMode
                 outputDetails={output}
-                Error={errorFlag}
+                Error={error}
               />
             </div>
           </div>
@@ -153,7 +172,7 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
                 Height="37vh"
                 DarkMode
                 outputDetails={output}
-                Error={errorFlag}
+                Error={error}
               />
             </div>
           )}
@@ -164,8 +183,8 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
           <Button
             color="primary"
             variant="shadow"
-            isLoading={isRunning}
-            onClick={() => handelCompile()}
+            isLoading={Compiling}
+            onClick={() => compileCode()}
           >
             <RunIcon size={20} /> კომპილაცია
           </Button>
