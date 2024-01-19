@@ -167,7 +167,6 @@ const Authentication = () => {
     confirmPassword: string
   ) => {
     try {
-      console.log(userName, email, password, confirmPassword);
       const response = await fetch(auth_API + "Register", {
         method: "POST",
         headers: {

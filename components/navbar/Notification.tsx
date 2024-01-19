@@ -4,6 +4,11 @@ import Notifications from "@/app/api/Social/Notification";
 import { Badge } from "@nextui-org/react";
 import { NotificationIcon } from "./NotificationIcon";
 import Image from "next/image";
+import {
+  HubConnectionBuilder,
+  HubConnection,
+  LogLevel,
+} from "@microsoft/signalr";
 
 interface NotificationProps {
   notificationId: number;
@@ -38,26 +43,48 @@ function formatTimeAgo(timestamp: string | number | Date) {
 
 const Notification: React.FC<{ userid: number }> = ({ userid }) => {
   const notf = Notifications();
-
   const [notifications, setNotifications] = useState<NotificationProps[]>([]);
 
   const fetchNotifications = useCallback(async () => {
     const notifications = await notf.GetNotifications(userid);
     setNotifications(notifications);
-  }, [userid, notf]); // don't forget to include all the dependencies here
+  }, [userid, notf]);
 
+  // Use an empty dependency array to make sure this effect runs only once
   useEffect(() => {
     fetchNotifications();
-  }, [fetchNotifications]);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      fetchNotifications(); // This will run every 5 seconds
-    }, 5000);
-    return () => clearInterval(intervalId); // Clear interval on unmount
-  }, [userid, fetchNotifications]);
+  }, []);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const connection = new HubConnectionBuilder()
+      .withUrl(`https://localhost:7163/notificationHub?userId=${userid}`)
+      .configureLogging(LogLevel.Information) // Corrected typo here
+      .build();
+
+    connection
+      .start()
+      .then(() => {
+        console.log("Connection started!");
+      })
+      .catch((error) => {
+        console.error("Error starting connection:", error);
+      });
+
+    connection.on("ReceiveNotification", (newNotification) => {
+      setNotifications((prevNotifications) => [
+        newNotification,
+        ...prevNotifications,
+      ]);
+    });
+
+    // Add a listener for connection close events
+    connection.onclose((error) => {
+      console.error("Connection closed:", error);
+    });
+  }, []);
+
   return (
     <>
       <div className="relative my-32">
@@ -122,6 +149,8 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                       <Image
                         className="h-8 w-8 rounded-full object-cover mx-1"
                         src={notification.commentAuthorPicture}
+                        width={32}
+                        height={32}
                         alt="avatar"
                       />
                       <p className="dark:text-white text-black text-sm mx-2">

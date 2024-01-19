@@ -103,7 +103,6 @@ const Comment = () => {
     postid: number
   ) => {
     try {
-      console.log(content);
       const token = localStorage.getItem("jwt_token");
       // Upload the video and picture to Firebase Storage
       const videoUrl = video
