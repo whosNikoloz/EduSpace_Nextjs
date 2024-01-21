@@ -305,7 +305,7 @@ function PostCard({ postData, onDelete }) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                {postData.user.username} პოსტი
+                {postData.user.username}-ს პოსტი
               </ModalHeader>
               <ModalBody>
                 {/* post author profile */}
@@ -379,11 +379,11 @@ function PostCard({ postData, onDelete }) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                {postData.user.username} პოსტი
+                {postData.user.username}-ს პოსტი
               </ModalHeader>
               <ModalBody>
                 {/* post author profile */}
-                <div className="my-2 px-4 flex items-center space-x-2 ">
+                <div className="my-2  flex items-center space-x-2 ">
                   <User
                     name={
                       postData.user.firstname && postData.user.lastname
@@ -396,9 +396,9 @@ function PostCard({ postData, onDelete }) {
                     }}
                   />
                 </div>
-                <div className="my-2 px-4 flex items-center ">{text}</div>
+                <div className="my-2  flex items-center ">{text}</div>
                 {/* create post interface */}
-                <div className="px-4 py-2 ">
+                <div className=" py-2 ">
                   <div className="flex items-center justify-center">
                     {(postData.picture || postData.video) && (
                       <div className="flex items-center justify-center w-full">
@@ -433,6 +433,7 @@ function PostCard({ postData, onDelete }) {
                     </button>
                   </Link>
                 </div>
+                <hr className="border-gray-700" />
                 {postData.comments.map((comment) => (
                   <Comment
                     key={comment.commentId}
@@ -494,6 +495,7 @@ function PostCard({ postData, onDelete }) {
                           : user.userName
                       }
                       src={user.picture}
+                      size="sm"
                     />
                     <div className="mb-4 w-full max-w-lg">
                       <CommentForm
