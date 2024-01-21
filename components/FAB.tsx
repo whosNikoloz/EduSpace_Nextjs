@@ -8,6 +8,7 @@ import { EduSpace } from "./EduSpaceLogo";
 import { ChatIcon } from "./ChatIcon";
 import { useChat } from "ai/react";
 import { useUser } from "@/app/dbcontext/UserdbContext";
+import { useRouter } from "next/navigation";
 import {
   Modal,
   ModalContent,
@@ -20,7 +21,8 @@ import {
 const FAB: React.FC = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { messages, input, handleInputChange, handleSubmit } = useChat();
-  const { user, logout } = useUser();
+  const { user } = useUser();
+  const router = useRouter();
 
   // Function to scroll to the top when the button is clicked
   const scrollToTop = () => {
@@ -28,6 +30,14 @@ const FAB: React.FC = () => {
       top: 0,
       behavior: "smooth",
     });
+  };
+
+  const openChat = () => {
+    if (user) {
+      onOpen();
+    } else {
+      router.push("/user/auth");
+    }
   };
 
   return (
@@ -43,7 +53,7 @@ const FAB: React.FC = () => {
       <Action
         text="Chat"
         style={{ backgroundColor: "transparent" }}
-        onClick={onOpen}
+        onClick={openChat}
       >
         <Modal
           scrollBehavior="inside"
@@ -75,7 +85,7 @@ const FAB: React.FC = () => {
             {(onClose) => (
               <>
                 <ModalHeader className="flex flex-col gap-1">
-                  <div className="flex flex-col space-y-1.5 pb-6">
+                  <div className="flex flex-col space-y-1.5 ">
                     <h2 className="font-semibold text-lg tracking-tight">
                       EduSpace Chat
                     </h2>
