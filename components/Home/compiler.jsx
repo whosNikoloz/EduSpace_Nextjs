@@ -73,7 +73,7 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
   };
 
   return (
-    <div className="flex flex-col border border-gray-500">
+    <div className="flex flex-col border border-gray-500 bg-black text-white">
       {/* EduSpace */}
       <div className="text-3xl font-bold p-2">
         <EduSpace />
@@ -81,7 +81,7 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
 
       {/* Main content */}
       {/* Two-column layout for larger screens */}
-      <div className="flex flex-col border border-gray-500">
+      <div className="flex flex-col border border-gray-500 ">
         {/* Main content */}
 
         {/* Two-column layout for larger screens */}
@@ -89,7 +89,7 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
           {/* Left container */}
           <div className="flex-1 lg:border-r border-gray-500">
             {/* Nested container 1 */}
-            <div className="flex-1 border-b border-gray-500 p-2 text-left">
+            <div className="flex-1 border-b border-gray-500 p-2  text-left">
               <p>Code</p>
             </div>
 
