@@ -83,20 +83,21 @@ const Comment: React.FC<CommentProps> = ({
 
   return (
     <div className="flex items-center ">
-      <div className=" text-black dark:text-gray-200 p-4 antialiased flex max-w-lg">
+      <div className=" text-black dark:text-gray-200 antialiased flex max-w-lg">
         <div>
           <Avatar
             className="transition-transform"
             name={username}
             src={avatarUrl}
+            size="sm"
           />
         </div>
         <div className="ml-3">
-          <div className="bg-gray-100 dark:bg-gray-700 rounded-3xl px-4 pt-2 pb-2.5 mb-2">
-            <div className="font-semibold text-sm leading-relaxed">
+          <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 pt-1 pb-1 mb-1">
+            <div className="font-semibold text-sm leading-relaxed ">
               {username}
             </div>
-            <div className="text-normal leading-snug md:leading-normal">
+            <div className="text-normal leading-snug md:leading-normal ">
               {commentText}
             </div>
           </div>
