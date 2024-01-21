@@ -9,7 +9,7 @@ export default function ProfileLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col h-screen">
+    <div className="relative flex flex-col h-screen ">
       <Navbar />
       {children}
     </div>

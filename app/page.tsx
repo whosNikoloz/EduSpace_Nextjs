@@ -38,77 +38,92 @@ export default function Home() {
   return (
     <>
       <MainLayout>
-        <div className="mb-4 container mx-auto max-w-7xl pt-9 px-6 flex-grow">
-          <Hero />
+        <div className="dark:bg-gradient-to-t dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+          <div className="mb-4 container mx-auto  pt-9 lg:px-32 sm:px-6 flex-grow ">
+            <Hero />
+          </div>
+          <div className="hidden md:block ">
+            <ConnectorFirst text="კოდის ყოველი ხაზი არის ინოვაციასთან უფრო ახლოს." />
+          </div>
         </div>
-        <div className="hidden md:block">
-          <ConnectorFirst text="კოდის ყოველი ხაზი არის ინოვაციასთან უფრო ახლოს." />
+        <div className="dark:bg-gradient-to-b dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+          <section className=" items-center justify-center">
+            <div className="mt-7 ">
+              <div className="mt-20 mb-7">
+                <AutoScrollCarousel />
+              </div>
+            </div>
+          </section>
+          <div className="hidden md:block">
+            <ConnectorSecond text="ყველა საიდანღაც იწყებს" />
+          </div>
         </div>
-        <section className=" items-center justify-center">
+        <div className="dark:bg-gradient-to-t dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
           <div className="mt-7 ">
             <div className="mt-20 mb-7">
-              <AutoScrollCarousel />
+              <Feature />
             </div>
           </div>
-        </section>
-        <div className="hidden md:block">
-          <ConnectorSecond text="ყველა საიდანღაც იწყებს" />
-        </div>
-
-        <div className="mt-7 ">
-          <div className="mt-20 mb-7">
-            <Feature />
+          <div className="hidden md:block">
+            <ConnectorFirst text="არ არსებობს იდეალური დრო" />
           </div>
         </div>
-        <div className="hidden md:block">
-          <ConnectorFirst text="არ არსებობს იდეალური დრო" />
-        </div>
-        <section className=" items-center justify-center gap-4 py-8 md:py-10 container mx-auto max-w-7xl pt-9 px-6 flex-grow">
-          <div className="mt-7 ">
-            <CompilerSection />
-          </div>
-        </section>
-        <div className="hidden md:block">
-          <ConnectorSecond text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
-        </div>
-        <section className=" items-center justify-center gap-4 py-8 md:py-10">
-          <div className="mt-7">
-            <Team />
-          </div>
-        </section>
-
-        <div className="hidden md:block">
-          <ConnectorFirst text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
-        </div>
-        <section
-          className=" items-center justify-center gap-4 py-8 md:py-10"
-          id="step-section"
-        >
-          <div className="mt-7 ">
-            <div className="mt-10">
-              <Steps />
+        <div className="dark:bg-gradient-to-b dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+          <section className=" items-center justify-center gap-4 py-8 md:py-10 container mx-auto max-w-7xl pt-9 px-6 flex-grow">
+            <div className="mt-7 ">
+              <CompilerSection />
             </div>
+          </section>
+          <div className="hidden md:block">
+            <ConnectorSecond text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
           </div>
-        </section>
-
-        <div className="hidden md:block">
-          <ConnectorSecond text="გააგრძელეთ კოდირება, განაგრძეთ სწავლა და განაგრძეთ ზრდა." />
         </div>
-        <section className=" items-center justify-center gap-4 py-8 md:py-10">
-          <div className="mt-7 ">
-            <div className="mt-10">
-              <Stats />
+        <div className="dark:bg-gradient-to-t dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+          <section className=" items-center justify-center gap-4 py-8 md:py-10">
+            <div className="mt-7">
+              <Team />
             </div>
+          </section>
+
+          <div className="hidden md:block">
+            <ConnectorFirst text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
           </div>
-        </section>
-        <div className="hidden md:block">
-          <ConnectorFirst text="წარუმატებლობა მხოლოდ დროებითი შეცდომაა" />
         </div>
-        <section className=" items-center justify-center gap-4 py-8 md:py-10">
-          <div className=" text-center   justify-center">
-            <Review />
+        <div className="dark:bg-gradient-to-b dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+          <section
+            className=" items-center justify-center gap-4 py-8 md:py-10"
+            id="step-section"
+          >
+            <div className="mt-7 ">
+              <div className="mt-10">
+                <Steps />
+              </div>
+            </div>
+          </section>
+
+          <div className="hidden md:block">
+            <ConnectorSecond text="გააგრძელეთ კოდირება, განაგრძეთ სწავლა და განაგრძეთ ზრდა." />
           </div>
-        </section>
+        </div>
+        <div className="dark:bg-gradient-to-t dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+          <section className=" items-center justify-center gap-4 py-8 md:py-10">
+            <div className="mt-7 ">
+              <div className="mt-10">
+                <Stats />
+              </div>
+            </div>
+          </section>
+          <div className="hidden md:block">
+            <ConnectorFirst text="წარუმატებლობა მხოლოდ დროებითი შეცდომაა" />
+          </div>
+        </div>
+        <div className="dark:bg-gradient-to-b dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+          <section className=" items-center justify-center gap-4 py-8 md:py-10">
+            <div className=" text-center   justify-center">
+              <Review />
+            </div>
+          </section>
+        </div>
         <Fab />
       </MainLayout>
     </>

@@ -76,52 +76,58 @@ export default function SocialPage() {
     <>
       {isLoading ? (
         <MainLayout>
-          <SearchSubject searchPostFunction={setSearchQuery} />
-          <br />
-          <PostCardSkeleton />
-          <PostCardSkeleton />
-          <PostCardSkeleton />
+          <div className="dark:bg-gradient-to-t dark:from-black dark:via-blue-900 dark:to-black ">
+            <SearchSubject searchPostFunction={setSearchQuery} />
+            <br />
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+          </div>
         </MainLayout>
       ) : isError ? (
         <MainLayout>
-          <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 mt-20">
-            <div className={Styles.Loader}>
-              <h1>Failed To Load</h1>
-            </div>
-          </section>
+          <div className="dark:bg-gradient-to-t dark:from-black dark:via-blue-900 dark:to-black">
+            <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 mt-20">
+              <div className={Styles.Loader}>
+                <h1>Failed To Load</h1>
+              </div>
+            </section>
+          </div>
         </MainLayout>
       ) : (
         <MainLayout>
-          <SearchSubject searchPostFunction={setSearchQuery} />
-          <br />
-          <CreatePost setPosts={setPosts} />
-          <>
-            {searchQuery && (
-              <CustomTitle
-                title1={"გაიფილტრა"}
-                title2={searchQuery}
-                margin={14}
-                direct={"center"}
-              />
-            )}
-            {filteredPosts.map((post: { postId: Key | null | undefined }) => (
-              <PostCard
-                key={post.postId}
-                postData={post}
-                onDelete={handleDeletePost}
-              />
-            ))}
-            {!hasNextPage && (
-              <CustomTitle
-                title1={"ვსო"}
-                title2={searchQuery}
-                margin={14}
-                direct={"center"}
-              />
-            )}
-            <Toaster position="bottom-left" reverseOrder={false} />
-            {isFetching && <PostCardSkeleton />}
-          </>
+          <div className="dark:bg-gradient-to-t dark:from-black dark:via-blue-900 dark:to-black ">
+            <SearchSubject searchPostFunction={setSearchQuery} />
+            <br />
+            <CreatePost setPosts={setPosts} />
+            <>
+              {searchQuery && (
+                <CustomTitle
+                  title1={"გაიფილტრა"}
+                  title2={searchQuery}
+                  margin={14}
+                  direct={"center"}
+                />
+              )}
+              {filteredPosts.map((post: { postId: Key | null | undefined }) => (
+                <PostCard
+                  key={post.postId}
+                  postData={post}
+                  onDelete={handleDeletePost}
+                />
+              ))}
+              {!hasNextPage && (
+                <CustomTitle
+                  title1={"ვსო"}
+                  title2={searchQuery}
+                  margin={14}
+                  direct={"center"}
+                />
+              )}
+              <Toaster position="bottom-left" reverseOrder={false} />
+              {isFetching && <PostCardSkeleton />}
+            </>
+          </div>
         </MainLayout>
       )}
     </>
