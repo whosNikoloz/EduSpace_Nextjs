@@ -9,10 +9,7 @@ import { Reveal } from "../RevealFramer";
 export const Team = () => {
   return (
     <>
-      <div
-        id="team"
-        className="section relative pt-20 pb-8 md:pt-16 bg-white dark:bg-black"
-      >
+      <div id="team" className="section relative pt-20 pb-8 md:pt-16 ">
         <div className="container xl:max-w-6xl mx-auto px-4">
           <div className="flex flex-wrap flex-row -mx-4 justify-center ">
             <div className="flex-shrink  max-w-full px-4 w-2/3 sm:w-1/2 md:w-5/12 lg:w-1/4 xl:px-6 team-member">
@@ -20,7 +17,7 @@ export const Team = () => {
                 direction={isMobile ? "left" : "up"}
                 delay={isMobile ? 0.5 : 0.1}
               >
-                <div className="relative overflow-hidden bg-white dark:bg-black mb-12 hover-grayscale-0">
+                <div className="relative overflow-hidden  mb-12 hover-grayscale-0">
                   <div className="relative overflow-hidden px-6 flex items-center justify-center">
                     <Image
                       src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar1.png"
@@ -132,7 +129,7 @@ export const Team = () => {
                 direction={isMobile ? "left" : "up"}
                 delay={isMobile ? 0.5 : 0.4}
               >
-                <div className="relative overflow-hidden bg-white dark:bg-black mb-12 hover-grayscale-0">
+                <div className="relative overflow-hidden mb-12 hover-grayscale-0">
                   <div className="relative overflow-hidden px-6 flex items-center justify-center">
                     <Image
                       src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar3.png"
@@ -245,7 +242,7 @@ export const Team = () => {
                 direction={isMobile ? "left" : "up"}
                 delay={isMobile ? 0.5 : 0.8}
               >
-                <div className="relative overflow-hidden bg-white dark:bg-black mb-12 hover-grayscale-0">
+                <div className="relative overflow-hidden  mb-12 hover-grayscale-0">
                   <div className="relative overflow-hidden px-6 flex items-center justify-center">
                     <Image
                       src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar2.png"
@@ -358,7 +355,7 @@ export const Team = () => {
                 direction={isMobile ? "left" : "up"}
                 delay={isMobile ? 0.5 : 1}
               >
-                <div className="relative overflow-hidden bg-white dark:bg-black mb-12 hover-grayscale-0">
+                <div className="relative overflow-hidden  mb-12 hover-grayscale-0">
                   <div className="relative overflow-hidden px-6 flex items-center justify-center">
                     <Image
                       src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar4.png"

@@ -38,7 +38,6 @@ const FAB: React.FC = () => {
   const openChat = () => {
     if (userCount < maxUserLimit) {
       if (user) {
-        setUserCount((prevCount) => prevCount + 1); // Increment user count
         onOpen();
       } else {
         router.push("/user/auth");
@@ -152,6 +151,9 @@ const FAB: React.FC = () => {
                       <Button
                         type="submit"
                         className="text-sm font-medium bg-black text-white  hover:bg-blue-600 h-10 px-4 py-2"
+                        onClick={() =>
+                          setUserCount((prevCount) => prevCount + 1)
+                        }
                       >
                         Send
                       </Button>

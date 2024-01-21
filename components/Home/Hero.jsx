@@ -14,7 +14,7 @@ const Typewriter = dynamic(() => import("typewriter-effect"), {
 export const Hero = () => {
   return (
     <>
-      <div className="flex flex-wrap md:mt-20">
+      <div className="flex flex-wrap md:mt-20 ">
         <div className="w-full md:w-1/2 p-6 lg:text-left text-center">
           <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl dark:text-white">
             Welcome to
