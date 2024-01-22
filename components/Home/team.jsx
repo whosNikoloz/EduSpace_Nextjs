@@ -1,470 +1,276 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { isMobile } from "react-device-detect";
 import Link from "next/link";
 import { Image } from "@nextui-org/react";
 import { Reveal } from "../RevealFramer";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Button,
+} from "@nextui-org/react";
 
 export const Team = () => {
+  const [selectedCategory, setSelectedCategory] = useState("mobile");
+  const [inputValue, setInputValue] = useState("");
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.id);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const peopleData = {
+    mobile: [
+      {
+        name: "Nikoloz  Kobaidze1",
+        role: "IOS Frontend Developer",
+        image:
+          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+        facebook: "https://www.facebook.com/profile.php?id=100009152091053",
+        in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
+        github: "https://github.com/whosNikoloz",
+      },
+      {
+        name: "Nikoloz  Kobaidze2",
+        role: "IOS Backend Developer",
+        image:
+          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+        facebook: "https://www.facebook.com/profile.php?id=100009152091053",
+        in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
+        github: "https://github.com/whosNikoloz",
+      },
+      {
+        name: "Nikoloz  Kobaidze3",
+        role: "UI/UX Mobile Designer",
+        image:
+          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+        facebook: "https://www.facebook.com/profile.php?id=100009152091053",
+        in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
+        github: "https://github.com/whosNikoloz",
+      },
+    ],
+    web: [
+      {
+        name: "Nikoloz  Kobaidze4",
+        role: "Full Stack Web Developer",
+        image:
+          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+        facebook: "https://www.facebook.com/profile.php?id=100009152091053",
+        in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
+        github: "https://github.com/whosNikoloz",
+      },
+      {
+        name: "Nikoloz  Kobaidze5",
+        role: "Backend Developer",
+        image:
+          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+        facebook: "https://www.facebook.com/profile.php?id=100009152091053",
+        in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
+        github: "https://github.com/whosNikoloz",
+      },
+      {
+        name: "Nikoloz  Kobaidze6",
+        role: "Frontend Developer",
+        image:
+          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+        facebook: "https://www.facebook.com/profile.php?id=100009152091053",
+        in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
+        github: "https://github.com/whosNikoloz",
+      },
+    ],
+    ai: [
+      {
+        name: "Nikoloz  Kobaidze7",
+        role: "AI",
+        image:
+          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+        facebook: "https://www.facebook.com/profile.php?id=100009152091053",
+        in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
+        github: "https://github.com/whosNikoloz",
+      },
+      {
+        name: "Nikoloz  Kobaidze8",
+        role: "AI",
+        image:
+          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+        facebook: "https://www.facebook.com/profile.php?id=100009152091053",
+        in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
+        github: "https://github.com/whosNikoloz",
+      },
+      {
+        name: "Nikoloz  Kobaidze9",
+        role: "AI",
+        image:
+          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+        facebook: "https://www.facebook.com/profile.php?id=100009152091053",
+        in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
+        github: "https://github.com/whosNikoloz",
+      },
+    ],
+  };
+
   return (
     <>
-      <div id="team" className="section relative pt-20 pb-8 md:pt-16 ">
-        <div className="container xl:max-w-6xl mx-auto px-4">
-          <div className="flex flex-wrap flex-row -mx-4 justify-center ">
-            <div className="flex-shrink  max-w-full px-4 w-2/3 sm:w-1/2 md:w-5/12 lg:w-1/4 xl:px-6 team-member">
-              <Reveal
-                direction={isMobile ? "left" : "up"}
-                delay={isMobile ? 0.5 : 0.1}
-              >
-                <div className="relative overflow-hidden  mb-12 hover-grayscale-0">
-                  <div className="relative overflow-hidden px-6 flex items-center justify-center">
-                    <Image
-                      src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar1.png"
-                      className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
-                      alt="title image"
-                      width={120}
-                      height={120}
-                    />
-                  </div>
-                  <div className="pt-6 text-center">
-                    <p className="text-lg leading-normal font-bold mb-1">
-                      ნიკა კობაიძე
-                    </p>
-                    <p className="text-blue-700 dark:text-blue-400 leading-relaxed font-light">
-                      Devops Engineer
-                    </p>
-                    <div className="mt-2 mb-5 space-x-2">
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Twitter link"
-                        href="www.linkedin.com/in/nikoloz-kobaidze-298a35254"
-                      >
-                        <i className="fab fa-twitter text-twitter"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Facebook link"
-                        href="https://www.facebook.com/profile.php?id=100009152091053"
-                      >
-                        <i className="fab fa-facebook text-facebook"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M455.27,32H56.73A24.74,24.74,0,0,0,32,56.73V455.27A24.74,24.74,0,0,0,56.73,480H256V304H202.45V240H256V189c0-57.86,40.13-89.36,91.82-89.36,24.73,0,51.33,1.86,57.51,2.68v60.43H364.15c-28.12,0-33.48,13.3-33.48,32.9V240h67l-8.75,64H330.67V480h124.6A24.74,24.74,0,0,0,480,455.27V56.73A24.74,24.74,0,0,0,455.27,32Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Instagram link"
-                        href="https://www.instagram.com/kobaidze0/"
-                      >
-                        <i className="fab fa-instagram text-instagram"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M349.33,69.33a93.62,93.62,0,0,1,93.34,93.34V349.33a93.62,93.62,0,0,1-93.34,93.34H162.67a93.62,93.62,0,0,1-93.34-93.34V162.67a93.62,93.62,0,0,1,93.34-93.34H349.33m0-37.33H162.67C90.8,32,32,90.8,32,162.67V349.33C32,421.2,90.8,480,162.67,480H349.33C421.2,480,480,421.2,480,349.33V162.67C480,90.8,421.2,32,349.33,32Z"
-                          ></path>
-                          <path
-                            fill="currentColor"
-                            d="M377.33,162.67a28,28,0,1,1,28-28A27.94,27.94,0,0,1,377.33,162.67Z"
-                          ></path>
-                          <path
-                            fill="currentColor"
-                            d="M256,181.33A74.67,74.67,0,1,1,181.33,256,74.75,74.75,0,0,1,256,181.33M256,144A112,112,0,1,0,368,256,112,112,0,0,0,256,144Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Linkedin link"
-                        href="#"
-                      >
-                        <i className="fab fa-linkedin text-linkedin"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M444.17,32H70.28C49.85,32,32,46.7,32,66.89V441.61C32,461.91,49.85,480,70.28,480H444.06C464.6,480,480,461.79,480,441.61V66.89C480.12,46.7,464.6,32,444.17,32ZM170.87,405.43H106.69V205.88h64.18ZM141,175.54h-.46c-20.54,0-33.84-15.29-33.84-34.43,0-19.49,13.65-34.42,34.65-34.42s33.85,14.82,34.31,34.42C175.65,160.25,162.35,175.54,141,175.54ZM405.43,405.43H341.25V296.32c0-26.14-9.34-44-32.56-44-17.74,0-28.24,12-32.91,23.69-1.75,4.2-2.22,9.92-2.22,15.76V405.43H209.38V205.88h64.18v27.77c9.34-13.3,23.93-32.44,57.88-32.44,42.13,0,74,27.77,74,87.64Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-            <div className="flex-shrink max-w-full px-4 w-2/3 sm:w-1/2 md:w-5/12 lg:w-1/4 xl:px-6 team-member">
-              <Reveal
-                direction={isMobile ? "left" : "up"}
-                delay={isMobile ? 0.5 : 0.4}
-              >
-                <div className="relative overflow-hidden mb-12 hover-grayscale-0">
-                  <div className="relative overflow-hidden px-6 flex items-center justify-center">
-                    <Image
-                      src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar3.png"
-                      className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
-                      alt="title image"
-                      width={120}
-                      height={120}
-                    />
-                  </div>
-                  <div className="pt-6 text-center">
-                    <p className="text-lg leading-normal font-bold mb-1">
-                      ნიკა კობაიძე
-                    </p>
-                    <p className="text-blue-700 dark:text-blue-400 leading-relaxed font-light">
-                      Full-stack Developer
-                    </p>
+      <section className="">
+        <div className="container px-6 py-10 mx-auto">
+          <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
+            our team
+          </h1>
 
-                    <div className="mt-2 mb-5 space-x-2">
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Twitter link"
-                        href="www.linkedin.com/in/nikoloz-kobaidze-298a35254"
-                      >
-                        <i className="fab fa-twitter text-twitter"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Facebook link"
-                        href="https://www.facebook.com/profile.php?id=100009152091053"
-                      >
-                        <i className="fab fa-facebook text-facebook"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M455.27,32H56.73A24.74,24.74,0,0,0,32,56.73V455.27A24.74,24.74,0,0,0,56.73,480H256V304H202.45V240H256V189c0-57.86,40.13-89.36,91.82-89.36,24.73,0,51.33,1.86,57.51,2.68v60.43H364.15c-28.12,0-33.48,13.3-33.48,32.9V240h67l-8.75,64H330.67V480h124.6A24.74,24.74,0,0,0,480,455.27V56.73A24.74,24.74,0,0,0,455.27,32Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Instagram link"
-                        href="https://www.instagram.com/kobaidze0/"
-                      >
-                        <i className="fab fa-instagram text-instagram"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M349.33,69.33a93.62,93.62,0,0,1,93.34,93.34V349.33a93.62,93.62,0,0,1-93.34,93.34H162.67a93.62,93.62,0,0,1-93.34-93.34V162.67a93.62,93.62,0,0,1,93.34-93.34H349.33m0-37.33H162.67C90.8,32,32,90.8,32,162.67V349.33C32,421.2,90.8,480,162.67,480H349.33C421.2,480,480,421.2,480,349.33V162.67C480,90.8,421.2,32,349.33,32Z"
-                          ></path>
-                          <path
-                            fill="currentColor"
-                            d="M377.33,162.67a28,28,0,1,1,28-28A27.94,27.94,0,0,1,377.33,162.67Z"
-                          ></path>
-                          <path
-                            fill="currentColor"
-                            d="M256,181.33A74.67,74.67,0,1,1,181.33,256,74.75,74.75,0,0,1,256,181.33M256,144A112,112,0,1,0,368,256,112,112,0,0,0,256,144Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Linkedin link"
-                        href="#"
-                      >
-                        <i className="fab fa-linkedin text-linkedin"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M444.17,32H70.28C49.85,32,32,46.7,32,66.89V441.61C32,461.91,49.85,480,70.28,480H444.06C464.6,480,480,461.79,480,441.61V66.89C480.12,46.7,464.6,32,444.17,32ZM170.87,405.43H106.69V205.88h64.18ZM141,175.54h-.46c-20.54,0-33.84-15.29-33.84-34.43,0-19.49,13.65-34.42,34.65-34.42s33.85,14.82,34.31,34.42C175.65,160.25,162.35,175.54,141,175.54ZM405.43,405.43H341.25V296.32c0-26.14-9.34-44-32.56-44-17.74,0-28.24,12-32.91,23.69-1.75,4.2-2.22,9.92-2.22,15.76V405.43H209.38V205.88h64.18v27.77c9.34-13.3,23.93-32.44,57.88-32.44,42.13,0,74,27.77,74,87.64Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-            <div className="flex-shrink max-w-full px-4 w-2/3 sm:w-1/2 md:w-5/12 lg:w-1/4 xl:px-6 team-member">
-              <Reveal
-                direction={isMobile ? "left" : "up"}
-                delay={isMobile ? 0.5 : 0.8}
+          <p className="max-w-2xl mx-auto my-6 text-center text-gray-500 dark:text-gray-300">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+            incidunt ex placeat modi magni quia error alias, adipisci rem
+            similique, at omnis eligendi optio eos harum.
+          </p>
+          <div className="flex items-center justify-center ">
+            <div className="flex items-center p-1 border border-blue-600  dark:border-blue-400 rounded-xl gap-2">
+              <input
+                type="radio"
+                id="mobile"
+                name="category"
+                className="hidden "
+                checked={selectedCategory === "mobile"}
+                onChange={handleCategoryChange}
+              />
+              <label
+                htmlFor="mobile"
+                className={`px-4 py-2 text-sm font-medium capitalize ${
+                  selectedCategory === "mobile"
+                    ? "text-white bg-blue-600 hover:bg-blue-600"
+                    : "text-blue-600 dark:text-blue-400 dark:hover:text-white hover:bg-blue-600 hover:text-white"
+                } rounded-xl md:py-3 md:px-12 cursor-pointer`}
               >
-                <div className="relative overflow-hidden  mb-12 hover-grayscale-0">
-                  <div className="relative overflow-hidden px-6 flex items-center justify-center">
-                    <Image
-                      src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar2.png"
-                      className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
-                      alt="title image"
-                      width={120}
-                      height={120}
-                    />
-                  </div>
-                  <div className="pt-6 text-center">
-                    <p className="text-lg leading-normal font-bold mb-1">
-                      ნიკა კობაიძე
-                    </p>
-                    <p className="text-blue-700 dark:text-blue-400 leading-relaxed font-light">
-                      IOS Developer
-                    </p>
+                Mobile Dev
+              </label>
 
-                    <div className="mt-2 mb-5 space-x-2">
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Twitter link"
-                        href="www.linkedin.com/in/nikoloz-kobaidze-298a35254"
-                      >
-                        <i className="fab fa-twitter text-twitter"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Facebook link"
-                        href="https://www.facebook.com/profile.php?id=100009152091053"
-                      >
-                        <i className="fab fa-facebook text-facebook"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M455.27,32H56.73A24.74,24.74,0,0,0,32,56.73V455.27A24.74,24.74,0,0,0,56.73,480H256V304H202.45V240H256V189c0-57.86,40.13-89.36,91.82-89.36,24.73,0,51.33,1.86,57.51,2.68v60.43H364.15c-28.12,0-33.48,13.3-33.48,32.9V240h67l-8.75,64H330.67V480h124.6A24.74,24.74,0,0,0,480,455.27V56.73A24.74,24.74,0,0,0,455.27,32Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Instagram link"
-                        href="https://www.instagram.com/kobaidze0/"
-                      >
-                        <i className="fab fa-instagram text-instagram"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M349.33,69.33a93.62,93.62,0,0,1,93.34,93.34V349.33a93.62,93.62,0,0,1-93.34,93.34H162.67a93.62,93.62,0,0,1-93.34-93.34V162.67a93.62,93.62,0,0,1,93.34-93.34H349.33m0-37.33H162.67C90.8,32,32,90.8,32,162.67V349.33C32,421.2,90.8,480,162.67,480H349.33C421.2,480,480,421.2,480,349.33V162.67C480,90.8,421.2,32,349.33,32Z"
-                          ></path>
-                          <path
-                            fill="currentColor"
-                            d="M377.33,162.67a28,28,0,1,1,28-28A27.94,27.94,0,0,1,377.33,162.67Z"
-                          ></path>
-                          <path
-                            fill="currentColor"
-                            d="M256,181.33A74.67,74.67,0,1,1,181.33,256,74.75,74.75,0,0,1,256,181.33M256,144A112,112,0,1,0,368,256,112,112,0,0,0,256,144Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Linkedin link"
-                        href="#"
-                      >
-                        <i className="fab fa-linkedin text-linkedin"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M444.17,32H70.28C49.85,32,32,46.7,32,66.89V441.61C32,461.91,49.85,480,70.28,480H444.06C464.6,480,480,461.79,480,441.61V66.89C480.12,46.7,464.6,32,444.17,32ZM170.87,405.43H106.69V205.88h64.18ZM141,175.54h-.46c-20.54,0-33.84-15.29-33.84-34.43,0-19.49,13.65-34.42,34.65-34.42s33.85,14.82,34.31,34.42C175.65,160.25,162.35,175.54,141,175.54ZM405.43,405.43H341.25V296.32c0-26.14-9.34-44-32.56-44-17.74,0-28.24,12-32.91,23.69-1.75,4.2-2.22,9.92-2.22,15.76V405.43H209.38V205.88h64.18v27.77c9.34-13.3,23.93-32.44,57.88-32.44,42.13,0,74,27.77,74,87.64Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-            <div className="flex-shrink max-w-full px-4 w-2/3 sm:w-1/2 md:w-5/12 lg:w-1/4 xl:px-6 team-member">
-              <Reveal
-                direction={isMobile ? "left" : "up"}
-                delay={isMobile ? 0.5 : 1}
+              <input
+                type="radio"
+                id="web"
+                name="category"
+                className="hidden"
+                checked={selectedCategory === "web"}
+                onChange={handleCategoryChange}
+              />
+              <label
+                htmlFor="web"
+                className={`px-6 py-2 text-sm font-medium capitalize ${
+                  selectedCategory === "web"
+                    ? "text-white bg-blue-600 hover:bg-blue-600"
+                    : "text-blue-600 dark:text-blue-400 dark:hover:text-white hover:bg-blue-600 hover:text-white"
+                } rounded-xl md:py-3 md:px-12 cursor-pointer`}
               >
-                <div className="relative overflow-hidden  mb-12 hover-grayscale-0">
-                  <div className="relative overflow-hidden px-6 flex items-center justify-center">
-                    <Image
-                      src="https://tailone.tailwindtemplate.net/src/img/dummy/avatar4.png"
-                      className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
-                      alt="title image"
-                      width={120}
-                      height={120}
-                    />
-                  </div>
-                  <div className="pt-6 text-center">
-                    <p className="text-lg leading-normal font-bold mb-1">
-                      ნიკა კობაიძე
-                    </p>
-                    <p className="text-blue-700 dark:text-blue-400 leading-relaxed font-light">
-                      UI/UX Designer
-                    </p>
-                    <div className="mt-2 mb-5 space-x-2">
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Twitter link"
-                        href="www.linkedin.com/in/nikoloz-kobaidze-298a35254"
-                      >
-                        <i className="fab fa-twitter text-twitter"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M496,109.5a201.8,201.8,0,0,1-56.55,15.3,97.51,97.51,0,0,0,43.33-53.6,197.74,197.74,0,0,1-62.56,23.5A99.14,99.14,0,0,0,348.31,64c-54.42,0-98.46,43.4-98.46,96.9a93.21,93.21,0,0,0,2.54,22.1,280.7,280.7,0,0,1-203-101.3A95.69,95.69,0,0,0,36,130.4C36,164,53.53,193.7,80,211.1A97.5,97.5,0,0,1,35.22,199v1.2c0,47,34,86.1,79,95a100.76,100.76,0,0,1-25.94,3.4,94.38,94.38,0,0,1-18.51-1.8c12.51,38.5,48.92,66.5,92.05,67.3A199.59,199.59,0,0,1,39.5,405.6,203,203,0,0,1,16,404.2,278.68,278.68,0,0,0,166.74,448c181.36,0,280.44-147.7,280.44-275.8,0-4.2-.11-8.4-.31-12.5A198.48,198.48,0,0,0,496,109.5Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Facebook link"
-                        href="https://www.facebook.com/profile.php?id=100009152091053"
-                      >
-                        <i className="fab fa-facebook text-facebook"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M455.27,32H56.73A24.74,24.74,0,0,0,32,56.73V455.27A24.74,24.74,0,0,0,56.73,480H256V304H202.45V240H256V189c0-57.86,40.13-89.36,91.82-89.36,24.73,0,51.33,1.86,57.51,2.68v60.43H364.15c-28.12,0-33.48,13.3-33.48,32.9V240h67l-8.75,64H330.67V480h124.6A24.74,24.74,0,0,0,480,455.27V56.73A24.74,24.74,0,0,0,455.27,32Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Instagram link"
-                        href="https://www.instagram.com/kobaidze0/"
-                      >
-                        <i className="fab fa-instagram text-instagram"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M349.33,69.33a93.62,93.62,0,0,1,93.34,93.34V349.33a93.62,93.62,0,0,1-93.34,93.34H162.67a93.62,93.62,0,0,1-93.34-93.34V162.67a93.62,93.62,0,0,1,93.34-93.34H349.33m0-37.33H162.67C90.8,32,32,90.8,32,162.67V349.33C32,421.2,90.8,480,162.67,480H349.33C421.2,480,480,421.2,480,349.33V162.67C480,90.8,421.2,32,349.33,32Z"
-                          ></path>
-                          <path
-                            fill="currentColor"
-                            d="M377.33,162.67a28,28,0,1,1,28-28A27.94,27.94,0,0,1,377.33,162.67Z"
-                          ></path>
-                          <path
-                            fill="currentColor"
-                            d="M256,181.33A74.67,74.67,0,1,1,181.33,256,74.75,74.75,0,0,1,256,181.33M256,144A112,112,0,1,0,368,256,112,112,0,0,0,256,144Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                      <Link
-                        className="hover:text-blue-700"
-                        aria-label="Linkedin link"
-                        href="#"
-                      >
-                        <i className="fab fa-linkedin text-linkedin"></i>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="inline-block"
-                          width="1rem"
-                          height="1rem"
-                          viewBox="0 0 512 512"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M444.17,32H70.28C49.85,32,32,46.7,32,66.89V441.61C32,461.91,49.85,480,70.28,480H444.06C464.6,480,480,461.79,480,441.61V66.89C480.12,46.7,464.6,32,444.17,32ZM170.87,405.43H106.69V205.88h64.18ZM141,175.54h-.46c-20.54,0-33.84-15.29-33.84-34.43,0-19.49,13.65-34.42,34.65-34.42s33.85,14.82,34.31,34.42C175.65,160.25,162.35,175.54,141,175.54ZM405.43,405.43H341.25V296.32c0-26.14-9.34-44-32.56-44-17.74,0-28.24,12-32.91,23.69-1.75,4.2-2.22,9.92-2.22,15.76V405.43H209.38V205.88h64.18v27.77c9.34-13.3,23.93-32.44,57.88-32.44,42.13,0,74,27.77,74,87.64Z"
-                          ></path>
-                        </svg>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
+                Web Dev
+              </label>
+
+              <input
+                type="radio"
+                id="ai"
+                name="category"
+                className="hidden"
+                checked={selectedCategory === "ai"}
+                onChange={handleCategoryChange}
+              />
+              <label
+                htmlFor="ai"
+                className={`px-6 py-2 text-sm font-medium capitalize ${
+                  selectedCategory === "ai"
+                    ? "text-white bg-blue-600 hover:bg-blue-600"
+                    : "text-blue-600 dark:text-blue-400 dark:hover:text-white hover:bg-blue-600 hover:text-white"
+                } rounded-xl md:py-3 md:px-12 cursor-pointer`}
+              >
+                Ai Dev
+              </label>
             </div>
           </div>
+
+          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-3">
+            {peopleData[selectedCategory].map((person, index) => (
+              <Reveal
+                key={`${selectedCategory}-${inputValue}-${index}`}
+                delay={index}
+              >
+                <Card className="col-span-12 sm:col-span-4 h-[300px]">
+                  <CardHeader className="absolute z-10 top-1 flex-col !items-start">
+                    <p className="text-tiny text-white/60 uppercase font-bold">
+                      {person.role}
+                    </p>
+                    <h4 className="text-white font-medium text-large">
+                      {person.name}
+                    </h4>
+                    <div className="flex mt-3 -mx-2">
+                      <a
+                        href={person.in}
+                        target="_blank"
+                        className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                        aria-label="linkedin"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="inline-block w-6 h-6 fill-current"
+                          width="1rem"
+                          height="1rem"
+                          viewBox="0 0 512 512"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M444.17,32H70.28C49.85,32,32,46.7,32,66.89V441.61C32,461.91,49.85,480,70.28,480H444.06C464.6,480,480,461.79,480,441.61V66.89C480.12,46.7,464.6,32,444.17,32ZM170.87,405.43H106.69V205.88h64.18ZM141,175.54h-.46c-20.54,0-33.84-15.29-33.84-34.43,0-19.49,13.65-34.42,34.65-34.42s33.85,14.82,34.31,34.42C175.65,160.25,162.35,175.54,141,175.54ZM405.43,405.43H341.25V296.32c0-26.14-9.34-44-32.56-44-17.74,0-28.24,12-32.91,23.69-1.75,4.2-2.22,9.92-2.22,15.76V405.43H209.38V205.88h64.18v27.77c9.34-13.3,23.93-32.44,57.88-32.44,42.13,0,74,27.77,74,87.64Z"
+                          ></path>
+                        </svg>
+                      </a>
+
+                      <a
+                        href={person.facebook}
+                        className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                        aria-label="Facebook"
+                        target="_blank"
+                      >
+                        <i className="fab fa-facebook text-facebook"></i>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="inline-block w-6 h-6 fill-current"
+                          viewBox="0 0 512 512"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M455.27,32H56.73A24.74,24.74,0,0,0,32,56.73V455.27A24.74,24.74,0,0,0,56.73,480H256V304H202.45V240H256V189c0-57.86,40.13-89.36,91.82-89.36,24.73,0,51.33,1.86,57.51,2.68v60.43H364.15c-28.12,0-33.48,13.3-33.48,32.9V240h67l-8.75,64H330.67V480h124.6A24.74,24.74,0,0,0,480,455.27V56.73A24.74,24.74,0,0,0,455.27,32Z"
+                          ></path>
+                        </svg>
+                      </a>
+
+                      <a
+                        href={person.github}
+                        className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                        aria-label="Github"
+                        target="_blank"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="inline-block w-6 h-6 fill-current"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-4.466 19.59c-.405.078-.534-.171-.534-.384v-2.195c0-.747-.262-1.233-.55-1.481 1.782-.198 3.654-.875 3.654-3.947 0-.874-.312-1.588-.823-2.147.082-.202.356-1.016-.079-2.117 0 0-.671-.215-2.198.82-.64-.18-1.324-.267-2.004-.271-.68.003-1.364.091-2.003.269-1.528-1.035-2.2-.82-2.2-.82-.434 1.102-.16 1.915-.077 2.118-.512.56-.824 1.273-.824 2.147 0 3.064 1.867 3.751 3.645 3.954-.229.2-.436.552-.508 1.07-.457.204-1.614.557-2.328-.666 0 0-.423-.768-1.227-.825 0 0-.78-.01-.055.487 0 0 .525.246.889 1.17 0 0 .463 1.428 2.688.944v1.489c0 .211-.129.459-.528.385-3.18-1.057-5.472-4.056-5.472-7.59 0-4.419 3.582-8 8-8s8 3.581 8 8c0 3.533-2.289 6.531-5.466 7.59z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </CardHeader>
+                  <Image
+                    removeWrapper
+                    alt="Card background"
+                    className="z-0 w-full h-full object-cover"
+                    src={person.image}
+                  />
+                </Card>
+              </Reveal>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

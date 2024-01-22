@@ -38,15 +38,18 @@ export default function Home() {
   return (
     <>
       <MainLayout>
-        <div className="dark:bg-gradient-to-t dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+        <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300 from-50%  dark:to-black ">
           <div className="mb-4 container mx-auto  pt-9 lg:px-32 sm:px-6 flex-grow ">
             <Hero />
           </div>
           <div className="hidden md:block ">
-            <ConnectorFirst text="კოდის ყოველი ხაზი არის ინოვაციასთან უფრო ახლოს." />
+            <ConnectorFirst
+              text="კოდის ყოველი ხაზი არის ინოვაციასთან უფრო ახლოს."
+              color={"white"}
+            />
           </div>
         </div>
-        <div className="dark:bg-gradient-to-b dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+        <div className="bg-gradient-to-b dark:from-blue-900 from-blue-300  dark:to-black ">
           <section className=" items-center justify-center">
             <div className="mt-7 ">
               <div className="mt-20 mb-7">
@@ -55,30 +58,33 @@ export default function Home() {
             </div>
           </section>
           <div className="hidden md:block">
-            <ConnectorSecond text="ყველა საიდანღაც იწყებს" />
+            <ConnectorSecond text="ყველა საიდანღაც იწყებს" color={"blue"} />
           </div>
         </div>
-        <div className="dark:bg-gradient-to-t dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+        <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300  dark:to-black ">
           <div className="mt-7 ">
             <div className="mt-20 mb-7">
               <Feature />
             </div>
           </div>
           <div className="hidden md:block">
-            <ConnectorFirst text="არ არსებობს იდეალური დრო" />
+            <ConnectorFirst text="არ არსებობს იდეალური დრო" color={"white"} />
           </div>
         </div>
-        <div className="dark:bg-gradient-to-b dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+        <div className="bg-gradient-to-b dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section className=" items-center justify-center gap-4 py-8 md:py-10 container mx-auto max-w-7xl pt-9 px-6 flex-grow">
             <div className="mt-7 ">
               <CompilerSection />
             </div>
           </section>
           <div className="hidden md:block">
-            <ConnectorSecond text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
+            <ConnectorSecond
+              text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება."
+              color={"blue"}
+            />
           </div>
         </div>
-        <div className="dark:bg-gradient-to-t dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+        <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
             <div className="mt-7">
               <Team />
@@ -86,10 +92,13 @@ export default function Home() {
           </section>
 
           <div className="hidden md:block">
-            <ConnectorFirst text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება." />
+            <ConnectorFirst
+              text="კოდირება არის იდეების რეალობად გადაქცევის ხელოვნება."
+              color={"white"}
+            />
           </div>
         </div>
-        <div className="dark:bg-gradient-to-b dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+        <div className="bg-gradient-to-b dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section
             className=" items-center justify-center gap-4 py-8 md:py-10"
             id="step-section"
@@ -102,10 +111,13 @@ export default function Home() {
           </section>
 
           <div className="hidden md:block">
-            <ConnectorSecond text="გააგრძელეთ კოდირება, განაგრძეთ სწავლა და განაგრძეთ ზრდა." />
+            <ConnectorSecond
+              text="გააგრძელეთ კოდირება, განაგრძეთ სწავლა და განაგრძეთ ზრდა."
+              color={"blue"}
+            />
           </div>
         </div>
-        <div className="dark:bg-gradient-to-t dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+        <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
             <div className="mt-7 ">
               <div className="mt-10">
@@ -114,10 +126,13 @@ export default function Home() {
             </div>
           </section>
           <div className="hidden md:block">
-            <ConnectorFirst text="წარუმატებლობა მხოლოდ დროებითი შეცდომაა" />
+            <ConnectorFirst
+              text="წარუმატებლობა მხოლოდ დროებითი შეცდომაა"
+              color={"white"}
+            />
           </div>
         </div>
-        <div className="dark:bg-gradient-to-b dark:from-blue-900 dark:via-opacity-50 dark:to-black ">
+        <div className="bg-gradient-to-b dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
             <div className=" text-center   justify-center">
               <Review />
