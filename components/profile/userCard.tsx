@@ -26,7 +26,7 @@ export const UserCard: FC<UserCardProps> = ({
   const day = date.getDate();
   const formattedDate = `${year}-${day}-${month < 10 ? "0" + month : month}`; // Outputs: 2023-16-11
 
-  const handleButtonClick = (option: string) => {
+  const handleCategoryChange = (option: string) => {
     setSelectedOption(option);
     onSelectionChange(option);
   };
@@ -49,24 +49,45 @@ export const UserCard: FC<UserCardProps> = ({
               {firstname} {lastname}
             </p>
             <div className="mt-6 flex flex-wrap gap-1 justify-center">
-              <ButtonGroup>
-                <Button
-                  color="primary"
-                  className="dark:text-white"
-                  variant={selectedOption === "Edit" ? "shadow" : "ghost"}
-                  onClick={() => handleButtonClick("Edit")}
-                >
-                  Edit Profile
-                </Button>
-                <Button
-                  color="primary"
-                  className="dark:text-white"
-                  variant={selectedOption === "Main" ? "shadow" : "ghost"}
-                  onClick={() => handleButtonClick("Main")}
+              <div className="flex items-center p-1 border border-blue-600  dark:border-blue-400 rounded-xl gap-1">
+                <input
+                  type="radio"
+                  id="Main"
+                  name="category"
+                  className="hidden "
+                  checked={selectedOption === "Main"}
+                  onChange={() => handleCategoryChange("Main")}
+                />
+                <label
+                  htmlFor="Main"
+                  className={`px-4 py-2 text-xs font-medium capitalize ${
+                    selectedOption === "Main"
+                      ? "text-white bg-blue-600 hover:bg-blue-600"
+                      : "text-blue-600 dark:text-blue-400 dark:hover:text-white hover:bg-blue-600 hover:text-white"
+                  } rounded-xl md:py-3 md:px-12 cursor-pointer`}
                 >
                   Main
-                </Button>
-              </ButtonGroup>
+                </label>
+
+                <input
+                  type="radio"
+                  id="Edit"
+                  name="category"
+                  className="hidden"
+                  checked={selectedOption === "Edit"}
+                  onChange={() => handleCategoryChange("Edit")}
+                />
+                <label
+                  htmlFor="Edit"
+                  className={`px-6 py-2 text-xs font-medium capitalize ${
+                    selectedOption === "Edit"
+                      ? "text-white bg-blue-600 hover:bg-blue-600"
+                      : "text-blue-600 dark:text-blue-400 dark:hover:text-white hover:bg-blue-600 hover:text-white"
+                  } rounded-xl md:py-3 md:px-12 cursor-pointer`}
+                >
+                  Edit Profile
+                </label>
+              </div>
             </div>
           </div>
           <div className="flex flex-col mt-4">

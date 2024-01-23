@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button, ButtonGroup } from "@nextui-org/react";
 
 function UserCardSkeleton() {
   const [selectedOption, setSelectedOption] = useState("Main");
@@ -23,24 +22,43 @@ function UserCardSkeleton() {
             <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4 animate-pulse"></div>
             <div className="w-48 h-2 bg-gray-200 rounded-full dark:bg-gray-700 animate-pulse"></div>
             <div className="mt-6 flex flex-wrap gap-1 justify-center">
-              <ButtonGroup>
-                <Button
-                  color="primary"
-                  className="dark:text-white"
-                  variant={selectedOption === "Edit" ? "shadow" : "ghost"}
-                  isDisabled={true}
-                >
-                  Edit Profile
-                </Button>
-                <Button
-                  color="primary"
-                  className="dark:text-white"
-                  variant={selectedOption === "Main" ? "shadow" : "ghost"}
-                  isDisabled={true}
+              <div className="flex items-center p-1 border border-blue-600  dark:border-blue-400 rounded-xl gap-1">
+                <input
+                  type="radio"
+                  id="Main"
+                  name="category"
+                  className="hidden "
+                  checked={selectedOption === "Main"}
+                />
+                <label
+                  htmlFor="Main"
+                  className={`px-4 py-2 text-xs font-medium capitalize ${
+                    selectedOption === "Main"
+                      ? "text-white bg-blue-600 hover:bg-blue-600"
+                      : "text-blue-600 dark:text-blue-400 dark:hover:text-white hover:bg-blue-600 hover:text-white"
+                  } rounded-xl md:py-3 md:px-12 cursor-pointer`}
                 >
                   Main
-                </Button>
-              </ButtonGroup>
+                </label>
+
+                <input
+                  type="radio"
+                  id="Edit"
+                  name="category"
+                  className="hidden"
+                  checked={selectedOption === "Edit"}
+                />
+                <label
+                  htmlFor="Edit"
+                  className={`px-6 py-2 text-xs font-medium capitalize ${
+                    selectedOption === "Edit"
+                      ? "text-white bg-blue-600 hover:bg-blue-600"
+                      : "text-blue-600 dark:text-blue-400 dark:hover:text-white hover:bg-blue-600 hover:text-white"
+                  } rounded-xl md:py-3 md:px-12 cursor-pointer`}
+                >
+                  Edit Profile
+                </label>
+              </div>
             </div>
           </div>
           <div className="flex flex-col mt-4">

@@ -6,7 +6,7 @@ export const Steps = () => {
   return (
     <section>
       <div className="container mx-auto flex flex-col p-4">
-        <div className="divide-y divide-gray-700">
+        <div className="divide-y dark:divide-gray-400 divide-black">
           <Reveal direction="left">
             <div className="grid justify-center  grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0 steps">
               <div className="flex items-center justify-center lg:col-span-1 col-span-full">

@@ -124,9 +124,10 @@ export const Team = () => {
           </h1>
 
           <p className="max-w-2xl mx-auto my-6 text-center text-gray-500 dark:text-gray-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
-            incidunt ex placeat modi magni quia error alias, adipisci rem
-            similique, at omnis eligendi optio eos harum.
+            Meet our certified and qualified individuals, both active and
+            inactive, dedicated to facilitating your learning journey in
+            programming. They are ready to assist you and generate tailored
+            learning materials to support your programming education.
           </p>
           <div className="flex items-center justify-center ">
             <div className="flex items-center p-1 border border-blue-600  dark:border-blue-400 rounded-xl gap-2">
@@ -193,7 +194,7 @@ export const Team = () => {
             {peopleData[selectedCategory].map((person, index) => (
               <Reveal
                 key={`${selectedCategory}-${inputValue}-${index}`}
-                delay={index}
+                delay={index * 0.2}
               >
                 <Card className="col-span-12 sm:col-span-4 h-[300px]">
                   <CardHeader className="absolute z-10 top-1 flex-col !items-start">

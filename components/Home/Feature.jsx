@@ -1,26 +1,26 @@
 import FeatureReview from "@/public/FeatureReview.png";
 import Image from "next/image";
 import { Reveal } from "../RevealFramer";
-import { FcAssistant, FcDatabase } from "react-icons/fc";
+import { FcGraduationCap, FcLock, FcCommandLine } from "react-icons/fc";
 
 const features = [
   {
     name: "Online Learning",
     description:
       "Access a wide range of courses and materials for effective online learning.",
-    icon: FcAssistant,
+    icon: FcGraduationCap,
   },
   {
     name: "Secure Platform",
     description:
       "Our platform ensures your data is safe with SSL certificates for secure and encrypted connections.",
-    icon: FcDatabase,
+    icon: FcLock,
   },
   {
     name: "Regular Testing",
     description:
       "Regular testing and quizzes to track your progress and enhance your learning experience.",
-    icon: FcDatabase,
+    icon: FcCommandLine,
   },
 ];
 
