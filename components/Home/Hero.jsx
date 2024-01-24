@@ -4,6 +4,7 @@ import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import { GitBashIcon } from "@/components/Home/GitBashIcon";
 import { Reveal } from "../RevealFramer";
+import { VectorIcon } from "../Learn/VectorIcon";
 
 import dynamic from "next/dynamic";
 
@@ -34,8 +35,9 @@ export const Hero = () => {
               <Button
                 variant="shadow"
                 className="bg-blue-600 text-white animate-bounce"
+                endContent={<VectorIcon />}
               >
-                დაიწყე ახლავე!
+                დაიწყე ახლავე
               </Button>
             </Link>
             <Link
