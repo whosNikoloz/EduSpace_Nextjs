@@ -4,6 +4,7 @@ import Notifications from "@/app/api/Social/Notification";
 import { Badge } from "@nextui-org/react";
 import { NotificationIcon } from "./NotificationIcon";
 import { DotsIcon } from "@/components/social/DotsIcon";
+import { VectorIcon } from "../Learn/VectorIcon";
 import {
   Dropdown,
   DropdownTrigger,
@@ -167,9 +168,35 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                     </DropdownTrigger>
                     <DropdownMenu variant="faded" aria-label="Static Actions">
                       <DropdownItem key="new">
-                        ყველას მონიშვნა წაკითხულად
+                        <Button
+                          size="sm"
+                          className="bg-transparent "
+                          startContent={
+                            <VectorIcon
+                              size={undefined}
+                              height={undefined}
+                              width={undefined}
+                            />
+                          }
+                        >
+                          ყველას მონიშვნა წაკითხულად
+                        </Button>
                       </DropdownItem>
-                      <DropdownItem>Open Notifications</DropdownItem>
+                      <DropdownItem>
+                        <Button
+                          size="sm"
+                          className="bg-transparent "
+                          startContent={
+                            <VectorIcon
+                              size={undefined}
+                              height={undefined}
+                              width={undefined}
+                            />
+                          }
+                        >
+                          Open Notifications
+                        </Button>
+                      </DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
                   {seconddropdownOpen && <></>}

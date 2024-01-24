@@ -5,8 +5,53 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Image } from "@nextui-org/react";
 import { Reveal } from "../RevealFramer";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Avatar,
+  Button,
+} from "@nextui-org/react";
 
 const Review = () => {
+  const peopleData = {
+    user: [
+      {
+        name: "Nikoloz  Kobaidze1",
+        username: "@nikolozkobaidze",
+        tag: "#EduSpaceFrontend",
+        following: "4",
+        followers: "97.1K",
+        image:
+          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+        comment:
+          "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
+      },
+      {
+        name: "Nikoloz  Kobaidze2",
+        username: "@kobaidze1",
+        tag: "#MobileWithNika",
+        following: "1",
+        followers: "1k",
+        image:
+          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+        comment:
+          "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
+      },
+      {
+        name: "Nikoloz  Kobaidze3",
+        username: "@nikanika122",
+        tag: "#EduSpaceMobile",
+        following: "30",
+        followers: "50k",
+        image: "https://i.pravatar.cc/100?img=1",
+        comment:
+          "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
+      },
+    ],
+  };
+
   return (
     <>
       <div className=" flex items-center justify-center ">
@@ -28,79 +73,56 @@ const Review = () => {
                 <span className="inline-block w-1 h-1 rounded-full bg-blue-600 ml-1"></span>
               </div>
             </div>
-            <Reveal direction="left">
-              <div className="-mx-3 md:flex items-start">
-                <div className="px-3 md:w-1/3">
-                  <div className="w-full mx-auto rounded-lg   p-5 text-gray-800  font-light mb-6">
-                    <div className="w-full flex mb-4 items-center">
-                      <div className="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
-                        <Image src="https://i.pravatar.cc/100?img=1" alt="" />
-                      </div>
-                      <div className="flex-grow pl-3">
-                        <h6 className="font-bold text-sm uppercase text-gray-600 dark:text-white">
-                          Kenzie Edgar.
-                        </h6>
-                      </div>
-                    </div>
-                    <div className="w-full">
-                      <p className="text-sm leading-tight text-black dark:text-white">
-                        &ldquo; EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი!
-                        ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები
-                        დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.
-                        გმადლობთ, EduSpace, რომ გადამაქციე კოდირების
-                        ენთუზიასტად! &rdquo;
-                      </p>
-                    </div>
+            <div className="-mx-3 md:flex items-start">
+              {peopleData.user.map((person, index) => (
+                <Reveal key={index} delay={index * 0.2}>
+                  <div className="w-full mx-auto rounded-lg  p-5 text-gray-800  font-light mb-6">
+                    <Card className="max-w-[340px]">
+                      <CardHeader className="justify-between">
+                        <div className="flex gap-5">
+                          <Avatar
+                            isBordered
+                            radius="full"
+                            size="md"
+                            src={person.image}
+                          />
+                          <div className="flex flex-col gap-1 items-start justify-center">
+                            <h4 className="text-small font-semibold leading-none text-default-600">
+                              {person.name}
+                            </h4>
+                            <h5 className="text-small tracking-tight text-default-400">
+                              {person.username}
+                            </h5>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardBody className="px-3 py-0 text-small text-default-400">
+                        <p>{person.comment}</p>
+                        <span className="pt-2">{person.tag}</span>
+                      </CardBody>
+                      <CardFooter className="gap-3">
+                        <div className="flex gap-1">
+                          <p className="font-semibold text-default-400 text-small">
+                            {person.following}
+                          </p>
+                          <p className=" text-default-400 text-small">
+                            Following
+                          </p>
+                        </div>
+                        <div className="flex gap-1">
+                          <p className="font-semibold text-default-400 text-small">
+                            {person.followers}
+                          </p>
+                          <p className="text-default-400 text-small">
+                            Followers
+                          </p>
+                        </div>
+                      </CardFooter>
+                    </Card>
                   </div>
-                </div>
-                <div className="px-3 md:w-1/3">
-                  <div className="w-full mx-auto rounded-lg    p-5 text-gray-800  font-light mb-6">
-                    <div className="w-full flex mb-4 items-center">
-                      <div className="overflow-hidden rounded-full w-10 h-10   ">
-                        <Image src="https://i.pravatar.cc/100?img=3" alt="" />
-                      </div>
-                      <div className="flex-grow pl-3">
-                        <h6 className="font-bold text-sm uppercase text-gray-600 dark:text-white">
-                          Tommie Ewart.
-                        </h6>
-                      </div>
-                    </div>
-                    <div className="w-full">
-                      <p className="text-sm leading-tight text-black dark:text-white">
-                        &ldquo; EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი!
-                        ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები
-                        დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.
-                        გმადლობთ, EduSpace, რომ გადამაქციე კოდირების
-                        ენთუზიასტად! &rdquo;
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="px-3 md:w-1/3">
-                  <div className="w-full mx-auto rounded-lg   p-5 text-gray-800  font-light mb-6">
-                    <div className="w-full flex mb-4 items-center">
-                      <div className="overflow-hidden rounded-full w-10 h-10 bg-gray-50 border border-gray-200">
-                        <Image src="https://i.pravatar.cc/100?img=5" alt="" />
-                      </div>
-                      <div className="flex-grow pl-3">
-                        <h6 className="font-bold text-sm uppercase text-gray-600 dark:text-white">
-                          Nevada Herbertson.
-                        </h6>
-                      </div>
-                    </div>
-                    <div className="w-full">
-                      <p className="text-sm leading-tight text-black dark:text-white">
-                        &ldquo; EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი!
-                        ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები
-                        დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.
-                        გმადლობთ, EduSpace, რომ გადამაქციე კოდირების
-                        ენთუზიასტად! &rdquo;
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </div>
