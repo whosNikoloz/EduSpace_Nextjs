@@ -3,6 +3,13 @@ import React, { useCallback, useState, useEffect } from "react";
 import Notifications from "@/app/api/Social/Notification";
 import { Badge } from "@nextui-org/react";
 import { NotificationIcon } from "./NotificationIcon";
+import { DotsIcon } from "@/components/social/DotsIcon";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@nextui-org/react";
 import Image from "next/image";
 import {
   HubConnectionBuilder,
@@ -56,6 +63,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
   }, []);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [seconddropdownOpen, setSecondDropdownOpen] = useState(false);
 
   useEffect(() => {
     const connection = new HubConnectionBuilder()
@@ -132,8 +140,8 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
 
         {dropdownOpen && (
           <div
-            className="absolute right-0 mt-2 dark:bg-zinc-800 bg-white  rounded-md shadow-lg overflow-hidden z-20"
-            style={{ width: "20rem", overflowY: "auto", maxHeight: "550px" }}
+            className="absolute right-0 mt-3 dark:bg-zinc-800 bg-white  rounded-md shadow-lg overflow-hidden z-20"
+            style={{ width: "22rem", overflowY: "auto", maxHeight: "550px" }}
           >
             {notifications.length === 0 ? ( // Check if there are no notifications
               <div>
@@ -143,9 +151,46 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
               </div>
             ) : (
               <>
+                <div className="container p-2 flex justify-between">
+                  <span className="p-2 text-xl">ცნობები</span>
+                  <Dropdown backdrop="opaque">
+                    <DropdownTrigger>
+                      <Button isIconOnly variant="light">
+                        <DotsIcon
+                          size={35}
+                          filled={undefined}
+                          height={undefined}
+                          width={undefined}
+                          label={undefined}
+                        />
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu variant="faded" aria-label="Static Actions">
+                      <DropdownItem key="new">
+                        ყველას მონიშვნა წაკითხულად
+                      </DropdownItem>
+                      <DropdownItem>Open Notifications</DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                  {seconddropdownOpen && <></>}
+                </div>
                 {notifications.map((notification) => (
-                  <div key={notification.notificationId}>
-                    <div className="flex items-center px-4 py-3 hover:bg-zinc-200  dark:hover:bg-zinc-600 -mx-2">
+                  <div
+                    key={notification.notificationId}
+                    className="relative cursor-pointer"
+                  >
+                    {!notification.isRead && (
+                      <div className=" rounded-full  absolute top-8 right-4 ">
+                        <span className="relative flex h-3 w-3">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                        </span>
+                      </div>
+                    )}
+
+                    <div
+                      className={`flex items-center px-6 py-3 hover:bg-zinc-200 dark:hover:bg-zinc-600 -mx-2 `}
+                    >
                       <Image
                         className="h-8 w-8 rounded-full object-cover mx-1"
                         src={notification.commentAuthorPicture}
@@ -153,7 +198,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                         height={32}
                         alt="avatar"
                       />
-                      <p className="dark:text-white text-black text-sm mx-2">
+                      <p className="dark:text-white text-black text-sm mx-1">
                         <span className="font-bold">
                           {notification.commentAuthorUsername}
                         </span>{" "}

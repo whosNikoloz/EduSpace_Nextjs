@@ -19,7 +19,9 @@ export const Hero = () => {
           <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl dark:text-white">
             Welcome to
             <Reveal direction="down">
-              <span className="text-blue-600">EduSpace</span>
+              <span className="bg-gradient-to-r from-blue-600 via-blue-600 dark:to-white to-black  text-transparent bg-clip-text ">
+                EduSpace
+              </span>
             </Reveal>
             Learn Programming Online
           </h1>
@@ -29,13 +31,16 @@ export const Hero = () => {
           </p>
           <div className="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
             <Link href="user/auth">
-              <Button variant="shadow" className="bg-blue-600 text-white">
+              <Button
+                variant="shadow"
+                className="bg-blue-600 text-white animate-bounce"
+              >
                 დაიწყე ახლავე!
               </Button>
             </Link>
             <Link
               href="#step-section"
-              className="text-sm font-semibold leading-6 text-black dark:text-white"
+              className="text-sm font-semibold leading-6 text-black dark:text-white "
             >
               გაიგე მეტი <span aria-hidden="true">→</span>
             </Link>
