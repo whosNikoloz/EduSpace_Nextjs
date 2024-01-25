@@ -5,6 +5,7 @@ import { Badge } from "@nextui-org/react";
 import { NotificationIcon } from "./NotificationIcon";
 import { DotsIcon } from "@/components/social/DotsIcon";
 import { VectorIcon } from "../Learn/VectorIcon";
+import toast from "react-hot-toast";
 import {
   Dropdown,
   DropdownTrigger,
@@ -17,6 +18,7 @@ import {
   HubConnection,
   LogLevel,
 } from "@microsoft/signalr";
+import { set } from "nprogress";
 
 interface NotificationProps {
   notificationId: number;
@@ -93,6 +95,21 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
       console.error("Connection closed:", error);
     });
   }, []);
+
+  const markAsRead = async () => {
+    try {
+      const notifications = await notf.MarkAsReadNotf(userid);
+      if (typeof notifications === "string") {
+        console.error("Error marking notifications as read:", notifications);
+      } else {
+        setNotifications(notifications);
+        toast.success("ყველა წაკითხულად მონიშნულია");
+      }
+    } catch (error) {
+      console.error("Unexpected error marking notifications as read:", error);
+      // Handle unexpected errors, perhaps display a generic error message
+    }
+  };
 
   return (
     <>
@@ -178,6 +195,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                               width={undefined}
                             />
                           }
+                          onClick={markAsRead}
                         >
                           ყველას მონიშვნა წაკითხულად
                         </Button>

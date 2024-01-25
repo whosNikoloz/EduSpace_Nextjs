@@ -17,15 +17,6 @@ import {
   NavbarMenuItem,
 } from "@nextui-org/react";
 import Notification from "@/components/navbar/Notification";
-import {
-  ChevronDown,
-  Lock,
-  Activity,
-  Flash,
-  Server,
-  TagUser,
-  Scale,
-} from "../Home/Icon.jsx";
 import { EduSpace } from "@/components/EduSpaceLogo.jsx";
 import { SearchIcon } from "@/components/navbar/SearchIcon.jsx";
 import { useEffect } from "react";
@@ -33,16 +24,12 @@ import { Skeleton } from "@nextui-org/react";
 import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
 import SideNavBarWithDropDown from "@/components/navbar/sidenavbar.jsx";
 import { useUser } from "@/app/dbcontext/UserdbContext";
-import Notifications from "@/app/api/Social/Notification";
-import BottomNavigation from "@/components/navbar/bottomnavigation.jsx";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useUser();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [notifications, setNotifications] = useState([]);
-  const notf = Notifications();
 
   useEffect(() => {
     // Simulate loading for demonstration purposes
@@ -50,16 +37,6 @@ export const Navbar = () => {
       setIsLoading(false);
     }, 1); // Replace with your actual data fetching logic
   }, []);
-
-  useEffect(() => {
-    async function fetchNotifications() {
-      if (user) {
-        const notifications = notf.GetNotifications(user.userId);
-        setNotifications(await notifications);
-      }
-    }
-    fetchNotifications();
-  });
 
   const handleLogout = () => {
     logout();

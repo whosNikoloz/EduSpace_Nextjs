@@ -5,6 +5,7 @@ import { Hero } from "@/components/Home/Hero";
 import MainLayout from "@/app/layouts/Mainlayout";
 const Fab = dynamic(() => import("@/components/FAB"), { ssr: false });
 import { ConnectorFirst } from "@/components/Home/ConnectorFirst";
+import { Toaster } from "react-hot-toast";
 
 const AutoScrollCarousel = dynamic(
   () => import("@/components/Home/AutoScrollCarousel")
@@ -140,6 +141,7 @@ export default function Home() {
           </section>
         </div>
         <Fab />
+        <Toaster position="bottom-left" reverseOrder={false} />
       </MainLayout>
     </>
   );
