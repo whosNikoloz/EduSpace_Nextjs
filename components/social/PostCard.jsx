@@ -494,6 +494,8 @@ function PostCard({ postData, onDelete }) {
                           ? user.firstName + " " + user.lastName
                           : user.userName
                       }
+                      isBordered
+                      color="primary"
                       src={user.picture}
                       size="sm"
                     />

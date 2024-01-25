@@ -87,6 +87,8 @@ const Comment: React.FC<CommentProps> = ({
         <div>
           <Avatar
             className="transition-transform"
+            isBordered
+            color="primary"
             name={username}
             src={avatarUrl}
             size="sm"

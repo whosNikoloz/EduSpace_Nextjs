@@ -111,10 +111,13 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
     }
   };
 
+  const newNotf = notifications.filter((notf) => notf.isRead === false);
+  console.log(newNotf.length);
+
   return (
     <>
       <div className="relative my-32">
-        {notifications.length > 99 ? (
+        {newNotf.length > 99 ? (
           <Badge content="99+" shape="circle" color="danger">
             <Button
               radius="full"
@@ -130,8 +133,8 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
               />
             </Button>
           </Badge>
-        ) : notifications.length > 0 ? (
-          <Badge content={notifications.length} shape="circle" color="danger">
+        ) : newNotf.length > 0 ? (
+          <Badge content={newNotf.length} shape="circle" color="danger">
             <Button
               radius="full"
               isIconOnly

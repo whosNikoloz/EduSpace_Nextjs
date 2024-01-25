@@ -213,6 +213,8 @@ export default function CreatePost({ setPosts }) {
                       <Avatar
                         className="transition-transform"
                         size="sm"
+                        isBordered
+                        color="primary"
                         name={
                           user.firstname && user.lastname
                             ? user.firstName + " " + user.lastName

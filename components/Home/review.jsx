@@ -23,6 +23,7 @@ const Review = () => {
         tag: "#EduSpaceFrontend",
         following: "4",
         followers: "97.1K",
+        color: "danger",
         image:
           "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
         comment:
@@ -32,6 +33,7 @@ const Review = () => {
         name: "Nikoloz  Kobaidze2",
         username: "@kobaidze1",
         tag: "#MobileWithNika",
+        color: "success",
         following: "1",
         followers: "1k",
         image:
@@ -43,6 +45,7 @@ const Review = () => {
         name: "Nikoloz  Kobaidze3",
         username: "@nikanika122",
         tag: "#EduSpaceMobile",
+        color: "warning",
         following: "30",
         followers: "50k",
         image: "https://i.pravatar.cc/100?img=1",
@@ -62,9 +65,6 @@ const Review = () => {
                 What people <br />
                 are saying.
               </h1>
-              <h3 className="text-xl mb-5 font-light">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </h3>
               <div className="text-center mb-10">
                 <span className="inline-block w-1 h-1 rounded-full bg-blue-600 ml-1"></span>
                 <span className="inline-block w-3 h-1 rounded-full bg-blue-600 ml-1"></span>
@@ -82,6 +82,7 @@ const Review = () => {
                         <div className="flex gap-5">
                           <Avatar
                             isBordered
+                            color={person.color}
                             radius="full"
                             size="md"
                             src={person.image}
