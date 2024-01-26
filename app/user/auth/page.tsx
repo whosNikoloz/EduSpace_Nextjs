@@ -49,6 +49,8 @@ const AuthPage: React.FC = () => {
 
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
+  const [regRegPasswordError, setRegPasswordError] = useState("");
+
   const auth = Authentication();
 
   const handleModeToggle = () => {
@@ -122,7 +124,7 @@ const AuthPage: React.FC = () => {
       registrationState.confirmPassword
     );
     if (errorMessage) {
-      setRegError("Email or UserName Already Exists");
+      setRegError("Registartion failed");
       setIsLoading(false);
     } else {
       var cookie = new Cookies();
@@ -242,7 +244,7 @@ const AuthPage: React.FC = () => {
     setRegistrationState({ ...registrationState, username: "" });
   };
 
-  const handleBlurPassword = () => {
+  const handleBlurConfirmPassword = () => {
     if (registrationState.confirmPassword === "") return;
 
     if (registrationState.password !== registrationState.confirmPassword) {
@@ -252,9 +254,24 @@ const AuthPage: React.FC = () => {
     }
   };
 
+  const handleBlurPassword = () => {
+    if (registrationState.password === "") return;
+
+    if (registrationState.password.length < 6) {
+      setRegPasswordError("პაროლი უნდა იყოს 8 სიმბოლოზე მეტი");
+    } else {
+      setRegPasswordError("");
+    }
+  };
+
   const handleRegConfirmPasswordClear = async () => {
     setConfirmPasswordError("");
     setRegistrationState({ ...registrationState, confirmPassword: "" });
+  };
+
+  const handleRegPasswordClear = async () => {
+    setRegPasswordError("");
+    setRegistrationState({ ...registrationState, password: "" });
   };
 
   return (
@@ -283,7 +300,7 @@ const AuthPage: React.FC = () => {
                     setLoginState({ ...loginState, email: e.target.value })
                   }
                   onBlur={handleLoginEmailExists}
-                  startContent={<i className="fas fa-user"></i>}
+                  startContent={<i className="fas fa-envelope"></i>}
                   isClearable
                   onClear={handleLoginEmailClear}
                   isInvalid={loginEmailError !== ""}
@@ -410,9 +427,10 @@ const AuthPage: React.FC = () => {
                   }
                   startContent={<i className="fas fa-lock"></i>}
                   isClearable
-                  onClear={() =>
-                    setRegistrationState({ ...registrationState, password: "" })
-                  }
+                  onClear={handleRegPasswordClear}
+                  isInvalid={regRegPasswordError !== ""}
+                  errorMessage={regRegPasswordError}
+                  onBlur={handleBlurPassword}
                 />
                 <Input
                   className={Style.authinput}
@@ -425,7 +443,7 @@ const AuthPage: React.FC = () => {
                       confirmPassword: e.target.value,
                     })
                   }
-                  onBlur={handleBlurPassword}
+                  onBlur={handleBlurConfirmPassword}
                   startContent={<i className="fas fa-lock"></i>}
                   isClearable
                   onClear={handleRegConfirmPasswordClear}

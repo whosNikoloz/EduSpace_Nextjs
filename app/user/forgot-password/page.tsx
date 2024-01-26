@@ -9,6 +9,12 @@ import { Button, Input } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import Authentication from "@/app/api/User/auth";
 
+interface ApiResponse {
+  success: boolean;
+  result?: string; // Adjust the type based on the actual data structure
+  error?: string;
+}
+
 export default function ForgotPasswordPage() {
   const authAPI = Authentication();
   const [email, setEmail] = useState("");
@@ -17,21 +23,61 @@ export default function ForgotPasswordPage() {
 
   const router = useRouter();
 
-  const [error, setError] = useState("");
   const [Terms, setTerms] = useState(false);
 
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [EmailError, setEmailError] = useState("");
+
+  useEffect(() => {
+    setIsButtonDisabled(!email || !Terms || EmailError != "");
+  }, [email, Terms, EmailError]);
+
   const [isLoading, setIsLoading] = useState(false);
+
+  const validateEmail = (value: string) =>
+    value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
+  const handleEmailExists = async () => {
+    setEmailError("");
+    const isEmailValid = validateEmail(email);
+    try {
+      if (email === "") {
+        return;
+      }
+      if (!isEmailValid) {
+        setEmailError("Please enter a valid email");
+        return;
+      }
+      const response = (await authAPI.checkEmailLogin(email)) as ApiResponse;
+
+      if (!response.success) {
+        setEmailError(response.result || "Email already exists");
+      } else {
+        console.error("Email does not exist. Error:", response.error);
+        // You might want to handle this case accordingly, for example, show an error message.
+      }
+    } catch (error) {
+      // Handle any errors during the API call
+      console.error("Error:", error);
+      // You might want to handle this case accordingly, for example, show an error message.
+    }
+  };
+
+  const handleEmailClear = async () => {
+    setEmailError("");
+    setEmail("");
+  };
 
   const handleForgotPassword = async () => {
     setIsLoading(true);
     if (!email) {
-      setError("შეიყვანეთ ელ-ფოსტა");
+      setEmailError("შეიყვანეთ ელ-ფოსტა");
       setIsLoading(false);
       return;
     }
 
     if (!Terms) {
-      setError("დაეთანხმეთ წესებს");
+      setEmailError("დაეთანხმეთ წესებს");
       setIsLoading(false);
       return;
     }
@@ -39,7 +85,7 @@ export default function ForgotPasswordPage() {
     var errorMessage = await authAPI.handleForgotPassword(email);
 
     if (errorMessage) {
-      setError(errorMessage.toString());
+      setEmailError(errorMessage.toString());
       setIsLoading(false);
     } else {
       cookie.set("forgetEmail", email);
@@ -64,24 +110,22 @@ export default function ForgotPasswordPage() {
         </a>
         <div className="w-full p-6 bg-white rounded-lg h-auto shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
           <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-            პაროლის გადატვირთვა
+            პაროლის შეცვლა
           </h2>
           <div className="mt-4 space-y-4 lg:mt-5 md:space-y-5">
             <Input
+              value={email}
               type="email"
-              name="email"
-              id="email"
-              placeholder="name@gmail.com"
+              label="Email"
               variant="bordered"
-              required
               isClearable
               onChange={(e: { target: { value: SetStateAction<string> } }) =>
                 setEmail(e.target.value)
               }
-              isInvalid={error ? true : false}
-              value={email}
-              onClear={() => setEmail("")}
-              errorMessage={error ? error : null}
+              isInvalid={EmailError !== ""}
+              onBlur={handleEmailExists}
+              onClear={handleEmailClear}
+              errorMessage={EmailError}
             />
 
             <div className="flex items-start">
@@ -119,6 +163,7 @@ export default function ForgotPasswordPage() {
               className="w-full"
               onClick={handleForgotPassword}
               isLoading={isLoading}
+              isDisabled={isButtonDisabled}
             >
               გადატვირთვა
             </Button>
