@@ -42,8 +42,8 @@ export default function ResetPasswordPage({
       console.error(errorMessage);
       setIsLoading(false);
     } else {
-      setIsLoading(false);
       setTimeout(() => {
+        setIsLoading(false);
         router.push("/user/reset-password/resetpassword-successful");
       }, 300);
     }
