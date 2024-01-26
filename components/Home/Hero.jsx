@@ -52,7 +52,7 @@ export const Hero = () => {
           <Reveal direction="left">
             <div className="mx-auto flex items-center justify-center">
               <div className="w-3/4 mx-auto">
-                <div className="w-full md:h-96 h-64 shadow-2xl subpixel-antialiased rounded bg-black border-2 border-gray-800 mx-auto">
+                <div className="w-full md:h-96 h-64 shadow-2xl subpixel-antialiased rounded bg-[#161b22]  border-2 border-gray-800 mx-auto">
                   <div
                     className="flex items-center h-8 rounded-t bg-gray-900  text-center text-black"
                     id="headerTerminal"

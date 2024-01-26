@@ -77,7 +77,7 @@ const Review = () => {
               {peopleData.user.map((person, index) => (
                 <Reveal key={index} delay={index * 0.2}>
                   <div className="w-full mx-auto rounded-lg  p-5 text-gray-800  font-light mb-6">
-                    <Card className="max-w-[340px]">
+                    <Card className="max-w-[340px] bg-[#161b22] ">
                       <CardHeader className="justify-between">
                         <div className="flex gap-5">
                           <Avatar

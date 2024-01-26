@@ -53,7 +53,7 @@ function PostCard({ postData, onDelete }) {
 
   const post = Posts();
 
-  const [IsAddingComment, setIsAddingComment] = useState(false);
+  const [IsAddingComment, setIsAddingComment] = useState(true);
 
   const {
     isOpen: isOpenWarning,
@@ -450,33 +450,31 @@ function PostCard({ postData, onDelete }) {
 
                 {IsAddingComment ? (
                   <>
-                    <div className="flex items-center bg-white dark:bg-gray-800">
-                      <div className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex max-w-lg">
-                        <div>
-                          <Skeleton className="flex rounded-full w-12 h-12" />
+                    <div className=" text-black dark:text-gray-200 antialiased flex max-w-lg">
+                      <div>
+                        <Avatar
+                          className="transition-transform"
+                          isBordered
+                          color="primary"
+                          name={user.userName}
+                          src={user.picture}
+                          size="sm"
+                        />
+                      </div>
+                      <div className="ml-3">
+                        <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 pt-1 pb-1 mb-1">
+                          <div className="font-semibold text-sm leading-relaxed ">
+                            {user.userName}
+                          </div>
+                          <div className="text-normal leading-snug md:leading-normal ">
+                            <Skeleton className="w-4/5 rounded-lg">
+                              <div className="h-3 w-full rounded-lg bg-secondary-300"></div>
+                            </Skeleton>
+                          </div>
                         </div>
-                        <div className="ml-3">
-                          <Skeleton className="rounded-3xl">
-                            <div className="bg-gray-100 dark:bg-gray-700 rounded-3xl px-4 pt-2 pb-2.5 mb-2">
-                              <div className="font-semibold text-sm leading-relaxed">
-                                <Skeleton className="h-3 w-3/5 rounded-lg" />
-                              </div>
-                              <div className="text-normal leading-snug md:leading-normal"></div>
-                            </div>
-                            <div className="text-sm ml-4 mt-0.5 text-gray-500 dark:text-gray-400">
-                              {formattedTimeAgo}
-                            </div>
-                          </Skeleton>
+                        <div className="text-sm ml-4 mt-0.5 text-gray-500 dark:text-gray-400">
+                          ეხლა ხანს
                         </div>
-                        <Button isIconOnly variant="light">
-                          <DotsIcon
-                            size={35}
-                            filled={undefined}
-                            height={undefined}
-                            width={undefined}
-                            label={undefined}
-                          />
-                        </Button>
                       </div>
                     </div>
                   </>
