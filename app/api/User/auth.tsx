@@ -86,11 +86,11 @@ const Authentication = () => {
           try {
             localStorage.setItem("jwt_token", data.response.Token);
             loginContext(userData);
+            return { success: true };
           } catch (error) {
             console.error("Error setting cookies:", error);
           }
         } else {
-          // Handle the case where the response is not successful
           return { success: false, result: data.error };
         }
       } else {

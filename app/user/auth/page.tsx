@@ -73,6 +73,8 @@ const AuthPage: React.FC = () => {
       loginState.password
     )) as ApiResponse;
 
+    console.log(response);
+
     if (!response.success) {
       setLoginError(response.result || "login failed");
       setIsLoading(false);
