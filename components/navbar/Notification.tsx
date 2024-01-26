@@ -54,6 +54,7 @@ function formatTimeAgo(timestamp: string | number | Date) {
 const Notification: React.FC<{ userid: number }> = ({ userid }) => {
   const notf = Notifications();
   const [notifications, setNotifications] = useState<NotificationProps[]>([]);
+  const [newNotf, setNewNotf] = useState<NotificationProps[]>([]);
 
   const fetchNotifications = useCallback(async () => {
     const notifications = await notf.GetNotifications(userid);
@@ -111,8 +112,11 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
     }
   };
 
-  const newNotf = notifications.filter((notf) => notf.isRead === false);
-  console.log(newNotf.length);
+  useEffect(() => {
+    if (notifications && notifications.length > 0) {
+      setNewNotf(notifications.filter((notf) => notf.isRead === false));
+    }
+  }, [notifications]);
 
   return (
     <>
