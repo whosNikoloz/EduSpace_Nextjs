@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import ResetPassowrd from "@/public/Reset password.png";
 import Image from "next/image";
-import { Button } from "@nextui-org/button";
+import { Button, Input } from "@nextui-org/react";
 import { EduSpace } from "@/components/EduSpaceLogo";
 import Authentication from "@/app/api/User/auth";
 import { useRouter } from "next/navigation";
@@ -23,9 +23,11 @@ export default function ResetPasswordPage({
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
-  const [error, setError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleResetPassword = async () => {
     setIsLoading(true);
@@ -36,8 +38,8 @@ export default function ResetPasswordPage({
     );
 
     if (errorMessage) {
-      setError(errorMessage.toString());
-      console.log(errorMessage);
+      router.push("/user/auth");
+      console.error(errorMessage);
       setIsLoading(false);
     } else {
       setIsLoading(false);
@@ -46,6 +48,50 @@ export default function ResetPasswordPage({
       }, 300);
     }
   };
+
+  const handleBlurPassword = () => {
+    if (password === "") return;
+
+    if (password.length < 6) {
+      setPasswordError("პაროლი უნდა იყოს 8 სიმბოლოზე მეტი");
+    } else {
+      setPasswordError("");
+    }
+  };
+
+  const handleBlurConfirmPassword = () => {
+    if (confirmPassword === "") return;
+
+    if (password !== confirmPassword) {
+      setConfirmPasswordError("პაროლი არ ემთხვევა");
+    } else {
+      setConfirmPasswordError("");
+    }
+  };
+
+  const handleConfirmPasswordClear = async () => {
+    setConfirmPasswordError("");
+    setConfirmPassword("");
+  };
+
+  const handlePasswordClear = async () => {
+    setPasswordError("");
+    setPassword("");
+  };
+
+  const [Terms, setTerms] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    setIsButtonDisabled(
+      !Terms ||
+        confirmPasswordError !== "" ||
+        passwordError !== "" ||
+        confirmPassword === "" ||
+        password === ""
+    );
+  }, [Terms, confirmPasswordError, passwordError, confirmPassword, password]);
+
   return (
     <section className="bg-gray-50 dark:bg-gray-900 flex flex-col md:flex-row h-screen">
       <div className="hidden md:flex md:w-1/2 items-center justify-center">
@@ -77,14 +123,19 @@ export default function ResetPasswordPage({
               >
                 ახალი პაროლი
               </label>
-              <input
+              <Input
                 type="password"
                 name="password"
+                size="lg"
+                variant="bordered"
                 id="password"
                 placeholder="••••••••"
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
                 onChange={(e) => setPassword(e.target.value)}
+                isInvalid={passwordError !== ""}
+                onBlur={handleBlurPassword}
+                onClear={handlePasswordClear}
+                errorMessage={passwordError}
               />
             </div>
             <div>
@@ -94,14 +145,19 @@ export default function ResetPasswordPage({
               >
                 გაიმეორე პაროლი
               </label>
-              <input
+              <Input
                 type="password"
                 name="confirm-password"
                 id="confirm-password"
                 placeholder="••••••••"
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                size="lg"
+                variant="bordered"
                 required
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                isInvalid={confirmPasswordError !== ""}
+                onBlur={handleBlurConfirmPassword}
+                onClear={handleConfirmPasswordClear}
+                errorMessage={confirmPasswordError}
               />
             </div>
             <div className="flex items-start">
@@ -112,6 +168,9 @@ export default function ResetPasswordPage({
                   type="checkbox"
                   className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                   required
+                  onChange={(e) => {
+                    setTerms(e.target.checked);
+                  }}
                 />
               </div>
               <div className="ml-3 text-sm">
@@ -136,6 +195,7 @@ export default function ResetPasswordPage({
               className="w-full"
               isLoading={isLoading}
               onClick={handleResetPassword}
+              isDisabled={isButtonDisabled}
             >
               შეცვლა
             </Button>
