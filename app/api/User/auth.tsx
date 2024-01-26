@@ -37,6 +37,34 @@ const Authentication = () => {
   const cookies = new Cookies();
   const { login: loginContext } = useUser();
 
+  const checkEmailLogin = async (email: string) => {
+    try {
+      const response = await fetch(auth_API + "Login/check-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email, // Replace with the actual email
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        console.log(data);
+
+        if (data.successful) {
+          return { success: true };
+        } else {
+          return { success: false, result: data.error };
+        }
+      }
+    } catch (error) {
+      console.error("An error occurred during the request:", error);
+    }
+  };
+
   const handleLogin = async (email: any, password: any) => {
     try {
       const response = await fetch(auth_API + "Email", {
@@ -52,17 +80,24 @@ const Authentication = () => {
 
       if (response.ok) {
         const data = await response.json();
-        const userData = data.user;
 
-        try {
-          localStorage.setItem("jwt_token", data.token);
-          loginContext(userData);
-        } catch (error) {
-          console.error("Error setting cookies:", error);
+        if (data.successful) {
+          const userData = data.response.user;
+          try {
+            localStorage.setItem("jwt_token", data.response.Token);
+            loginContext(userData);
+          } catch (error) {
+            console.error("Error setting cookies:", error);
+          }
+        } else {
+          // Handle the case where the response is not successful
+          return { success: false, result: data.error };
         }
       } else {
         const errorText = await response.text();
-        return errorText;
+        // Handle other errors, for example, log the error or display an error message
+        console.error("Error:", errorText);
+        return { success: false, result: "An unexpected error occurred" };
       }
     } catch (error) {
       window.alert(error);
@@ -157,6 +192,60 @@ const Authentication = () => {
     } catch (error) {
       window.alert(error);
       return error;
+    }
+  };
+
+  const checkEmailRegister = async (email: string) => {
+    try {
+      const response = await fetch(auth_API + "Register/check-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email, // Replace with the actual email
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        console.log(data);
+
+        if (data.successful) {
+          return { success: true };
+        } else {
+          return { success: false, result: data.error };
+        }
+      }
+    } catch (error) {
+      console.error("An error occurred during the request:", error);
+    }
+  };
+
+  const checkUserNameRegister = async (username: string) => {
+    try {
+      const response = await fetch(
+        auth_API + "Register/check-username/" + username,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+
+        if (data.successful) {
+          return { success: true };
+        } else {
+          return { success: false, result: data.error };
+        }
+      }
+    } catch (error) {
+      console.error("An error occurred during the request:", error);
     }
   };
 
@@ -573,6 +662,9 @@ const Authentication = () => {
     ChangeEmailRequest,
     ChangeEmail,
     ChangeProfilePicture,
+    checkEmailLogin,
+    checkEmailRegister,
+    checkUserNameRegister,
   };
 };
 

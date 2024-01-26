@@ -8,9 +8,17 @@ import RegistrationIl from "@/public/ProgiLust2.png";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import Cookies from "universal-cookie";
-import { Button } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import { signIn, signOut } from "next-auth/react";
 import { Link } from "@nextui-org/react";
+import React from "react";
+import { set } from "nprogress";
+
+interface ApiResponse {
+  success: boolean;
+  result?: string; // Adjust the type based on the actual data structure
+  error?: string;
+}
 
 const AuthPage: React.FC = () => {
   const router = useRouter();
@@ -33,6 +41,14 @@ const AuthPage: React.FC = () => {
   const [loginError, setLoginError] = useState("");
   const [regError, setRegError] = useState("");
 
+  const [regUserNameError, setRegUserNameError] = useState("");
+  const [regEmailError, setRegEmailError] = useState("");
+
+  const [loginEmailError, setLoginEmailError] = useState("");
+  const [loginPasswordError, setLoginPasswordError] = useState("");
+
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
   const auth = Authentication();
 
   const handleModeToggle = () => {
@@ -40,13 +56,23 @@ const AuthPage: React.FC = () => {
   };
 
   const handleLogin = async () => {
-    var errorMessage = await auth.handleLogin(
+    if (loginState.email === "") {
+      setLoginEmailError("შეავსე Email ველი");
+      setIsLoading(false);
+      return;
+    }
+    if (loginState.password === "") {
+      setLoginPasswordError("შეავსე Password ველი");
+      setIsLoading(false);
+      return;
+    }
+    const response = (await auth.handleLogin(
       loginState.email,
       loginState.password
-    );
-    if (errorMessage) {
-      setLoginError("Invalid Email or Passowrd");
-      console.log(errorMessage);
+    )) as ApiResponse;
+
+    if (!response.success) {
+      setLoginError(response.result || "login failed");
       setIsLoading(false);
     } else {
       const redirectUrl = sessionStorage.getItem("redirect_url");
@@ -68,6 +94,27 @@ const AuthPage: React.FC = () => {
   };
 
   const handleRegistration = async () => {
+    if (registrationState.username === "") {
+      setRegUserNameError("შეავსე UserName ველი");
+      setIsLoading(false);
+      return;
+    }
+    if (registrationState.email === "") {
+      setRegEmailError("შეავსე Email ველი");
+      setIsLoading(false);
+      return;
+    }
+    if (registrationState.password === "") {
+      setRegError("შეავსე Password ველი");
+      setIsLoading(false);
+      return;
+    }
+    if (registrationState.confirmPassword === "") {
+      setConfirmPasswordError("შეავსე ConfirmPassword ველი");
+      setIsLoading(false);
+      return;
+    }
+
     var errorMessage = await auth.handleRegistration(
       registrationState.username,
       registrationState.email,
@@ -98,6 +145,118 @@ const AuthPage: React.FC = () => {
     }
   };
 
+  const validateEmail = (value: string) =>
+    value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
+  const handleLoginEmailExists = async () => {
+    setLoginEmailError("");
+    const isEmailValid = validateEmail(loginState.email);
+    try {
+      if (loginState.email === "") {
+        return;
+      }
+      if (!isEmailValid) {
+        setLoginEmailError("Please enter a valid email");
+        return;
+      }
+      const response = (await auth.checkEmailLogin(
+        loginState.email
+      )) as ApiResponse;
+
+      if (!response.success) {
+        setLoginEmailError(response.result || "Email already exists");
+      } else {
+        console.error("Email does not exist. Error:", response.error);
+        // You might want to handle this case accordingly, for example, show an error message.
+      }
+    } catch (error) {
+      // Handle any errors during the API call
+      console.error("Error:", error);
+      // You might want to handle this case accordingly, for example, show an error message.
+    }
+  };
+
+  const handleRegisterEmailExists = async () => {
+    const isEmailValid = validateEmail(registrationState.email);
+    setRegEmailError("");
+    try {
+      if (registrationState.email === "") {
+        return;
+      }
+      if (!isEmailValid) {
+        setRegEmailError("Please enter a valid email");
+        return;
+      }
+      const response = (await auth.checkEmailRegister(
+        registrationState.email
+      )) as ApiResponse;
+
+      if (!response.success) {
+        setRegEmailError(response.result || "UserName already exists");
+      } else {
+        console.error("Email does not exist. Error:", response.error);
+      }
+    } catch (error) {
+      // Handle any errors during the API call
+      console.error("Error:", error);
+    }
+  };
+
+  const handleRegisterUsernameExists = async () => {
+    try {
+      if (registrationState.username === "") {
+        return;
+      }
+      const response = (await auth.checkUserNameRegister(
+        registrationState.username
+      )) as ApiResponse;
+
+      if (!response.success) {
+        setRegUserNameError(response.result || "UserName already exists");
+      } else {
+        console.error("Email does not exist. Error:", response.error);
+      }
+    } catch (error) {
+      // Handle any errors during the API call
+      console.error("Error:", error);
+    }
+  };
+
+  const handleLoginEmailClear = async () => {
+    setLoginEmailError("");
+    setLoginState({ ...loginState, email: "" });
+  };
+
+  const handleLoginPasswordClear = async () => {
+    setLoginPasswordError("");
+    setLoginState({ ...loginState, password: "" });
+  };
+
+  const handleRegEmailClear = async () => {
+    setRegEmailError("");
+    setRegistrationState({ ...registrationState, email: "" });
+  };
+
+  const handleRegUserNameClear = async () => {
+    setRegUserNameError("");
+    setRegistrationState({ ...registrationState, username: "" });
+  };
+
+  const handleBlurPassword = () => {
+    if (registrationState.confirmPassword === "") return;
+
+    if (registrationState.password !== registrationState.confirmPassword) {
+      setConfirmPasswordError("პაროლი არ ემთხვევა");
+    } else {
+      setConfirmPasswordError("");
+    }
+  };
+
+  const handleRegConfirmPasswordClear = async () => {
+    setConfirmPasswordError("");
+    setRegistrationState({ ...registrationState, confirmPassword: "" });
+  };
+
   return (
     <>
       <header>
@@ -113,32 +272,38 @@ const AuthPage: React.FC = () => {
       >
         <div className={Style["forms-container"]}>
           <div className={Style["signin-signup"]}>
-            <form className={`${Style.authform} ${Style["sign-in-form"]}`}>
+            <form className={`${Style.authform} ${Style["sign-in-form"]} `}>
               <h2 className={Style.title}>შესვლა</h2>
-              <div className={Style["input-field"]}>
-                <i className="fas fa-user"></i>
-                <input
-                  className={Style.authinput}
-                  type="text"
-                  placeholder="Email"
+              <div className="gap-4 flex flex-col md:w-8/12 w-full">
+                <Input
                   value={loginState.email}
+                  type="email"
+                  label="Email"
                   onChange={(e) =>
                     setLoginState({ ...loginState, email: e.target.value })
                   }
+                  onBlur={handleLoginEmailExists}
+                  startContent={<i className="fas fa-user"></i>}
+                  isClearable
+                  onClear={handleLoginEmailClear}
+                  isInvalid={loginEmailError !== ""}
+                  errorMessage={loginEmailError}
                 />
-              </div>
-              <div className={Style["input-field"]}>
-                <i className="fas fa-lock"></i>
-                <input
-                  className={Style.authinput}
+                <Input
                   type="password"
-                  placeholder="Password"
+                  label="Password"
                   value={loginState.password}
                   onChange={(e) =>
                     setLoginState({ ...loginState, password: e.target.value })
                   }
+                  startContent={<i className="fas fa-lock"></i>}
+                  isClearable
+                  onClear={handleLoginPasswordClear}
+                  isInvalid={loginPasswordError !== ""}
+                  errorMessage={loginPasswordError}
                 />
               </div>
+
               {loginError && (
                 <div className={Style["error-message"]}>{loginError}</div>
               )}
@@ -197,12 +362,10 @@ const AuthPage: React.FC = () => {
             </form>
             <form className={`${Style.authform} ${Style["sign-up-form"]}`}>
               <h2 className={Style.title}>რეგისტრაცია</h2>
-              <div className={Style["input-field"]}>
-                <i className="fas fa-user"></i>
-                <input
-                  className={Style.authinput}
+              <div className="gap-4 flex flex-col md:w-8/12 w-full">
+                <Input
                   type="text"
-                  placeholder="Username"
+                  label="Username"
                   value={registrationState.username}
                   onChange={(e) =>
                     setRegistrationState({
@@ -210,14 +373,16 @@ const AuthPage: React.FC = () => {
                       username: e.target.value,
                     })
                   }
+                  onBlur={handleRegisterUsernameExists}
+                  startContent={<i className="fas fa-user"></i>}
+                  isClearable
+                  onClear={handleRegUserNameClear}
+                  isInvalid={regUserNameError !== ""}
+                  errorMessage={regUserNameError}
                 />
-              </div>
-              <div className={Style["input-field"]}>
-                <i className="fas fa-envelope"></i>
-                <input
-                  className={Style.authinput}
+                <Input
                   type="email"
-                  placeholder="Email"
+                  label="Email"
                   value={registrationState.email}
                   onChange={(e) =>
                     setRegistrationState({
@@ -225,14 +390,17 @@ const AuthPage: React.FC = () => {
                       email: e.target.value,
                     })
                   }
+                  startContent={<i className="fas fa-envelope"></i>}
+                  isClearable
+                  onBlur={handleRegisterEmailExists}
+                  onClear={handleRegEmailClear}
+                  isInvalid={regEmailError !== ""}
+                  errorMessage={regEmailError}
                 />
-              </div>
-              <div className={Style["input-field"]}>
-                <i className="fas fa-lock"></i>
-                <input
-                  className={Style.authinput}
+
+                <Input
                   type="password"
-                  placeholder="Password"
+                  label="Password"
                   value={registrationState.password}
                   onChange={(e) =>
                     setRegistrationState({
@@ -240,14 +408,16 @@ const AuthPage: React.FC = () => {
                       password: e.target.value,
                     })
                   }
+                  startContent={<i className="fas fa-lock"></i>}
+                  isClearable
+                  onClear={() =>
+                    setRegistrationState({ ...registrationState, password: "" })
+                  }
                 />
-              </div>
-              <div className={Style["input-field"]}>
-                <i className="fas fa-lock"></i>
-                <input
+                <Input
                   className={Style.authinput}
                   type="password"
-                  placeholder="confirmPassword"
+                  label="confirmPassword"
                   value={registrationState.confirmPassword}
                   onChange={(e) =>
                     setRegistrationState({
@@ -255,6 +425,12 @@ const AuthPage: React.FC = () => {
                       confirmPassword: e.target.value,
                     })
                   }
+                  onBlur={handleBlurPassword}
+                  startContent={<i className="fas fa-lock"></i>}
+                  isClearable
+                  onClear={handleRegConfirmPasswordClear}
+                  isInvalid={confirmPasswordError !== ""}
+                  errorMessage={confirmPasswordError}
                 />
               </div>
               <div className={Style["error-message"]}>{regError}</div>
@@ -339,7 +515,7 @@ const AuthPage: React.FC = () => {
                 შესვლა
               </button>
             </div>
-            <Image src={RegistrationIl} className={Style.image} alt="" />
+            <Image src={RegistrationIl} className={`${Style.image} `} alt="" />
           </div>
         </div>
       </div>
