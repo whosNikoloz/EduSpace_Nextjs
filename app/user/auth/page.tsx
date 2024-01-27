@@ -347,9 +347,11 @@ const AuthPage: React.FC = () => {
               >
                 შესვლა
               </Button>
-              <p className={Style["social-text"]}>
-                ან შედით სოციალური პლატფორმებით
-              </p>
+              <div className="flex lg:w-8/12 w-full items-center justify-between p-4">
+                <div className="w-full h-[1px] bg-gray-300"></div>
+                <span className="text-sm uppercase mx-6 text-gray-400">Or</span>
+                <div className="w-full h-[1px] bg-gray-300"></div>
+              </div>
               <div className={Style["social-media"]}>
                 <Button
                   onClick={() => handleRegisterOAuth("google")}
@@ -369,6 +371,7 @@ const AuthPage: React.FC = () => {
                   onClick={() => handleRegisterOAuth("facebook")}
                   className={Style["social-icon"]}
                   isIconOnly
+                  isDisabled={true}
                 >
                   <i className="fab fa-facebook"></i>
                 </Button>
@@ -376,6 +379,7 @@ const AuthPage: React.FC = () => {
                   onClick={() => handleRegisterOAuth("linkedin")}
                   className={Style["social-icon"]}
                   isIconOnly
+                  isDisabled={true}
                 >
                   <i className="fab fa-linkedin"></i>
                 </Button>
@@ -467,9 +471,11 @@ const AuthPage: React.FC = () => {
               >
                 რეგისტრაცია
               </Button>
-              <p className={Style["social-text"]}>
-                ან დარეგისტრირდით სოციალურ პლატფორმებზე
-              </p>
+              <div className="flex lg:w-8/12 w-full  items-center justify-between p-4">
+                <div className="w-full h-[1px] bg-gray-300"></div>
+                <span className="text-sm uppercase mx-6 text-gray-400">Or</span>
+                <div className="w-full h-[1px] bg-gray-300"></div>
+              </div>
               <div className={Style["social-media"]}>
                 <Button
                   onClick={() => handleRegisterOAuth("google")}
@@ -489,6 +495,7 @@ const AuthPage: React.FC = () => {
                   onClick={() => handleRegisterOAuth("facebook")}
                   className={Style["social-icon"]}
                   isIconOnly
+                  isDisabled={true}
                 >
                   <i className="fab fa-facebook"></i>
                 </Button>
@@ -496,6 +503,7 @@ const AuthPage: React.FC = () => {
                   onClick={() => handleRegisterOAuth("linkedin")}
                   className={Style["social-icon"]}
                   isIconOnly
+                  isDisabled={true}
                 >
                   <i className="fab fa-linkedin"></i>
                 </Button>
@@ -506,12 +514,8 @@ const AuthPage: React.FC = () => {
 
         <div className={Style["panels-container"]}>
           <div className={`${Style.panel} ${Style["left-panel"]}`}>
-            <div className={Style.content}>
-              <h3>ახალი ხარ ?</h3>
-              <p>
-                ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი
-                ტექსტი
-              </p>
+            <div className={`${Style.content} mx-auto mt-10`}>
+              <h3 className="mb-4">ახალი ხარ ?</h3>
               <button
                 className={`${Style.btn} ${Style.transparent}`}
                 id="sign-up-btn"
@@ -520,15 +524,15 @@ const AuthPage: React.FC = () => {
                 რეგისტრაცია
               </button>
             </div>
-            <Image src={AnimatedSvg2} className={Style.image} alt="" />
+            <Image
+              src={AnimatedSvg2}
+              className={`${Style.image} mx-auto`}
+              alt=""
+            />
           </div>
           <div className={`${Style.panel} ${Style["right-panel"]}`}>
-            <div className={Style.content}>
-              <h3>ერთ-ერთი ჩვენგანი ხარ ?</h3>
-              <p>
-                ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი ტექსტი
-                ტექსტი
-              </p>
+            <div className={`${Style.content} mx-auto mt-10`}>
+              <h3 className="mb-4">ერთ-ერთი ჩვენგანი ხარ ?</h3>
               <button
                 className={`${Style.btn} ${Style.transparent}`}
                 id="sign-in-btn"
@@ -537,7 +541,11 @@ const AuthPage: React.FC = () => {
                 შესვლა
               </button>
             </div>
-            <Image src={AnimatedSvg1} className={`${Style.image} `} alt="" />
+            <Image
+              src={AnimatedSvg1}
+              className={`${Style.image} mx-auto`}
+              alt=""
+            />
           </div>
         </div>
       </div>
