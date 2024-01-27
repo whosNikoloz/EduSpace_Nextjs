@@ -2,7 +2,6 @@
 
 import { Navbar } from "@/components/navbar/navbar";
 import { Footer } from "@/components/footer";
-import BottomNavigation from "@/components/navbar/bottomnavigation";
 
 export default function MainLayout({
   children,
@@ -14,9 +13,6 @@ export default function MainLayout({
       <Navbar />
       {children}
       <Footer />
-      <div className="sm:hidden">
-        <BottomNavigation />
-      </div>
     </div>
   );
 }

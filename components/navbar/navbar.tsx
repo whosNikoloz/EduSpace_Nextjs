@@ -45,6 +45,10 @@ export const Navbar = () => {
   return (
     <NextUINavbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent justify="start">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
         <NavbarBrand>
           <Link href="/">
             <EduSpace />
@@ -171,6 +175,7 @@ export const Navbar = () => {
           </>
         )}
       </NavbarContent>
+      <SideNavBarWithDropDown />
     </NextUINavbar>
   );
 };

@@ -26,8 +26,6 @@ export const Hero = ({ userEmail }) => {
               </h1>
             </Reveal>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-white">
-              რეგისტრაცია წარმატებულად EduSpace-ზე გაიარე!
-              <br />
               ელფოსტა გაიგზავნა {userEmail} ანგარიშზე პაროლის აღსადგენად.
               გთხოვთ, შეამოწმოთ თქვენი ელფოსტა და დააჭიროთ დამადასტურებელ ბმულზე
               პაროლის აღსადგენად.

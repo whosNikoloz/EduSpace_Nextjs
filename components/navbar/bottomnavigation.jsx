@@ -13,7 +13,7 @@ import { CompilerIcon } from "./CompilerIcon.jsx";
 function BottomNavigation() {
   return (
     <>
-      <div className="fixed z-50 w-full h-14  max-w-lg -translate-x-1/2  bg-white border border-blue-600 rounded-full bottom-4 left-1/2 dark:bg-black dark:border-blue-600">
+      <div className="fixed z-50 w-full h-14  max-w-lg -translate-x-1/2  bg-white border border-blue-600 rounded-full bottom-4 left-1/2 dark:bg-white/30 dark:border-blue-600 backdrop-blur-sm ">
         <div className="grid h-full max-w-lg grid-cols-3 mx-auto">
           <Link
             href="/social"
@@ -25,7 +25,7 @@ function BottomNavigation() {
           <div className="flex items-center justify-center">
             <Link
               href=""
-              className="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group "
+              className="inline-flex items-center justify-center w-10 h-10 font-medium bg-trans rounded-full hover:bg-blue-700 group "
             >
               <IntermediateIcon width={35} height={35} />
               <span className="sr-only">New item</span>
