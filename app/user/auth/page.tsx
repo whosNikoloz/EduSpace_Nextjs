@@ -13,6 +13,8 @@ import { signIn, signOut } from "next-auth/react";
 import { Link } from "@nextui-org/react";
 import React from "react";
 import { set } from "nprogress";
+import AnimatedSvg1 from "@/public/AnimatedSvg1.gif";
+import AnimatedSvg2 from "@/public/AnimatedSvg2.gif";
 
 interface ApiResponse {
   success: boolean;
@@ -518,7 +520,7 @@ const AuthPage: React.FC = () => {
                 რეგისტრაცია
               </button>
             </div>
-            <Image src={LoginIl} className={Style.image} alt="" />
+            <Image src={AnimatedSvg2} className={Style.image} alt="" />
           </div>
           <div className={`${Style.panel} ${Style["right-panel"]}`}>
             <div className={Style.content}>
@@ -535,7 +537,7 @@ const AuthPage: React.FC = () => {
                 შესვლა
               </button>
             </div>
-            <Image src={RegistrationIl} className={`${Style.image} `} alt="" />
+            <Image src={AnimatedSvg1} className={`${Style.image} `} alt="" />
           </div>
         </div>
       </div>
