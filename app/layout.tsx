@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Providers } from "./providers";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { isMobile } from "react-device-detect";
+import "../styles/custom-scrollbar.css";
 
 export default function RootLayout({
   children,
