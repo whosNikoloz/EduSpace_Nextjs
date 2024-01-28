@@ -39,29 +39,28 @@ export default function Home() {
   return (
     <>
       <MainLayout>
-        <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300 from-50%  dark:to-black ">
-          <div className="mb-4 container mx-auto  pt-9 lg:px-32 sm:px-6 flex-grow ">
+        <div className="relative bottom-20">
+          {/* Video Background */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 object-cover w-full h-full"
+          >
+            <source src="EduSpaceHeroBg.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Content Overlay */}
+          <div className="bg-opacity-50 bg-black absolute inset-0"></div>
+
+          {/* Content */}
+          <div className="mb-4 container mx-auto pt-9 lg:px-32 h-[100vh] sm:px-6 flex-grow relative z-10">
             <Hero />
           </div>
-          <div className="hidden md:block ">
-            <ConnectorFirst
-              text="კოდის ყოველი ხაზი არის ინოვაციასთან უფრო ახლოს."
-              color={"white"}
-            />
-          </div>
         </div>
-        <div className="bg-gradient-to-b dark:from-blue-900 from-blue-300  dark:to-black ">
-          <section className=" items-center justify-center">
-            <div className="mt-7 ">
-              <div className="mt-20 mb-7">
-                <AutoScrollCarousel />
-              </div>
-            </div>
-          </section>
-          <div className="hidden md:block">
-            <ConnectorSecond text="ყველა საიდანღაც იწყებს" color={"blue"} />
-          </div>
-        </div>
+
         <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300  dark:to-black ">
           <div className="mt-7 ">
             <div className="mt-20 mb-7">

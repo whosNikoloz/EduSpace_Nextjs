@@ -15,135 +15,42 @@ const Typewriter = dynamic(() => import("typewriter-effect"), {
 export const Hero = () => {
   return (
     <>
-      <div className="flex flex-wrap md:mt-20 ">
-        <div className="w-full md:w-1/2 p-6 lg:text-left text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl dark:text-white">
-            Welcome to
-            <Reveal direction="down">
-              <span className="bg-gradient-to-r from-blue-600 via-blue-600 dark:to-white to-black  text-transparent bg-clip-text ">
-                EduSpace
-              </span>
-            </Reveal>
-            Learn Programming Online
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-white">
-            გამოიკვლიეთ კოდირების სამყარო EduSpace-ით. ისწავლეთ პროგრამირება
-            ონლაინ და დაეუფლეთ თქვენს უნარებს.
-          </p>
-          <div className="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
-            <Link href="user/auth">
-              <Button
-                variant="shadow"
-                className="bg-blue-600 text-white animate-bounce"
-                endContent={<VectorIcon />}
+      <div className="relative isolate px-6 pt-32 lg:px-8">
+        <div className="mx-auto max-w-3xl ">
+          <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+            <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-gray-500 hover:ring-blue-600">
+              Announcing our next round of funding.{" "}
+              <Link
+                href="#step-section"
+                className="font-semibold text-blue-600 "
               >
-                დაიწყე ახლავე
-              </Button>
-            </Link>
-            <Link
-              href="#step-section"
-              className="text-sm font-semibold leading-6 text-black dark:text-white "
-            >
-              გაიგე მეტი <span aria-hidden="true">→</span>
-            </Link>
+                <span class="absolute inset-0" aria-hidden="true"></span>Read
+                more <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="w-full md:w-1/2 md:mt-8 mt-9">
-          <Reveal direction="left">
-            <div className="mx-auto flex items-center justify-center">
-              <div className="w-3/4 mx-auto">
-                <div className="w-full md:h-96 h-64 shadow-2xl subpixel-antialiased rounded bg-[#161b22]  border-2 border-gray-800 mx-auto">
-                  <div
-                    className="flex items-center h-8 rounded-t bg-gray-900  text-center text-black"
-                    id="headerTerminal"
-                  >
-                    <div
-                      className="flex ml-2 items-center text-center border-red-900 bg-red-500 shadow-inner rounded-full w-3 h-3"
-                      id="closebtn"
-                    ></div>
-                    <div
-                      className="ml-2 border-yellow-900 bg-yellow-500 shadow-inner rounded-full w-3 h-3"
-                      id="minbtn"
-                    ></div>
-                    <div
-                      className="ml-2 border-green-900 bg-green-500 shadow-inner rounded-full w-3 h-3"
-                      id="maxbtn"
-                    ></div>
-                    <div
-                      className="mx-auto pr-16 flex items-center"
-                      id="terminaltitle"
-                    >
-                      <GitBashIcon size={23} />
-                      <p className="text-center text-xs text-white ml-1">
-                        MINGW64:/
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    className="pl-1 pt-1 h-auto text-gray-300 font-mono text-xs bg-grey-900"
-                    id="console"
-                  >
-                    <p className="pt-1">
-                      <code className="text-green-600 ">
-                        EduSpace@whosNikoloz
-                      </code>
-                      <code className="text-purple-500"> MINGW64</code>
-                      <code className="text-yellow-500">
-                        {" "}
-                        ~/OneDrive/desktop/eduspace
-                      </code>
-                      <code className="text-green-300"> (main)</code>
-                    </p>
-                    <div className="pb-1">
-                      <code> $ git status</code>
-                    </div>
-                    <div>
-                      <code> On branch main</code>
-                    </div>
-                    <div>
-                      <code>
-                        Your branch is up to date with {"'origin/main'"}.
-                      </code>
-                    </div>
-                    <div className="pt-2">
-                      <code>Changes not staged for commit:</code>
-                    </div>
-                    <div>
-                      <code>nothing to commit, working tree clean</code>
-                    </div>
-                    <div className="pt-1">
-                      <code className="text-green-600 ">
-                        EduSpace@whosNikoloz
-                      </code>
-                      <code className="text-purple-500"> MINGW64</code>
-                      <code className="text-yellow-500">
-                        {" "}
-                        ~/OneDrive/desktop/eduspace
-                      </code>
-                      <code className="text-green-300"> (main)</code>
-                    </div>
-                    <div className="pb-1 flex items-center gap-2">
-                      <code>$</code>
-                      <code>
-                        <Typewriter
-                          options={{
-                            strings: [
-                              "git commit",
-                              "git push",
-                              "git add .",
-                              "git დაიწყე სწავლა 🤙",
-                            ],
-                            autoStart: true,
-                            loop: true,
-                          }}
-                        />
-                      </code>
-                    </div>
-                  </div>
+          <div className="text-left mt-14">
+            <h1 className="text-3xl font-bold tracking-tight  sm:text-6xl text-white">
+              Welcome to
+              <Reveal direction="down">
+                <Link href="user/auth">
+                  <span className="bg-gradient-to-r from-blue-600 via-blue-600 text-5xl sm:text-7xl  to-white  text-transparent bg-clip-text ">
+                    EduSpace
+                  </span>
+                </Link>
+              </Reveal>
+              Learn Programming Online
+            </h1>
+
+            <div className="gap-3 flex flex-col text-center mt-56">
+              <div class="flex items-center justify-center">
+                <div class="relative h-[30px] w-[19px] rounded-[15px] border-[2px] border-[#fff] border-[solid]">
+                  <div class="absolute bottom-[20px] left-[4px] top-[4px] w-[8px] animate-[scroller_1500ms_ease-out_infinite] rounded-[8px] bg-[#fff]"></div>
                 </div>
               </div>
+              <span className="text-white">Scroll Down</span>
             </div>
-          </Reveal>
+          </div>
         </div>
       </div>
     </>

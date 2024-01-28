@@ -53,7 +53,7 @@ const FAB: React.FC = () => {
       alwaysShowTitle={false}
       icon={<EduSpace />}
       style={{
-        bottom: 50,
+        bottom: 5,
         right: 5,
       }}
     >
