@@ -56,8 +56,20 @@ export default function Home() {
           <div className="bg-opacity-50 bg-black absolute inset-0"></div>
 
           {/* Content */}
-          <div className="mb-4 container mx-auto pt-9 lg:px-32 h-[100vh] sm:px-6 flex-grow relative z-10">
+          <div className="mb-4 container mx-auto pt-9 lg:px-32 h-[100vh]  sm:px-6 flex-grow relative z-10">
             <Hero />
+          </div>
+        </div>
+        <div className="bg-gradient-to-b  ">
+          <section className=" items-center justify-center">
+            <div className="mt-7 ">
+              <div className="mt-20 mb-7">
+                <AutoScrollCarousel />
+              </div>
+            </div>
+          </section>
+          <div className="hidden md:block">
+            <ConnectorSecond text="ყველა საიდანღაც იწყებს" color={"blue"} />
           </div>
         </div>
 
