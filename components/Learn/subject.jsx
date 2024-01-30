@@ -1,12 +1,13 @@
 "use client";
+import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
-import { useState } from "react";
+import Link from "next/link";
 import { CertificationIcon } from "../Learn/CertificationIcon";
 import { QuizIcon } from "../Learn/QuizIcon";
 import { VectorIcon } from "../Learn/VectorIcon";
 import { LockedIcon } from "../Learn/LockedIcon";
 import { PlayIcon } from "../Learn/PlayIcon";
-import Link from "next/link";
+import { Reveal } from "../RevealFramer";
 
 const Subject = ({ courseData, userProgress }) => {
   return (
@@ -31,22 +32,18 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
     setContainerVisible(!containerVisible);
   };
 
-  const isCurrentSubject = progress?.subjectId === subject.subjectId;
-  const isLockedSubject = progress?.subjectId < subject.subjectId;
-  const isComplete =
-    progress?.subjectId > subject.subjectId || progress?.complete;
   return (
     <div>
       <h4
         className={`cursor-pointer pb-5 flex items-center justify-between text-lg dark:text-white text-black  font-medium ${
-          isCurrentSubject ? "text-blue-600" : ""
+          progress?.subjectId === subject.subjectId ? "text-blue-600" : ""
         }`}
         onClick={handleToggleContainer}
       >
         <div className="flex items-center gap-2">
-          {isComplete ? (
+          {progress?.subjectId > subject.subjectId ? (
             <VectorIcon size={25} />
-          ) : isCurrentSubject ? (
+          ) : progress?.subjectId === subject.subjectId ? (
             <PlayIcon size={25} />
           ) : (
             <LockedIcon size={25} />
@@ -71,106 +68,108 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
         </svg>
       </h4>
       <div
-        style={
-          containerVisible
-            ? { height: "auto" }
-            : { height: "0px", overflow: "hidden" }
-        }
+        className={`transition-all duration-300 ease-in-out ${
+          containerVisible ? "max-h-96" : "max-h-0 overflow-hidden"
+        }`}
       >
         {subject.lessons.map((lesson, lessonIndex) => {
-          // Correct variable names and conditions for lesson status
           const isCompletedLesson =
             progress?.lessonId > lesson.lessonId || progress?.complete;
           const isCurrentLesson = progress?.lessonId === lesson.lessonId;
           const isLockedLesson = !isCompletedLesson && !isCurrentLesson;
+
           return (
-            <div
+            <Reveal
               key={lessonIndex}
-              className={`px-5 py-4 bg-white dark:bg-gray-800 shadow justify-between rounded-lg mb-4 ${
-                isCompletedLesson
-                  ? "bg-green-100"
-                  : isLockedLesson
-                  ? "dark:bg-gray-900"
-                  : ""
-              }`}
+              direction="up"
+              duration={0.5}
+              delay={lessonIndex * 0.1}
             >
-              {isCompletedLesson ? (
-                // Render this when the lesson is completed
-                <div>
-                  <div className="flex flex-row justify-between">
-                    <div className="flex flex-row items-center gap-4">
-                      <QuizIcon size={25} />
-                      <div className="flex flex-col gap-1">
-                        <p className="text-slate-400 text-[8px] lg-text-[10px]">
-                          გაკვეთილი
-                        </p>
-                        <p className="dark:text-white text-black sm:text-lg lg:text-xl">
-                          {lesson.lessonName}
-                        </p>
-                      </div>
-                    </div>
-                    <VectorIcon size={30} />
-                  </div>
-                </div>
-              ) : isCurrentLesson ? (
-                <div>
-                  <div className="flex flex-row justify-between">
-                    <div className="flex flex-row items-center gap-4">
-                      <QuizIcon size={25} />
-                      <div className="flex flex-col gap-1">
-                        <p className="text-slate-400 text-[8px] lg-text-[10px]">
-                          გაკვეთილი
-                        </p>
-                        <p className="dark:text-white text-black sm:text-lg lg:text-xl">
-                          {lesson.lessonName}
-                        </p>
-                        <div className="rounded-2xl font-medium border lg:w-12 lg:h-6 w-10 h-5 flex items-center justify-center">
+              <div
+                className={`px-5 py-4 bg-white dark:bg-gray-800 shadow justify-between rounded-lg mb-4 ${
+                  isCompletedLesson
+                    ? "bg-green-100"
+                    : isLockedLesson
+                    ? "dark:bg-gray-900"
+                    : ""
+                }`}
+              >
+                {isCompletedLesson ? (
+                  <div>
+                    <div className="flex flex-row justify-between">
+                      <div className="flex flex-row items-center gap-4">
+                        <QuizIcon size={25} />
+                        <div className="flex flex-col gap-1">
                           <p className="text-slate-400 text-[8px] lg-text-[10px]">
-                            XP + 10
+                            გაკვეთილი
+                          </p>
+                          <p className="dark:text-white text-black sm:text-lg lg:text-xl">
+                            {lesson.lessonName}
                           </p>
                         </div>
                       </div>
+                      <VectorIcon size={30} />
                     </div>
                   </div>
-                  <Link
-                    href={{
-                      pathname: `/learn/course/${formattedCourseName}/lesson`,
-                      query: {
-                        lessonId: lesson.lessonId,
-                        lesson: lesson.lessonName,
-                        subject: subject.subjectId,
-                        course: courseId,
-                      },
-                    }}
-                  >
-                    <Button
-                      className="bg-blue-600 w-full text-white mt-4"
-                      color="primary"
-                      variant="ghost"
-                      size="large"
+                ) : isCurrentLesson ? (
+                  <div>
+                    <div className="flex flex-row justify-between">
+                      <div className="flex flex-row items-center gap-4">
+                        <QuizIcon size={25} />
+                        <div className="flex flex-col gap-1">
+                          <p className="text-slate-400 text-[8px] lg-text-[10px]">
+                            გაკვეთილი
+                          </p>
+                          <p className="dark:text-white text-black sm:text-lg lg:text-xl">
+                            {lesson.lessonName}
+                          </p>
+                          <div className="rounded-2xl font-medium border lg:w-12 lg:h-6 w-10 h-5 flex items-center justify-center">
+                            <p className="text-slate-400 text-[8px] lg-text-[10px]">
+                              XP + 10
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <Link
+                      href={{
+                        pathname: `/learn/course/${formattedCourseName}/lesson`,
+                        query: {
+                          lessonId: lesson.lessonId,
+                          lesson: lesson.lessonName,
+                          subject: subject.subjectId,
+                          course: courseId,
+                        },
+                      }}
                     >
-                      სწავლა
-                    </Button>
-                  </Link>
-                </div>
-              ) : (
-                // Render this when the lesson is blocked
-                <div className="flex flex-row justify-between">
-                  <div className="flex flex-row items-center gap-4">
-                    <QuizIcon size={25} />
-                    <div className="flex flex-col gap-1">
-                      <p className="text-slate-600 text-[8px] lg-text-[10px]">
-                        გაკვეთილი
-                      </p>
-                      <p className="text-slate-600 sm:text-lg lg:text-xl">
-                        {lesson.lessonName}
-                      </p>
-                    </div>
+                      <Button
+                        className="bg-blue-600 w-full text-white mt-4"
+                        color="primary"
+                        variant="ghost"
+                        size="large"
+                      >
+                        სწავლა
+                      </Button>
+                    </Link>
                   </div>
-                  <LockedIcon size={25} />
-                </div>
-              )}
-            </div>
+                ) : (
+                  <div className="flex flex-row justify-between">
+                    <div className="flex flex-row items-center gap-4">
+                      <QuizIcon size={25} />
+                      <div className="flex flex-col gap-1">
+                        <p className="text-slate-600 text-[8px] lg-text-[10px]">
+                          გაკვეთილი
+                        </p>
+                        <p className="text-slate-600 sm:text-lg lg:text-xl">
+                          {lesson.lessonName}
+                        </p>
+                      </div>
+                    </div>
+                    <LockedIcon size={25} />
+                  </div>
+                )}
+              </div>
+            </Reveal>
           );
         })}
       </div>
