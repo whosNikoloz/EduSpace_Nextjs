@@ -1,6 +1,6 @@
 import React from "react";
 
-const progress_API = "https://192.168.1.56:45455/api/Progress/";
+const progress_API = "https://localhost:45455/api/Progress/";
 const progress_API_NIkoloza = "https://172.20.10.7:45455/api/Progress/";
 
 const mac_progress_API = "https://localhost:7163/api/Progress/";

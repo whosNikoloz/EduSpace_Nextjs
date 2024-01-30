@@ -27,8 +27,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
-const auth_API = "https://192.168.1.56:45455/api/Auth/";
-const user_API = "https://192.168.1.56:45455/api/User/";
+const auth_API = "https://localhost:45455/api/Auth/";
+const user_API = "https://localhost:45455/api/User/";
 
 const mac_auth_API = "https://localhost:7163/api/Auth/";
 const mac_user_API = "https://localhost:7163/api/User/";
@@ -85,6 +85,7 @@ const Authentication = () => {
           const userData = data.response.user;
           try {
             localStorage.setItem("jwt_token", data.response.Token);
+            console.log(JSON.stringify(data.response.Token));
             loginContext(userData);
             return { success: true };
           } catch (error) {

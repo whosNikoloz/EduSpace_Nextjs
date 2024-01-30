@@ -1,6 +1,6 @@
 import React from "react";
 
-const learn_API = "https://192.168.1.56:45455/api/Learn/";
+const learn_API = "https://localhost:45455/api/Learn/";
 const learn_API_NIkoloza = "https://172.20.10.7:45455/api/Learn/";
 
 const mac_learn_API = "https://localhost:7163/api/Learn/";

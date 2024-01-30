@@ -1,45 +1,73 @@
 "use client";
 
-import MainLayout from "@/app/layouts/Mainlayout";
 import React, { useState, useEffect } from "react";
-import { CustomTitle } from "@/components/CustomTitle";
-import { Hero } from "@/components/Learn/Hero";
+import dynamic from "next/dynamic";
+
 import CoursesAPI from "@/app/api/Learn/Course";
+import { useUser } from "@/app/dbcontext/UserdbContext";
+import ProgressAPI from "@/app/api/Learn/Progress";
+import MainLayout from "@/app/layouts/Mainlayout";
+import { Hero } from "@/components/Learn/Hero";
+import Subject from "@/components/Learn/subject";
 
 interface Course {
   courseId: number;
   courseName: string;
+  subjects: any;
   description: string;
   courseLogo: string;
   formattedCourseName: string;
   levelId: number;
 }
+interface UserProgress {
+  progressId: number;
+  subjectId: number;
+  lessonId: number;
+  complete: boolean;
+}
 
 export default function CsharpBeginnerPage() {
-  const courses = CoursesAPI();
+  const { user } = useUser();
   const [course, setCourse] = useState<Course | null>(null);
+  const [progress, setProgress] = useState<UserProgress | null>(null);
+
+  // Combine the two useEffects into one
   useEffect(() => {
-    const fetchCourse = async () => {
+    const fetchCourseAndProgress = async () => {
+      if (!user) return;
+
       try {
-        const response = await courses.GetCourse("c-sharp-beginner");
-        setCourse(response); // Assuming the API response is an array of Course objects
-        console.log(response);
+        const courseResponse = await CoursesAPI().GetCourse("c-sharp-beginner");
+        setCourse(courseResponse);
+
+        const userProgress = await ProgressAPI().GetProgress(
+          { userid: user.userId },
+          { courseid: courseResponse.courseId }
+        );
+        setProgress(userProgress);
       } catch (error) {
-        console.error("Error fetching courses:", error);
+        console.error("Error fetching course or user progress:", error);
       }
     };
 
-    fetchCourse();
-  });
+    fetchCourseAndProgress(); // Fetch course and user progress instantly
+
+    const intervalId = setInterval(fetchCourseAndProgress, 30000); // Then fetch course and user progress every 30 seconds
+
+    return () => clearInterval(intervalId); // Clean up on unmount or when dependencies change
+  }, [user]); // Fetch course and user progress when user changes
 
   return (
     <MainLayout>
       {course && (
-        <Hero
-          logo={course.courseLogo}
-          courseName={course.courseName}
-          description={course.description}
-        />
+        <div className="flex flex-col items-center justify-center bg-gradient-to-t dark:from-black dark:via-blue-900 dark:to-black from-white to-white via-blue-300">
+          <Hero
+            logo={course.courseLogo}
+            courseName={course.courseName}
+            description={course.description}
+          />
+          <Subject courseData={course} userProgress={progress} />
+        </div>
       )}
     </MainLayout>
   );
