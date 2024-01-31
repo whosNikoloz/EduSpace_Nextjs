@@ -26,14 +26,14 @@ const Subject = ({ courseData, userProgress }) => {
 };
 
 const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
-  const [containerVisible, setContainerVisible] = useState(false);
+  const [containerVisible, setContainerVisible] = useState(true);
 
   const handleToggleContainer = () => {
     setContainerVisible(!containerVisible);
   };
 
   return (
-    <div>
+    <div className="py-2">
       <h4
         className={`cursor-pointer pb-5 flex items-center justify-between text-lg dark:text-white text-black  font-medium ${
           progress?.subjectId === subject.subjectId ? "text-blue-600" : ""
@@ -42,11 +42,11 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
       >
         <div className="flex items-center gap-2">
           {progress?.subjectId > subject.subjectId ? (
-            <VectorIcon size={25} />
+            <VectorIcon height={25} width={25} />
           ) : progress?.subjectId === subject.subjectId ? (
-            <PlayIcon size={25} />
+            <PlayIcon height={20} width={20} />
           ) : (
-            <LockedIcon size={25} />
+            <LockedIcon height={25} width={25} />
           )}
           {subject.subjectName}
         </div>
@@ -163,6 +163,11 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                         <p className="text-slate-600 sm:text-lg lg:text-xl">
                           {lesson.lessonName}
                         </p>
+                        <div className="rounded-2xl font-medium border lg:w-12 lg:h-6 w-10 h-5 flex items-center justify-center">
+                          <p className="text-slate-400 text-[8px] lg-text-[10px]">
+                            XP + 10
+                          </p>
+                        </div>
                       </div>
                     </div>
                     <LockedIcon size={25} />
@@ -173,6 +178,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
           );
         })}
       </div>
+      <hr className={` ${containerVisible ? "hidden" : "dark:bg-gray-900"}`} />
     </div>
   );
 };
