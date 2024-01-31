@@ -84,8 +84,7 @@ const Authentication = () => {
         if (data.successful) {
           const userData = data.response.user;
           try {
-            localStorage.setItem("jwt_token", data.response.Token);
-            console.log(JSON.stringify(data.response.Token));
+            localStorage.setItem("jwt_token", data.response.token);
             loginContext(userData);
             return { success: true };
           } catch (error) {
