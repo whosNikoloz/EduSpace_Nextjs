@@ -11,7 +11,7 @@ export default function MainLayout({
   return (
     <div className="relative flex flex-col h-full  ">
       <Navbar />
-      {children}
+      <div className="mt-16">{children}</div>
       <Footer />
     </div>
   );

@@ -12,7 +12,7 @@ export default function LayoutNavbar({
   return (
     <div className="relative flex flex-col h-screen">
       <Navbar />
-      {children}
+      <div className="mt-16">{children}</div>
       <Footer />
     </div>
   );

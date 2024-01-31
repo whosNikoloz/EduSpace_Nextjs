@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <>
       <MainLayout>
-        <div className="relative bottom-20">
+        <div className="relative bottom-16">
           {/* Video Background */}
           <video
             autoPlay
