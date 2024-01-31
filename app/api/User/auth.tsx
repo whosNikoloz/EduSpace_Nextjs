@@ -52,8 +52,6 @@ const Authentication = () => {
       if (response.ok) {
         const data = await response.json();
 
-        console.log(data);
-
         if (data.successful) {
           return { success: true };
         } else {

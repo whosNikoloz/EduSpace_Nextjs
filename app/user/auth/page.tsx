@@ -75,8 +75,6 @@ const AuthPage: React.FC = () => {
       loginState.password
     )) as ApiResponse;
 
-    console.log(response);
-
     if (!response.success) {
       setLoginError(response.result || "login failed");
       setIsLoading(false);
@@ -171,9 +169,6 @@ const AuthPage: React.FC = () => {
 
       if (!response.success) {
         setLoginEmailError(response.result || "Email already exists");
-      } else {
-        console.error("Email does not exist. Error:", response.error);
-        // You might want to handle this case accordingly, for example, show an error message.
       }
     } catch (error) {
       // Handle any errors during the API call
@@ -199,8 +194,6 @@ const AuthPage: React.FC = () => {
 
       if (!response.success) {
         setRegEmailError(response.result || "UserName already exists");
-      } else {
-        console.error("Email does not exist. Error:", response.error);
       }
     } catch (error) {
       // Handle any errors during the API call
@@ -219,8 +212,6 @@ const AuthPage: React.FC = () => {
 
       if (!response.success) {
         setRegUserNameError(response.result || "UserName already exists");
-      } else {
-        console.error("Email does not exist. Error:", response.error);
       }
     } catch (error) {
       // Handle any errors during the API call
