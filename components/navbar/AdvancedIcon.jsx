@@ -1,13 +1,6 @@
 import React from "react";
 
-export const AdvancedIcon = ({
-  filled,
-  size,
-  height,
-  width,
-  label,
-  ...props
-}) => {
+export const AdvancedIcon = ({ size, height, width, ...props }) => {
   return (
     <svg
       viewBox="0 0 32 32"

@@ -1,13 +1,6 @@
 import React from "react";
 
-export const BeginnerIcon = ({
-  filled,
-  size,
-  height,
-  width,
-  label,
-  ...props
-}) => {
+export const BeginnerIcon = ({ size, height, width, ...props }) => {
   return (
     <svg
       viewBox="0 0 32 32"

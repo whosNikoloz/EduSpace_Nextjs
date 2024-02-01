@@ -18,7 +18,7 @@ export const Hero = () => {
               </Link>
             </div>
           </div>
-          <div className="text-left lg:mt-14 mt-3">
+          <div className="text-left lg:mt-14 mt-1">
             <h1 className="text-5xl font-bold tracking-tight  lg:text-6xl text-white">
               Welcome to
               <Reveal direction="down">
@@ -33,7 +33,7 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-end lg:h-[35vh] h-[26vh] text-center lg:absolute bottom-0 left-0 right-0">
+      <div className="flex flex-col items-center gap-2 justify-end lg:h-[35vh] h-[24vh] text-center lg:absolute lg:bottom-2 left-0 right-0">
         <div className="relative h-[30px] w-[19px] rounded-[15px] border-[2px] border-[#fff] border-[solid]">
           <div className="absolute bottom-[20px] left-[4px] top-[4px] w-[8px] animate-[scroller_1500ms_ease-out_infinite] rounded-[8px] bg-[#fff]"></div>
         </div>

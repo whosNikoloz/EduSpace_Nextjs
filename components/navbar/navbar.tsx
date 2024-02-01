@@ -25,10 +25,15 @@ import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
 import SideNavBarWithDropDown from "@/components/navbar/sidenavbar.jsx";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Reveal } from "../RevealFramer";
+import { BeginnerIcon } from "./BeginnerIcon.jsx";
+import { AdvancedIcon } from "./AdvancedIcon.jsx";
+import { IntermediateIcon } from "./IntermediateIcon.jsx";
+import { CompilerIcon } from "./CompilerIcon.jsx";
 
 const DropDownItems = [
   {
     label: "შესავალი",
+    svg: BeginnerIcon,
     submenus: [
       { title: "C# შესავალი", link: "/csharp" },
       { title: "Python შესავალი", link: "/python" },
@@ -39,6 +44,7 @@ const DropDownItems = [
   ,
   {
     label: "მოწინავე",
+    svg: IntermediateIcon,
     submenus: [
       { title: "C# მოწინავე", link: "/csharp" },
       { title: "Python მოწინავე", link: "/python" },
@@ -48,6 +54,7 @@ const DropDownItems = [
   },
   {
     label: "ექსპერტი",
+    svg: AdvancedIcon,
     submenus: [
       { title: "C# ექსპერტი", link: "/csharp" },
       { title: "Python ექსპერტი", link: "/python" },
@@ -103,7 +110,7 @@ export const Navbar = () => {
     <>
       <nav
         className={`z-50 fixed w-full top-0 ${
-          isScrolled ? "backdrop-blur-md bg-black/30" : "bg-transparent"
+          isScrolled ? "backdrop-blur-lg bg-black/10" : "bg-transparent"
         }`}
       >
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -275,7 +282,7 @@ export const Navbar = () => {
         </div>
 
         <div
-          className={`transition-all duration-300 ease-in-out overflow-hidden sm:hidden w-full ${
+          className={`transition-all duration-300 ease-in-out overflow-hidden sm:hidden w-full  ${
             isMenuOpen ? "max-h-[700px]" : "max-h-0"
           }`}
         >
@@ -292,16 +299,21 @@ export const Navbar = () => {
                     onClick={() => setIsDropDownOpen(!isDropDownOpen)}
                   >
                     <svg
-                      className={`flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white `}
+                      viewBox="0 0 1024 1024"
                       fill="currentColor"
-                      viewBox="0 0 20 20"
+                      version="1.1"
+                      className="w-6 h-6"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-                        clip-rule="evenodd"
-                      ></path>
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path d="M513.147 584.708c-15.947 0-39.468-1.747-61.040-10.031l-172.596-66.501h-84.542v103.565c0 31.84 23.684 67.975 52.884 80.663l208.987 90.967c29.2 12.688 76.605 12.743 105.841 0.127l211.263-91.222c29.218-12.615 52.921-48.697 52.921-80.537v-103.565h-93.298l-152.954 64.48c-18.386 7.773-42.38 12.051-67.466 12.051zM46.313 372.991l416.19 160.363c29.728 11.433 77.605 10.686 106.951-1.693l397.458-167.536v247.18l-24.558 81.938h71.015l-25.413-82.794v-256.319h-0.71c17.167-11.833 13.162-26.596-12.252-35.681l-404.357-143.888c-30.001-10.704-78.479-10.25-108.299 0.946l-415.844 156.449c-29.819 11.214-29.891 29.6-0.182 41.033z"></path>
+                      </g>
                     </svg>
                     <span
                       className="flex-1 ml-3 text-left whitespace-nowrap"
@@ -336,6 +348,9 @@ export const Navbar = () => {
                           className="flex items-center w-full p-2 text-base font-normal bg-transparent transition duration-75 rounded-lg group"
                           onClick={() => handleMenuClick(index)}
                         >
+                          {item?.svg && (
+                            <item.svg height={24} width={24} size={24} />
+                          )}
                           <span
                             className="flex-1 ml-3 text-left whitespace-nowrap"
                             sidebar-toggle-item
@@ -368,7 +383,7 @@ export const Navbar = () => {
                                 delay={subIndex * 0.1}
                                 direction="right"
                               >
-                                <li className="px-4">
+                                <li className="px-10">
                                   <a
                                     href={submenu.link || "#"}
                                     className="flex items-center w-full p-2 text-base font-normal bg-transparent transition duration-75 rounded-lg group"
@@ -419,15 +434,7 @@ export const Navbar = () => {
                     href="#"
                     className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
-                    <svg
-                      className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z"></path>
-                      <path d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
-                    </svg>
+                    <CompilerIcon size={24} height={24} width={24} />
                     <span className="flex-1 ml-3 whitespace-nowrap">
                       Compiler
                     </span>

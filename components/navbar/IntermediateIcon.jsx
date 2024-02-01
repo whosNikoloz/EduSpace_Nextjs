@@ -1,13 +1,6 @@
 import React from "react";
 
-export const IntermediateIcon = ({
-  filled,
-  size,
-  height,
-  width,
-  label,
-  ...props
-}) => {
+export const IntermediateIcon = ({ size, height, width, ...props }) => {
   return (
     <svg
       viewBox="0 0 32 32"
