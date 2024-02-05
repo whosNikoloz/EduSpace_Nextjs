@@ -164,10 +164,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
         )}
 
         {dropdownOpen && (
-          <div
-            className="absolute right-0 mt-3 dark:bg-zinc-800 bg-white  rounded-md shadow-lg overflow-hidden z-20 transition-all duration-300 ease-in-out  "
-            style={{ width: "22rem", overflowY: "auto", maxHeight: "550px" }}
-          >
+          <div className="absolute right-0 mt-3 dark:bg-zinc-800 bg-white rounded-md shadow-lg overflow-hidden z-20  w-72  sm:w-96 max-h-96">
             {notifications.length === 0 ? ( // Check if there are no notifications
               <div>
                 <p className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 mx-2">
