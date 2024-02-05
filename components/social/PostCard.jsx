@@ -53,7 +53,7 @@ function PostCard({ postData, onDelete }) {
 
   const post = Posts();
 
-  const [IsAddingComment, setIsAddingComment] = useState(true);
+  const [IsAddingComment, setIsAddingComment] = useState(false);
 
   const {
     isOpen: isOpenWarning,

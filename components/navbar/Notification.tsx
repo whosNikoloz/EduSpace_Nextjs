@@ -1,7 +1,7 @@
 import { Button } from "@nextui-org/button";
 import React, { useCallback, useState, useEffect } from "react";
 import Notifications from "@/app/api/Social/Notification";
-import { Badge } from "@nextui-org/react";
+import { Avatar, Badge } from "@nextui-org/react";
 import { NotificationIcon } from "./NotificationIcon";
 import { DotsIcon } from "@/components/social/DotsIcon";
 import { VectorIcon } from "../Learn/VectorIcon";
@@ -165,7 +165,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
 
         {dropdownOpen && (
           <div
-            className="absolute right-0 mt-3 dark:bg-zinc-800 bg-white  rounded-md shadow-lg overflow-hidden z-20"
+            className="absolute right-0 mt-3 dark:bg-zinc-800 bg-white  rounded-md shadow-lg overflow-hidden z-20 transition-all duration-300 ease-in-out  "
             style={{ width: "22rem", overflowY: "auto", maxHeight: "550px" }}
           >
             {notifications.length === 0 ? ( // Check if there are no notifications
@@ -243,12 +243,14 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                     <div
                       className={`flex items-center px-6 py-3 hover:bg-zinc-200 dark:hover:bg-zinc-600 -mx-2 `}
                     >
-                      <Image
-                        className="h-8 w-8 rounded-full object-cover mx-1"
+                      <Avatar
+                        className="h-8 w-11 rounded-full object-cover mx-1"
+                        isBordered
+                        as="button"
+                        color="primary"
+                        name={notification.commentAuthorUsername}
+                        size="sm"
                         src={notification.commentAuthorPicture}
-                        width={32}
-                        height={32}
-                        alt="avatar"
                       />
                       <p className="dark:text-white text-black text-sm mx-1">
                         <span className="font-bold">
