@@ -36,7 +36,8 @@ const FAB: React.FC = () => {
   const maxUserLimit = 10; // Set your desired maximum user limit
 
   const openChat = () => {
-    if (userCount < maxUserLimit) {
+    onOpen();
+    /*if (userCount < maxUserLimit) {
       if (user) {
         onOpen();
       } else {
@@ -44,7 +45,7 @@ const FAB: React.FC = () => {
       }
     } else {
       alert("Chat limit reached. Please try again later."); // Display a message or handle accordingly
-    }
+    }*/
   };
 
   return (
