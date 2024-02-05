@@ -1,6 +1,6 @@
 "use client";
-import { Image } from "@nextui-org/react";
 import React from "react";
+import { Card, CardBody, Image, Button } from "@nextui-org/react";
 
 interface HeroProps {
   logo: string;
@@ -15,19 +15,47 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   return (
     <>
-      <div className="flex items-center justify-center">
-        <div className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-2xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-          <Image className="object-cover  rounded-lg" src={logo} alt="" />
-          <div className="flex flex-col justify-between p-4 leading-normal">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {courseName}
-            </h5>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              {description}
-            </p>
+      <Card
+        isBlurred
+        className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]"
+        shadow="sm"
+      >
+        <CardBody>
+          <div className="grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center">
+            <div className="relative col-span-6 md:col-span-4">
+              <Image
+                alt="Album cover"
+                className="object-cover"
+                height={200}
+                shadow="md"
+                src={logo}
+                width="100%"
+              />
+            </div>
+
+            <div className="flex flex-col col-span-6 md:col-span-8">
+              <div className="flex justify-between items-start">
+                <div className="flex flex-col gap-0">
+                  <h1 className="font-semibold text-foreground/90">
+                    {courseName}
+                  </h1>
+                  <h3 className="text-sm font-medium mt-2">{description}</h3>
+                </div>
+              </div>
+
+              <div className="flex flex-col mt-3 gap-1">
+                <div className="flex justify-between">
+                  <p className="text-small text-foreground/50">
+                    ხანგძლივობა : 1 თვე
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex w-full items-center justify-center"></div>
+            </div>
           </div>
-        </div>
-      </div>
+        </CardBody>
+      </Card>
     </>
   );
 };

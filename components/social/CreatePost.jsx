@@ -266,7 +266,7 @@ export default function CreatePost({ setPosts }) {
                           <Select
                             label="აირჩიე ენა"
                             variant="bordered"
-                            className="max-w-xs"
+                            className="max-w-full"
                             value={selectedLanguage}
                             onChange={handleLanguageSelect}
                           >
@@ -284,7 +284,7 @@ export default function CreatePost({ setPosts }) {
                               variant="bordered"
                               labelPlacement="outside"
                               placeholder="დასვი კითხვა"
-                              className="max-w-xs"
+                              className="max-w-full"
                               value={PostModel.content}
                               onChange={(e) =>
                                 setPostModel({

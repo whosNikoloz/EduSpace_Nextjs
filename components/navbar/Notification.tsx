@@ -134,6 +134,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                 size={24}
                 height={undefined}
                 width={undefined}
+                isActive={dropdownOpen}
               />
             </Button>
           </Badge>
@@ -149,6 +150,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                 size={24}
                 height={undefined}
                 width={undefined}
+                isActive={dropdownOpen}
               />
             </Button>
           </Badge>
@@ -159,7 +161,12 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
             onClick={() => setDropdownOpen(!dropdownOpen)}
             variant="light"
           >
-            <NotificationIcon size={24} height={undefined} width={undefined} />
+            <NotificationIcon
+              isActive={dropdownOpen}
+              size={24}
+              height={undefined}
+              width={undefined}
+            />
           </Button>
         )}
 
