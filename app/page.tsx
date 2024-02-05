@@ -75,7 +75,7 @@ export default function Home() {
 
         <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300  dark:to-black ">
           <div className="mt-7 ">
-            <div className="mt-20 mb-7">
+            <div className="mt-20">
               <Feature />
             </div>
           </div>
