@@ -107,15 +107,13 @@ interface UserProviderProps {
 
 export const UserProvider: FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   // Load user data from local storage when the component initializes
   useEffect(() => {
-    // Load user data from local storage
     const userData = localStorage.getItem("user");
     if (userData) {
       const data = JSON.parse(userData);
-
-      // Check if the user data is still valid (within one hour)
       const currentTime = new Date().getTime();
       const savedTime = new Date(data.timestamp).getTime();
       const timeDifference = currentTime - savedTime;
@@ -123,16 +121,14 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
       if (timeDifference < 3600000) {
         setUser(data.user);
       } else {
-        // Data is older than an hour, remove it from local storage
         localStorage.removeItem("user");
       }
     }
+    setLoading(false); // Set loading to false once user data is loaded or not
   }, []);
 
   const login = (userData: User) => {
     setUser(userData);
-
-    // Save user data with a timestamp to local storage
     const data = {
       user: userData,
       timestamp: new Date().toISOString(),
@@ -142,15 +138,17 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 
   const logout = () => {
     setUser(null);
-
-    // Remove user data from local storage
     localStorage.removeItem("user");
     localStorage.removeItem("jwt_token");
   };
 
   return (
     <UserContext.Provider value={{ user, login, logout }}>
-      {children}
+      {loading ? ( // Render loading state
+        <div>Loading...</div>
+      ) : (
+        children // Render children when loading is finished
+      )}
     </UserContext.Provider>
   );
 };
