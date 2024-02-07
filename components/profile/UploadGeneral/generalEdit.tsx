@@ -44,6 +44,23 @@ function GeneralEdit({
   const [isLoading, setIsLoading] = useState(false);
 
   const handelChangeGeneral = async () => {
+    if (GeneralProps.userName === "") {
+      setError({
+        userNameError: "აუცილებელი ველი",
+      });
+      return;
+    }
+
+    if (GeneralProps.userName.length < 4 || GeneralProps.userName.length > 50) {
+      setError({
+        userNameError: "Username must be between 4 and 50 characters",
+      });
+    } else {
+      setError({
+        userNameError: "",
+      });
+    }
+
     setIsLoading(true);
     setError({
       userNameError: "",

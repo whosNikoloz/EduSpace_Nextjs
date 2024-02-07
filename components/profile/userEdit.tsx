@@ -61,9 +61,6 @@ export const UserEdit: FC<UserEditProps> = ({
   };
 
   const [selectedEmail, setSelectedEmail] = useState(email);
-  {
-    console.log(oauth);
-  }
 
   const handleEmailChange = (newEmail: any) => {
     setSelectedEmail(newEmail);
