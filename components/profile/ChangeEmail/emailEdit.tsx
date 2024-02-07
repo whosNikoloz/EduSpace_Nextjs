@@ -23,6 +23,12 @@ interface ResponseType {
   error?: string;
 }
 
+interface ApiResponse {
+  success: boolean;
+  result?: string; // Adjust the type based on the actual data structure
+  error?: string;
+}
+
 function EmailEdit({
   Email,
   oauth,
@@ -79,10 +85,37 @@ function EmailEdit({
   } = useDisclosure();
 
   const handleChange = () => {
+    if (error) return;
     onOpenAccess();
   };
 
   const [VerificationCode, setVerificationCode] = useState("");
+
+  const validateEmail = (value: string) =>
+    value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
+  const handleBlurEmail = async () => {
+    if (email === "") return;
+
+    const isValid = validateEmail(email);
+
+    if (!isValid) {
+      setError("invalid Email");
+    } else {
+      setError("");
+    }
+
+    const response = (await AuthAPI.checkEmailLogin(email)) as ApiResponse;
+
+    if (response.success) {
+      setError(response.result || "Email already exists");
+    }
+  };
+
+  const handleEmailClear = () => {
+    setEmail("");
+    setError("");
+  };
 
   const [email, setEmail] = useState(Email);
 
@@ -131,7 +164,8 @@ function EmailEdit({
                     label="Email"
                     isInvalid={error ? true : false}
                     value={email}
-                    onClear={() => setEmail("")}
+                    onClear={handleEmailClear}
+                    onBlur={handleBlurEmail}
                     errorMessage={error ? error : null}
                     onChange={(e) => setEmail(e.target.value)}
                   />

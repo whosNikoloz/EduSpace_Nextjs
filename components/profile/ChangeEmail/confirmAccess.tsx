@@ -5,7 +5,6 @@ import { Input, Button } from "@nextui-org/react";
 import Authentication from "@/app/api/User/auth";
 import toast from "react-hot-toast";
 
-
 function ConfirmAccess({ onConfirm }: { onConfirm: () => void }) {
   const AuthAPI = Authentication();
 
@@ -16,6 +15,8 @@ function ConfirmAccess({ onConfirm }: { onConfirm: () => void }) {
 
   const handleConfirm = async () => {
     setIsLoading(true);
+
+    console.log(password);
 
     if (!password) {
       toast.error("შეავსეთ ველი");
