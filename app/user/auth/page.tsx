@@ -291,6 +291,9 @@ const AuthPage: React.FC = () => {
                   value={loginState.email}
                   type="email"
                   label="Email"
+                  classNames={{
+                    input: ["text-[16px] "],
+                  }}
                   onChange={(e) =>
                     setLoginState({ ...loginState, email: e.target.value })
                   }
@@ -304,6 +307,9 @@ const AuthPage: React.FC = () => {
                 <Input
                   type="password"
                   label="Password"
+                  classNames={{
+                    input: ["text-[16px] "],
+                  }}
                   value={loginState.password}
                   onChange={(e) =>
                     setLoginState({ ...loginState, password: e.target.value })
@@ -382,6 +388,9 @@ const AuthPage: React.FC = () => {
                 <Input
                   type="text"
                   label="Username"
+                  classNames={{
+                    input: ["text-[16px] "],
+                  }}
                   value={registrationState.username}
                   onChange={(e) =>
                     setRegistrationState({
@@ -399,6 +408,9 @@ const AuthPage: React.FC = () => {
                 <Input
                   type="email"
                   label="Email"
+                  classNames={{
+                    input: ["text-[16px] "],
+                  }}
                   value={registrationState.email}
                   onChange={(e) =>
                     setRegistrationState({
@@ -417,6 +429,9 @@ const AuthPage: React.FC = () => {
                 <Input
                   type="password"
                   label="Password"
+                  classNames={{
+                    input: ["text-[16px] "],
+                  }}
                   value={registrationState.password}
                   onChange={(e) =>
                     setRegistrationState({
@@ -434,6 +449,9 @@ const AuthPage: React.FC = () => {
                 <Input
                   className={Style.authinput}
                   type="password"
+                  classNames={{
+                    input: ["text-[16px] "],
+                  }}
                   label="confirmPassword"
                   value={registrationState.confirmPassword}
                   onChange={(e) =>
