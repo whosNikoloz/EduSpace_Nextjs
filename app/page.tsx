@@ -60,17 +60,13 @@ export default function Home() {
             <Hero />
           </div>
         </div>
-        <div className="bg-gradient-to-b  ">
-          <section className=" items-center justify-center">
-            <div className="mt-7 ">
-              <div className="mt-20 mb-7">
-                <AutoScrollCarousel />
-              </div>
-            </div>
-          </section>
-          <div className="hidden md:block">
-            <ConnectorSecond text="ყველა საიდანღაც იწყებს" color={"blue"} />
+        <section className=" items-center justify-center">
+          <div className="mb-10">
+            <AutoScrollCarousel />
           </div>
+        </section>
+        <div className="hidden md:block">
+          <ConnectorSecond text="ყველა საიდანღაც იწყებს" color={"blue"} />
         </div>
 
         <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300  dark:to-black ">
