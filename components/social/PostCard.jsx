@@ -26,7 +26,7 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
+import { Card, CardBody, Image } from "@nextui-org/react";
 import toast, { Toaster } from "react-hot-toast";
 
 function formatTimeAgo(timestamp) {
@@ -140,96 +140,107 @@ function PostCard({ postData, onDelete }) {
 
   return (
     <>
-      <div className="flex items-center justify-center">
-        <div className="px-5 py-4 bg-white dark:bg-gray-800 shadow justif rounded-lg w-full md:w-[800px] mb-4">
-          <div className="flex justify-between mb-4">
-            <User
-              name={
-                postData.user.firstname && postData.user.lastname
-                  ? postData.user.firstname + " " + postData.user.lastname
-                  : postData.user.username
-              }
-              description={formattedTimeAgo + "  " + postData.subject}
-              avatarProps={{
-                src: postData.user.picture,
-              }}
-            />
-            {user && postData.user.userId === user.userId && (
-              <Dropdown backdrop="blur">
-                <DropdownTrigger>
-                  <Button isIconOnly variant="light">
-                    <DotsIcon size={35} />
-                  </Button>
-                </DropdownTrigger>
-                <DropdownMenu variant="faded" aria-label="Static Actions">
-                  <DropdownItem key="edit" onPress={onOpenChangeEdit}>
-                    პოსტის რედაქტირება
-                  </DropdownItem>
-                  <DropdownItem
-                    key="delete"
-                    className="text-danger"
-                    color="danger"
-                    onPress={onOpenChangeWarning}
-                  >
-                    პოსტის წაშლა
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            )}
-          </div>
-          <p
-            className={`text-gray-800 dark:text-gray-100 leading-snug md:leading-normal overflow-hidden`}
-            style={{
-              marginBottom: "1rem", // Adjust margin as needed
-            }}
-          >
-            {shouldShowSeeMore && !isFullTextVisible
-              ? postcontent.slice(0, maxTextLength)
-              : postcontent}
-            {shouldShowSeeMore && (
-              <button
-                onClick={toggleFullText}
-                className="text-blue-500 ml-2 text-xs hover:underline"
-              >
-                {isFullTextVisible ? "ნახვა ნაკლები" : "მეტის ნახვა"}
-              </button>
-            )}
-          </p>
-          <br />
-          {(postData.picture || postData.video) && (
-            <div className="flex items-center justify-center w-full">
-              {postData.video && (
-                <video
-                  controls
-                  className="w-auto max-h-screen rounded"
-                  src={postData.video}
-                  alt="Video Description"
+      <div className="flex items-center justify-center mb-4">
+        <Card
+          isBlurred
+          className="border-none bg-background/60 dark:bg-gray-800/100 sm:w-[800px] w-[350px] "
+          shadow="sm"
+        >
+          <CardBody>
+            <div className="px-2 sm:px-5 py-0   justif rounded-lg  ">
+              <div className="flex justify-between mb-4">
+                <User
+                  name={
+                    postData.user.firstname && postData.user.lastname
+                      ? postData.user.firstname + " " + postData.user.lastname
+                      : postData.user.username
+                  }
+                  description={formattedTimeAgo + "  " + postData.subject}
+                  avatarProps={{
+                    src: postData.user.picture,
+                  }}
                 />
-              )}
-              {postData.picture && (
-                <button onClick={onOpenModalPost}>
-                  <Image
-                    className="w-auto max-h-screen rounded"
-                    src={postData.picture}
-                    alt="Image Description"
-                  />
-                </button>
-              )}
-            </div>
-          )}
-          <div className="flex justify-between items-center mt-5">
-            <div className="flex"></div>
-            <Link>
-              <button
-                className="ml-1 text-gray-500 dark:text-gray-400 font-light"
-                onClick={onOpenModalPost}
+                {user && postData.user.userId === user.userId && (
+                  <Dropdown backdrop="blur">
+                    <DropdownTrigger>
+                      <Button isIconOnly variant="light">
+                        <DotsIcon size={35} />
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu variant="faded" aria-label="Static Actions">
+                      <DropdownItem key="edit" onPress={onOpenChangeEdit}>
+                        პოსტის რედაქტირება
+                      </DropdownItem>
+                      <DropdownItem
+                        key="delete"
+                        className="text-danger"
+                        color="danger"
+                        onPress={onOpenChangeWarning}
+                      >
+                        პოსტის წაშლა
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                )}
+              </div>
+              <p
+                className={`text-gray-800 dark:text-gray-100 leading-snug md:leading-normal overflow-hidden`}
+                style={{
+                  marginBottom: "1rem", // Adjust margin as needed
+                }}
               >
-                {commentCount === 0 ? "კომენტარი" : `${commentCount} კომენტარი`}
-              </button>
-            </Link>
-          </div>
-        </div>
+                {shouldShowSeeMore && !isFullTextVisible
+                  ? postcontent.slice(0, maxTextLength)
+                  : postcontent}
+                {shouldShowSeeMore && (
+                  <button
+                    onClick={toggleFullText}
+                    className="text-blue-500 ml-2 text-xs hover:underline"
+                  >
+                    {isFullTextVisible ? "ნახვა ნაკლები" : "მეტის ნახვა"}
+                  </button>
+                )}
+              </p>
+              <br />
+              {(postData.picture || postData.video) && (
+                <div className="flex items-center justify-center w-full">
+                  {postData.video && (
+                    <video
+                      controls
+                      className="w-auto max-h-screen rounded"
+                      src={postData.video}
+                      alt="Video Description"
+                    />
+                  )}
+                  {postData.picture && (
+                    <button onClick={onOpenModalPost}>
+                      <Image
+                        className="w-auto max-h-screen rounded"
+                        src={postData.picture}
+                        alt="Image Description"
+                      />
+                    </button>
+                  )}
+                </div>
+              )}
+              <div className="flex justify-between items-center mt-5">
+                <div className="flex"></div>
+                <Link>
+                  <button
+                    className="ml-1 text-gray-500 dark:text-gray-400 font-light"
+                    onClick={onOpenModalPost}
+                  >
+                    {commentCount === 0
+                      ? "კომენტარი"
+                      : `${commentCount} კომენტარი`}
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </CardBody>
+        </Card>
       </div>
+
       <Modal
         backdrop="blur"
         isOpen={isOpenWarning}

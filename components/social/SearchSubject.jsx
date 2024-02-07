@@ -25,9 +25,9 @@ const SearchSubject = ({ searchPostFunction }) => {
     <div className="flex gap-2 justify-center items-center">
       <Input
         classNames={{
-          base: "max-w-full sm:max-w-[40rem] h-10",
+          base: "max-w-[250px] sm:max-w-[40rem] h-10",
           mainWrapper: "h-full",
-          input: "text-small",
+          input: "text-[16px]",
           inputWrapper:
             "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
         }}
@@ -50,7 +50,7 @@ const SearchSubject = ({ searchPostFunction }) => {
         ))}
       </datalist>
       <br />
-      <Button  color="primary" onClick={handleSearch}>
+      <Button color="primary" onClick={handleSearch}>
         ძებნა
       </Button>
     </div>

@@ -207,7 +207,7 @@ export default function CreatePost({ setPosts }) {
           {user ? (
             <>
               <div className="flex items-center justify-center ">
-                <div className="p-4 md:p-6 shadow-md bg-white rounded-lg dark:bg-gray-800 w-[750px] mb-4">
+                <div className="p-4 md:p-6 shadow-md bg-white rounded-lg dark:bg-gray-800 w-[350px] sm:w-[750px] mb-4">
                   <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0">
                       <Avatar
@@ -227,7 +227,7 @@ export default function CreatePost({ setPosts }) {
                       className="w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full cursor-pointer"
                       onClick={() => onOpen()}
                     >
-                      <h3 className="md:text-md text-gray-500">
+                      <h3 className="md:text-md text-sm text-gray-500">
                         რა არის შენი კითხვა, {user.userName}?
                       </h3>
                     </div>
