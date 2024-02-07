@@ -5,9 +5,7 @@ import { UserCard } from "@/components/profile/userCard";
 import { UserEdit } from "@/components/profile/userEdit";
 import { UserProgress } from "@/components/profile/userProgress";
 import { useUser } from "@/app/dbcontext/UserdbContext";
-import Styles from "@/styles/loader.module.css";
-import Image from "next/image";
-import EduSpace from "@/public/EduSpaceLogo.png";
+
 import { useRouter } from "next/navigation";
 import UserCardSkeleton from "@/components/profile/userCardSkeleton";
 import MainSkeleton from "@/components/profile/mainSkeleton";

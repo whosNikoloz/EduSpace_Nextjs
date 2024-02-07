@@ -157,6 +157,9 @@ function PasswordEdit({ oauth, userid }: PasswordEditProps) {
                         labelPlacement="outside"
                         isInvalid={error.oldpasswordError ? true : false}
                         value={password.currentPassword}
+                        classNames={{
+                          input: ["text-[16px] "],
+                        }}
                         onClear={() =>
                           setPassword({ ...password, currentPassword: "" })
                         }
@@ -179,6 +182,9 @@ function PasswordEdit({ oauth, userid }: PasswordEditProps) {
                         labelPlacement="outside"
                         isInvalid={error.newpasswordError ? true : false}
                         value={password.newPassword}
+                        classNames={{
+                          input: ["text-[16px] "],
+                        }}
                         errorMessage={
                           error.newpasswordError ? error.newpasswordError : null
                         }
@@ -199,6 +205,9 @@ function PasswordEdit({ oauth, userid }: PasswordEditProps) {
                         isClearable
                         label="Confirm password"
                         labelPlacement="outside"
+                        classNames={{
+                          input: ["text-[16px] "],
+                        }}
                         isInvalid={error.confirmpasswordError ? true : false}
                         value={password.confirmPassword}
                         onClear={() =>

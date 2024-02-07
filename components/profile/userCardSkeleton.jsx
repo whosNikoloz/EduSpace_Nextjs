@@ -5,7 +5,7 @@ function UserCardSkeleton() {
 
   return (
     <>
-      <div className="col-span-4 sm:col-span-3 ">
+      <div className="col-span-4 sm:col-span-3 mt-10">
         <div className="p-6 block rounded-lg bg-[hsla(0,0%,100%,0.8)] shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-[#1f1e1e] dark:shadow-black/20 backdrop-blur-[30px]">
           <div className="flex flex-col items-center">
             <div className="flex items-center mt-4 mb-4 animate-pulse">

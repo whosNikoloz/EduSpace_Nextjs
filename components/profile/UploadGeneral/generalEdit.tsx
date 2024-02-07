@@ -96,6 +96,9 @@ function GeneralEdit({
                 className="w-full"
                 label="Username"
                 value={GeneralProps.userName}
+                classNames={{
+                  input: ["text-[16px] "],
+                }}
                 isInvalid={error.userNameError ? true : false}
                 onClear={() =>
                   setGeneralProps({ ...GeneralProps, userName: "" })
@@ -115,6 +118,9 @@ function GeneralEdit({
                 className="w-full"
                 isClearable
                 label="First name"
+                classNames={{
+                  input: ["text-[16px] "],
+                }}
                 value={GeneralProps.firstname}
                 onClear={() =>
                   setGeneralProps({ ...GeneralProps, firstname: "" })
@@ -133,6 +139,9 @@ function GeneralEdit({
                 className="w-full"
                 isClearable
                 label="Last name"
+                classNames={{
+                  input: ["text-[16px] "],
+                }}
                 value={GeneralProps.lastname}
                 onClear={() =>
                   setGeneralProps({ ...GeneralProps, lastname: "" })
@@ -150,6 +159,9 @@ function GeneralEdit({
                 type="text"
                 className="w-full"
                 isClearable
+                classNames={{
+                  input: ["text-[16px] "],
+                }}
                 label="Phone Number"
                 value={GeneralProps.number}
                 onClear={() => setGeneralProps({ ...GeneralProps, number: "" })}

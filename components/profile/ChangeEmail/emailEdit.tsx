@@ -125,6 +125,9 @@ function EmailEdit({
                     type="email"
                     isClearable
                     className="w-full"
+                    classNames={{
+                      input: ["text-[16px] "],
+                    }}
                     label="Email"
                     isInvalid={error ? true : false}
                     value={email}

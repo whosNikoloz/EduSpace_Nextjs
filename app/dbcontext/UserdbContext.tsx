@@ -145,7 +145,7 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
   return (
     <UserContext.Provider value={{ user, login, logout }}>
       {loading ? ( // Render loading state
-        <div>Loading...</div>
+        <div className="h-screen bg-black"></div>
       ) : (
         children // Render children when loading is finished
       )}
