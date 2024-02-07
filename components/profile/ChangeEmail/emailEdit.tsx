@@ -15,6 +15,7 @@ import {
 import Authentication from "@/app/api/User/auth";
 import toast from "react-hot-toast";
 import OtpEmail from "./otpEmail";
+import { Card, CardBody, Avatar } from "@nextui-org/react";
 
 interface ResponseType {
   ok: boolean;
@@ -86,104 +87,112 @@ function EmailEdit({
   const [email, setEmail] = useState(Email);
 
   return (
-    <div className="flex items-center justify-center ">
-      <div className="w-full">
-        <h1 className="text-xl font-semibold text-start mb-4">
-          Email information
-        </h1>
+    <Card
+      isBlurred
+      className="border-none  bg-background/60 dark:bg-black-100/50 max-w-[680px] justify-center items-center "
+      shadow="sm"
+    >
+      <CardBody>
+        <div className="flex items-center justify-center ">
+          <div className="w-full">
+            <h1 className="text-xl font-semibold text-start mb-4">
+              Email information
+            </h1>
 
-        {oauth && (
-          <>
-            <p className="text-start text-gray-500">Oauth Provider</p>
-            <div className="flex flex-col gap-4 mt-4 mb-4 w-full">
-              <Input
-                type="email"
-                className="w-full"
-                label="Email"
-                value={Email}
-                isDisabled
-              />
-            </div>
+            {oauth && (
+              <>
+                <p className="text-start text-gray-500">Oauth Provider</p>
+                <div className="flex flex-col gap-4 mt-4 mb-4 w-full">
+                  <Input
+                    type="email"
+                    className="w-full"
+                    label="Email"
+                    value={Email}
+                    isDisabled
+                  />
+                </div>
 
-            <Button color="primary" variant="shadow" size="sm" isDisabled>
-              Change
-            </Button>
-          </>
-        )}
+                <Button color="primary" variant="shadow" size="sm" isDisabled>
+                  Change
+                </Button>
+              </>
+            )}
 
-        {!oauth && (
-          <>
-            <div className="flex flex-col gap-4 w-full mt-4 mb-4">
-              <Input
-                type="email"
-                isClearable
-                className="w-full"
-                label="Email"
-                isInvalid={error ? true : false}
-                value={email}
-                onClear={() => setEmail("")}
-                errorMessage={error ? error : null}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+            {!oauth && (
+              <>
+                <div className="flex flex-col gap-4 w-full mt-4 mb-4">
+                  <Input
+                    type="email"
+                    isClearable
+                    className="w-full"
+                    label="Email"
+                    isInvalid={error ? true : false}
+                    value={email}
+                    onClear={() => setEmail("")}
+                    errorMessage={error ? error : null}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
 
-            <span className="text-md ">Email requirements:</span>
-            <br />
-            <span className="text-sm text-slate-500">
-              Ensure that these requirements are met:
-            </span>
-            <br />
+                <span className="text-md ">Email requirements:</span>
+                <br />
+                <span className="text-sm text-slate-500">
+                  Ensure that these requirements are met:
+                </span>
+                <br />
 
-            <p className="text-xs ml-8 lg:ml-16 text-slate-500 max-w-md">
-              At least 10 characters (and up to 100 characters) At least one
-              lowercase character Inclusion of at least one special character,
-              e.g., ! @ # ? Some text here zoltan
-            </p>
+                <p className="text-xs ml-8 lg:ml-16 text-slate-500 max-w-md">
+                  At least 10 characters (and up to 100 characters) At least one
+                  lowercase character Inclusion of at least one special
+                  character, e.g., ! @ # ? Some text here zoltan
+                </p>
 
-            <br />
+                <br />
 
-            <Modal
-              backdrop="blur"
-              isOpen={isOpenAccess}
-              onClose={onCloseAccess}
-            >
-              <ModalContent>
-                {(onCloseAccess) => (
-                  <>
-                    <ConfirmAccess onConfirm={onConfirm} />
-                  </>
-                )}
-              </ModalContent>
-            </Modal>
+                <Modal
+                  backdrop="blur"
+                  isOpen={isOpenAccess}
+                  onClose={onCloseAccess}
+                >
+                  <ModalContent>
+                    {(onCloseAccess) => (
+                      <>
+                        <ConfirmAccess onConfirm={onConfirm} />
+                      </>
+                    )}
+                  </ModalContent>
+                </Modal>
 
-            <Modal backdrop="blur" isOpen={isOpenOtp} onClose={onCloseOtp}>
-              <ModalContent>
-                {(onCloseOtp) => (
-                  <>
-                    <OtpEmail
-                      Email={email}
-                      onEmailChangeSuccess={onEmailChangeSuccess}
-                      verificationCode={VerificationCode}
-                    />
-                  </>
-                )}
-              </ModalContent>
-            </Modal>
+                <Modal backdrop="blur" isOpen={isOpenOtp} onClose={onCloseOtp}>
+                  <ModalContent>
+                    {(onCloseOtp) => (
+                      <>
+                        <OtpEmail
+                          Email={email}
+                          onEmailChangeSuccess={onEmailChangeSuccess}
+                          verificationCode={VerificationCode}
+                        />
+                      </>
+                    )}
+                  </ModalContent>
+                </Modal>
 
-            <div className="text-start w-full mt-6">
-              <Button
-                color="primary"
-                variant="shadow"
-                size="sm"
-                onClick={handleChange}
-              >
-                Change
-              </Button>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+                <div className="text-start w-full mt-6">
+                  <Button
+                    color="primary"
+                    variant="shadow"
+                    size="sm"
+                    onClick={handleChange}
+                  >
+                    Change
+                  </Button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </CardBody>
+    </Card>
   );
 }
 

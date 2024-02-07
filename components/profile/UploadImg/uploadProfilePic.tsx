@@ -14,6 +14,7 @@ import {
 import CropImg from "./cropimg";
 import Authentication from "@/app/api/User/auth";
 import toast from "react-hot-toast";
+import { Card, CardBody } from "@nextui-org/react";
 
 function UploadProfilePic({
   profilePic,
@@ -122,23 +123,32 @@ function UploadProfilePic({
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center w-full gap-2">
-        <Avatar
-          isBordered
-          src={profilePic}
-          className="w-24 h-24 mb-4"
-          color="primary"
-        />
+      <Card
+        isBlurred
+        className="border-none  bg-background/60 dark:bg-black-100/50 max-w-[680px] justify-center items-center "
+        shadow="sm"
+      >
+        <CardBody>
+          <div className="flex flex-col items-center justify-center w-full gap-2">
+            <Avatar
+              isBordered
+              src={profilePic}
+              className="w-24 h-24 mb-4"
+              color="primary"
+            />
 
-        <Button
-          color="primary"
-          variant="shadow"
-          size="sm"
-          onClick={onUploadModalOpen}
-        >
-          Change Profile picture
-        </Button>
-      </div>
+            <Button
+              color="primary"
+              variant="shadow"
+              size="sm"
+              onClick={onUploadModalOpen}
+            >
+              Change Profile picture
+            </Button>
+          </div>
+        </CardBody>
+      </Card>
+
       <Modal
         backdrop="blur"
         isOpen={isUploadModalOpen}

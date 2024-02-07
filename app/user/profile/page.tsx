@@ -63,7 +63,7 @@ export default function ProfilePage() {
 
   if (isLoading || !user) {
     return (
-      <div className="container mx-auto py-8 bg-gradient-to-t dark:from-black dark:via-blue-900 dark:to-black from-white to-white via-blue-300">
+      <div className="container mx-auto py-8 ">
         <div className="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
           <UserCardSkeleton />
           <MainSkeleton />
@@ -73,7 +73,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="container mx-auto py-8 bg-gradient-to-t dark:from-black dark:via-blue-900 dark:to-black from-white to-white via-blue-300">
+    <div className="container mx-auto mt-20 ">
       <div className="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
         <UserCard
           username={generalInfo.userName ? generalInfo.userName : user.userName}
