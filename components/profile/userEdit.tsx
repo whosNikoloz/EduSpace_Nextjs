@@ -20,7 +20,7 @@ import OtpEmail from "./ChangeEmail/otpEmail";
 interface UserEditProps {
   userid: number;
   email: string;
-  oatuh: boolean;
+  oauth: boolean;
   username: string;
   firstname: string;
   lastname: string;
@@ -38,7 +38,7 @@ export const UserEdit: FC<UserEditProps> = ({
   userid,
   username,
   email,
-  oatuh,
+  oauth,
   firstname,
   lastname,
   profilepicture,
@@ -61,6 +61,9 @@ export const UserEdit: FC<UserEditProps> = ({
   };
 
   const [selectedEmail, setSelectedEmail] = useState(email);
+  {
+    console.log(oauth);
+  }
 
   const handleEmailChange = (newEmail: any) => {
     setSelectedEmail(newEmail);
@@ -79,7 +82,7 @@ export const UserEdit: FC<UserEditProps> = ({
           />
         </Reveal>
         <Reveal direction="up">
-          <PasswordEdit oauth={oatuh} userid={userid} />
+          <PasswordEdit oauth={oauth} userid={userid} />
         </Reveal>
         <Reveal direction="up">
           <UploadProfilePic profilePic={profilepicture} userid={userid} />
@@ -87,7 +90,7 @@ export const UserEdit: FC<UserEditProps> = ({
         <Reveal direction="up">
           <EmailEdit
             Email={changeemail}
-            oauth={oatuh}
+            oauth={oauth}
             onEmailChange={handleEmailChange}
             userid={userid}
           />
