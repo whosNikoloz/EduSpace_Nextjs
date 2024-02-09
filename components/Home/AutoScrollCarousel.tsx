@@ -103,7 +103,7 @@ const AutoScrollCarousel = () => {
                       >
                         <CardBody className="overflow-visible p-0">
                           <img
-                            className="w-full h-full object-cover rounded-t-lg transition-all duration-300 ease-in-out filter blur-0 group-hover:blur-lg "
+                            className="w-full h-full object-cover rounded-t-lg transition-all duration-300 ease-in-out filter blur-0 group-hover:blur-2xl "
                             src={course.courseLogo}
                             alt={course.courseName}
                           />
