@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import { Textarea } from "@nextui-org/react";
 
-function CommentForm({ postid, onCommentSubmit }) {
+function CommentForm({ postid }) {
   const fileInputRef = useRef(null);
   const [commentText, setCommentText] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -84,7 +84,6 @@ function CommentForm({ postid, onCommentSubmit }) {
       setCommentText("");
       setSelectedImage(null);
       setSelectedVideo(null);
-      onCommentSubmit();
       setIsLoading(false);
     } catch (error) {
       console.log(error);

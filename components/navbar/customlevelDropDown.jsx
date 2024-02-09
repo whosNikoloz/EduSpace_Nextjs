@@ -30,9 +30,9 @@ function MultiLevelDropdown() {
         width={undefined}
       />
     ),
-    Beginner: <BeginnerIcon height={30} width={30} />,
+    Beginner: <IntermediateIcon height={30} width={30} />,
     advanced: <AdvancedIcon height={30} width={30} />,
-    intermediate: <IntermediateIcon height={30} width={30} />,
+    intermediate: <BeginnerIcon height={30} width={30} />,
   };
 
   return (
@@ -113,7 +113,7 @@ function MultiLevelDropdown() {
         <DropdownItem
           key="production_ready"
           description="გმაოცადე შენი თავი და განავითარე თავი"
-          startContent={icons.advanced}
+          startContent={icons.intermediate}
         >
           <Dropdown>
             <DropdownTrigger>

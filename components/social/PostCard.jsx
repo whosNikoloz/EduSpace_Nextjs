@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Textarea } from "@nextui-org/react";
 import CommentForm from "./commentform";
@@ -28,6 +28,11 @@ import {
 } from "@nextui-org/react";
 import { Card, CardBody, Image } from "@nextui-org/react";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  HubConnectionBuilder,
+  HubConnection,
+  LogLevel,
+} from "@microsoft/signalr";
 
 function formatTimeAgo(timestamp) {
   const currentDate = new Date();
@@ -74,14 +79,6 @@ function PostCard({ postData, onDelete }) {
     onOpenChange: onOpenChangeModalPost,
   } = useDisclosure();
 
-  const handleNewComment = () => {
-    // Set a flag to indicate that a new comment is created
-    setIsAddingComment(true);
-    setTimeout(() => {
-      setIsAddingComment(false);
-    }, 2000);
-  };
-
   const formattedTimeAgo = formatTimeAgo(postData.createdAt);
   const text = postData.content;
   const maxTextLength = 300;
@@ -96,8 +93,51 @@ function PostCard({ postData, onDelete }) {
 
   const [deleteSuccess, setdeleteSuccessSuccess] = useState(false);
 
+  const [comments, setComments] = useState(postData.comments);
+
+  const [con, setCon] = useState(null);
+
   const toggleFullText = () => {
     setFullTextVisible(!isFullTextVisible);
+  };
+
+  const handleOpenPost = async (postid) => {
+    onOpenModalPost();
+    if (!user) {
+      return;
+    }
+    const connection = new HubConnectionBuilder()
+      .withUrl(
+        `https://localhost:7163/commentHub?userId=${user.userId}&postId=${postid}`
+      )
+      .configureLogging(LogLevel.Information) // Corrected typo here
+      .build();
+
+    setCon(connection);
+
+    connection
+      .start()
+      .then(() => {
+        console.log("Connection started!");
+      })
+      .catch((error) => {
+        console.error("Error starting connection:", error);
+      });
+  };
+
+  useEffect(() => {
+    if (con) {
+      con.on("ReceiveComment", (newComment) => {
+        setComments((prevComments) => [...prevComments, newComment]);
+      });
+      setIsAddingComment(false);
+    }
+  }, [con]);
+
+  const handleClosePost = async () => {
+    if (con) {
+      con.stop();
+    }
   };
 
   const handleEditPost = async () => {
@@ -228,7 +268,7 @@ function PostCard({ postData, onDelete }) {
                 <Link>
                   <button
                     className="ml-1 text-gray-500 dark:text-gray-400 font-light"
-                    onClick={onOpenModalPost}
+                    onClick={() => handleOpenPost(postData.postId)}
                   >
                     {commentCount === 0
                       ? "კომენტარი"
@@ -384,6 +424,7 @@ function PostCard({ postData, onDelete }) {
         isOpen={isOpenModalPost}
         onOpenChange={onOpenChangeModalPost}
         scrollBehavior="inside"
+        onClose={handleClosePost}
         size="xl"
       >
         <ModalContent>
@@ -445,7 +486,7 @@ function PostCard({ postData, onDelete }) {
                   </Link>
                 </div>
                 <hr className="border-gray-700" />
-                {postData.comments.map((comment) => (
+                {comments.map((comment) => (
                   <Comment
                     key={comment.commentId}
                     commentId={comment.commentId}
@@ -458,40 +499,6 @@ function PostCard({ postData, onDelete }) {
                     userid={comment.commentUser.userId}
                   />
                 ))}
-
-                {IsAddingComment ? (
-                  <>
-                    <div className=" text-black dark:text-gray-200 antialiased flex max-w-lg">
-                      <div>
-                        <Avatar
-                          className="transition-transform"
-                          isBordered
-                          color="primary"
-                          name={user.userName}
-                          src={user.picture}
-                          size="sm"
-                        />
-                      </div>
-                      <div className="ml-3">
-                        <div className="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 pt-1 pb-1 mb-1">
-                          <div className="font-semibold text-sm leading-relaxed ">
-                            {user.userName}
-                          </div>
-                          <div className="text-normal leading-snug md:leading-normal ">
-                            <Skeleton className="w-4/5 rounded-lg">
-                              <div className="h-3 w-full rounded-lg bg-secondary-300"></div>
-                            </Skeleton>
-                          </div>
-                        </div>
-                        <div className="text-sm ml-4 mt-0.5 text-gray-500 dark:text-gray-400">
-                          ეხლა ხანს
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <></>
-                )}
               </ModalBody>
               <ModalFooter>
                 {user && (
@@ -509,10 +516,7 @@ function PostCard({ postData, onDelete }) {
                       size="sm"
                     />
                     <div className="mb-4 w-full max-w-lg">
-                      <CommentForm
-                        postid={postData.postId}
-                        onCommentSubmit={handleNewComment}
-                      />
+                      <CommentForm postid={postData.postId} />
                     </div>
                   </>
                 )}

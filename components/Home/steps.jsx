@@ -55,7 +55,7 @@ export const Steps = () => {
             key={index}
             delay={index * 0.1}
           >
-            <Card className="" isBlurred shadow="lg">
+            <Card shadow="lg">
               <CardBody>
                 <div className="grid justify-center  grid-cols-4 p-8 space-y-8 lg:space-y-0 steps">
                   <div className="flex items-center justify-center lg:col-span-1 col-span-full">

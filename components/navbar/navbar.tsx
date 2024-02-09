@@ -171,7 +171,7 @@ export const Navbar = () => {
                       სოციალური
                     </Button>
                   </Link>
-                  <Link href="/compiler">
+                  <Link href="/compiler/csharp">
                     <Button
                       disableRipple
                       className="p-0 bg-transparent data-[hover=true]:bg-transparent"
