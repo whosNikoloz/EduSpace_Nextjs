@@ -31,6 +31,7 @@ interface CommentProps {
   createdAt: string;
   avatarUrl: string;
   userid: number;
+  onCommentDelete: (commentId: string) => void;
 }
 
 function formatTimeAgo(timestamp: string | number | Date) {
@@ -63,11 +64,12 @@ const Comment: React.FC<CommentProps> = ({
   pictureUrl,
   commentText,
   avatarUrl,
+  onCommentDelete,
 }) => {
   const formattedTimeAgo = formatTimeAgo(createdAt);
   const { user } = useUser();
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
   const handleDelete = () => {
     const comment = CommentApi();
@@ -79,6 +81,8 @@ const Comment: React.FC<CommentProps> = ({
       .catch((error) => {
         console.error("Error deleting post:", error);
       });
+    onCommentDelete(commentId);
+    onClose();
   };
 
   return (
@@ -160,7 +164,7 @@ const Comment: React.FC<CommentProps> = ({
             {(onClose) => (
               <>
                 <ModalHeader className="flex flex-col gap-1">
-                  პოსტის წაშლა
+                  კოემტარის წაშლა
                 </ModalHeader>
                 <ModalBody>
                   <div className="flex flex-row gap-2">

@@ -178,6 +178,12 @@ function PostCard({ postData, onDelete }) {
     }
   };
 
+  const handleCommentDelete = (commentId) => {
+    setComments((prevComments) =>
+      prevComments.filter((comment) => comment.commentId !== commentId)
+    );
+  };
+
   return (
     <>
       <div className="flex items-center justify-center mb-4">
@@ -497,6 +503,7 @@ function PostCard({ postData, onDelete }) {
                     videoUrl={comment.commentVideo}
                     pictureUrl={comment.commentPicture}
                     userid={comment.commentUser.userId}
+                    onCommentDelete={handleCommentDelete}
                   />
                 ))}
               </ModalBody>
