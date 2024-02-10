@@ -233,16 +233,15 @@ export const Navbar = () => {
                 // Render this content if user is null
                 <>
                   <div className="relative ml-3">
-                    <Link href="/user/auth">
-                      <Button
-                        className="bg-blue-600 text-white"
-                        as={Link}
-                        color="primary"
-                        variant="shadow"
-                      >
+                    <Button
+                      className="bg-blue-600 text-white"
+                      color="primary"
+                      variant="shadow"
+                    >
+                      <Link href="/user/auth" className="text-white text-sm">
                         დაწყება
-                      </Button>
-                    </Link>
+                      </Link>
+                    </Button>
                   </div>
                 </>
               )}
