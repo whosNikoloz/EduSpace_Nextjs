@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/button";
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect, useRef } from "react";
 import Notifications from "@/app/api/Social/Notification";
 import { Avatar, Badge } from "@nextui-org/react";
 import { NotificationIcon } from "./NotificationIcon";
@@ -54,6 +54,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
   const notf = Notifications();
   const [notifications, setNotifications] = useState<NotificationProps[]>([]);
   const [newNotf, setNewNotf] = useState<NotificationProps[]>([]);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const fetchNotifications = useCallback(async () => {
     const notifications = await notf.GetNotifications(userid);
@@ -63,6 +64,21 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
   // Use an empty dependency array to make sure this effect runs only once
   useEffect(() => {
     fetchNotifications();
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -172,7 +188,10 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
         )}
 
         {dropdownOpen && (
-          <div className="absolute right-0 mt-3 dark:bg-zinc-800 bg-white rounded-md shadow-lg overflow-hidden z-20  w-72  sm:w-96 max-h-96">
+          <div
+            ref={dropdownRef}
+            className="absolute right-0 mt-3 dark:bg-zinc-800 bg-white rounded-md shadow-lg overflow-hidden z-20  w-72  sm:w-96 max-h-96"
+          >
             {notifications.length === 0 ? ( // Check if there are no notifications
               <div>
                 <p className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 mx-2">
@@ -196,7 +215,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                       </Button>
                     </DropdownTrigger>
                     <DropdownMenu variant="faded" aria-label="Static Actions">
-                      <DropdownItem key="new">
+                      <DropdownItem key="new" textValue="MarkAsReadAll">
                         <Button
                           size="sm"
                           className="bg-transparent "
@@ -212,7 +231,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                           ყველას მონიშვნა წაკითხულად
                         </Button>
                       </DropdownItem>
-                      <DropdownItem>
+                      <DropdownItem textValue="OpenNotf">
                         <Button
                           size="sm"
                           className="bg-transparent "

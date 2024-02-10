@@ -50,8 +50,6 @@ export default function CreatePost({ setPosts }) {
   const handleLanguageSelect = (event) => {
     const selectedValue = event.target.value;
 
-    console.log("selectedValue:", selectedValue);
-
     switch (selectedValue) {
       case "$.0":
         setPostModel((prevModel) => ({
@@ -266,6 +264,7 @@ export default function CreatePost({ setPosts }) {
                           <Select
                             label="აირჩიე ენა"
                             variant="bordered"
+                            size="sm"
                             className="max-w-full"
                             value={selectedLanguage}
                             onChange={handleLanguageSelect}
@@ -282,6 +281,7 @@ export default function CreatePost({ setPosts }) {
                             <Textarea
                               label="კითხვა"
                               variant="bordered"
+                              minRows={1.5}
                               labelPlacement="outside"
                               placeholder="დასვი კითხვა"
                               className="max-w-full"
