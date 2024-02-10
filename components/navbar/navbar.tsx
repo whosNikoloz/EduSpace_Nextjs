@@ -35,7 +35,7 @@ const DropDownItems = [
     label: "შესავალი",
     svg: BeginnerIcon,
     submenus: [
-      { title: "C# შესავალი", link: "/csharp" },
+      { title: "C# შესავალი", link: "/learn/course/c-sharp-beginner" },
       { title: "Python შესავალი", link: "/python" },
       { title: "C++ შესავალი", link: "/cpp" },
       { title: "Swift შესავალი", link: "/swift" },
