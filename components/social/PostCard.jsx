@@ -500,11 +500,11 @@ function PostCard({ postData, onDelete }) {
                   />
                 ))}
               </ModalBody>
-              <ModalFooter>
+              <ModalFooter className="py-0 gap-0">
                 {user && (
                   <>
                     <Avatar
-                      className="transition-transform"
+                      className="transition-transform mt-2"
                       name={
                         user.firstname && user.lastname
                           ? user.firstName + " " + user.lastName

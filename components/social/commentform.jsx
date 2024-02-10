@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Comment from "@/app/api/Social/Comment";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
-import { Textarea } from "@nextui-org/react";
+import { Textarea, input } from "@nextui-org/react";
 
 function CommentForm({ postid }) {
   const fileInputRef = useRef(null);
@@ -93,17 +93,18 @@ function CommentForm({ postid }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="w-full  rounded-lg">
-        <div className="px-4 ">
+        <div className="px-4">
           <Textarea
             id="comment"
-            rows="4"
+            minRows={1}
             variant="bordered"
+            size="sm"
             value={commentText}
+            className="min-h-[50px]"
             onChange={(e) => setCommentText(e.target.value)}
-            className="w-full px-0 text-sm "
             placeholder="დაწერე კომენტარი..."
             required
-          ></Textarea>
+          />
           {selectedImage && (
             <div className="px-3 py-2 ">
               <div className="flex items-center">
