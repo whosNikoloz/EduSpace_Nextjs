@@ -3,20 +3,25 @@ import React from "react";
 const social_API = "https://localhost:45455/api/Social/";
 const social_API_NIkoloza = "https://172.20.10.7:45456/api/Social/";
 
+const social_conveyAPI = "https://othergreencat21.conveyor.cloud/api/Social/";
+
 const mac_social_API = "https://localhost:7163/api/Social/";
 
 const Notifications = () => {
   const GetNotifications = async (userid: number) => {
     try {
       const token = localStorage.getItem("jwt_token");
-      const response = await fetch(social_API + "Notifications/" + userid, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          // Include the bearer token in the Authorization header
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        social_conveyAPI + "Notifications/" + userid,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // Include the bearer token in the Authorization header
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         const notifications = await response.json();
@@ -36,7 +41,7 @@ const Notifications = () => {
     try {
       const token = localStorage.getItem("jwt_token");
       const response = await fetch(
-        social_API + "MarkNotificationsAsRead/" + userid,
+        social_conveyAPI + "MarkNotificationsAsRead/" + userid,
         {
           method: "PUT",
           headers: {

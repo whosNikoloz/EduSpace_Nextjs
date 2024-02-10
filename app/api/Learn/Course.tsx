@@ -3,12 +3,14 @@ import React from "react";
 const learn_API = "https://localhost:45455/api/Learn/";
 const learn_API_NIkoloza = "https://172.20.10.7:45455/api/Learn/";
 
+const learn_conveyAPI = "https://othergreencat21.conveyor.cloud/api/Learn/";
+
 const mac_learn_API = "https://localhost:7163/api/Learn/";
 
 const Courses = () => {
   const GetCourses = async () => {
     try {
-      const response = await fetch(learn_API + "Courses/", {
+      const response = await fetch(learn_conveyAPI + "Courses/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -32,7 +34,7 @@ const Courses = () => {
   const GetCourse = async (courseName: string) => {
     try {
       const token = localStorage.getItem("jwt_token");
-      const response = await fetch(learn_API + "Course/" + courseName, {
+      const response = await fetch(learn_conveyAPI + "Course/" + courseName, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

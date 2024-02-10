@@ -18,7 +18,6 @@ import {
   HubConnection,
   LogLevel,
 } from "@microsoft/signalr";
-import { set } from "nprogress";
 
 interface NotificationProps {
   notificationId: number;
@@ -71,7 +70,9 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
 
   useEffect(() => {
     const connection = new HubConnectionBuilder()
-      .withUrl(`https://localhost:7163/notificationHub?userId=${userid}`)
+      .withUrl(
+        `https://othergreencat21.conveyor.cloud/notificationHub?userId=${userid}`
+      )
       .configureLogging(LogLevel.Information) // Corrected typo here
       .build();
 
