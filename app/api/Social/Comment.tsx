@@ -13,7 +13,7 @@ import {
 const social_API = "https://localhost:45455/api/Social/";
 const social_API_NIkoloza = "https://172.20.10.7:45456/api/Social/";
 
-const social_conveyAPI = "https://othergreencat21.conveyor.cloud/api/Social/";
+const social_conveyAPI = "https://bigsagetower79.conveyor.cloud/api/Social/";
 
 const mac_social_API = "https://localhost:7163/api/Social/";
 
@@ -33,7 +33,7 @@ const storage = getStorage(app);
 const Comment = () => {
   const GetComments = async (page: any, pageSize: any) => {
     try {
-      const apiUrl = `${social_API}Posts?page=${page}&pageSize=${pageSize}`; // Construct the URL with query parameters
+      const apiUrl = `${social_conveyAPI}Posts?page=${page}&pageSize=${pageSize}`; // Construct the URL with query parameters
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
@@ -114,7 +114,7 @@ const Comment = () => {
         ? await uploadFileToFirebaseStorage(picture, "CommentContent")
         : null;
 
-      const response = await fetch(social_API + "Comments/" + postid, {
+      const response = await fetch(social_conveyAPI + "Comments/" + postid, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -175,13 +175,16 @@ const Comment = () => {
 
       const token = localStorage.getItem("jwt_token");
 
-      const response = await fetch(social_API + "Comments/" + commentIdNumber, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        social_conveyAPI + "Comments/" + commentIdNumber,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         const fileToPass = contentvideo ? contentvideo : contentpicture;
