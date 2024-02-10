@@ -10,7 +10,7 @@ const mac_learn_API = "https://localhost:7163/api/Learn/";
 const Courses = () => {
   const GetCourses = async () => {
     try {
-      const response = await fetch(learn_conveyAPI + "Courses/", {
+      const response = await fetch(learn_API + "Courses/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const Courses = () => {
   const GetCourse = async (courseName: string) => {
     try {
       const token = localStorage.getItem("jwt_token");
-      const response = await fetch(learn_conveyAPI + "Course/" + courseName, {
+      const response = await fetch(learn_API + "Course/" + courseName, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

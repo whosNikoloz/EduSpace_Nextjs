@@ -10,7 +10,7 @@ const mac_learn_API = "https://localhost:7163/api/Learn/";
 const LearnMaterial = () => {
   const LearnMaterialByLesson = async (lessonid: number) => {
     try {
-      const apiUrl = learn_conveyAPI + `LearnMaterialByLesson/${lessonid}`; // Construct the URL with the lessonid parameter
+      const apiUrl = learn_API + `LearnMaterialByLesson/${lessonid}`; // Construct the URL with the lessonid parameter
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {

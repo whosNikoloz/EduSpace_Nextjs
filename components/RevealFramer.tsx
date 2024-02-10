@@ -21,10 +21,16 @@ export const Reveal = ({
   const mainControls = useAnimation();
 
   useEffect(() => {
+    let timeoutId: string | number | NodeJS.Timeout | undefined; // Declare timeoutId variable
+
     if (isInView) {
-      mainControls.start("visible");
+      timeoutId = setTimeout(async () => {
+        mainControls.start("visible"); // Use mainControls, not conn
+      }, 200);
     }
-  }, [isInView, mainControls]);
+
+    return () => clearTimeout(timeoutId); // Cleanup function to clear timeout on unmount or re-render
+  }, [isInView, mainControls]); // Dependency array
 
   const getAnimationVariants = () => {
     switch (direction) {
@@ -62,7 +68,11 @@ export const Reveal = ({
         variants={getAnimationVariants()}
         initial="hidden"
         animate={mainControls}
-        transition={{ delay, duration }}
+        transition={{
+          type: "spring",
+          //duration,
+          //delay,
+        }}
       >
         {children}
       </motion.div>
