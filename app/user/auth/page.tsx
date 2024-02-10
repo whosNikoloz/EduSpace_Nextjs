@@ -535,6 +535,7 @@ const AuthPage: React.FC = () => {
             </div>
             <Image
               src={AnimatedSvg2}
+              priority={true}
               className={`${Style.image} mx-auto`}
               alt=""
             />
@@ -552,6 +553,7 @@ const AuthPage: React.FC = () => {
             </div>
             <Image
               src={AnimatedSvg1}
+              priority={true}
               className={`${Style.image} mx-auto`}
               alt=""
             />

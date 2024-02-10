@@ -35,6 +35,45 @@ function MultiLevelDropdown() {
     intermediate: <BeginnerIcon height={30} width={30} />,
   };
 
+  const dropdownItems = [
+    {
+      key: "beg",
+      description: "დამწყებებისათვის საუკეთესო, შესავალი პროგრამირებაში",
+      startContent: icons.Beginner,
+      textValue: "Beginner",
+      courses: [
+        { text: "C# შესავალი", link: "/learn/course/c-sharp-beginner" },
+        { text: "Python შესავალი", link: "/learn/course/python-beginner" },
+        { text: "C++ შესავალი", link: "/learn/course/c-plus-beginner" },
+        { text: "Swift შესავალი", link: "/learn/course/swift-beginner" },
+      ],
+    },
+    {
+      key: "adv",
+      description: "გამოცადე შენი თავი და განავითარე თავი",
+      startContent: icons.advanced,
+      textValue: "Advanced",
+      courses: [
+        { text: "C# მოწინავე", link: "/learn/course/c-sharp-beginner" },
+        { text: "Python მოწინავე", link: "/learn/course/python-beginner" },
+        { text: "C++ მოწინავე", link: "/learn/course/c-plus-beginner" },
+        { text: "Swift მოწინავე", link: "/learn/course/swift-beginner" },
+      ],
+    },
+    {
+      key: "inter",
+      description: "გახდი საუკეთესო პროგრამირებში",
+      startContent: icons.intermediate,
+      textValue: "Intermediate",
+      courses: [
+        { text: "C# ექსპერტი", link: "/learn/course/c-sharp-beginner" },
+        { text: "Python ექსპერტი", link: "/learn/course/python-beginner" },
+        { text: "C++ ექსპერტი", link: "/learn/course/c-plus-beginner" },
+        { text: "Swift ექსპერტი", link: "/learn/course/swift-beginner" },
+      ],
+    },
+  ];
+
   return (
     <Dropdown closeOnSelect={false} backdrop="blur">
       <DropdownTrigger>
@@ -55,170 +94,43 @@ function MultiLevelDropdown() {
           base: "gap-4",
         }}
       >
-        <DropdownItem
-          key="autoscaling"
-          description="დამწყებებისათვის საუკეთესო, შესავალი პროგრამირებაში"
-          startContent={icons.Beginner}
-        >
-          <Dropdown>
-            <DropdownTrigger>
-              <Button
-                size="sm"
-                disableRipple
-                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                endContent={icons.chevron}
-                radius="sm"
-                variant="light"
-              >
-                შესავალი
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Dynamic Actions">
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/c-sharp-beginner";
-                }}
-              >
-                C# შესავალი
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/python-beginner";
-                }}
-              >
-                Python შესავალი
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/c-plus-beginner";
-                }}
-              >
-                C++ შესავალი
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/swift-beginner";
-                }}
-              >
-                Swift შესავალი
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </DropdownItem>
-
-        <DropdownItem
-          key="production_ready"
-          description="გმაოცადე შენი თავი და განავითარე თავი"
-          startContent={icons.intermediate}
-        >
-          <Dropdown>
-            <DropdownTrigger>
-              <Button
-                size="sm"
-                disableRipple
-                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                endContent={icons.chevron}
-                radius="sm"
-                variant="light"
-              >
-                მოწინავე
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Dynamic Actions">
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/c-sharp-advanced";
-                }}
-              >
-                C# მოწინავე
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/python-advanced";
-                }}
-              >
-                Python მოწინავე
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/c-plus-advanced";
-                }}
-              >
-                C++ მოწინავე
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/swift-advanced";
-                }}
-              >
-                Swift მოწინავე
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </DropdownItem>
-
-        <DropdownItem
-          key="99_uptime"
-          description="გახდი საუკეთესო პროგრამირებში"
-          startContent={icons.intermediate}
-        >
-          <Dropdown>
-            <DropdownTrigger>
-              <Button
-                size="sm"
-                disableRipple
-                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                endContent={icons.chevron}
-                radius="sm"
-                variant="light"
-              >
-                ექსპერტი
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Dynamic Actions">
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/c-sharp-expert";
-                }}
-              >
-                C# ექსპერტი
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/python-expert";
-                }}
-              >
-                Python ექსპერტი
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/c-plus-expert";
-                }}
-              >
-                C++ ექსპერტი
-              </DropdownItem>
-              <DropdownItem
-                color="default"
-                onClick={() => {
-                  window.location.href = "/learn/course/swift-expert";
-                }}
-              >
-                Swift ექსპერტი
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </DropdownItem>
+        {dropdownItems.map((item) => (
+          <DropdownItem
+            key={item.key}
+            description={item.description}
+            startContent={item.startContent}
+            textValue={item.textValue}
+          >
+            <Dropdown>
+              <DropdownTrigger>
+                <Button
+                  size="sm"
+                  disableRipple
+                  className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                  endContent={icons.chevron}
+                  radius="sm"
+                  variant="light"
+                >
+                  შესავალი
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Dynamic Actions">
+                {item.courses.map((course) => (
+                  <DropdownItem
+                    key={course.text}
+                    color="default"
+                    onClick={() => {
+                      window.location.href = course.link;
+                    }}
+                    textValue={course.text}
+                  >
+                    {course.text}
+                  </DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
+          </DropdownItem>
+        ))}
       </DropdownMenu>
     </Dropdown>
   );

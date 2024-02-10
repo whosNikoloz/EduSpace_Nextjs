@@ -55,12 +55,7 @@ export default function RootLayout({
           href="/EduSpaceLogo.png"
         />
       </head>
-      <body
-        className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
+      <body /*className={clsx(fontSans.variable)}*/>
         <Providers themeProps={{ attribute: "class", defaultTheme: "system" }}>
           {children}
         </Providers>

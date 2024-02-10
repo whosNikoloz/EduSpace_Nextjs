@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
 import Ilustration from "@/public/ProgiLust3.png";
 import Image from "next/image";
+import Link from "next/link";
 
 export const Hero = ({ userEmail, userName }) => {
   return (
@@ -23,15 +24,15 @@ export const Hero = ({ userEmail, userName }) => {
               თქვენი ანგარიშის გასააქტიურებლად.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a href="https://mail.google.com/">
+              <Link href="https://mail.google.com/">
                 <Button className="bg-blue-600 text-white">გააქტიურება</Button>
-              </a>
-              <a
+              </Link>
+              <p
                 href="#"
                 className="text-sm font-semibold leading-6 text-black dark:text-white"
               >
                 ბმულის თაივდან გაგზვნა <span aria-hidden="true">→</span>
-              </a>
+              </p>
             </div>
           </div>
         </div>

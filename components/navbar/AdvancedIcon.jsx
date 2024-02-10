@@ -10,7 +10,7 @@ export const AdvancedIcon = ({ size, height, width, ...props }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
         strokeLinecap="round"
@@ -41,8 +41,8 @@ export const AdvancedIcon = ({ size, height, width, ...props }) => {
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#327EBD"></stop>{" "}
-            <stop offset="1" stop-color="#1565A7"></stop>{" "}
+            <stop stopColor="#327EBD"></stop>{" "}
+            <stop offset="1" stopColor="#1565A7"></stop>{" "}
           </linearGradient>{" "}
           <linearGradient
             id="paint1_linear_87_8204"
@@ -53,8 +53,8 @@ export const AdvancedIcon = ({ size, height, width, ...props }) => {
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#FFDA4B"></stop>{" "}
-            <stop offset="1" stop-color="#F9C600"></stop>{" "}
+            <stop stopColor="#FFDA4B"></stop>{" "}
+            <stop offset="1" stopColor="#F9C600"></stop>{" "}
           </linearGradient>{" "}
         </defs>{" "}
       </g>

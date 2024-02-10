@@ -54,7 +54,7 @@ const Stats = () => {
         <div className="grid items-center lg:grid-cols-2">
           <div className="mb-12 lg:mb-0">
             <div className="relative z-[1] block rounded-lg  px-6 py-12  md:px-12 lg:-mr-14 backdrop-blur-[30px]">
-              <h2 className="mb-6 text-4xl font-bold">Why is it so great?</h2>
+              <h2 className="mb-6 text-4xl font-bold">რატომ ჩვენ?</h2>
               <p className="mb-12 text-neutral-500 dark:text-neutral-300">
                 Experience superior online learning with our user-friendly
                 platform. Diverse courses, interactive tools, and expert content

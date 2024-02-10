@@ -5,6 +5,7 @@ import { Button } from "@nextui-org/react";
 import Ilustration from "@/public/ProgiLust3.png";
 import Image from "next/image";
 import { Reveal } from "../RevealFramer";
+import Link from "next/link";
 
 export const Hero = ({ userEmail }) => {
   return (
@@ -31,18 +32,18 @@ export const Hero = ({ userEmail }) => {
               პაროლის აღსადგენად.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
+              <Link
                 href="https://mail.google.com/"
                 className="bg-blue-600 text-white inline-block py-2 px-4 rounded"
               >
                 აღდგენა
-              </a>
-              <a
+              </Link>
+              <p
                 href="#"
                 className="text-sm font-semibold leading-6 text-black dark:text-white"
               >
                 ბმულის თაივდან გაგზვნა <span aria-hidden="true">→</span>
-              </a>
+              </p>
             </div>
           </div>
         </div>

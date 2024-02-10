@@ -8,13 +8,13 @@ export const Hero = () => {
         <div className="mx-auto max-w-3xl ">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-gray-500 hover:ring-blue-600">
-              Announcing our next round of funding.{" "}
+              პროექტის მიზანი.{" "}
               <Link
                 href="#step-section"
                 className="font-semibold text-blue-600 "
               >
                 <span className="absolute inset-0" aria-hidden="true"></span>
-                Read more <span aria-hidden="true">&rarr;</span>
+                გიაგე მეტი <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
           </div>

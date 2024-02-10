@@ -7,19 +7,19 @@ const features = [
   {
     name: "Online Learning",
     description:
-      "Access a wide range of courses and materials for effective online learning.",
+      "მიიღეთ კურსებისა და მასალების ფართო სპექტრი ეფექტური ონლაინ სწავლისთვის.",
     icon: FcGraduationCap,
   },
   {
     name: "Secure Platform",
     description:
-      "Our platform ensures your data is safe with SSL certificates for secure and encrypted connections.",
+      "ჩვენი პლატფორმა უზრუნველყოფს თქვენი მონაცემების უსაფრთხოებას SSL სერთიფიკატებით უსაფრთხო და დაშიფრული კავშირებისთვის.",
     icon: FcLock,
   },
   {
     name: "Regular Testing",
     description:
-      "Regular testing and quizzes to track your progress and enhance your learning experience.",
+      "რეგულარული ტესტირება და ვიქტორინები, რათა თვალყური ადევნოთ თქვენს პროგრესს და გააუმჯობესოთ თქვენი სასწავლო გამოცდილება.",
     icon: FcCommandLine,
   },
 ];
@@ -39,11 +39,10 @@ export default function Feature() {
                   Enhance Your Skills, Anytime, Anywhere
                 </p>
                 <p className="mt-6 text-lg leading-8 dark:text-white text-black">
-                  Our platform provides a wide range of courses and materials
-                  for effective online learning. Regular testing and quizzes are
-                  available to track your progress and enhance your learning
-                  experience. Your data is safe with us as we ensure secure and
-                  encrypted connections.
+                  ჩვენი პლატფორმა გთავაზობთ კურსებისა და მასალების ფართო სპექტრს
+                  ეფექტური ონლაინ სწავლისთვის. რეგულარული ტესტირება და
+                  ვიქტორინებია ხელმისაწვდომია თქვენი პროგრესის თვალყურის
+                  დევნებისთვის და სწავლის გასაუმჯობესებლად.
                 </p>
                 <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 dark:text-white text-black lg:max-w-none">
                   {features.map((feature) => (

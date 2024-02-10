@@ -121,13 +121,13 @@ export const Navbar = () => {
                   className="block h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   aria-hidden="true"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                   />
                 </svg>
@@ -136,13 +136,13 @@ export const Navbar = () => {
                   className="hidden h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   aria-hidden="true"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
@@ -202,21 +202,26 @@ export const Navbar = () => {
                         />
                       </DropdownTrigger>
                       <DropdownMenu aria-label="Profile Actions" variant="flat">
-                        <DropdownItem key="profile" className="h-14 gap-2">
+                        <DropdownItem
+                          key="profile"
+                          textValue="user"
+                          className="h-14 gap-2"
+                        >
                           <p className="font-semibold">შესულიხარ როგორც</p>
                           <p className="font-semibold">{user.userName}</p>
                         </DropdownItem>
-                        <DropdownItem key="settings">
+                        <DropdownItem key="settings" textValue="settings">
                           <Link href={`/user/profile`}>პარამეტრები</Link>
                         </DropdownItem>
 
-                        <DropdownItem key="help_and_feedback">
+                        <DropdownItem key="help_and_feedback" textValue="help">
                           დახმარება
                         </DropdownItem>
                         <DropdownItem
                           key="logout"
                           color="danger"
                           onClick={handleLogout}
+                          textValue="logout"
                         >
                           გამოსვლა
                         </DropdownItem>
@@ -279,14 +284,10 @@ export const Navbar = () => {
                         <path d="M513.147 584.708c-15.947 0-39.468-1.747-61.040-10.031l-172.596-66.501h-84.542v103.565c0 31.84 23.684 67.975 52.884 80.663l208.987 90.967c29.2 12.688 76.605 12.743 105.841 0.127l211.263-91.222c29.218-12.615 52.921-48.697 52.921-80.537v-103.565h-93.298l-152.954 64.48c-18.386 7.773-42.38 12.051-67.466 12.051zM46.313 372.991l416.19 160.363c29.728 11.433 77.605 10.686 106.951-1.693l397.458-167.536v247.18l-24.558 81.938h71.015l-25.413-82.794v-256.319h-0.71c17.167-11.833 13.162-26.596-12.252-35.681l-404.357-143.888c-30.001-10.704-78.479-10.25-108.299 0.946l-415.844 156.449c-29.819 11.214-29.891 29.6-0.182 41.033z"></path>
                       </g>
                     </svg>
-                    <span
-                      className="flex-1 ml-3 text-left whitespace-nowrap"
-                      sidebar-toggle-item
-                    >
+                    <span className="flex-1 ml-3 text-left whitespace-nowrap">
                       სწავლა
                     </span>
                     <svg
-                      sidebar-toggle-item
                       className={`w-6 h-6 transform transition-transform duration-300 ${
                         isDropDownOpen ? "rotate-180" : "rotate-0"
                       }`}
@@ -295,9 +296,9 @@ export const Navbar = () => {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       ></path>
                     </svg>
                   </Button>
@@ -315,14 +316,10 @@ export const Navbar = () => {
                           {item?.svg && (
                             <item.svg height={24} width={24} size={24} />
                           )}
-                          <span
-                            className="flex-1 ml-3 text-left whitespace-nowrap"
-                            sidebar-toggle-item
-                          >
+                          <span className="flex-1 ml-3 text-left whitespace-nowrap">
                             {item?.label ?? ""}
                           </span>
                           <svg
-                            sidebar-toggle-item
                             className={`w-6 h-6 transform transition-transform duration-300 ${
                               openMenuIndex === index
                                 ? "rotate-180"
@@ -348,17 +345,14 @@ export const Navbar = () => {
                                 direction="right"
                               >
                                 <li className="px-10">
-                                  <a
+                                  <Link
                                     href={submenu.link || "#"}
                                     className="flex items-center w-full p-2 text-base font-normal bg-transparent transition duration-75 rounded-lg group"
                                   >
-                                    <span
-                                      className="flex-1 ml-3 text-left whitespace-nowrap"
-                                      sidebar-toggle-item
-                                    >
+                                    <span className="flex-1 ml-3 text-left whitespace-nowrap">
                                       {submenu.title}
                                     </span>
-                                  </a>
+                                  </Link>
                                 </li>
                               </Reveal>
                             ))}
@@ -394,8 +388,8 @@ export const Navbar = () => {
               </Reveal>
               <Reveal delay={0.3} direction="down">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/compiler/csharp"
                     className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     <CompilerIcon size={24} height={24} width={24} />
@@ -405,7 +399,7 @@ export const Navbar = () => {
                     <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">
                       3
                     </span>
-                  </a>
+                  </Link>
                 </li>
               </Reveal>
             </ul>

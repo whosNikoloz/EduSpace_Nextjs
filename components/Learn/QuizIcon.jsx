@@ -11,11 +11,10 @@ export const QuizIcon = ({ size, height, width }) => {
       xmlSpace="preserve" // Change "xml:space" to "xmlSpace"
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>{" "}
-      {/* Change "stroke-width" to "strokeWidth" */}
       <g
         id="SVGRepo_tracerCarrier"
-        strokeLinecap="round" // Change "stroke-linecap" to "strokeLinecap"
-        strokeLinejoin="round" // Change "stroke-linejoin" to "strokeLinejoin"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       ></g>
       <g id="SVGRepo_iconCarrier">
         {" "}

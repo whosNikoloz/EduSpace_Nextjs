@@ -22,8 +22,8 @@ export const CompilerIcon = ({ size, height, width, ...props }) => {
       ></g>
       <g id="SVGRepo_iconCarrier">
         <style type="text/css">
-          {`.st0{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-            .st1{fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10;}`}
+          {`.st0{fill:none;stroke:currentColor;strokeWidth:2;strokeLinecap:round;strokeLinejoin:round;stroke-miterlimit:10;}
+            .st1{fill:none;stroke:currentColor;strokeWidth:2;strokeLinejoin:round;stroke-miterlimit:10;}`}
         </style>
         <path
           className="st0"

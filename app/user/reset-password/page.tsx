@@ -8,6 +8,7 @@ import { Button, Input } from "@nextui-org/react";
 import { EduSpace } from "@/components/EduSpaceLogo";
 import Authentication from "@/app/api/User/auth";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function ResetPasswordPage({
   searchParams,
@@ -102,7 +103,7 @@ export default function ResetPasswordPage({
         />
       </div>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0 md:w-2/3">
-        <a
+        <Link
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
@@ -110,7 +111,7 @@ export default function ResetPasswordPage({
             <EduSpace />
           </div>
           EduSpace
-        </a>
+        </Link>
         <div className="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
           <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             პაროლის შეცვლა
@@ -179,12 +180,9 @@ export default function ResetPasswordPage({
                   className="font-light text-gray-500 dark:text-gray-300"
                 >
                   დაეთანხმე{" "}
-                  <a
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                    href="#"
-                  >
+                  <p className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                     Terms and Conditions
-                  </a>
+                  </p>
                 </label>
               </div>
             </div>
