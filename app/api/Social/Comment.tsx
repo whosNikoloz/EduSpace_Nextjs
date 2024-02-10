@@ -33,7 +33,7 @@ const storage = getStorage(app);
 const Comment = () => {
   const GetComments = async (page: any, pageSize: any) => {
     try {
-      const apiUrl = `${social_conveyAPI}Posts?page=${page}&pageSize=${pageSize}`; // Construct the URL with query parameters
+      const apiUrl = `${social_API}Posts?page=${page}&pageSize=${pageSize}`; // Construct the URL with query parameters
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
@@ -114,7 +114,7 @@ const Comment = () => {
         ? await uploadFileToFirebaseStorage(picture, "CommentContent")
         : null;
 
-      const response = await fetch(social_conveyAPI + "Comments/" + postid, {
+      const response = await fetch(social_API + "Comments/" + postid, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -175,16 +175,13 @@ const Comment = () => {
 
       const token = localStorage.getItem("jwt_token");
 
-      const response = await fetch(
-        social_conveyAPI + "Comments/" + commentIdNumber,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(social_API + "Comments/" + commentIdNumber, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (response.ok) {
         const fileToPass = contentvideo ? contentvideo : contentpicture;

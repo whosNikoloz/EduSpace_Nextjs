@@ -48,7 +48,7 @@ export default function Home() {
             playsInline
             className="absolute inset-0 object-cover w-full h-full"
           >
-            <source src="EduSpaceHeroBg.mp4" type="video/mp4" />
+            <source src="/EduSpaceHeroBg.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 

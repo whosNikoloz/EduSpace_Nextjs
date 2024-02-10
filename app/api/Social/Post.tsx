@@ -33,7 +33,7 @@ const storage = getStorage(app);
 const Posts = () => {
   const GetPosts = async (page: number, pageSize: number) => {
     try {
-      const apiUrl = `${social_conveyAPI}Posts?page=${page}&pageSize=${pageSize}`;
+      const apiUrl = `${social_API}Posts?page=${page}&pageSize=${pageSize}`;
 
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -121,7 +121,7 @@ const Posts = () => {
         ? await uploadFileToFirebaseStorage(picture, "PostContent")
         : null;
 
-      const response = await fetch(social_conveyAPI + "Posts/", {
+      const response = await fetch(social_API + "Posts/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -160,7 +160,7 @@ const Posts = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt_token");
-      const response = await fetch(social_conveyAPI + "Posts/", {
+      const response = await fetch(social_API + "Posts/", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -193,7 +193,7 @@ const Posts = () => {
 
   const GetLastPost = async () => {
     try {
-      const response = await fetch(social_conveyAPI + "LastPost", {
+      const response = await fetch(social_API + "LastPost", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -221,7 +221,7 @@ const Posts = () => {
   ) => {
     try {
       const encodedSubject = encodeURIComponent(subject);
-      const apiUrl = `${social_conveyAPI}Posts/${encodedSubject}?page=${page}&pageSize=${pageSize}`;
+      const apiUrl = `${social_API}Posts/${encodedSubject}?page=${page}&pageSize=${pageSize}`;
       console.log(apiUrl);
 
       const response = await fetch(apiUrl, {
@@ -285,7 +285,7 @@ const Posts = () => {
       }
 
       // Delete the post itself
-      const postResponse = await fetch(social_conveyAPI + "Posts/" + postid, {
+      const postResponse = await fetch(social_API + "Posts/" + postid, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
