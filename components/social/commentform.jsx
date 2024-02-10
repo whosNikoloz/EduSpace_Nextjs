@@ -101,6 +101,9 @@ function CommentForm({ postid }) {
             size="sm"
             value={commentText}
             className="min-h-[50px]"
+            classNames={{
+              input: ["text-[16px] "],
+            }}
             onChange={(e) => setCommentText(e.target.value)}
             placeholder="დაწერე კომენტარი..."
             required

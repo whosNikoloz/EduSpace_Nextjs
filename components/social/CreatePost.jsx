@@ -3,7 +3,7 @@
 import { Dialog } from "@headlessui/react";
 import React, { useState, useEffect } from "react";
 import FileUpload from "@/components/social/fileuploade";
-import { Textarea } from "@nextui-org/react";
+import { Textarea, input } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import Posts from "@/app/api/Social/Post";
@@ -283,8 +283,11 @@ export default function CreatePost({ setPosts }) {
                               variant="bordered"
                               minRows={1.5}
                               labelPlacement="outside"
+                              classNames={{
+                                input: ["text-[16px] "],
+                              }}
                               placeholder="დასვი კითხვა"
-                              className="max-w-full"
+                              className="max-w-full text-[16px]"
                               value={PostModel.content}
                               onChange={(e) =>
                                 setPostModel({
