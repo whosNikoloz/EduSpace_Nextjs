@@ -10,18 +10,15 @@ const mac_social_API = "https://localhost:7163/api/Social/";
 const Notifications = () => {
   const GetNotifications = async (userid: number) => {
     try {
-      const token = localStorage.getItem("jwt_token");
-      const response = await fetch(
-        social_conveyAPI + "Notifications/" + userid,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            // Include the bearer token in the Authorization header
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const token = localStorage.getItem("jwt");
+      const response = await fetch(social_API + "Notifications/" + userid, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Include the bearer token in the Authorization header
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (response.ok) {
         const notifications = await response.json();
@@ -39,9 +36,9 @@ const Notifications = () => {
 
   const MarkAsReadNotf = async (userid: number) => {
     try {
-      const token = localStorage.getItem("jwt_token");
+      const token = localStorage.getItem("jwt");
       const response = await fetch(
-        social_conveyAPI + "MarkNotificationsAsRead/" + userid,
+        social_API + "MarkNotificationsAsRead/" + userid,
         {
           method: "PUT",
           headers: {

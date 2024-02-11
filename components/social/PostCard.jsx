@@ -83,7 +83,6 @@ function PostCard({ postData, onDelete }) {
   const text = postData.content;
   const maxTextLength = 300;
   const shouldShowSeeMore = text.length > maxTextLength;
-  const commentCount = postData.comments ? postData.comments.length : 0;
 
   const [isFullTextVisible, setFullTextVisible] = useState(false);
   const [edittextPost, setEdittextPost] = useState(text);
@@ -94,6 +93,8 @@ function PostCard({ postData, onDelete }) {
   const [deleteSuccess, setdeleteSuccessSuccess] = useState(false);
 
   const [comments, setComments] = useState(postData.comments);
+
+  const commentCount = comments ? comments.length : 0;
 
   const [con, setCon] = useState(null);
 
@@ -108,7 +109,7 @@ function PostCard({ postData, onDelete }) {
     }
     const connection = new HubConnectionBuilder()
       .withUrl(
-        `https://widebluerock55.conveyor.cloud/commentHub?userId=${user.userId}&postId=${postid}`
+        `https://localhost:7163/commentHub?userId=${user.userId}&postId=${postid}`
       )
       .configureLogging(LogLevel.Information) // Corrected typo here
       .build();
@@ -129,6 +130,7 @@ function PostCard({ postData, onDelete }) {
     if (con) {
       con.on("ReceiveComment", (newComment) => {
         setComments((prevComments) => [...prevComments, newComment]);
+        toast.success("კომენტარი დაემატა");
       });
       setIsAddingComment(false);
     }

@@ -2,10 +2,11 @@ import {
   createContext,
   useContext,
   ReactNode,
+  useEffect,
   useState,
   FC,
-  useEffect,
 } from "react";
+import { jwtDecode } from "jwt-decode";
 
 class User {
   userId: number;
@@ -14,29 +15,8 @@ class User {
   lastName: string;
   picture: string;
   email: string;
-  oauth: boolean;
   phoneNumber: string;
   role: string;
-  posts: Array<{
-    postId: number;
-    title: string;
-    subject: string;
-    content: string;
-    video: string;
-    picture: string;
-    createDate: string;
-    comments: Array<string>;
-  }>;
-
-  notification: Array<{
-    notificationId: number;
-    message: string;
-    isRead: boolean;
-    createdAt: string;
-    commentAuthorUsername: string;
-    commentAuthorPicture: string;
-    userId: number;
-  }>;
   joinedAt: string;
 
   constructor(
@@ -46,28 +26,8 @@ class User {
     lastName: string,
     picture: string,
     email: string,
-    oauth: boolean,
     phoneNumber: string,
     role: string,
-    posts: {
-      postId: number;
-      title: string;
-      subject: string;
-      content: string;
-      video: string;
-      picture: string;
-      createDate: string;
-      comments: string[];
-    }[],
-    notification: {
-      notificationId: number;
-      message: string;
-      isRead: boolean;
-      createdAt: string;
-      commentAuthorUsername: string;
-      commentAuthorPicture: string;
-      userId: number;
-    }[],
     joinedAt: string
   ) {
     this.userId = userId;
@@ -76,18 +36,15 @@ class User {
     this.lastName = lastName;
     this.picture = picture;
     this.email = email;
-    this.oauth = oauth;
     this.phoneNumber = phoneNumber;
     this.role = role;
-    this.posts = posts;
-    this.notification = notification;
     this.joinedAt = joinedAt;
   }
 }
 
 interface UserContextType {
   user: User | null;
-  login: (userData: User) => void;
+  login: (userToken: string) => void;
   logout: () => void;
 }
 
@@ -105,41 +62,73 @@ interface UserProviderProps {
   children: ReactNode;
 }
 
+const EncodeJwtIntoUser = (userToken: string) => {
+  const decodedToken: any = jwtDecode(userToken); // Decode the JWT token
+  const userData = {
+    userId:
+      decodedToken[
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+      ][0],
+    userName:
+      decodedToken[
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+      ][1],
+    firstName:
+      decodedToken[
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+      ],
+    lastName:
+      decodedToken[
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"
+      ],
+    picture: decodedToken["ProfilePicture"],
+    email:
+      decodedToken[
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+      ],
+    phoneNumber:
+      decodedToken[
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone"
+      ],
+    role: decodedToken[
+      "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+    ],
+    joinedAt: decodedToken["joinedAt"],
+  };
+  return userData;
+};
+
 export const UserProvider: FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
-  // Load user data from local storage when the component initializes
   useEffect(() => {
-    const userData = localStorage.getItem("user");
+    const userJwt = localStorage.getItem("jwt");
+    const userData = userJwt ? EncodeJwtIntoUser(userJwt) : null;
     if (userData) {
-      const data = JSON.parse(userData);
+      const decodedToken: any = userJwt ? jwtDecode(userJwt) : null;
       const currentTime = new Date().getTime();
-      const savedTime = new Date(data.timestamp).getTime();
-      const timeDifference = currentTime - savedTime;
-
-      if (timeDifference < 3600000) {
-        setUser(data.user);
+      const expirationTime = decodedToken.exp * 1000; // Convert expiration time to milliseconds
+      if (currentTime < expirationTime) {
+        setUser(userData);
       } else {
-        localStorage.removeItem("user");
+        localStorage.removeItem("jwt");
       }
     }
-    setLoading(false); // Set loading to false once user data is loaded or not
+    setLoading(false);
   }, []);
 
-  const login = (userData: User) => {
-    setUser(userData);
-    const data = {
-      user: userData,
-      timestamp: new Date().toISOString(),
-    };
-    localStorage.setItem("user", JSON.stringify(data));
+  const login = (userToken: string) => {
+    const userData = EncodeJwtIntoUser(userToken);
+    if (userData.userId != null) {
+      setUser(userData);
+    }
+    localStorage.setItem("jwt", userToken); // Save user data to localStorage
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("user");
-    localStorage.removeItem("jwt_token");
+    localStorage.removeItem("jwt");
   };
 
   return (
