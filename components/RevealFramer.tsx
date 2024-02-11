@@ -5,7 +5,7 @@ import { motion, useInView, useAnimation } from "framer-motion";
 
 interface Props {
   children: React.ReactNode;
-  direction?: "up" | "down" | "left" | "right";
+  direction?: "up" | "down" | "left" | "right" | "fade" | "scale";
   duration?: number;
   delay?: number;
 }
@@ -13,7 +13,7 @@ interface Props {
 export const Reveal = ({
   children,
   direction = "up",
-  duration = 0.5,
+  duration = 1.5,
   delay = 0.5,
 }: Props) => {
   const ref = useRef(null);
@@ -54,6 +54,17 @@ export const Reveal = ({
           hidden: { opacity: 0, x: -100 },
           visible: { opacity: 1, x: 0 },
         };
+      case "fade":
+        return {
+          hidden: { opacity: 0 },
+          visible: { opacity: 1 },
+        };
+      case "scale":
+        return {
+          hidden: { opacity: 0, scale: 0.5 },
+          visible: { opacity: 1, scale: 1 },
+        };
+
       default:
         return {
           hidden: { opacity: 0, y: 100 },
@@ -70,8 +81,8 @@ export const Reveal = ({
         animate={mainControls}
         transition={{
           type: "spring",
-          //duration,
-          //delay,
+          duration,
+          delay,
         }}
       >
         {children}

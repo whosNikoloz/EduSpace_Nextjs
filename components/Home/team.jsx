@@ -193,6 +193,7 @@ export const Team = () => {
             {peopleData[selectedCategory].map((person, index) => (
               <Reveal
                 key={`${selectedCategory}-${inputValue}-${index}`}
+                direction="scale"
                 delay={index * 0.2}
               >
                 <Card className="col-span-12 sm:col-span-4 h-[300px]">

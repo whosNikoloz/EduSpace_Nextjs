@@ -213,10 +213,6 @@ export const Navbar = () => {
                         <DropdownItem key="settings" textValue="settings">
                           <Link href={`/user/profile`}>პარამეტრები</Link>
                         </DropdownItem>
-
-                        <DropdownItem key="help_and_feedback" textValue="help">
-                          დახმარება
-                        </DropdownItem>
                         <DropdownItem
                           key="logout"
                           color="danger"
@@ -348,7 +344,7 @@ export const Navbar = () => {
                                     href={submenu.link || "#"}
                                     className="flex items-center w-full p-2 text-base font-normal bg-transparent transition duration-75 rounded-lg group"
                                   >
-                                    <span className="flex-1 ml-3 text-left whitespace-nowrap">
+                                    <span className="flex-1 ml-3 text-left whitespace-nowrap text-white">
                                       {submenu.title}
                                     </span>
                                   </Link>

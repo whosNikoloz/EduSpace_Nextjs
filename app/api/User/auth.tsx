@@ -30,8 +30,8 @@ const storage = getStorage(app);
 const auth_API = "https://localhost:45455/api/Auth/";
 const user_API = "https://localhost:45455/api/User/";
 
-const auth_conveyAPI = "https://bigsagetower79.conveyor.cloud/api/Auth/";
-const user_conveyAPI = "https://bigsagetower79.conveyor.cloud/api/User/";
+const auth_conveyAPI = "https://widebluerock55.conveyor.cloud/api/Auth/";
+const user_conveyAPI = "https://widebluerock55.conveyor.cloud/api/User/";
 
 const mac_auth_API = "https://localhost:7163/api/Auth/";
 const mac_user_API = "https://localhost:7163/api/User/";

@@ -21,7 +21,7 @@ export const Hero = () => {
           <div className="text-left lg:mt-14 mt-1">
             <h1 className="text-5xl font-bold tracking-tight  lg:text-6xl text-white">
               Welcome to
-              <Reveal direction="down">
+              <Reveal direction="fade">
                 <Link href="user/auth">
                   <span className="bg-gradient-to-r from-blue-600 via-blue-600 text-5xl sm:text-7xl  to-white  text-transparent bg-clip-text ">
                     EduSpace
