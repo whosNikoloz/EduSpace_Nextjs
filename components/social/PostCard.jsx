@@ -456,7 +456,7 @@ function PostCard({ postData, onDelete }) {
                 </div>
                 <div className="my-2  flex items-center ">{text}</div>
                 {/* create post interface */}
-                <div className=" py-2 ">
+                <div className="py-2">
                   <div className="flex items-center justify-center">
                     {(postData.picture || postData.video) && (
                       <div className="flex items-center justify-center w-full">
@@ -471,7 +471,7 @@ function PostCard({ postData, onDelete }) {
                         {postData.picture && (
                           <>
                             <Image
-                              className="max-w-lg max-h-screen rounded"
+                              className="max-w-lg max-h-screen rounded mx-auto  w-[350px] sm:w-auto"
                               src={postData.picture}
                               alt="Image Description"
                             />
