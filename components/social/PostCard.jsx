@@ -108,7 +108,7 @@ function PostCard({ postData, onDelete }) {
     }
     const connection = new HubConnectionBuilder()
       .withUrl(
-        `https://othergreencat21.conveyor.cloud/commentHub?userId=${user.userId}&postId=${postid}`
+        `https://widebluerock55.conveyor.cloud/commentHub?userId=${user.userId}&postId=${postid}`
       )
       .configureLogging(LogLevel.Information) // Corrected typo here
       .build();
