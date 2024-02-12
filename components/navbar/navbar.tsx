@@ -201,14 +201,8 @@ export const Navbar = () => {
                       />
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Profile Actions" variant="flat">
-                      <DropdownItem
-                        key="settings"
-                        onClick={() => {
-                          window.location.href = "/user/profile";
-                        }}
-                        textValue="settings"
-                      >
-                        პარამეტრები
+                      <DropdownItem key="settings" textValue="settings">
+                        <Link href={"/user/profile"}>პარამეტრები</Link>
                       </DropdownItem>
                       <DropdownItem
                         key="logout"
