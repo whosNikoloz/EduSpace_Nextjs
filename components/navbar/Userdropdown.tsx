@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Avatar, Button } from "@nextui-org/react";
 import Link from "next/link";
+import { Settingicon } from "@/components/navbar/SettingIcon";
 
 function UDropdown({
   username,
@@ -62,15 +63,18 @@ function UDropdown({
         {isOpen && (
           <div
             ref={dropdownRef}
-            className=" absolute right-0 z-20 w-48 py-1 px-1 mt-2 transition-all duration-300 ease-in-out  origin-top-right bg-white rounded-xl shadow-xl dark:bg-[#18181B] "
+            className="absolute right-0 z-20 py-1 px-1 mt-2 transition-all duration-300 ease-in-out origin-top-right bg-white rounded-xl shadow-xl dark:bg-[#18181B] "
             onClick={handleDropdownClick}
           >
-            <div className="h-14 block px-4 py-1  gap-2">
+            <div className="h-14 px-4 py-1 gap-2">
               <p className="font-semibold text-md">@{username}</p>
               <p className="font-semibold text-sm text-gray-300">{email}</p>
             </div>
             <Link href="/user/profile">
-              <Button className="block px-4 py-3 text-sm w-full text-start text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+              <Button
+                endContent={<Settingicon size={20} height={20} width={20} />}
+                className="px-4 py-3 text-sm w-full justify-between text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
                 პარამეტრები
               </Button>
             </Link>
