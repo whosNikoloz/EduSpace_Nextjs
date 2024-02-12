@@ -30,7 +30,7 @@ const storage = getStorage(app);
 const auth_API = "https://localhost:45455/api/Auth/";
 const user_API = "https://localhost:45455/api/User/";
 
-const auth_conveyAPI = "https://widebluerock55.conveyor.cloud/api/Auth/";
+const auth_conveyAPI = "https://oldtealhouse99.conveyor.cloud/api/Auth/";
 const user_conveyAPI = "https://widebluerock55.conveyor.cloud/api/User/";
 
 const mac_auth_API = "https://localhost:7163/api/Auth/";
@@ -68,7 +68,7 @@ const Authentication = () => {
 
   const handleLogin = async (email: any, password: any) => {
     try {
-      const response = await fetch(auth_API + "Email", {
+      const response = await fetch(auth_conveyAPI + "Email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -188,42 +188,40 @@ export const Navbar = () => {
               {user ? (
                 <>
                   <Notification userid={user.userId} />
-                  <div className="relative ml-3">
-                    <Dropdown placement="bottom-end">
-                      <DropdownTrigger>
-                        <Avatar
-                          isBordered
-                          as="button"
-                          className="transition-transform"
-                          color="primary"
-                          name={user.userName}
-                          size="sm"
-                          src={user.picture}
-                        />
-                      </DropdownTrigger>
-                      <DropdownMenu aria-label="Profile Actions" variant="flat">
-                        <DropdownItem
-                          key="profile"
-                          textValue="user"
-                          className="h-14 gap-2"
-                        >
-                          <p className="font-semibold">შესულიხარ როგორც</p>
-                          <p className="font-semibold">{user.userName}</p>
-                        </DropdownItem>
-                        <DropdownItem key="settings" textValue="settings">
-                          <Link href={`/user/profile`}>პარამეტრები</Link>
-                        </DropdownItem>
-                        <DropdownItem
-                          key="logout"
-                          color="danger"
-                          onClick={handleLogout}
-                          textValue="logout"
-                        >
-                          გამოსვლა
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </Dropdown>
-                  </div>
+                  <Dropdown placement="bottom-end">
+                    <DropdownTrigger>
+                      <Avatar
+                        isBordered
+                        as="button"
+                        className="transition-transform"
+                        color="primary"
+                        name={user.userName}
+                        size="sm"
+                        src={user.picture}
+                      />
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Profile Actions" variant="flat">
+                      <DropdownItem
+                        key="profile"
+                        textValue="user"
+                        className="h-14 gap-2"
+                      >
+                        <p className="font-semibold">შესულიხარ როგორც</p>
+                        <p className="font-semibold">{user.userName}</p>
+                      </DropdownItem>
+                      <DropdownItem key="settings" textValue="settings">
+                        <Link href={`/user/profile`}>პარამეტრები</Link>
+                      </DropdownItem>
+                      <DropdownItem
+                        key="logout"
+                        color="danger"
+                        onClick={handleLogout}
+                        textValue="logout"
+                      >
+                        გამოსვლა
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
                 </>
               ) : (
                 // Render this content if user is null
