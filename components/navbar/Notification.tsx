@@ -144,6 +144,9 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
               onClick={() => setDropdownOpen(!dropdownOpen)}
               aria-label="more than 99 notifications"
               variant="light"
+              className={` transition-transform ${
+                dropdownOpen ? "scale-90 " : "scale-100"
+              }`}
             >
               <NotificationIcon
                 size={24}
@@ -160,6 +163,9 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
               isIconOnly
               onClick={() => setDropdownOpen(!dropdownOpen)}
               variant="light"
+              className={` transition-transform ${
+                dropdownOpen ? "scale-90 " : "scale-100"
+              }`}
             >
               <NotificationIcon
                 size={24}
@@ -175,6 +181,9 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
             isIconOnly
             onClick={() => setDropdownOpen(!dropdownOpen)}
             variant="light"
+            className={` transition-transform ${
+              dropdownOpen ? "scale-90 " : "scale-100"
+            }`}
           >
             <NotificationIcon
               isActive={dropdownOpen}

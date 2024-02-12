@@ -29,6 +29,7 @@ import { BeginnerIcon } from "./BeginnerIcon.jsx";
 import { AdvancedIcon } from "./AdvancedIcon.jsx";
 import { IntermediateIcon } from "./IntermediateIcon.jsx";
 import { CompilerIcon } from "./CompilerIcon.jsx";
+import UDropdown from "./Userdropdown";
 
 const DropDownItems = [
   {
@@ -188,38 +189,12 @@ export const Navbar = () => {
               {user ? (
                 <>
                   <Notification userid={user.userId} />
-                  <Dropdown placement="bottom-end">
-                    <DropdownTrigger>
-                      <Avatar
-                        isBordered
-                        as="button"
-                        className="transition-transform"
-                        color="primary"
-                        name={user.userName}
-                        size="sm"
-                        src={user.picture}
-                      />
-                    </DropdownTrigger>
-                    <DropdownMenu aria-label="Profile Actions" variant="flat">
-                      <DropdownItem key="profile" className="h-14 gap-2">
-                        <p className="font-semibold">{user.userName}</p>
-                        <p className="font-semibold text-gray-500">
-                          {user.email}
-                        </p>
-                      </DropdownItem>
-                      <DropdownItem key="settings" textValue="settings">
-                        <Link href={"/user/profile"}>პარამეტრები</Link>
-                      </DropdownItem>
-                      <DropdownItem
-                        key="logout"
-                        color="danger"
-                        onClick={handleLogout}
-                        textValue="logout"
-                      >
-                        გამოსვლა
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
+                  <UDropdown
+                    username={user.userName}
+                    avatar={user.picture}
+                    email={user.email}
+                    logout={handleLogout}
+                  />
                 </>
               ) : (
                 // Render this content if user is null
