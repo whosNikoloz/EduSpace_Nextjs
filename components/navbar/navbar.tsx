@@ -201,6 +201,12 @@ export const Navbar = () => {
                       />
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Profile Actions" variant="flat">
+                      <DropdownItem key="profile" className="h-14 gap-2">
+                        <p className="font-semibold">{user.userName}</p>
+                        <p className="font-semibold text-gray-500">
+                          {user.email}
+                        </p>
+                      </DropdownItem>
                       <DropdownItem key="settings" textValue="settings">
                         <Link href={"/user/profile"}>პარამეტრები</Link>
                       </DropdownItem>
