@@ -1,13 +1,45 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
-import appleicon from "@/public/appleicon.png";
 import Image from "next/image";
 import { AppLinks } from "@/components/Home/applinks";
 import EduSpace from "@/public/EduSpaceLogo.png";
 import Link from "next/link";
+import { MoonFilledIcon, SunFilledIcon, SystemIcon } from "@/components/icons";
+import { Button } from "@nextui-org/react";
+import { useTheme } from "next-themes";
+
+const footerLearn = [
+  {
+    title: "შესავალი კურსები / Introduction Courses",
+    links: [
+      { href: "/learn/course/c-sharp-beginner", label: "C# შესავალი" },
+      { href: "/learn/course/python-beginner", label: "Python შესავალი" },
+      { href: "/learn/course/swift-beginner", label: "Swift შესავალი" },
+      { href: "/learn/course/c-plus-beginner", label: "C++ შესავალი" },
+    ],
+  },
+  {
+    title: "მოწინავე კურსები / Advanced Courses",
+    links: [
+      { href: "/learn/course/c-sharp-beginner", label: "C# მოწინავე" },
+      { href: "/learn/course/python-beginner", label: "Python მოწინავე" },
+      { href: "/learn/course/swift-beginner", label: "Swift მოწინავე" },
+      { href: "/learn/course/c-plus-beginner", label: "C++ მოწინავე" },
+    ],
+  },
+  {
+    title: "ექსპერტი კურსები / Expert Courses",
+    links: [
+      { href: "/learn/course/c-sharp-beginner", label: "C# ექსპერტი" },
+      { href: "/learn/course/python-beginner", label: "Python ექსპერტი" },
+      { href: "/learn/course/swift-beginner", label: "Swift ექსპერტი" },
+      { href: "/learn/course/c-plus-beginner", label: "C++ ექსპერტი" },
+    ],
+  },
+  // Add more sections as needed
+];
 
 export const Footer = () => {
+  const { resolvedTheme, theme, setTheme } = useTheme();
+
   return (
     <>
       <footer className="px-4 bg-slate-200 divide-y dark:bg-black dark:text-gray-100">
@@ -30,135 +62,21 @@ export const Footer = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
-            <div className="space-y-3">
-              <h3 className="tracki uppercase text-blue-600 dark:text-blue-400">
-                შესავალი კურსები / Introduction Courses
-              </h3>
-              <ul className="space-y-1">
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/c-sharp-beginner"
-                  >
-                    C# შესავალი
-                  </Link>
-                </li>
-                <li> 
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/python-beginner"
-                  >
-                    Python შესავალი
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/swift-beginner"
-                  >
-                    Swift შესავალი
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/c-plus-beginner"
-                  >
-                    C++ შესავალი
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-3">
-              <h3 className="uppercase text-blue-600  dark:text-blue-400">
-                შუალედური კურსები / Intermediate Courses
-              </h3>
-              <ul className="space-y-1">
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/c-sharp-intermediate"
-                  >
-                    C# შუალედური
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/python-intermediate"
-                  >
-                    Python შუალედური
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/swift-intermediate"
-                  >
-                    Swift შუალედური
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/c-plus-intermediate"
-                  >
-                    C++ შუალედური
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-3">
-              <h3 className="uppercase text-blue-600  dark:text-blue-400">
-                მოწინავე კურსები / Advanced Courses
-              </h3>
-              <ul className="space-y-1">
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/c-sharp-advanced"
-                  >
-                    C# მოწინავე
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/python-advanced"
-                  >
-                    Python მოწინავე
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/swift-advanced"
-                  >
-                    Swift მოწინავე
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    rel="noopener noreferrer"
-                    href="/learn/course/c-plus-advanced"
-                  >
-                    C++ მოწინავე
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-3">
-              <h3 className="uppercase text-blue-600 dark:text-blue-400">
-                საზოგადოება / social
-              </h3>
-              <ul className="space-y-1">
-                <li>
-                  <Link rel="noopener noreferrer" href="/social">
-                    Q&A
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            {footerLearn.map((section, index) => (
+              <div className="space-y-3" key={index}>
+                <h3 className="uppercase text-blue-600 dark:text-blue-400">
+                  {section.title}
+                </h3>
+                <ul className="space-y-1">
+                  {section.links.map((link, index) => (
+                    <li key={index}>
+                      <Link href={link.href}>{link.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
             <div className="space-y-3">
               <div className="uppercase text-blue-600 dark:text-blue-400">
                 Social media
@@ -210,10 +128,41 @@ export const Footer = () => {
                 </Link>
               </div>
             </div>
+            <div className="space-y-3">
+              <div className="uppercase text-blue-600 dark:text-blue-400">
+                Preferences
+              </div>
+              <div className="flex justify-start space-x-3">
+                <Button
+                  className={`flex items-center p-1 bg-transparent text-gray-500 dark:hover:text-gray-200 hover:text-black ${
+                    resolvedTheme === "dark" ? "text-gray-200" : ""
+                  }`}
+                  isIconOnly
+                  onClick={() => setTheme("dark")}
+                >
+                  <MoonFilledIcon />
+                </Button>
+                <Button
+                  className={`flex items-center p-1 bg-transparent text-gray-500 dark:hover:text-gray-200 hover:text-black ${
+                    resolvedTheme === "light" ? "text-black" : ""
+                  }`}
+                  isIconOnly
+                  onClick={() => setTheme("light")}
+                >
+                  <SunFilledIcon />
+                </Button>
+                <Button
+                  className={`flex items-center p-1 bg-transparent text-gray-500 dark:hover:text-gray-200 hover:text-black ${
+                    resolvedTheme === "system" ? "text-gray-200" : ""
+                  }`}
+                  isIconOnly
+                  onClick={() => setTheme("system")}
+                >
+                  <SystemIcon />
+                </Button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="py-6 text-sm text-center dark:text-gray-400">
-          © 2023 Company Co. All rights reserved.
         </div>
       </footer>
     </>

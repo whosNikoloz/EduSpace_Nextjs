@@ -21,15 +21,9 @@ export const Reveal = ({
   const mainControls = useAnimation();
 
   useEffect(() => {
-    let timeoutId: string | number | NodeJS.Timeout | undefined; // Declare timeoutId variable
-
     if (isInView) {
-      timeoutId = setTimeout(async () => {
-        mainControls.start("visible"); // Use mainControls, not conn
-      }, 200);
+      mainControls.start("visible");
     }
-
-    return () => clearTimeout(timeoutId); // Cleanup function to clear timeout on unmount or re-render
   }, [isInView, mainControls]); // Dependency array
 
   const getAnimationVariants = () => {
