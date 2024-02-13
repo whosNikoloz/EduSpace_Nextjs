@@ -1,28 +1,12 @@
+"use client";
+
 import React, { useState } from "react";
-import {
-  Navbar as NextUINavbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link,
-  Input,
-  Button,
-  DropdownItem,
-  DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
-  Avatar,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
-} from "@nextui-org/react";
+import { Link, Button } from "@nextui-org/react";
 import Notification from "@/components/navbar/Notification";
 import { EduSpace } from "@/components/EduSpaceLogo.jsx";
 import { SearchIcon } from "@/components/navbar/SearchIcon.jsx";
 import { useEffect } from "react";
-import { Skeleton } from "@nextui-org/react";
 import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
-import SideNavBarWithDropDown from "@/components/navbar/sidenavbar.jsx";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Reveal } from "../RevealFramer";
 import { BeginnerIcon } from "./BeginnerIcon.jsx";

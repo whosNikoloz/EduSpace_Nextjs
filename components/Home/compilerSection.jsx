@@ -8,7 +8,6 @@ import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Reveal } from "../RevealFramer";
 
 const CompilerSection = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
   const { user } = useUser();
 
   const handleCourse = () => {
@@ -78,7 +77,7 @@ public class HelloWorld
         {/* Second container */}
         <div className="w-full md:w-2/3 md:order-1 p-6">
           <Reveal direction="right">
-            <Compiler code={code} isDarkMode={isDarkMode} onChange={setCode} />
+            <Compiler code={code} isDarkMode={true} onChange={setCode} />
           </Reveal>
         </div>
       </div>

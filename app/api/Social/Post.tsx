@@ -3,10 +3,8 @@ import { initializeApp } from "firebase/app";
 import {
   getStorage,
   ref,
-  uploadBytes,
   getDownloadURL,
   uploadBytesResumable,
-  listAll,
   deleteObject as deleteFirebaseObject,
 } from "firebase/storage";
 
@@ -214,37 +212,6 @@ const Posts = () => {
     }
   };
 
-  const FilteredPosts = async (
-    subject: string,
-    page: number,
-    pageSize: number
-  ) => {
-    try {
-      const encodedSubject = encodeURIComponent(subject);
-      const apiUrl = `${social_API}Posts/${encodedSubject}?page=${page}&pageSize=${pageSize}`;
-      console.log(apiUrl);
-
-      const response = await fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        const posts = await response.json();
-        console.log(posts);
-        return posts;
-      } else {
-        const errorText = await response.text();
-        return errorText;
-      }
-    } catch (error) {
-      window.alert(error);
-      return error;
-    }
-  };
-
   const deleteFileByDownloadUrl = async (contentUrl: string) => {
     try {
       if (contentUrl) {
@@ -316,7 +283,6 @@ const Posts = () => {
     CreatePost,
     EditPost,
     GetLastPost,
-    FilteredPosts,
     DeletePost,
   };
 };

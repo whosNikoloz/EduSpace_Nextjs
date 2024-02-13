@@ -74,7 +74,7 @@ export default function CsharpBeginnerPage() {
     return () => {
       setProgress(null);
     }; // Clean up course and progress on unmount
-  }, [user]);
+  }, [user, onOpen]);
 
   return (
     <MainLayout>

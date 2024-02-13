@@ -3,10 +3,8 @@ import { initializeApp } from "firebase/app";
 import {
   getStorage,
   ref,
-  uploadBytes,
   getDownloadURL,
   uploadBytesResumable,
-  listAll,
   deleteObject as deleteFirebaseObject,
 } from "firebase/storage";
 
@@ -31,29 +29,6 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 const Comment = () => {
-  const GetComments = async (page: any, pageSize: any) => {
-    try {
-      const apiUrl = `${social_API}Posts?page=${page}&pageSize=${pageSize}`; // Construct the URL with query parameters
-      const response = await fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        const posts = await response.json();
-        return posts;
-      } else {
-        const errorText = await response.text();
-        return errorText;
-      }
-    } catch (error) {
-      window.alert(error);
-      return error;
-    }
-  };
-
   const uploadFileToFirebaseStorage = async (
     file: File,
     folderName: string
@@ -199,7 +174,6 @@ const Comment = () => {
   };
 
   return {
-    GetComments,
     CreateComment,
     DeleteComment,
   };

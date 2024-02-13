@@ -10,6 +10,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
+  Image,
 } from "@nextui-org/react";
 import CropImg from "./cropimg";
 import Authentication from "@/app/api/User/auth";
@@ -245,7 +246,7 @@ function UploadProfilePic({
             <>
               <ModalHeader>Cropped Image</ModalHeader>
               <ModalBody>
-                <img
+                <Image
                   src={croppedImg || profilePic}
                   alt="Cropped Profile Pic"
                   className="w-full rounded-full"

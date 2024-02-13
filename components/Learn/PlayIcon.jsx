@@ -1,5 +1,3 @@
-import React from "react";
-
 export const PlayIcon = ({ size, height, width }) => {
   return (
     <svg

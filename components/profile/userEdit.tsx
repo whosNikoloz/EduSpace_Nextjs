@@ -1,21 +1,11 @@
 "use Client";
 
 import React, { FC, useState } from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-  useDisclosure,
-} from "@nextui-org/react";
 import UploadProfilePic from "./UploadImg/uploadProfilePic";
 import { Reveal } from "../RevealFramer";
 import GeneralEdit from "./UploadGeneral/generalEdit";
 import PasswordEdit from "./passwordEdit";
 import EmailEdit from "./ChangeEmail/emailEdit";
-import OtpEmail from "./ChangeEmail/otpEmail";
 
 interface UserEditProps {
   userid: number;

@@ -1,6 +1,3 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Ilustration from "@/public/ProgiLust1.png";
 import Image from "next/image";
 import { Reveal } from "../RevealFramer";

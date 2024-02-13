@@ -1,9 +1,3 @@
-"use client";
-
-import React, { useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Image } from "@nextui-org/react";
 import { Reveal } from "../RevealFramer";
 import {
   Card,
@@ -11,7 +5,6 @@ import {
   CardBody,
   CardFooter,
   Avatar,
-  Button,
 } from "@nextui-org/react";
 
 const Review = () => {

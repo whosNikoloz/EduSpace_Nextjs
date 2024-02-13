@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Comment from "@/app/api/Social/Comment";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
-import { Textarea, input } from "@nextui-org/react";
+import { Textarea } from "@nextui-org/react";
 
 function CommentForm({ postid }) {
   const fileInputRef = useRef(null);

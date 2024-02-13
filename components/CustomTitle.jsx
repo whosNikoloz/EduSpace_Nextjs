@@ -1,5 +1,3 @@
-"use client";
-import React, { useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
 
 export const CustomTitle = ({ title1, title2, margin, direct }) => {

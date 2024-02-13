@@ -1,5 +1,3 @@
-import React from "react";
-
 export const AdvancedIcon = ({ size, height, width, ...props }) => {
   return (
     <svg

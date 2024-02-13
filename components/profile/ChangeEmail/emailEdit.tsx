@@ -6,16 +6,13 @@ import {
   Input,
   Modal,
   ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Button,
   useDisclosure,
 } from "@nextui-org/react";
 import Authentication from "@/app/api/User/auth";
 import toast from "react-hot-toast";
 import OtpEmail from "./otpEmail";
-import { Card, CardBody, Avatar } from "@nextui-org/react";
+import { Card, CardBody } from "@nextui-org/react";
 
 interface ResponseType {
   ok: boolean;

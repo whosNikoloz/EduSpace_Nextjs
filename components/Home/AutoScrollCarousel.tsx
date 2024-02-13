@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -6,10 +7,9 @@ import "@splidejs/react-splide/css/core";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import { isMobile } from "react-device-detect";
 import Courses from "@/app/api/Learn/Course";
-import Link from "next/link";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Reveal } from "../RevealFramer";
-import { Card, CardFooter, Image, Button, CardBody } from "@nextui-org/react";
+import { Card, CardFooter, CardBody } from "@nextui-org/react";
 
 interface Course {
   courseId: number;
@@ -81,7 +81,7 @@ const AutoScrollCarousel = () => {
             </div>
           </div>
           <div className="text-left">
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="text-3xl  font-bold tracking-tight text-white sm:text-5xl">
               სასწავლო კურსები
             </h1>
           </div>

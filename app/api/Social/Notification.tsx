@@ -1,5 +1,3 @@
-import React from "react";
-
 const social_API = "https://localhost:45455/api/Social/";
 const social_API_NIkoloza = "https://172.20.10.7:45456/api/Social/";
 

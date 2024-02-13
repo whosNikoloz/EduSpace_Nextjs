@@ -2,7 +2,6 @@
 
 import FeatureReview from "@/public/FeatureReview.png";
 import Image from "next/image";
-import { Reveal } from "../RevealFramer";
 import { FcGraduationCap, FcLock, FcCommandLine } from "react-icons/fc";
 import { useScroll, motion } from "framer-motion";
 import { useRef } from "react";

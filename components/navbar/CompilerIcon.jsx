@@ -1,5 +1,3 @@
-import React from "react";
-
 export const CompilerIcon = ({ size, height, width, ...props }) => {
   return (
     <svg

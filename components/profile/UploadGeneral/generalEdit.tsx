@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Button, Input } from "@nextui-org/react";
 import Authentication from "@/app/api/User/auth";
 import toast from "react-hot-toast";
-import { Card, CardBody, Avatar } from "@nextui-org/react";
+import { Card, CardBody } from "@nextui-org/react";
 
 interface GeneralEditProps {
   userName: string;

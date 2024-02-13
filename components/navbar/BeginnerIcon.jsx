@@ -1,5 +1,3 @@
-import React from "react";
-
 export const BeginnerIcon = ({ size, height, width, ...props }) => {
   return (
     <svg

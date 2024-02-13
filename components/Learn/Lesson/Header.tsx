@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { Progress } from "@nextui-org/react";
 import Link from "next/link";

@@ -1,17 +1,8 @@
-"use client";
-
 import React, { useState } from "react";
-import { isMobile } from "react-device-detect";
 import Link from "next/link";
 import { Image } from "@nextui-org/react";
 import { Reveal } from "../RevealFramer";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Button,
-} from "@nextui-org/react";
+import { Card, CardHeader } from "@nextui-org/react";
 
 export const Team = () => {
   const [selectedCategory, setSelectedCategory] = useState("mobile");

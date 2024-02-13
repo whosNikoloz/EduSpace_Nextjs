@@ -1,9 +1,6 @@
-"use client";
-
 import "@/styles/globals.css";
 import { Providers } from "./providers";
 import "../styles/custom-scrollbar.css";
-import { ThemeProvider } from "next-themes";
 
 export default function RootLayout({
   children,
@@ -22,13 +19,9 @@ export default function RootLayout({
         />
       </head>
       <body /*className={clsx(fontSans.variable)}*/>
-        <ThemeProvider attribute="class" defaultTheme="system">
-          <Providers
-            themeProps={{ attribute: "class", defaultTheme: "system" }}
-          >
-            {children}
-          </Providers>
-        </ThemeProvider>
+        <Providers themeProps={{ attribute: "class", defaultTheme: "system" }}>
+          {children}
+        </Providers>
       </body>
     </html>
   );

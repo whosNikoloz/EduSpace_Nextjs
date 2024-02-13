@@ -1,4 +1,3 @@
-import React from "react";
 import { Reveal } from "../RevealFramer";
 
 export const ConnectorSecond = ({ text, color }) => {

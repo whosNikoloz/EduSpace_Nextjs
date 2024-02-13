@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Card, CardBody, Image, Button } from "@nextui-org/react";
 

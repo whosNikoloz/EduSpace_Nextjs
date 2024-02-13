@@ -189,7 +189,7 @@ export default function CplusAdvancedLessonPage({
     setAnswerSelected(false);
     setAnswerSelectedCorrect(false);
     setTryAgain(tryAgain + 1);
-  }
+  };
 
   const handleAnswerSelected = (
     selected: boolean | ((prevState: boolean) => boolean)
@@ -231,6 +231,7 @@ export default function CplusAdvancedLessonPage({
                 alt="Description of the image"
                 width={100} // Specify the width of the image
                 height={100}
+                priority={true}
               />
             </div>
           </section>
@@ -242,6 +243,7 @@ export default function CplusAdvancedLessonPage({
                 alt="Description of the image"
                 width={100} // Specify the width of the image
                 height={100}
+                priority={true}
               />
             </div>
             <p>Lesson completed!</p>

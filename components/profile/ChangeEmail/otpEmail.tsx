@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
 import toast from "react-hot-toast";
 import Authentication from "@/app/api/User/auth";

@@ -1,13 +1,11 @@
 "use client";
 
-import { Dialog } from "@headlessui/react";
 import React, { useState, useEffect } from "react";
 import FileUpload from "@/components/social/fileuploade";
 import { Textarea, input } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import Posts from "@/app/api/Social/Post";
-import { Skeleton } from "@nextui-org/react";
 import { Avatar, User } from "@nextui-org/react";
 import toast, { Toaster } from "react-hot-toast";
 import {

@@ -1,13 +1,11 @@
 "use client";
 
 import MainLayout from "@/app/layouts/Mainlayout";
-import React, { Key, useState, useEffect, useRef } from "react";
+import React, { Key, useState, useEffect } from "react";
 import Social from "../api/Social/Post";
-import { useInfiniteQuery, useQuery, useQueryClient } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import toast, { Toaster } from "react-hot-toast";
 import Styles from "@/styles/loader.module.css";
-import Image from "next/image";
-import EduSpace from "@/public/EduSpaceLogo.png";
 
 import CreatePost from "@/components/social/CreatePost";
 

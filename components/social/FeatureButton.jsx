@@ -1,7 +1,3 @@
-"use client";
-
-import React from "react";
-
 export default function FeatureButton({ text, imageBgPosition }) {
   return (
     <button className="px-4 py-2 flex items-center  justify-center space-x-2 hover:bg-blue-600 rounded-lg ">

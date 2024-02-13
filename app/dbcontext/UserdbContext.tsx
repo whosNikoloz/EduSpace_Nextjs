@@ -65,10 +65,12 @@ interface UserProviderProps {
 const EncodeJwtIntoUser = (userToken: string) => {
   const decodedToken: any = jwtDecode(userToken); // Decode the JWT token
   const userData = {
-    userId:
+    userId: parseInt(
       decodedToken[
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
       ][0],
+      10
+    ),
     userName:
       decodedToken[
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"

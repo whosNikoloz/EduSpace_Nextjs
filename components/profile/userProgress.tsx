@@ -1,8 +1,6 @@
-import React, { FC } from "react";
-import { Button } from "@nextui-org/react";
 import EnrolledCarusel from "./enrolledCarusel";
 import { Reveal } from "../RevealFramer";
-import { Card, CardBody, Avatar } from "@nextui-org/react";
+import { Card, CardBody } from "@nextui-org/react";
 
 export const UserProgress = () => {
   return (

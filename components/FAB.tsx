@@ -16,6 +16,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  Image,
 } from "@nextui-org/react";
 
 const FAB: React.FC = () => {
@@ -116,7 +117,7 @@ const FAB: React.FC = () => {
                               <div className="rounded-full bg-gray-100">
                                 {m.role === "user" ? (
                                   <>
-                                    <img src={user?.picture} alt="user" />
+                                    <Image src={user?.picture} alt="user" />
                                   </>
                                 ) : (
                                   <EduSpace />

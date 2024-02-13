@@ -1,7 +1,3 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { Button } from "@nextui-org/react";
 import Ilustration from "@/public/ProgiLust3.png";
 import Image from "next/image";
 import { Reveal } from "../RevealFramer";

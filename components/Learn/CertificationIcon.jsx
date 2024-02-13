@@ -1,5 +1,3 @@
-import React from "react";
-
 export const CertificationIcon = ({ size, height, width }) => {
   return (
     <svg

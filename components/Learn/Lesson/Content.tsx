@@ -4,7 +4,6 @@ import CodeEditor from "@uiw/react-textarea-code-editor";
 import React, { useState, useEffect } from "react";
 import { Answers } from "./Answers";
 import { ScrollShadow } from "@nextui-org/react";
-import { connectStorageEmulator } from "firebase/storage";
 
 interface LearnMaterialDataProps {
   learnMaterialData: LearnMaterialData;
@@ -85,7 +84,12 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
     setShuffledAnswers(shuffleArray(learnMaterialData.test.answers));
     onAnswerSelected(false);
     onCorrectAnswer(false);
-  }, [onTryAgain]);
+  }, [
+    onTryAgain,
+    learnMaterialData.test.answers,
+    onAnswerSelected,
+    onCorrectAnswer,
+  ]);
 
   return (
     <ScrollShadow

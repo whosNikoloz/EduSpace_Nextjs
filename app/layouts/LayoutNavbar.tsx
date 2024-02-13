@@ -2,7 +2,6 @@
 
 import "@/styles/globals.css";
 import { Navbar } from "@/components/navbar/navbar";
-import { Footer } from "@/components/footer";
 
 export default function LayoutNavbar({
   children,
@@ -13,7 +12,6 @@ export default function LayoutNavbar({
     <div className="relative flex flex-col h-screen">
       <Navbar />
       <div className="mt-16">{children}</div>
-      <Footer />
     </div>
   );
 }

@@ -1,13 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Dialog } from "@headlessui/react";
 import { Textarea } from "@nextui-org/react";
 import CommentForm from "./commentform";
 import { User, Avatar } from "@nextui-org/react";
 import { DotsIcon } from "@/components/social/DotsIcon";
 import Posts from "@/app/api/Social/Post";
-import { Skeleton } from "@nextui-org/react";
 import {
   Dropdown,
   Link,
@@ -28,11 +26,7 @@ import {
 } from "@nextui-org/react";
 import { Card, CardBody, Image } from "@nextui-org/react";
 import toast, { Toaster } from "react-hot-toast";
-import {
-  HubConnectionBuilder,
-  HubConnection,
-  LogLevel,
-} from "@microsoft/signalr";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 function formatTimeAgo(timestamp) {
   const currentDate = new Date();

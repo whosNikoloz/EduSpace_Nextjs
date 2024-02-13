@@ -1,5 +1,3 @@
-import React from "react";
-
 export const IntermediateIcon = ({ size, height, width, ...props }) => {
   return (
     <svg

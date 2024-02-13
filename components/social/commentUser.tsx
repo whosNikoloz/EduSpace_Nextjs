@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
 import { Avatar, User } from "@nextui-org/react";
 import CommentApi from "@/app/api/Social/Comment";
 import {
   Dropdown,
-  Link,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,

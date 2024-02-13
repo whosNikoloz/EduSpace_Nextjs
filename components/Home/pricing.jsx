@@ -1,51 +1,6 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export const Pricing = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth <= 768);
-  }, []);
-
-  useEffect(() => {
-    const animatePrices = () => {
-      gsap.utils.toArray(".price").forEach((price, index) => {
-        gsap.fromTo(
-          price,
-          { opacity: 0, x: isMobile ? -50 : 0, y: isMobile ? 0 : 50 },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            duration: 1,
-            ease: "power2.inOut",
-            scrollTrigger: {
-              trigger: price,
-              start: "top bottom-=100",
-              end: "top center",
-              toggleActions: "play none reverse none",
-            },
-          }
-        );
-      });
-    };
-
-    animatePrices();
-
-    return () => {
-      gsap.utils.toArray(".price").forEach((member) => {
-        gsap.set(member, { clearProps: "all" });
-      });
-    };
-  }, [isMobile]);
-
   return (
     <>
       <section className="py-20 dark:bg-black dark:text-white">

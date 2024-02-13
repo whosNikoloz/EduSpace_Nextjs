@@ -1,4 +1,3 @@
-import React from "react";
 import Cookies from "universal-cookie";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import "firebase/auth";
@@ -6,12 +5,9 @@ import { initializeApp } from "firebase/app";
 import {
   getStorage,
   ref,
-  uploadBytes,
   deleteObject,
   getDownloadURL,
   uploadBytesResumable,
-  listAll,
-  deleteObject as deleteFirebaseObject,
 } from "firebase/storage";
 
 const firebaseConfig = {
@@ -68,7 +64,7 @@ const Authentication = () => {
 
   const handleLogin = async (email: any, password: any) => {
     try {
-      const response = await fetch(auth_conveyAPI + "Email", {
+      const response = await fetch(auth_API + "Email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

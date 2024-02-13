@@ -4,8 +4,6 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Reveal } from "../RevealFramer";
-import Image from "next/image";
-import Programming from "@/public/ProgrammingIMG.jpg";
 import dynamic from "next/dynamic";
 import { GitBashIcon } from "@/components/Home/GitBashIcon";
 

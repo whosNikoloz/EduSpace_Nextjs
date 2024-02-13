@@ -6,19 +6,16 @@ import MainLayout from "@/app/layouts/Mainlayout";
 const Fab = dynamic(() => import("@/components/FAB"), { ssr: false });
 import { ConnectorFirst } from "@/components/Home/ConnectorFirst";
 import { Toaster } from "react-hot-toast";
+import { StepsNew } from "@/components/Home/StepsComponents/stepsNew";
+import Feature from "@/components/Home/Feature";
+import { Team } from "@/components/Home/team";
 
 const AutoScrollCarousel = dynamic(
   () => import("@/components/Home/AutoScrollCarousel")
 );
 
-const Feature = dynamic(() => import("@/components/Home/Feature"));
 // Lazy load Review component
 const Review = dynamic(() => import("@/components/Home/review"));
-
-// Lazy load Team, CompilerSection, Stats, and Steps components
-const Team = dynamic(() =>
-  import("@/components/Home/team").then((mod) => mod.Team)
-);
 
 const CompilerSection = dynamic(
   () => import("@/components/Home/compilerSection")
@@ -31,15 +28,6 @@ const ConnectorSecond = dynamic(() =>
 );
 
 const Stats = dynamic(() => import("@/components/Home/Stats"));
-const Steps = dynamic(() =>
-  import("@/components/Home/steps").then((module) => module.Steps)
-);
-
-const StepsNew = dynamic(() =>
-  import("@/components/Home/StepsComponents/stepsNew").then(
-    (module) => module.StepsNew
-  )
-);
 
 export default function Home() {
   return (

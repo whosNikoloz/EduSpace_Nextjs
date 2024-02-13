@@ -12,12 +12,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
-import Image from "next/image";
-import {
-  HubConnectionBuilder,
-  HubConnection,
-  LogLevel,
-} from "@microsoft/signalr";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 interface NotificationProps {
   notificationId: number;
@@ -64,7 +59,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
   // Use an empty dependency array to make sure this effect runs only once
   useEffect(() => {
     fetchNotifications();
-  }, []);
+  }, [fetchNotifications]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -110,7 +105,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
     connection.onclose((error) => {
       console.error("Connection closed:", error);
     });
-  }, []);
+  }, [userid]);
 
   const markAsRead = async () => {
     try {
