@@ -35,6 +35,12 @@ const Steps = dynamic(() =>
   import("@/components/Home/steps").then((module) => module.Steps)
 );
 
+const StepsNew = dynamic(() =>
+  import("@/components/Home/StepsComponents/stepsNew").then(
+    (module) => module.StepsNew
+  )
+);
+
 export default function Home() {
   return (
     <>
@@ -113,7 +119,7 @@ export default function Home() {
           >
             <div className="mt-7 ">
               <div className="mt-10">
-                <Steps />
+                <StepsNew />
               </div>
             </div>
           </section>

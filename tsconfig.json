@@ -48,7 +48,8 @@
     "components/profile/UploadImg/cropimg.tsx",
     "components/profile/ChangeEmail/confirmAccess.tsx",
     "components/Home/compiler.tsx",
-    "components/Home/compilerSection.jsx"
+    "components/Home/compilerSection.jsx",
+    "components/Home/StepsComponents/stepCard.tsx"
   ],
   "exclude": ["node_modules"]
 }
