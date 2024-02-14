@@ -8,7 +8,7 @@ import {
 } from "@nextui-org/react";
 import { ChevronDown, Python, Cpp, Csharp } from "@/components/icons";
 
-function MultiLevelDropdown() {
+function MultiLevelDropdown({ isScrolled }) {
   const icons = {
     chevron: (
       <ChevronDown
@@ -67,7 +67,11 @@ function MultiLevelDropdown() {
       <DropdownTrigger>
         <Button
           disableRipple
-          className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+          className={`p-0 bg-transparent data-[hover=true]:bg-transparent  ${
+            isScrolled
+              ? "dark:text-white text-black"
+              : "dark:text-white text-white"
+          }`}
           endContent={icons.chevron}
           radius="sm"
           variant="light"

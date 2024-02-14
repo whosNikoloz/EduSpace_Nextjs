@@ -33,7 +33,9 @@ export const StepCard = ({ children, id }: Props) => {
         id={id}
         className={classNames(
           "transition-colors grid justify-center   grid-cols-4 p-8 space-y-8 lg:space-y-0 ",
-          isInView ? "text-gray-100" : "text-gray-600"
+          isInView
+            ? "dark:text-gray-100 text-blue-600"
+            : "dark:text-gray-600 text-gray-300"
         )}
       >
         {children}

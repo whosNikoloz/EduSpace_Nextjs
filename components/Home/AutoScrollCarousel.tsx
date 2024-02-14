@@ -81,7 +81,7 @@ const AutoScrollCarousel = () => {
             </div>
           </div>
           <div className="text-left">
-            <h1 className="text-3xl  font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="text-3xl  font-bold tracking-tight dark:text-white text-black sm:text-5xl">
               სასწავლო კურსები
             </h1>
           </div>

@@ -112,7 +112,9 @@ export const Navbar = () => {
     <>
       <nav
         className={`z-50 fixed w-full top-0 ${
-          isScrolled ? "backdrop-blur-lg bg-black/10" : "bg-transparent"
+          isScrolled
+            ? "dark:backdrop-blur-lg dark:bg-black/10 bg-white shadow-md"
+            : "bg-transparent"
         }`}
       >
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -164,18 +166,29 @@ export const Navbar = () => {
                 <Link href="/">
                   <EduSpace />
                 </Link>
-                <Link href="/" className="font-bold text-inherit">
+                <Link
+                  href="/"
+                  className={`font-bold text-inherit  ${
+                    isScrolled
+                      ? "dark:text-white text-black"
+                      : "dark:text-white text-white"
+                  }`}
+                >
                   {" "}
                   EduSpace
                 </Link>
               </div>
               <div className="hidden  sm:ml-6 sm:block ">
                 <div className="flex space-x-4">
-                  <MultiLevelDropdown />
+                  <MultiLevelDropdown isScrolled={isScrolled} />
                   <Link href="/social">
                     <Button
                       disableRipple
-                      className="p-0 bg-transparent data-[hover=true]:bg-transparent text-blue-500"
+                      className={`p-0 bg-transparent data-[hover=true]:bg-transparent  ${
+                        isScrolled
+                          ? "dark:text-blue-500 text-blue-800"
+                          : "dark:text-blue-500 text-blue-400"
+                      }`}
                       radius="sm"
                       variant="light"
                     >
@@ -185,7 +198,11 @@ export const Navbar = () => {
                   <Link href="/compiler/csharp">
                     <Button
                       disableRipple
-                      className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                      className={`p-0 bg-transparent data-[hover=true]:bg-transparent  ${
+                        isScrolled
+                          ? "dark:text-white text-black"
+                          : "dark:text-white text-white "
+                      }`}
                       radius="sm"
                       variant="light"
                     >

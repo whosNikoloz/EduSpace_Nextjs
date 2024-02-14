@@ -4,7 +4,7 @@ import {
   LearnIcon,
   PersonQ,
   Code,
-  Csharp,
+  CsharpOutline,
 } from "@/components/icons";
 import { StepCard } from "./stepCard";
 import {
@@ -33,7 +33,7 @@ const StepData = {
       stepTwo:
         "დარწმუნდით, რომ თქვენი ენა შეესაბამება თქვენს სასწავლო მიზნებს.",
       stepThree: "გაეცანით პოპულარული ენების აპლიკაციებს.",
-      svg: <Csharp />,
+      svg: <CsharpOutline />,
       card: SecondContent,
     },
     {
