@@ -135,7 +135,7 @@ export const Footer = () => {
               <div className="flex justify-start space-x-3">
                 <Button
                   className={`flex items-center p-1 bg-transparent text-gray-500 dark:hover:text-gray-200 hover:text-black ${
-                    resolvedTheme === "dark" ? "text-gray-200" : ""
+                    theme === "dark" ? "text-gray-200" : ""
                   }`}
                   isIconOnly
                   onClick={() => setTheme("dark")}
@@ -144,7 +144,7 @@ export const Footer = () => {
                 </Button>
                 <Button
                   className={`flex items-center p-1 bg-transparent text-gray-500 dark:hover:text-gray-200 hover:text-black ${
-                    resolvedTheme === "light" ? "text-black" : ""
+                    theme === "light" ? "text-black" : ""
                   }`}
                   isIconOnly
                   onClick={() => setTheme("light")}
@@ -153,7 +153,7 @@ export const Footer = () => {
                 </Button>
                 <Button
                   className={`flex items-center p-1 bg-transparent text-gray-500 dark:hover:text-gray-200 hover:text-black ${
-                    resolvedTheme === "system" ? "text-gray-200" : ""
+                    theme === "system" ? "text-gray-200" : ""
                   }`}
                   isIconOnly
                   onClick={() => setTheme("system")}
