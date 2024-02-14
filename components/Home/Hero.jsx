@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { Reveal } from "../RevealFramer";
+import { useRef } from "react";
 
 export const Hero = () => {
+  const scrollRef = useRef(null);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <>
       <div className="relative isolate px-6 pt-40 lg:px-8">
@@ -34,8 +42,15 @@ export const Hero = () => {
         </div>
       </div>
       <div className="flex flex-col items-center gap-2 justify-end lg:h-[35vh] h-[24vh] text-center lg:absolute lg:bottom-2 left-0 right-0 sm:visible invisible">
-        <div className="relative h-[30px] w-[19px] rounded-[15px] border-[2px] border-[#fff] border-[solid]">
-          <div className="absolute bottom-[20px] left-[4px] top-[4px] w-[8px] animate-[scroller_1500ms_ease-out_infinite] rounded-[8px] bg-[#fff]"></div>
+        <div
+          onClick={handleScroll}
+          style={{ cursor: "pointer" }}
+          className="relative h-[30px] w-[19px] rounded-[15px] border-[2px] border-[#fff] border-[solid]"
+        >
+          <div
+            ref={scrollRef}
+            className="absolute bottom-[20px] left-[4px] top-[4px] w-[8px] animate-[scroller_1500ms_ease-out_infinite] rounded-[8px] bg-[#fff]"
+          ></div>
         </div>
         <span className="text-white">Scroll Down</span>
       </div>
