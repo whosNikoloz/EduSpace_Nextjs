@@ -6,12 +6,8 @@ import { defineTheme } from "@/app/themes/defineThemes";
 import OutputTerminal from "@/components/compiler/OutputTerminal";
 import { EduSpace } from "../EduSpaceLogo";
 import { Button } from "@nextui-org/react";
-import { RunIcon } from "../compiler/RunIcon";
-import {
-  HubConnectionBuilder,
-  HubConnection,
-  LogLevel,
-} from "@microsoft/signalr";
+import { Run } from "../icons";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 export const Compiler = ({ code, isDarkMode, onChange }) => {
   useEffect(() => {
@@ -186,7 +182,7 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
             isLoading={Compiling}
             onClick={() => compileCode()}
           >
-            <RunIcon size={20} /> კომპილაცია
+            <Run size={20} /> კომპილაცია
           </Button>
         </div>
       </div>

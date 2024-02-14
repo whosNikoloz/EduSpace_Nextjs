@@ -5,7 +5,7 @@ import {
   PopoverContent,
   Button,
 } from "@nextui-org/react";
-import { HintIcon } from "@/components/Learn/Lesson/HintIcon";
+import { HintIcon } from "@/components/icons";
 
 type FooterLessonProps = {
   onPrev: () => void;
@@ -70,7 +70,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
           >
             <PopoverTrigger>
               <Button radius="sm" className="w-auto bg-transparent" isIconOnly>
-                <HintIcon size={undefined} height={30} width={30} />
+                <HintIcon size={30} height={30} width={30} />
               </Button>
             </PopoverTrigger>
             <PopoverContent>
@@ -131,7 +131,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
           >
             <PopoverTrigger>
               <Button radius="sm" className="w-auto bg-transparent" isIconOnly>
-                <HintIcon size={undefined} height={30} width={30} />
+                <HintIcon size={30} height={30} width={30} />
               </Button>
             </PopoverTrigger>
             <PopoverContent>

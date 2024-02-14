@@ -6,13 +6,15 @@ import LayoutNavbar from "@/app/layouts/LayoutNavbar";
 import CodeEditorWindow from "@/components/compiler/MonacoEditorWrapper";
 import OutputTerminal from "@/components/compiler/OutputTerminal";
 import { Button } from "@nextui-org/react";
-import { RunIcon } from "@/components/compiler/RunIcon";
-import { MoonIcon } from "@/components/compiler/MoonIcon";
-import { SunIcon } from "@/components/compiler/SunIcon";
-import { PythonIcon } from "@/components/compiler/PythonIcon";
-import { CsharpIcon } from "@/components/compiler/CsharpIcon";
-import { CppIcon } from "@/components/compiler/CppIcon";
-import { JavaIcon } from "@/components/compiler/JavaIcon";
+import {
+  Java,
+  Run,
+  Cpp,
+  Csharp,
+  Python,
+  SunFilledIcon,
+  MoonFilledIcon,
+} from "@/components/icons";
 
 export default function CompilerPage() {
   const [code, setCode] = useState(
@@ -55,32 +57,32 @@ public class HelloWorld {
             {/* Use flex-col to arrange items vertically */}
             <div className="mb-2">
               <Link href="/compiler/csharp">
-                <Button isIconOnly className="bg-transparent ">
-                  <CsharpIcon size={35} />
+                <Button isIconOnly className="bg-transparent  ">
+                  <Csharp size={35} />
                 </Button>
               </Link>
             </div>
             <div className="mb-2">
               <Link href="/compiler/python">
                 <Button isIconOnly className="bg-transparent   ">
-                  <PythonIcon size={35} />
+                  <Python size={35} />
                 </Button>
               </Link>
             </div>
             <div>
               <Link href="/compiler/cpp">
-                <Button isIconOnly className="bg-transparent  ">
-                  <CppIcon size={35} />
+                <Button
+                  isIconOnly
+                  className="bg-transparent border-2 border-blue-600 "
+                >
+                  <Cpp size={35} />
                 </Button>
               </Link>
             </div>
             <div>
               <Link href="/compiler/java">
-                <Button
-                  isIconOnly
-                  className="bg-transparent border-2 border-blue-600 "
-                >
-                  <JavaIcon size={35} />
+                <Button isIconOnly className="bg-transparent  ">
+                  <Java size={35} />
                 </Button>
               </Link>
             </div>
@@ -105,13 +107,13 @@ public class HelloWorld {
                       onClick={toggleDarkMode}
                     >
                       {isDarkMode ? (
-                        <SunIcon size={20} />
+                        <SunFilledIcon size={20} />
                       ) : (
-                        <MoonIcon size={20} />
+                        <MoonFilledIcon size={20} />
                       )}
                     </Button>
                     <Button color="primary" isLoading={false} className="py-2">
-                      <RunIcon size={20} />
+                      <Run size={20} />
                       კომპილაცია
                     </Button>
                   </div>
@@ -162,9 +164,9 @@ public class HelloWorld {
                     onClick={toggleDarkMode}
                   >
                     {isDarkMode ? (
-                      <SunIcon size={20} />
+                      <SunFilledIcon size={20} />
                     ) : (
-                      <MoonIcon size={20} />
+                      <MoonFilledIcon size={20} />
                     )}
                   </Button>
                 </div>
@@ -200,7 +202,7 @@ public class HelloWorld {
                     onClick={() => handleTabChange("Output")}
                     isIconOnly
                   >
-                    <RunIcon size={20} />
+                    <Run size={20} />
                   </Button>
                 ) : (
                   <Button

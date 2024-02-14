@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Cookies from "universal-cookie";
 import ResetPassowrd from "@/public/Reset password.png";
 import Image from "next/image";
 import { Button, Input } from "@nextui-org/react";

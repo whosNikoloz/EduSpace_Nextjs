@@ -2,7 +2,6 @@
 
 import MainLayout from "@/app/layouts/Mainlayout";
 import React, { useState, useEffect } from "react";
-import { CustomTitle } from "@/components/CustomTitle";
 import { Hero } from "@/components/Learn/Hero";
 import CoursesAPI from "@/app/api/Learn/Course";
 

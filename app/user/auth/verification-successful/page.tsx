@@ -1,6 +1,4 @@
 "use client";
-
-import { title } from "@/components/Home/primitives";
 import { Hero } from "@/components/verificationsuccessful/Hero";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

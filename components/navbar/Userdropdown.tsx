@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Avatar, Button } from "@nextui-org/react";
 import Link from "next/link";
-import { Settingicon } from "@/components/navbar/SettingIcon";
+import { Settingicon } from "../icons";
 
 function UDropdown({
   username,

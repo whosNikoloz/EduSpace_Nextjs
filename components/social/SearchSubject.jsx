@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Input } from "@nextui-org/react";
-import { SearchIcon } from "@/components/navbar/SearchIcon";
+import { SearchIcon } from "@/components/icons";
 import { Button } from "@nextui-org/button";
 
 const SearchSubject = ({ searchPostFunction }) => {

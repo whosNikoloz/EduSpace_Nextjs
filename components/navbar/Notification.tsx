@@ -2,10 +2,8 @@ import { Button } from "@nextui-org/button";
 import React, { useCallback, useState, useEffect, useRef } from "react";
 import Notifications from "@/app/api/Social/Notification";
 import { Avatar, Badge } from "@nextui-org/react";
-import { NotificationIcon } from "./NotificationIcon";
-import { DotsIcon } from "@/components/social/DotsIcon";
-import { VectorIcon } from "../Learn/VectorIcon";
 import toast from "react-hot-toast";
+import { DotsIcon, NotificationIcon, Vector } from "../icons";
 import {
   Dropdown,
   DropdownTrigger,
@@ -209,10 +207,9 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                       <Button isIconOnly variant="light">
                         <DotsIcon
                           size={35}
-                          filled={undefined}
+                          fill={undefined}
                           height={undefined}
                           width={undefined}
-                          label={undefined}
                         />
                       </Button>
                     </DropdownTrigger>
@@ -222,11 +219,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                           size="sm"
                           className="bg-transparent "
                           startContent={
-                            <VectorIcon
-                              size={undefined}
-                              height={undefined}
-                              width={undefined}
-                            />
+                            <Vector size={24} height={24} width={24} />
                           }
                           onClick={markAsRead}
                         >
@@ -238,11 +231,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                           size="sm"
                           className="bg-transparent "
                           startContent={
-                            <VectorIcon
-                              size={undefined}
-                              height={undefined}
-                              width={undefined}
-                            />
+                            <Vector size={24} height={24} width={24} />
                           }
                         >
                           Open Notifications

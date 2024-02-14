@@ -1,7 +1,7 @@
 import React from "react";
 import { Progress } from "@nextui-org/react";
 import Link from "next/link";
-import { ArrowIcon } from "./ArrowIcon";
+import { Arrow } from "@/components/icons";
 
 interface HeaderProps {
   LessonName: string;
@@ -17,7 +17,7 @@ export const Header: React.FC<HeaderProps> = ({ LessonName, progress }) => {
             href={"/learn/course/c-plus-advanced"}
             className="text-sm mb-2 md:mb-0"
           >
-            <ArrowIcon size={undefined} height={undefined} width={undefined} />
+            <Arrow size={24} height={24} width={24} />
           </Link>
           {LessonName}
         </div>

@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-
 import CoursesAPI from "@/app/api/Learn/Course";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import ProgressAPI from "@/app/api/Learn/Progress";

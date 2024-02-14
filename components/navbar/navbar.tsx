@@ -4,22 +4,24 @@ import React, { useState } from "react";
 import { Link, Button } from "@nextui-org/react";
 import Notification from "@/components/navbar/Notification";
 import { EduSpace } from "@/components/EduSpaceLogo.jsx";
-import { SearchIcon } from "@/components/navbar/SearchIcon.jsx";
 import { useEffect } from "react";
 import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Reveal } from "../RevealFramer";
-import { BeginnerIcon } from "./BeginnerIcon.jsx";
-import { AdvancedIcon } from "./AdvancedIcon.jsx";
-import { IntermediateIcon } from "./IntermediateIcon.jsx";
-import { CompilerIcon } from "./CompilerIcon.jsx";
 import UDropdown from "./Userdropdown";
-import { SocialIcon } from "@/components/navbar/SocialIcon.jsx";
+import {
+  SocialIcon,
+  CompilerIcon,
+  Python,
+  Cpp,
+  Csharp,
+  SearchIcon,
+} from "../icons";
 
 const DropDownItems = [
   {
     label: "შესავალი",
-    svg: BeginnerIcon,
+    svg: Csharp,
     submenus: [
       { title: "C# შესავალი", link: "/learn/course/c-sharp-beginner" },
       { title: "Python შესავალი", link: "/python" },
@@ -30,7 +32,7 @@ const DropDownItems = [
   ,
   {
     label: "მოწინავე",
-    svg: IntermediateIcon,
+    svg: Cpp,
     submenus: [
       { title: "C# მოწინავე", link: "/csharp" },
       { title: "Python მოწინავე", link: "/python" },
@@ -40,7 +42,7 @@ const DropDownItems = [
   },
   {
     label: "ექსპერტი",
-    svg: AdvancedIcon,
+    svg: Python,
     submenus: [
       { title: "C# ექსპერტი", link: "/csharp" },
       { title: "Python ექსპერტი", link: "/python" },
@@ -57,11 +59,10 @@ const menuItems = [
     href: "/social",
     svg: (
       <SocialIcon
-        filled={undefined}
+        fill={undefined}
         size={undefined}
         height={undefined}
         width={undefined}
-        label={undefined}
       />
     ),
     submenu: [],

@@ -6,13 +6,15 @@ import { Link } from "@nextui-org/link";
 import CodeEditorWindow from "@/components/compiler/MonacoEditorWrapper";
 import OutputTerminal from "@/components/compiler/OutputTerminal";
 import { Button } from "@nextui-org/react";
-import { RunIcon } from "@/components/compiler/RunIcon";
-import { MoonIcon } from "@/components/compiler/MoonIcon";
-import { SunIcon } from "@/components/compiler/SunIcon";
-import { PythonIcon } from "@/components/compiler/PythonIcon";
-import { CsharpIcon } from "@/components/compiler/CsharpIcon";
-import { CppIcon } from "@/components/compiler/CppIcon";
-import { JavaIcon } from "@/components/compiler/JavaIcon";
+import {
+  Java,
+  Run,
+  Cpp,
+  Csharp,
+  Python,
+  SunFilledIcon,
+  MoonFilledIcon,
+} from "@/components/icons";
 import {
   HubConnectionBuilder,
   HubConnection,
@@ -108,28 +110,28 @@ public class HelloWorld
                   isIconOnly
                   className="bg-transparent border-2 border-blue-600"
                 >
-                  <CsharpIcon size={35} />
+                  <Csharp size={35} />
                 </Button>
               </Link>
             </div>
             <div className="mb-2">
               <Link href="/compiler/python">
                 <Button isIconOnly className="bg-transparent   ">
-                  <PythonIcon size={35} />
+                  <Python size={35} />
                 </Button>
               </Link>
             </div>
             <div>
               <Link href="/compiler/cpp">
                 <Button isIconOnly className="bg-transparent  ">
-                  <CppIcon size={35} />
+                  <Cpp size={35} />
                 </Button>
               </Link>
             </div>
             <div>
               <Link href="/compiler/java">
                 <Button isIconOnly className="bg-transparent  ">
-                  <JavaIcon size={35} />
+                  <Java size={35} />
                 </Button>
               </Link>
             </div>
@@ -154,9 +156,9 @@ public class HelloWorld
                       onClick={toggleDarkMode}
                     >
                       {isDarkMode ? (
-                        <SunIcon size={20} />
+                        <SunFilledIcon size={20} />
                       ) : (
-                        <MoonIcon size={20} />
+                        <MoonFilledIcon size={20} />
                       )}
                     </Button>
                     <Button
@@ -165,7 +167,7 @@ public class HelloWorld
                       onClick={compileCode}
                       className="py-2"
                     >
-                      <RunIcon size={20} />
+                      <Run size={20} />
                       კომპილაცია
                     </Button>
                   </div>
@@ -217,9 +219,9 @@ public class HelloWorld
                     onClick={toggleDarkMode}
                   >
                     {isDarkMode ? (
-                      <SunIcon size={20} />
+                      <SunFilledIcon size={20} />
                     ) : (
-                      <MoonIcon size={20} />
+                      <MoonFilledIcon size={20} />
                     )}
                   </Button>
                 </div>
@@ -258,7 +260,7 @@ public class HelloWorld
                     }}
                     isIconOnly
                   >
-                    <RunIcon size={20} />
+                    <Run size={20} />
                   </Button>
                 ) : (
                   <Button

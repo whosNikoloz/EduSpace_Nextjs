@@ -1,6 +1,5 @@
 "use client";
 
-import { title } from "@/components/Home/primitives";
 import { Hero } from "@/components/resetpasswordsuccessful/Hero";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -20,7 +19,7 @@ export default function VerificationSuccessfulPage() {
     setTimeout(() => {
       router.push("/user/auth");
     }, 3000);
-  }, [setUserEmail,router]);
+  }, [setUserEmail, router]);
 
   return <Hero userEmail={userEmail} />;
 }

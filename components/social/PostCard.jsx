@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Textarea } from "@nextui-org/react";
 import CommentForm from "./commentform";
 import { User, Avatar } from "@nextui-org/react";
-import { DotsIcon } from "@/components/social/DotsIcon";
+import { DotsIcon } from "@/components/icons";
 import Posts from "@/app/api/Social/Post";
 import {
   Dropdown,

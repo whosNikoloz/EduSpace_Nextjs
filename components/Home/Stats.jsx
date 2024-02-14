@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Reveal } from "../RevealFramer";
 import dynamic from "next/dynamic";
-import { GitBashIcon } from "@/components/Home/GitBashIcon";
+import { GitBashIcon } from "../icons";
 
 const Typewriter = dynamic(() => import("typewriter-effect"), {
   ssr: false, // Disable server-side rendering for this component

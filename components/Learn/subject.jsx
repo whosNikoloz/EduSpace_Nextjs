@@ -2,11 +2,8 @@
 import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
-import { CertificationIcon } from "../Learn/CertificationIcon";
-import { QuizIcon } from "../Learn/QuizIcon";
-import { VectorIcon } from "../Learn/VectorIcon";
-import { LockedIcon } from "../Learn/LockedIcon";
-import { PlayIcon } from "../Learn/PlayIcon";
+
+import { Locked, Vector, Run, Quiz, Certification } from "@/components/icons";
 import { Reveal } from "../RevealFramer";
 import { Card, CardBody, Image } from "@nextui-org/react";
 
@@ -43,11 +40,11 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
       >
         <div className="flex items-center gap-2">
           {progress?.subjectId > subject.subjectId ? (
-            <VectorIcon height={25} width={25} />
+            <Vector height={25} width={25} />
           ) : progress?.subjectId === subject.subjectId ? (
-            <PlayIcon height={20} width={20} />
+            <Run height={20} width={20} />
           ) : (
-            <LockedIcon height={25} width={25} />
+            <Locked height={25} width={25} />
           )}
           {subject.subjectName}
         </div>
@@ -99,7 +96,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                   <div>
                     <div className="flex flex-row justify-between">
                       <div className="flex flex-row items-center gap-4">
-                        <QuizIcon size={25} />
+                        <Quiz size={25} />
                         <div className="flex flex-col gap-1">
                           <p className="text-slate-400 text-[8px] lg-text-[10px]">
                             გაკვეთილი
@@ -109,14 +106,14 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                           </p>
                         </div>
                       </div>
-                      <VectorIcon size={30} />
+                      <Vector size={30} />
                     </div>
                   </div>
                 ) : isCurrentLesson ? (
                   <div>
                     <div className="flex flex-row justify-between">
                       <div className="flex flex-row items-center gap-4">
-                        <QuizIcon size={25} />
+                        <Quiz size={25} />
                         <div className="flex flex-col gap-1">
                           <p className="text-slate-400 text-[8px] lg-text-[10px]">
                             გაკვეთილი
@@ -156,7 +153,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                 ) : (
                   <div className="flex flex-row justify-between">
                     <div className="flex flex-row items-center gap-4">
-                      <QuizIcon size={25} />
+                      <Quiz size={25} />
                       <div className="flex flex-col gap-1">
                         <p className="text-slate-600 text-[8px] lg-text-[10px]">
                           გაკვეთილი
@@ -171,7 +168,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                         </div>
                       </div>
                     </div>
-                    <LockedIcon size={25} />
+                    <Locked size={25} />
                   </div>
                 )}
               </div>
@@ -198,7 +195,7 @@ const SubjectComponent = ({ courseData, userProgress }) => {
         >
           <CardBody>
             <div className="flex flex-col items-center">
-              <CertificationIcon size={100} />
+              <Certification size={100} />
               <h1 className="dark:text-white text-black mt-4">
                 თქვენი სერთიფიკატი ახლოს არის
               </h1>

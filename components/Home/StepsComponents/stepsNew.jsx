@@ -1,8 +1,11 @@
 import React from "react";
-import { Reveal } from "../../RevealFramer";
-import { CertificationIcon } from "@/components/Learn/CertificationIcon";
-import { LearnIcon, PersonQ, Code, Csharp } from "@/components/Home/stepsIcons";
-import { Card, CardBody } from "@nextui-org/react";
+import {
+  Certification,
+  LearnIcon,
+  PersonQ,
+  Code,
+  Csharp,
+} from "@/components/icons";
 import { StepCard } from "./stepCard";
 import {
   FirstContent,
@@ -57,7 +60,7 @@ const StepData = {
       stepOne: "დაასრულეთ კურსები, დავალებები და ვიქტორინები.",
       stepTwo: "აჩვენეთ თქვენი ცოდნა გამოცდების საშუალებით.",
       stepThree: "მიიღეთ ღირებული სერთიფიკატები თქვენი რეზიუმესთვის.",
-      svg: <CertificationIcon size={70} />,
+      svg: <Certification size={70} />,
       card: FifthContent,
     },
   ],

@@ -1,18 +1,15 @@
 "use client";
 
 import Authentication from "@/app/api/User/auth";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Style from "@/app/user/auth/page.module.css";
-import LoginIl from "@/public/ProgiLust.png";
-import RegistrationIl from "@/public/ProgiLust2.png";
 import Image from "next/image";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Cookies from "universal-cookie";
 import { Button, Input } from "@nextui-org/react";
-import { signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { Link } from "@nextui-org/react";
 import React from "react";
-import { set } from "nprogress";
 import AnimatedSvg1 from "@/public/AnimatedSvg1.gif";
 import AnimatedSvg2 from "@/public/AnimatedSvg2.gif";
 

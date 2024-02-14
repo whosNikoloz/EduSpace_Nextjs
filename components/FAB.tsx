@@ -3,9 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { Fab, Action } from "react-tiny-fab";
 import { Button } from "@nextui-org/button";
-import { UpVectorIcon } from "./UpVectorIcon";
 import { EduSpace } from "./EduSpaceLogo";
-import { ChatIcon } from "./ChatIcon";
+import { Chat, UpVector } from "./icons";
 import { useChat } from "ai/react";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import { useRouter } from "next/navigation";
@@ -165,10 +164,10 @@ const FAB: React.FC = () => {
             )}
           </ModalContent>
         </Modal>
-        <ChatIcon size={30} height={undefined} width={undefined} />
+        <Chat size={30} height={undefined} width={undefined} />
       </Action>
       <Action style={{ backgroundColor: "transparent" }} onClick={scrollToTop}>
-        <UpVectorIcon size={30} />
+        <UpVector size={30} />
       </Action>
     </Fab>
   );

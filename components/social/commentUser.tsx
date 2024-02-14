@@ -6,7 +6,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
-import { DotsIcon } from "@/components/social/DotsIcon";
+import { DotsIcon } from "../icons";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import {
   Modal,
@@ -132,10 +132,9 @@ const Comment: React.FC<CommentProps> = ({
               <Button isIconOnly variant="light">
                 <DotsIcon
                   size={35}
-                  filled={undefined}
+                  fill={undefined}
                   height={undefined}
                   width={undefined}
-                  label={undefined}
                 />
               </Button>
             </DropdownTrigger>

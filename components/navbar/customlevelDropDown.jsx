@@ -6,19 +6,7 @@ import {
   DropdownItem,
   Button,
 } from "@nextui-org/react";
-import {
-  ChevronDown,
-  Lock,
-  Activity,
-  Flash,
-  Server,
-  TagUser,
-  Scale,
-} from "../Home/Icon.jsx";
-import Link from "next/link.js";
-import { BeginnerIcon } from "./BeginnerIcon.jsx";
-import { AdvancedIcon } from "./AdvancedIcon.jsx";
-import { IntermediateIcon } from "./IntermediateIcon.jsx";
+import { ChevronDown, Python, Cpp, Csharp } from "@/components/icons";
 
 function MultiLevelDropdown() {
   const icons = {
@@ -30,9 +18,9 @@ function MultiLevelDropdown() {
         width={undefined}
       />
     ),
-    Beginner: <IntermediateIcon height={30} width={30} />,
-    advanced: <AdvancedIcon height={30} width={30} />,
-    intermediate: <BeginnerIcon height={30} width={30} />,
+    Beginner: <Csharp height={30} width={30} />,
+    advanced: <Cpp height={30} width={30} />,
+    intermediate: <Python height={30} width={30} />,
   };
 
   const dropdownItems = [
@@ -111,7 +99,7 @@ function MultiLevelDropdown() {
                   radius="sm"
                   variant="light"
                 >
-                  შესავალი
+                  {item.textValue}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu aria-label="Dynamic Actions">
