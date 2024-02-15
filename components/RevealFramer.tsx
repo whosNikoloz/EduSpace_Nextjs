@@ -8,6 +8,7 @@ interface Props {
   direction?: "up" | "down" | "left" | "right" | "fade" | "scale";
   duration?: number;
   delay?: number;
+  once?: boolean;
 }
 
 export const Reveal = ({
@@ -15,14 +16,17 @@ export const Reveal = ({
   direction = "up",
   duration = 1.5,
   delay = 0.5,
+  once = false,
 }: Props) => {
   const ref = useRef(null);
-  const isInView = useInView(ref);
+  const isInView = useInView(ref, { once: once });
   const mainControls = useAnimation();
 
   useEffect(() => {
     if (isInView) {
       mainControls.start("visible");
+    } else {
+      mainControls.start("hidden");
     }
   }, [isInView, mainControls]); // Dependency array
 

@@ -69,7 +69,9 @@ export default function Feature() {
 
           <motion.div
             ref={ref}
-            style={{ scale: scrollYProgress, opacity: scrollYProgress }}
+            style={{
+              opacity: scrollYProgress,
+            }}
             className="opacity-0"
           >
             <Image
