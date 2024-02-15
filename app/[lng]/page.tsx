@@ -28,8 +28,12 @@ const ConnectorSecond = dynamic(() =>
 );
 
 const Stats = dynamic(() => import("@/components/Home/Stats"));
+import { useParams } from "next/navigation";
 
 export default function Home() {
+  const { lng } = useParams();
+  console.log(lng);
+
   return (
     <>
       <MainLayout>

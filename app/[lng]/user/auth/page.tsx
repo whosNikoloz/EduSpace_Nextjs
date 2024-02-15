@@ -2,7 +2,7 @@
 
 import Authentication from "@/app/api/User/auth";
 import { useState } from "react";
-import Style from "@/app/user/auth/page.module.css";
+import Style from "@/app/[lng]/user/auth/page.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Cookies from "universal-cookie";
@@ -12,6 +12,7 @@ import { Link } from "@nextui-org/react";
 import React from "react";
 import AnimatedSvg1 from "@/public/AnimatedSvg1.gif";
 import AnimatedSvg2 from "@/public/AnimatedSvg2.gif";
+import { useParams } from "next/navigation";
 
 interface ApiResponse {
   success: boolean;
@@ -21,6 +22,7 @@ interface ApiResponse {
 
 const AuthPage: React.FC = () => {
   const router = useRouter();
+  const { lng } = useParams();
 
   const [isSignUpMode, setIsSignUpMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

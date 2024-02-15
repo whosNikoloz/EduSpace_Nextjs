@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import { Providers } from "./providers";
-import "../styles/custom-scrollbar.css";
+import "@/styles/custom-scrollbar.css";
 
 export default function RootLayout({
   children,
@@ -8,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`$scroll-smooth`} suppressHydrationWarning>
+    <html lang="ge" className={`$scroll-smooth`} suppressHydrationWarning>
       <head>
         <title>EduSpace</title>
         <link
