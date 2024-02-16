@@ -2,7 +2,7 @@
 
 import MainLayout from "@/app/layouts/Mainlayout";
 import React, { Key, useState, useEffect } from "react";
-import Social from "../api/Social/Post";
+import Social from "@/app/api/Social/Post";
 import { useInfiniteQuery } from "react-query";
 import toast, { Toaster } from "react-hot-toast";
 import Styles from "@/styles/loader.module.css";
