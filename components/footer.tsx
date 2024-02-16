@@ -3,8 +3,10 @@ import { AppLinks } from "@/components/Home/applinks";
 import EduSpace from "@/public/EduSpaceLogo.png";
 import Link from "next/link";
 import { MoonFilledIcon, SunFilledIcon, SystemIcon } from "@/components/icons";
-import { Button } from "@nextui-org/react";
+import { Avatar, Button, Select, SelectItem } from "@nextui-org/react";
 import { useTheme } from "next-themes";
+import { usePathname, useRouter } from "next/navigation";
+import { ChangeEvent, ReactNode, useEffect, useState } from "react";
 
 const footerLearn = [
   {
@@ -37,8 +39,46 @@ const footerLearn = [
   // Add more sections as needed
 ];
 
-export const Footer = () => {
+export const Footer = ({ lng }: { lng: string }) => {
   const { resolvedTheme, theme, setTheme } = useTheme();
+
+  const lang = lng === "ge" ? "ქართული" : "ინგლისური";
+
+  const [lngstartCon, setLngstartCon] = useState<ReactNode>(null);
+
+  useEffect(() => {
+    switch (lng) {
+      case "ge":
+        setLngstartCon(
+          <Avatar
+            alt="Georgia"
+            className="w-5 h-5 bg-transparent"
+            src="https://flagsapi.com/GE/flat/64.png"
+          />
+        );
+        break;
+      case "en":
+        setLngstartCon(
+          <Avatar
+            alt="English"
+            className="w-5 h-5 bg-transparent"
+            src="https://flagsapi.com/US/flat/64.png"
+          />
+        );
+        break;
+    }
+  }, [lng]);
+
+  const pathName = usePathname();
+  const router = useRouter();
+
+  const handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const selectedLanguage = event.target.value;
+    if (!pathName) return "/";
+    const segments = pathName.split("/");
+    segments[1] = selectedLanguage;
+    router.push(segments.join("/"));
+  };
 
   return (
     <>
@@ -161,6 +201,47 @@ export const Footer = () => {
                   <SystemIcon />
                 </Button>
               </div>
+            </div>
+            <div className="space-y-3">
+              <div className="uppercase text-blue-600 dark:text-blue-400">
+                Language
+              </div>
+              <Select
+                className="w-[170px]"
+                size="sm"
+                onChange={handleLanguageChange}
+                aria-label="Select Language"
+                labelPlacement="outside"
+                defaultSelectedKeys={[lng]}
+                startContent={lngstartCon}
+              >
+                <SelectItem
+                  key="ge"
+                  value={"georgia"}
+                  startContent={
+                    <Avatar
+                      alt="Georgia"
+                      className="w-6 h-6 bg-transparent"
+                      src="https://flagsapi.com/GE/flat/64.png"
+                    />
+                  }
+                >
+                  ქართული
+                </SelectItem>
+                <SelectItem
+                  key="en"
+                  value={"english"}
+                  startContent={
+                    <Avatar
+                      alt="Georgia"
+                      className="w-6 h-6 bg-transparent"
+                      src="https://flagsapi.com/US/flat/64.png"
+                    />
+                  }
+                >
+                  English
+                </SelectItem>
+              </Select>
             </div>
           </div>
         </div>

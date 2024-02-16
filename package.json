@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -50,6 +50,7 @@
     "jwt-decode": "^4.0.0",
     "langchain": "^0.0.197-rc.1",
     "monaco-editor": "^0.43.0",
+    "negotiator": "^0.6.3",
     "next": "^14.0.4",
     "next-auth": "^4.23.2",
     "next-themes": "^0.2.1",
@@ -75,6 +76,7 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
+    "@types/negotiator": "^0.6.3",
     "@types/nprogress": "^0.2.1"
   }
 }

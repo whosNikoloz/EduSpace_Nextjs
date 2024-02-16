@@ -14,6 +14,7 @@ import {
 import { Reveal } from "../RevealFramer";
 import { Avatar, Button, Divider, Select, SelectItem } from "@nextui-org/react";
 import { useTheme } from "next-themes";
+import { usePathname, useRouter } from "next/navigation";
 
 const DropDownItems = {
   en: [
@@ -200,7 +201,7 @@ function NDropdown({
         setLngstartCon(
           <Avatar
             alt="Georgia"
-            className="w-6 h-6 bg-transparent"
+            className="w-5 h-5 bg-transparent"
             src="https://flagsapi.com/GE/flat/64.png"
           />
         );
@@ -209,7 +210,7 @@ function NDropdown({
         setLngstartCon(
           <Avatar
             alt="English"
-            className="w-6 h-6 bg-transparent"
+            className="w-5 h-5 bg-transparent"
             src="https://flagsapi.com/US/flat/64.png"
           />
         );
@@ -240,17 +241,29 @@ function NDropdown({
         break;
     }
   };
+
+  const pathName = usePathname();
+  const router = useRouter();
+
+  const handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const selectedLanguage = event.target.value;
+    if (!pathName) return "/";
+    const segments = pathName.split("/");
+    segments[1] = selectedLanguage;
+    router.push(segments.join("/"));
+  };
+
   return (
     <>
       <div
         ref={dropdownRef}
         onClick={handleDropdownClick}
-        className={`transition-all duration-300 ease-in-out overflow-hidden sm:hidden w-full  ${
-          Open ? "max-h-[700px]" : "max-h-0"
+        className={`transition-all duration-300 ease-in-out overflow-hidden   sm:hidden w-full  ${
+          Open ? "max-h-96" : "max-h-0"
         }`}
       >
         <div
-          className={`px-3 py-4 overflow-y-auto  bg-white rounded-xl shadow-xl dark:bg-[#18181B]`}
+          className={`px-3 py-4 overflow-y-auto   bg-white rounded-xl shadow-xl dark:bg-[#18181B]`}
         >
           <ul className="space-y-2 ">
             {LngmenuItems.map((item, index) => (
@@ -372,87 +385,90 @@ function NDropdown({
               </li>
             ))}
           </ul>
-          <Divider className="my-4" />
-          <div className="flex flex-row h-7 items-center space-x-4 text-small">
-            <p className="px-4 py-3 text-sm  justify-between text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300   ">
-              Theme
-            </p>
-            <Select
-              className="w-[150px]"
-              size="sm"
-              onChange={handleThemeChange}
-              aria-label="Select theme"
-              labelPlacement="outside"
-              defaultSelectedKeys={[theme || "system"]}
-              startContent={startCon}
-            >
-              <SelectItem
-                key="dark"
-                value={"dark"}
-                startContent={
-                  <MoonFilledIcon size={20} height={20} width={20} />
-                }
+          <Divider className="my-4 " />
+          <ul className="space-y-2 ">
+            <div className="flex gap-4">
+              <p className="px-4 py-3 text-sm  justify-between text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300   ">
+                Theme
+              </p>
+              <Select
+                className="w-[150px]"
+                size="sm"
+                onChange={handleThemeChange}
+                aria-label="Select theme"
+                labelPlacement="outside"
+                defaultSelectedKeys={[theme || "system"]}
+                startContent={startCon}
               >
-                Dark
-              </SelectItem>
-              <SelectItem
-                key="light"
-                value={"light"}
-                startContent={
-                  <SunFilledIcon size={20} height={20} width={20} />
-                }
+                <SelectItem
+                  key="dark"
+                  value={"dark"}
+                  startContent={
+                    <MoonFilledIcon size={20} height={20} width={20} />
+                  }
+                >
+                  Dark
+                </SelectItem>
+                <SelectItem
+                  key="light"
+                  value={"light"}
+                  startContent={
+                    <SunFilledIcon size={20} height={20} width={20} />
+                  }
+                >
+                  Light
+                </SelectItem>
+                <SelectItem
+                  key="system"
+                  value={"system"}
+                  startContent={<SystemIcon size={20} height={20} width={20} />}
+                >
+                  System
+                </SelectItem>
+              </Select>
+            </div>
+            <div className="flex">
+              <p className="px-4 py-3 text-sm  justify-between text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300   ">
+                Language
+              </p>
+              <Select
+                className="w-[150px]"
+                size="sm"
+                onChange={handleLanguageChange}
+                aria-label="Select Language"
+                labelPlacement="outside"
+                defaultSelectedKeys={[lng || "system"]}
+                startContent={lngstartCon}
               >
-                Light
-              </SelectItem>
-              <SelectItem
-                key="system"
-                value={"system"}
-                startContent={<SystemIcon size={20} height={20} width={20} />}
-              >
-                System
-              </SelectItem>
-            </Select>
-            <Divider orientation="vertical" />
-            <p className="px-4 py-3 text-sm  justify-between text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300   ">
-              Language
-            </p>
-            <Select
-              className="w-[170px]"
-              size="sm"
-              //onChange={handleThemeChange}
-              aria-label="Select Language"
-              labelPlacement="outside"
-              //defaultSelectedKeys={[theme || "system"]}
-              startContent={lngstartCon}
-            >
-              <SelectItem
-                key="georgia"
-                value={"ge"}
-                startContent={
-                  <Avatar
-                    alt="Georgia"
-                    className="w-6 h-6 bg-transparent"
-                    src="https://flagsapi.com/GE/flat/64.png"
-                  />
-                }
-              >
-                ქართული
-              </SelectItem>
-              <SelectItem
-                key="english"
-                value={"en"}
-                startContent={
-                  <Avatar
-                    alt="Georgia"
-                    className="w-6 h-6 bg-transparent"
-                    src="https://flagsapi.com/US/flat/64.png"
-                  />
-                }
-              >
-                English
-              </SelectItem>
-            </Select>
-          </div>
+                <SelectItem
+                  key="ge"
+                  value={"georgia"}
+                  startContent={
+                    <Avatar
+                      alt="Georgia"
+                      className="w-5 h-5 bg-transparent"
+                      src="https://flagsapi.com/GE/flat/64.png"
+                    />
+                  }
+                >
+                  ქართული
+                </SelectItem>
+                <SelectItem
+                  key="en"
+                  value={"english"}
+                  startContent={
+                    <Avatar
+                      alt="Georgia"
+                      className="w-5 h-5 bg-transparent"
+                      src="https://flagsapi.com/US/flat/64.png"
+                    />
+                  }
+                >
+                  English
+                </SelectItem>
+              </Select>
+            </div>
+          </ul>
         </div>
       </div>
     </>
