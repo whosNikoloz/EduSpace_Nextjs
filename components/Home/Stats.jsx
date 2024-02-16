@@ -45,21 +45,37 @@ function Number({ n }) {
   return <span ref={numberRef}>0</span>;
 }
 
-const Stats = () => {
+const languageData = {
+  en: {
+    title: "Why We?",
+    paragraph:
+      "Experience superior online learning with our user-friendly platform. Diverse courses, interactive tools, and expert content create an engaging educational journey. Adaptive learning, community connections, and responsive support ensure an accessible, enriching experience. Join us for a transformative approach to education in just a few clicks.",
+    list1: "Active Students",
+    list2: "Registered Courses",
+    list3: "Claimed Certifications",
+  },
+  ge: {
+    title: "რატომ ჩვენ?",
+    paragraph:
+      "განიცადეთ უმაღლესი ონლაინ სწავლა ჩვენს მოსახერხებელი მომხმარებლისთვის პლატფორმა. მრავალფეროვანი კურსები, ინტერაქტიული ინსტრუმენტები და ექსპერტის შინაარსი შექმენით საინტერესო საგანმანათლებლო მოგზაურობა. ადაპტური სწავლა, საზოგადოების კავშირები და საპასუხო მხარდაჭერა უზრუნველყოფს  ხელმისაწვდომი, გამდიდრებული გამოცდილება. შემოგვიერთდით ტრანსფორმაციისთვის  მიდგომა განათლებისადმი მხოლოდ რამდენიმე დაწკაპუნებით.",
+    list1: "აქტიური სტუდენტი",
+    list2: "დარეგისტრირებული კურსები",
+    list3: "გაცემული სერთიფიკატები",
+  },
+};
+
+const Stats = ({ lng }) => {
+  const { title, paragraph, list1, list2, list3 } =
+    languageData[lng ? lng : "ge"];
   return (
     <>
       <div className="container mx-auto text-center lg:text-left xl:px-32">
         <div className="grid items-center lg:grid-cols-2">
           <div className="mb-12 lg:mb-0">
             <div className="relative z-[1] block rounded-lg  px-6 py-12  md:px-12 lg:-mr-14 backdrop-blur-[30px]">
-              <h2 className="mb-6 text-4xl font-bold">რატომ ჩვენ?</h2>
+              <h2 className="mb-6 text-4xl font-bold">{title}</h2>
               <p className="mb-12 text-neutral-500 dark:text-neutral-300">
-                Experience superior online learning with our user-friendly
-                platform. Diverse courses, interactive tools, and expert content
-                create an engaging educational journey. Adaptive learning,
-                community connections, and responsive support ensure an
-                accessible, enriching experience. Join us for a transformative
-                approach to education in just a few clicks.
+                {paragraph}
               </p>
 
               <div className="grid gap-x-6 md:grid-cols-3">
@@ -68,7 +84,7 @@ const Stats = () => {
                     <Number n={20000} />+
                   </h2>
                   <h5 className="mb-0 text-lg font-medium text-neutral-500 dark:text-neutral-300">
-                    Active Students
+                    {list1}
                   </h5>
                 </div>
 
@@ -77,7 +93,7 @@ const Stats = () => {
                     <Number n={170} />+
                   </h2>
                   <h5 className="mb-0 text-lg font-medium text-neutral-500 dark:text-neutral-300">
-                    Registered Courses
+                    {list2}
                   </h5>
                 </div>
 
@@ -86,7 +102,7 @@ const Stats = () => {
                     <Number n={300} />+
                   </h2>
                   <h5 className="mb-0 text-lg font-medium text-neutral-500 dark:text-neutral-300">
-                    Claimed Certifications
+                    {list3}
                   </h5>
                 </div>
               </div>

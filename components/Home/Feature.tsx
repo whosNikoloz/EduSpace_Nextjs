@@ -6,34 +6,74 @@ import { FcGraduationCap, FcLock, FcCommandLine } from "react-icons/fc";
 import { useScroll, motion } from "framer-motion";
 import { useRef } from "react";
 
-const features = [
-  {
-    name: "Online Learning",
-    description:
-      "მიიღეთ კურსებისა და მასალების ფართო სპექტრი ეფექტური ონლაინ სწავლისთვის.",
-    icon: FcGraduationCap,
-  },
-  {
-    name: "Secure Platform",
-    description:
-      "ჩვენი პლატფორმა უზრუნველყოფს თქვენი მონაცემების უსაფრთხოებას SSL სერთიფიკატებით უსაფრთხო და დაშიფრული კავშირებისთვის.",
-    icon: FcLock,
-  },
-  {
-    name: "Regular Testing",
-    description:
-      "რეგულარული ტესტირება და ვიქტორინები, რათა თვალყური ადევნოთ თქვენს პროგრესს და გააუმჯობესოთ თქვენი სასწავლო გამოცდილება.",
-    icon: FcCommandLine,
-  },
-];
+const features = {
+  en: [
+    {
+      name: "Online Learning",
+      description: "For a wide range of different courses and materials.",
+      icon: FcGraduationCap,
+    },
+    {
+      name: "Secure Platform",
+      description:
+        "Our platform ensures the safety of your data with SSL certificates for secure and encrypted connections.",
+      icon: FcLock,
+    },
+    {
+      name: "Regular Testing",
+      description:
+        "Regular testing and quizzes to track your progress and enhance your learning experience.",
+      icon: FcCommandLine,
+    },
+  ],
 
-export default function Feature() {
+  ge: [
+    {
+      name: "Online Learning",
+      description:
+        "მიიღეთ კურსებისა და მასალების ფართო სპექტრი ეფექტური ონლაინ სწავლისთვის.",
+      icon: FcGraduationCap,
+    },
+    {
+      name: "Secure Platform",
+      description:
+        "ჩვენი პლატფორმა უზრუნველყოფს თქვენი მონაცემების უსაფრთხოებას SSL სერთიფიკატებით უსაფრთხო და დაშიფრული კავშირებისთვის.",
+      icon: FcLock,
+    },
+    {
+      name: "Regular Testing",
+      description:
+        "რეგულარული ტესტირება და ვიქტორინები, რათა თვალყური ადევნოთ თქვენს პროგრესს და გააუმჯობესოთ თქვენი სასწავლო გამოცდილება.",
+      icon: FcCommandLine,
+    },
+  ],
+};
+
+const languageData = {
+  en: {
+    title: "Welcome to Our Online Learning Platform",
+    SecondTitle: "Enhance Your Skills, Anytime, Anywhere",
+    paragraph:
+      "Our platform offers a wide range of courses and materials for effective online learning. Regular testing and evaluations are available to monitor your progress and ensure the best learning experience.",
+  },
+  ge: {
+    title: "კეთილი იყოს თქვენი მობრძანება ჩვენს ონლაინ სასწავლო პლატფორმაზე",
+    SecondTitle: "გააძლიერე შენი უნარები, ნებისმიერ დროს, ნებისმიერ ადგილას",
+    paragraph:
+      "ჩვენი პლატფორმა გთავაზობთ კურსებისა და მასალების ფართო სპექტრს ეფექტური ონლაინ სწავლისთვის. რეგულარული ტესტირება და ვიქტორინებია ხელმისაწვდომია თქვენი პროგრესის თვალყურის დევნებისთვის და სწავლის გასაუმჯობესებლად.",
+  },
+};
+
+export default function Feature({ lng }: { lng: string }) {
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["0 1", "1.01 1"],
   });
+
+  const compData = languageData[(lng as keyof typeof languageData) || "ge"];
+  const featuresData = features[(lng as keyof typeof features) || "ge"];
 
   return (
     <div className="overflow-hidden">
@@ -42,19 +82,16 @@ export default function Feature() {
           <div className="lg:pr-8 lg:pt-4 lg:ml-24">
             <div className="lg:max-w-lg">
               <h2 className=" font-semibold leading-7 text-[#444] hover:text-white transition-all">
-                Welcome to Our Online Learning Platform
+                {compData.title}
               </h2>
               <p className="mt-2 text-3xl font-bold tracking-tight dark:text-white text-black sm:text-4xl">
-                Enhance Your Skills, Anytime, Anywhere
+                {compData.SecondTitle}
               </p>
               <p className="mt-6 text-lg leading-8 dark:text-white text-black">
-                ჩვენი პლატფორმა გთავაზობთ კურსებისა და მასალების ფართო სპექტრს
-                ეფექტური ონლაინ სწავლისთვის. რეგულარული ტესტირება და
-                ვიქტორინებია ხელმისაწვდომია თქვენი პროგრესის თვალყურის
-                დევნებისთვის და სწავლის გასაუმჯობესებლად.
+                {compData.paragraph}
               </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 dark:text-white text-black lg:max-w-none">
-                {features.map((feature) => (
+                {featuresData.map((feature) => (
                   <div key={feature.name} className="relative pl-9">
                     <dt className="inline font-semibold dark:text-white text-black">
                       <feature.icon className="absolute left-1 top-1 h-5 w-5 text-indigo-600" />

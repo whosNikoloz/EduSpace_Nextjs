@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Reveal } from "../RevealFramer";
 
-const CompilerSection = () => {
+const CompilerSection = ({ lng }) => {
   const { user } = useUser();
 
   const handleCourse = () => {
@@ -37,6 +37,21 @@ public class HelloWorld
     `
   );
 
+  const languageData = {
+    en: {
+      paragraph:
+        "Go ahead and try it. Our hands-on learning environment is you-write Real code from your very first lesson.",
+      buttonTitel: "Start Learning",
+    },
+    ge: {
+      paragraph:
+        "წადი, სცადე. ჩვენი პრაქტიკული სასწავლო გარემო ნიშნავს თქვენ დაწერთ რეალურ კოდს თქვენი პირველივე გაკვეთილიდან.",
+      buttonTitel: "დაიწყე სწავლა",
+    },
+  };
+
+  const { paragraph, buttonTitel } = languageData[lng ? lng : "ge"];
+
   return (
     <div>
       <div className="flex flex-wrap">
@@ -52,8 +67,7 @@ public class HelloWorld
               in seconds
             </h1>
             <p className="mt-6 text-sm text-gray-600 dark:text-white">
-              წადი, სცადე. ჩვენი პრაქტიკული სასწავლო გარემო ნიშნავს თქვენ დაწერთ
-              რეალურ კოდს თქვენი პირველივე გაკვეთილიდან.
+              {paragraph}
               <br />
             </p>
             <div className="mt-10 flex items-center justify-center md:justify-start gap-x-6">
@@ -62,7 +76,7 @@ public class HelloWorld
                 variant="shadow"
                 onClick={handleCourse}
               >
-                დაიწყე სწავლა
+                {buttonTitel}
               </Button>
               <Link
                 href="#compiler-section"
@@ -77,7 +91,12 @@ public class HelloWorld
         {/* Second container */}
         <div className="w-full md:w-2/3 md:order-1 p-6">
           <Reveal direction="right">
-            <Compiler code={code} isDarkMode={true} onChange={setCode} />
+            <Compiler
+              code={code}
+              isDarkMode={true}
+              onChange={setCode}
+              lng={lng}
+            />
           </Reveal>
         </div>
       </div>

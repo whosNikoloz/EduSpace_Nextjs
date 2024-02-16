@@ -32,7 +32,7 @@ import { useParams } from "next/navigation";
 
 export default function Home() {
   const { lng } = useParams();
-  console.log(lng);
+  const CurrLanguage = lng === "ge" ? "ge" : "en";
 
   return (
     <>
@@ -55,12 +55,12 @@ export default function Home() {
 
           {/* Content */}
           <div className="mb-4 container mx-auto pt-9 lg:px-32 h-[100vh]  sm:px-6 flex-grow relative z-10">
-            <Hero />
+            <Hero lng={CurrLanguage} />
           </div>
         </div>
         <section className=" items-center justify-center">
           <div className="mb-10">
-            <AutoScrollCarousel />
+            <AutoScrollCarousel lng={CurrLanguage} />
           </div>
         </section>
         <div className="hidden md:block">
@@ -70,7 +70,7 @@ export default function Home() {
         <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300  dark:to-black ">
           <div className="mt-7 ">
             <div className="mt-20">
-              <Feature />
+              <Feature lng={CurrLanguage} />
             </div>
           </div>
           <div className="hidden md:block">
@@ -80,7 +80,7 @@ export default function Home() {
         <div className="bg-gradient-to-b dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section className=" items-center justify-center gap-4 py-8 md:py-10 container mx-auto max-w-7xl pt-9 px-6 flex-grow">
             <div className="mt-7 ">
-              <CompilerSection />
+              <CompilerSection lng={CurrLanguage} />
             </div>
           </section>
           <div className="hidden md:block">
@@ -93,7 +93,7 @@ export default function Home() {
         <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
             <div className="mt-7">
-              <Team />
+              <Team lng={CurrLanguage} />
             </div>
           </section>
 
@@ -111,7 +111,7 @@ export default function Home() {
           >
             <div className="mt-7 ">
               <div className="mt-10">
-                <StepsNew />
+                <StepsNew lng={CurrLanguage} />
               </div>
             </div>
           </section>
@@ -127,7 +127,7 @@ export default function Home() {
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
             <div className="mt-7 ">
               <div className="mt-10">
-                <Stats />
+                <Stats lng={CurrLanguage} />
               </div>
             </div>
           </section>
@@ -141,7 +141,7 @@ export default function Home() {
         <div className="bg-gradient-to-b dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
             <div className=" text-center   justify-center">
-              <Review />
+              <Review lng={CurrLanguage} />
             </div>
           </section>
         </div>

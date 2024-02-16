@@ -7,7 +7,7 @@ import {
   Avatar,
 } from "@nextui-org/react";
 
-const Review = () => {
+const Review = ({ lng }) => {
   const peopleData = {
     user: [
       {
@@ -19,8 +19,14 @@ const Review = () => {
         color: "danger",
         image:
           "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
-        comment:
-          "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
+        en: {
+          comment:
+            "EduSpace made coding feel like a breeze! Step-by-step tutorials and interactive exercises helped me get through the programming screen quickly.",
+        },
+        ge: {
+          comment:
+            "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
+        },
       },
       {
         name: "Nikoloz  Kobaidze2",
@@ -31,8 +37,14 @@ const Review = () => {
         followers: "1k",
         image:
           "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
-        comment:
-          "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
+        en: {
+          comment:
+            "EduSpace made coding feel like a breeze! Step-by-step tutorials and interactive exercises helped me get through the programming screen quickly.",
+        },
+        ge: {
+          comment:
+            "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
+        },
       },
       {
         name: "Nikoloz  Kobaidze3",
@@ -42,12 +54,17 @@ const Review = () => {
         following: "30",
         followers: "50k",
         image: "https://i.pravatar.cc/100?img=1",
-        comment:
-          "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
+        en: {
+          comment:
+            "EduSpace made coding feel like a breeze! Step-by-step tutorials and interactive exercises helped me get through the programming screen quickly.",
+        },
+        ge: {
+          comment:
+            "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
+        },
       },
     ],
   };
-
   return (
     <>
       <div className=" flex items-center justify-center ">
@@ -91,7 +108,9 @@ const Review = () => {
                         </div>
                       </CardHeader>
                       <CardBody className="px-3 py-0 text-small text-default-400">
-                        <p>{person.comment}</p>
+                        <p>
+                          {lng === "en" ? person.en.comment : person.ge.comment}
+                        </p>
                         <span className="pt-2">{person.tag}</span>
                       </CardBody>
                       <CardFooter className="gap-3">

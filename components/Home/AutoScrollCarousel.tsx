@@ -20,7 +20,7 @@ interface Course {
   levelId: number;
 }
 
-const AutoScrollCarousel = () => {
+const AutoScrollCarousel = ({ lng }: { lng: string }) => {
   const [courses, setCourses] = useState<Course[]>([]);
 
   const { user } = useUser();
@@ -82,7 +82,7 @@ const AutoScrollCarousel = () => {
           </div>
           <div className="text-left">
             <h1 className="text-3xl  font-bold tracking-tight dark:text-white text-black sm:text-5xl">
-              სასწავლო კურსები
+              {lng === "en" ? "Courses" : "სასწავლო კურსებ"}
             </h1>
           </div>
         </div>

@@ -9,7 +9,7 @@ import { Button } from "@nextui-org/react";
 import { Run } from "../icons";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
-export const Compiler = ({ code, isDarkMode, onChange }) => {
+export const Compiler = ({ code, isDarkMode, onChange, lng }) => {
   useEffect(() => {
     if (isDarkMode) {
       defineTheme("githubdark");
@@ -182,7 +182,7 @@ export const Compiler = ({ code, isDarkMode, onChange }) => {
             isLoading={Compiling}
             onClick={() => compileCode()}
           >
-            <Run size={20} /> კომპილაცია
+            <Run size={20} /> {lng === "ge" ? "გაშვება" : "Run"}
           </Button>
         </div>
       </div>

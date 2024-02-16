@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Reveal } from "../RevealFramer";
 import { useRef } from "react";
 
-export const Hero = () => {
+export const Hero = ({ lng }) => {
   const scrollRef = useRef(null);
 
   const handleScroll = () => {
@@ -10,33 +10,53 @@ export const Hero = () => {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const languageData = {
+    en: {
+      span1: "Idea of the project.",
+      span2: "Learn More",
+      h1: "Welcome to",
+      h1span: "EduSpace",
+      h1span2: "Learn Programming Online",
+    },
+    ge: {
+      span1: "პროექტის მიზანი.",
+      span2: "გიაგე მეტი",
+      h1: "Welcome to",
+      h1span: "EduSpace",
+      h1span2: "ისწავლე მარტივად პროგრამირება",
+    },
+  };
+
+  const { span1, span2, h1, h1span, h1span2 } = languageData[lng];
+
   return (
     <>
       <div className="relative isolate px-6 pt-40 lg:px-8">
         <div className="mx-auto max-w-3xl ">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-gray-500 hover:ring-blue-600">
-              პროექტის მიზანი.{" "}
+              {span1}{" "}
               <Link
                 href="#step-section"
                 className="font-semibold text-blue-600 "
               >
                 <span className="absolute inset-0" aria-hidden="true"></span>
-                გიაგე მეტი <span aria-hidden="true">&rarr;</span>
+                {span2} <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
           </div>
           <div className="text-left lg:mt-14 mt-1">
             <h1 className="text-5xl font-bold tracking-tight  lg:text-6xl text-white">
-              Welcome to
+              {h1}
               <Reveal direction="fade">
                 <Link href="user/auth">
                   <span className="bg-gradient-to-r from-blue-600 via-blue-600 text-5xl sm:text-7xl  to-white  text-transparent bg-clip-text ">
-                    EduSpace
+                    {h1span}
                   </span>
                 </Link>
               </Reveal>
-              Learn Programming Online
+              {h1span2}
             </h1>
           </div>
         </div>

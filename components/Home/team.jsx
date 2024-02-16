@@ -4,7 +4,7 @@ import { Image } from "@nextui-org/react";
 import { Reveal } from "../RevealFramer";
 import { Card, CardHeader } from "@nextui-org/react";
 
-export const Team = () => {
+export const Team = ({ lng }) => {
   const [selectedCategory, setSelectedCategory] = useState("mobile");
   const [inputValue, setInputValue] = useState("");
 
@@ -106,6 +106,19 @@ export const Team = () => {
     ],
   };
 
+  const languageData = {
+    en: {
+      paragraph:
+        "Meet our certified and qualified team members,  Both active and inactive, dedicated to your study To facilitate the journey in programming.",
+    },
+    ge: {
+      paragraph:
+        "გაიცანით ჩვენი სერტიფიცირებული და კვალიფიციური გუნდის წევრები,როგორც აქტიური, ასევე არააქტიური, მიძღვნილი თქვენი სასწავლო მოგზაურობის გასაადვილებლად პროგრამირებაში.",
+    },
+  };
+
+  const { paragraph } = languageData[lng ? lng : "ge"];
+
   return (
     <>
       <section className="">
@@ -115,9 +128,7 @@ export const Team = () => {
           </h1>
 
           <p className="max-w-2xl mx-auto my-6 text-center text-gray-500 dark:text-gray-300">
-            გაიცანით ჩვენი სერტიფიცირებული და კვალიფიციური გუნდის წევრები,
-            როგორც აქტიური, ასევე არააქტიური, მიძღვნილი თქვენი სასწავლო
-            მოგზაურობის გასაადვილებლად პროგრამირებაში.
+            {paragraph}
           </p>
           <div className="flex items-center justify-center ">
             <div className="flex items-center p-1 border border-blue-600  dark:border-blue-400 rounded-xl gap-2">
