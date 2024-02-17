@@ -187,104 +187,106 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
           </Button>
         )}
 
-        {dropdownOpen && (
-          <div
-            ref={dropdownRef}
-            className="absolute right-0 mt-3 dark:bg-zinc-800 bg-white rounded-md shadow-lg overflow-hidden z-20  w-72  sm:w-96 max-h-96"
-          >
-            {notifications.length === 0 ? ( // Check if there are no notifications
-              <div>
-                <p className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 mx-2">
-                  თქვენ არ გაქვთ შეტყობინება
-                </p>
-              </div>
-            ) : (
-              <>
-                <div className="container p-2 flex justify-between">
-                  <span className="p-2 text-xl">ცნობები</span>
-                  <Dropdown backdrop="opaque">
-                    <DropdownTrigger>
-                      <Button isIconOnly variant="light">
-                        <DotsIcon
-                          size={35}
-                          fill={undefined}
-                          height={undefined}
-                          width={undefined}
-                        />
-                      </Button>
-                    </DropdownTrigger>
-                    <DropdownMenu variant="faded" aria-label="Static Actions">
-                      <DropdownItem key="new" textValue="MarkAsReadAll">
-                        <Button
-                          size="sm"
-                          className="bg-transparent "
-                          startContent={
-                            <Vector size={24} height={24} width={24} />
-                          }
-                          onClick={markAsRead}
-                        >
-                          ყველას მონიშვნა წაკითხულად
-                        </Button>
-                      </DropdownItem>
-                      <DropdownItem textValue="OpenNotf">
-                        <Button
-                          size="sm"
-                          className="bg-transparent "
-                          startContent={
-                            <Vector size={24} height={24} width={24} />
-                          }
-                        >
-                          Open Notifications
-                        </Button>
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-                  {seconddropdownOpen && <></>}
-                </div>
-                {notifications.map((notification) => (
-                  <div
-                    key={notification.notificationId}
-                    className="relative cursor-pointer"
-                  >
-                    {!notification.isRead && (
-                      <div className=" rounded-full  absolute top-8 right-4 ">
-                        <span className="relative flex h-3 w-3">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-                        </span>
-                      </div>
-                    )}
-
-                    <div
-                      className={`flex items-center px-6 py-3 hover:bg-zinc-200 dark:hover:bg-zinc-600 -mx-2 `}
-                    >
-                      <Avatar
-                        className="h-8 w-11 rounded-full object-cover mx-1"
-                        isBordered
-                        as="button"
-                        color="primary"
-                        name={notification.commentAuthorUsername}
-                        size="sm"
-                        src={notification.commentAuthorPicture}
+        <div
+          ref={dropdownRef}
+          className={`absolute right-0 mt-3  rounded-md shadow-lg overflow-hidden z-20  w-72  transition-all duration-350 ease-in-out${
+            dropdownOpen
+              ? "max-h-96 dark:bg-zinc-800 bg-white"
+              : "max-h-0 invisible"
+          }`}
+        >
+          {notifications.length === 0 ? ( // Check if there are no notifications
+            <div>
+              <p className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 mx-2">
+                თქვენ არ გაქვთ შეტყობინება
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="container p-2 flex justify-between">
+                <span className="p-2 text-xl">ცნობები</span>
+                <Dropdown backdrop="opaque">
+                  <DropdownTrigger>
+                    <Button isIconOnly variant="light">
+                      <DotsIcon
+                        size={35}
+                        fill={undefined}
+                        height={undefined}
+                        width={undefined}
                       />
-                      <p className="dark:text-white text-black text-sm mx-1">
-                        <span className="font-bold">
-                          {notification.commentAuthorUsername}
-                        </span>{" "}
-                        დატოვა კომენტარი :{" "}
-                        <span className="font-bold text-blue-500">
-                          {notification.message}
-                        </span>
-                        {"   "}
-                        {formatTimeAgo(notification.createdAt)}
-                      </p>
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu variant="faded" aria-label="Static Actions">
+                    <DropdownItem key="new" textValue="MarkAsReadAll">
+                      <Button
+                        size="sm"
+                        className="bg-transparent "
+                        startContent={
+                          <Vector size={24} height={24} width={24} />
+                        }
+                        onClick={markAsRead}
+                      >
+                        ყველას მონიშვნა წაკითხულად
+                      </Button>
+                    </DropdownItem>
+                    <DropdownItem textValue="OpenNotf">
+                      <Button
+                        size="sm"
+                        className="bg-transparent "
+                        startContent={
+                          <Vector size={24} height={24} width={24} />
+                        }
+                      >
+                        Open Notifications
+                      </Button>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+                {seconddropdownOpen && <></>}
+              </div>
+              {notifications.map((notification) => (
+                <div
+                  key={notification.notificationId}
+                  className="relative cursor-pointer"
+                >
+                  {!notification.isRead && (
+                    <div className=" rounded-full  absolute top-8 right-4 ">
+                      <span className="relative flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                      </span>
                     </div>
+                  )}
+
+                  <div
+                    className={`flex items-center px-6 py-3 hover:bg-zinc-200 dark:hover:bg-zinc-600 -mx-2 `}
+                  >
+                    <Avatar
+                      className="h-8 w-11 rounded-full object-cover mx-1"
+                      isBordered
+                      as="button"
+                      color="primary"
+                      name={notification.commentAuthorUsername}
+                      size="sm"
+                      src={notification.commentAuthorPicture}
+                    />
+                    <p className="dark:text-white text-black text-sm mx-1">
+                      <span className="font-bold">
+                        {notification.commentAuthorUsername}
+                      </span>{" "}
+                      დატოვა კომენტარი :{" "}
+                      <span className="font-bold text-blue-500">
+                        {notification.message}
+                      </span>
+                      {"   "}
+                      {formatTimeAgo(notification.createdAt)}
+                    </p>
                   </div>
-                ))}
-              </>
-            )}
-          </div>
-        )}
+                </div>
+              ))}
+            </>
+          )}
+        </div>
       </div>
     </>
   );

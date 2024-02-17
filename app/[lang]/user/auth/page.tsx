@@ -12,6 +12,7 @@ import { Link } from "@nextui-org/react";
 import React from "react";
 import AnimatedSvg1 from "@/public/AnimatedSvg1.gif";
 import AnimatedSvg2 from "@/public/AnimatedSvg2.gif";
+import { Locale } from "@/i18n.config";
 
 interface ApiResponse {
   success: boolean;
@@ -19,7 +20,47 @@ interface ApiResponse {
   error?: string;
 }
 
-const AuthPage: React.FC = () => {
+const AuthData = {
+  ka: {
+    regData: {
+      title: "რეგისტრაცია",
+      username: "სახელი",
+      email: "ელ-ფოსტა",
+      password: "პაროლი",
+      confirmPassword: "პაროლის დადასტურება",
+      button: "რეიგსტრაცია",
+    },
+    loginData: {
+      title: "შესვლა",
+      email: "ელ-ფოსტა",
+      password: "პაროლი",
+      button: "შესვლა",
+    },
+  },
+  en: {
+    regData: {
+      title: "Sign Up",
+      username: "UserName",
+      email: "Email",
+      password: "Password",
+      confirmPassword: "ConfirmPasswordS",
+      button: "Sign Up",
+    },
+    loginData: {
+      title: "Sign in",
+      email: "Email",
+      password: "Password",
+      button: "Sign in",
+    },
+  },
+};
+
+export default function AuthPage({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const { regData, loginData } = AuthData[lang];
   const router = useRouter();
 
   const [isSignUpMode, setIsSignUpMode] = useState(false);
@@ -58,12 +99,20 @@ const AuthPage: React.FC = () => {
 
   const handleLogin = async () => {
     if (loginState.email === "") {
-      setLoginEmailError("შეავსე Email ველი");
+      setLoginEmailError(
+        lang == "ka"
+          ? "შეავსე ელ-ფოსტის ველი"
+          : "Please fill in the Email field"
+      );
       setIsLoading(false);
       return;
     }
     if (loginState.password === "") {
-      setLoginPasswordError("შეავსე Password ველი");
+      setLoginPasswordError(
+        lang == "ka"
+          ? "შეავსე პაროლის ველი"
+          : "Please fill in the Password field"
+      );
       setIsLoading(false);
       return;
     }
@@ -96,22 +145,36 @@ const AuthPage: React.FC = () => {
 
   const handleRegistration = async () => {
     if (registrationState.username === "") {
-      setRegUserNameError("შეავსე UserName ველი");
+      setRegUserNameError(
+        lang === "ka"
+          ? "შეავსე სახელი ველი"
+          : "Please fill in the UserName field"
+      );
       setIsLoading(false);
       return;
     }
     if (registrationState.email === "") {
-      setRegEmailError("შეავსე Email ველი");
+      setRegEmailError(
+        lang == "ka" ? "შეავსე ელ-ფოსტა ველი" : "Please fill in the Email field"
+      );
       setIsLoading(false);
       return;
     }
     if (registrationState.password === "") {
-      setRegError("შეავსე Password ველი");
+      setRegError(
+        lang == "ka"
+          ? "შეავსე პაროლის ველი"
+          : "Please fill in the Password field"
+      );
       setIsLoading(false);
       return;
     }
     if (registrationState.confirmPassword === "") {
-      setConfirmPasswordError("შეავსე ConfirmPassword ველი");
+      setConfirmPasswordError(
+        lang == "ka"
+          ? "შეავსე პაროლის დადასტურების ველი"
+          : "Please fill in the ConfirmPassword field"
+      );
       setIsLoading(false);
       return;
     }
@@ -157,7 +220,12 @@ const AuthPage: React.FC = () => {
         return;
       }
       if (!isEmailValid) {
-        setLoginEmailError("Please enter a valid email");
+        setLoginEmailError(
+          lang == "ka"
+            ? "შეიყვანეთ ელ-ფოსტა სწორად"
+            : "Please enter a valid email"
+        );
+
         return;
       }
       const response = (await auth.checkEmailLogin(
@@ -182,7 +250,11 @@ const AuthPage: React.FC = () => {
         return;
       }
       if (!isEmailValid) {
-        setRegEmailError("Please enter a valid email");
+        setRegEmailError(
+          lang == "ka"
+            ? "შეიყვანეთ ელ-ფოსტა სწორად"
+            : "Please enter a valid email"
+        );
         return;
       }
       const response = (await auth.checkEmailRegister(
@@ -240,7 +312,9 @@ const AuthPage: React.FC = () => {
     if (registrationState.confirmPassword === "") return;
 
     if (registrationState.password !== registrationState.confirmPassword) {
-      setConfirmPasswordError("პაროლი არ ემთხვევა");
+      setConfirmPasswordError(
+        lang == "ka" ? "პარლი არემთხვევა" : "Password doesnot match"
+      );
     } else {
       setConfirmPasswordError("");
     }
@@ -250,7 +324,11 @@ const AuthPage: React.FC = () => {
     if (registrationState.password === "") return;
 
     if (registrationState.password.length < 6) {
-      setRegPasswordError("პაროლი უნდა იყოს 8 სიმბოლოზე მეტი");
+      setRegPasswordError(
+        lang == "ka"
+          ? "პაროლი უნდა იყოს 6 სიმბოლოზე მეტი"
+          : "Passwrod must be more Then 8 Symbols"
+      );
     } else {
       setRegPasswordError("");
     }
@@ -282,12 +360,12 @@ const AuthPage: React.FC = () => {
         <div className={Style["forms-container"]}>
           <div className={Style["signin-signup"]}>
             <form className={`${Style.authform} ${Style["sign-in-form"]} `}>
-              <h2 className={Style.title}>შესვლა</h2>
+              <h2 className={Style.title}>{loginData.title}</h2>
               <div className="gap-4 flex flex-col md:w-8/12 w-full">
                 <Input
                   value={loginState.email}
                   type="email"
-                  label="Email"
+                  label={loginData.email}
                   classNames={{
                     input: ["text-[16px] "],
                   }}
@@ -303,7 +381,7 @@ const AuthPage: React.FC = () => {
                 />
                 <Input
                   type="password"
-                  label="Password"
+                  label={loginData.password}
                   classNames={{
                     input: ["text-[16px] "],
                   }}
@@ -327,7 +405,7 @@ const AuthPage: React.FC = () => {
                 className="text-blue-600 ml-auto py-2 md:ml-52"
                 href="/user/forgot-password"
               >
-                პაროლი დაგავიწყდა ?
+                {lang === "ka" ? "პაროლი დაგავიწყდა ?" : "Forgot password?"}
               </Link>
 
               <Button
@@ -339,11 +417,13 @@ const AuthPage: React.FC = () => {
                 onClick={handleSubmit}
                 isLoading={isLoading}
               >
-                შესვლა
+                {loginData.button}
               </Button>
               <div className="flex lg:w-8/12 w-full items-center justify-between p-4">
                 <div className="w-full h-[1px] bg-gray-300"></div>
-                <span className="text-sm uppercase mx-6 text-gray-400">Or</span>
+                <span className="text-sm uppercase mx-6 text-gray-400">
+                  {lang === "ka" ? "ან" : "OR"}
+                </span>
                 <div className="w-full h-[1px] bg-gray-300"></div>
               </div>
               <div className={Style["social-media"]}>
@@ -380,11 +460,11 @@ const AuthPage: React.FC = () => {
               </div>
             </form>
             <form className={`${Style.authform} ${Style["sign-up-form"]}`}>
-              <h2 className={Style.title}>რეგისტრაცია</h2>
+              <h2 className={Style.title}>{regData.title}</h2>
               <div className="gap-4 flex flex-col md:w-8/12 w-full">
                 <Input
                   type="text"
-                  label="Username"
+                  label={regData.username}
                   classNames={{
                     input: ["text-[16px] "],
                   }}
@@ -404,7 +484,7 @@ const AuthPage: React.FC = () => {
                 />
                 <Input
                   type="email"
-                  label="Email"
+                  label={regData.email}
                   classNames={{
                     input: ["text-[16px] "],
                   }}
@@ -425,7 +505,7 @@ const AuthPage: React.FC = () => {
 
                 <Input
                   type="password"
-                  label="Password"
+                  label={regData.password}
                   classNames={{
                     input: ["text-[16px] "],
                   }}
@@ -449,7 +529,7 @@ const AuthPage: React.FC = () => {
                   classNames={{
                     input: ["text-[16px] "],
                   }}
-                  label="confirmPassword"
+                  label={regData.confirmPassword}
                   value={registrationState.confirmPassword}
                   onChange={(e) =>
                     setRegistrationState({
@@ -475,11 +555,13 @@ const AuthPage: React.FC = () => {
                 onClick={handleSubmit}
                 isLoading={isLoading}
               >
-                რეგისტრაცია
+                {regData.button}
               </Button>
               <div className="flex lg:w-8/12 w-full  items-center justify-between p-4">
                 <div className="w-full h-[1px] bg-gray-300"></div>
-                <span className="text-sm uppercase mx-6 text-gray-400">Or</span>
+                <span className="text-sm uppercase mx-6 text-gray-400">
+                  {lang === "ka" ? "ან" : "Or"}
+                </span>
                 <div className="w-full h-[1px] bg-gray-300"></div>
               </div>
               <div className={Style["social-media"]}>
@@ -521,13 +603,15 @@ const AuthPage: React.FC = () => {
         <div className={Style["panels-container"]}>
           <div className={`${Style.panel} ${Style["left-panel"]}`}>
             <div className={`${Style.content} mx-auto mt-10`}>
-              <h3 className="mb-4">ახალი ხარ ?</h3>
+              <h3 className="mb-4">
+                {lang === "ka" ? "ახალი ხარ ?" : "New Member ?"}
+              </h3>
               <button
                 className={`${Style.btn} ${Style.transparent}`}
                 id="sign-up-btn"
                 onClick={handleModeToggle} // Toggle sign-up/login form
               >
-                რეგისტრაცია
+                {regData.title}
               </button>
             </div>
             <Image
@@ -539,13 +623,15 @@ const AuthPage: React.FC = () => {
           </div>
           <div className={`${Style.panel} ${Style["right-panel"]}`}>
             <div className={`${Style.content} mx-auto mt-10`}>
-              <h3 className="mb-4">ერთ-ერთი ჩვენგანი ხარ ?</h3>
+              <h3 className="mb-4">
+                {lang === "ka" ? "ერთ-ერთი ჩვენგანი ხარ ?" : "One of us ?"}
+              </h3>
               <button
                 className={`${Style.btn} ${Style.transparent}`}
                 id="sign-in-btn"
                 onClick={handleModeToggle}
               >
-                შესვლა
+                {loginData.title}
               </button>
             </div>
             <Image
@@ -559,6 +645,4 @@ const AuthPage: React.FC = () => {
       </div>
     </>
   );
-};
-
-export default AuthPage;
+}
