@@ -3,10 +3,15 @@
 import { useEffect } from "react";
 import { Link } from "@nextui-org/react";
 import { EduSpace } from "@/components/EduSpaceLogo";
+import { usePathname } from "next/navigation";
 
 import Typed from "typed.js";
 
-const NotFound = () => {
+export default function NotFound() {
+  const pathname = usePathname();
+
+  const language = pathname.split("/")[1];
+
   useEffect(() => {
     const element = document.getElementById("user-type");
 
@@ -70,28 +75,26 @@ const NotFound = () => {
               <span className="text-[#d6d8db]">
                 EduSpace:\ErrorPage\404&gt;
               </span>
-              <span className="text-[#28a745]">404page.html</span>
+              <span className="text-[#28a745]">NotFoundPage.tsx</span>
               <span className="relative inline-block">
                 <span className="relative inline-block bottom-[-2px] left-1 w-[15px] h-[6px]  bg-gray-200 animate-pulse    p-1"></span>
               </span>
             </p>
           </div>
           <div className="absolute inset-0 flex items-center justify-center ">
-            <div className="flex flex-col items-center gap-4 text-center text-white">
-              <h1 className="font-mono text-5xl font-black text-white">
-                Not Found Error 404
+            <div className="flex flex-col items-center gap-6 text-center text-white">
+              <h1 className="font-mono lg:text-5xl sm:text-4xl text-2xl font-black text-white">
+                {language === "ka"
+                  ? "გვერდი ვერ მოიძებნა! 404"
+                  : "Not Found Error 404"}
               </h1>
-              <div className="flex gap-4">
-                <Link href="/" className="rounded-lg border p-2 text-white">
-                  Back to Home
-                </Link>
-              </div>
+              <Link href="/" className="rounded-lg border p-2 text-white">
+                {language === "ka" ? "მთავარი გვერდი" : "Back to Home"}
+              </Link>
             </div>
           </div>
         </div>
       </div>
     </>
   );
-};
-
-export default NotFound;
+}
