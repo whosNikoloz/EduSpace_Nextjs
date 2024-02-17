@@ -1,24 +1,97 @@
-import Image from "next/image";
+"use client";
 
-export default function NotFoundPage() {
+import { useEffect } from "react";
+import { Link } from "@nextui-org/react";
+import { EduSpace } from "@/components/EduSpaceLogo";
+
+import Typed from "typed.js";
+
+const NotFound = () => {
+  useEffect(() => {
+    const element = document.getElementById("user-type");
+
+    if (element) {
+      const strings = [element.innerHTML];
+
+      const options = {
+        strings,
+        typeSpeed: 10,
+        loop: false,
+      };
+
+      const typed = new Typed(".type", options);
+
+      // Clean up function to destroy the Typed instance when component unmounts
+      return () => {
+        typed.destroy();
+      };
+    }
+  }, []);
+
   return (
-    <div className="relative h-screen overflow-hidden bg-indigo-900">
-      <img
-        src="https://external-preview.redd.it/4MddL-315mp40uH18BgGL2-5b6NIPHcDMBSWuN11ynM.jpg?width=960&crop=smart&auto=webp&s=b98d54a43b3dac555df398588a2c791e0f3076d9"
-        className="absolute h-full w-full object-cover"
-        alt="404"
-      />
-      <div className="absolute inset-0 bg-black opacity-25"></div>
-      <div className="container relative z-10 mx-auto flex items-center px-6 py-32 md:px-12 xl:py-40">
-        <div className="relative z-10 flex w-full flex-col items-center font-mono">
-          <h1 className="mt-4 text-center text-5xl font-extrabold leading-tight text-white">
-            You are all alone here
-          </h1>
-          <p className="my-44 animate-bounce text-8xl font-extrabold text-white">
-            404
-          </p>
+    <>
+      <nav
+        className={`z-50 fixed w-full top-0 bg-transparent 
+        }`}
+      >
+        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="relative flex h-16 items-center justify-between">
+            <div className="flex flex-1 items-center justify-center">
+              <div className="flex flex-shrink-0 items-center">
+                <Link href="/">
+                  <EduSpace />
+                </Link>
+                <Link
+                  href="/"
+                  className={`font-bold text-inherit  dark:text-white text-white
+                  }`}
+                >
+                  {" "}
+                  EduSpace
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div className="justify-start relative flex min-h-screen  overflow-hidden bg-[#0C0C0C] py-6 ">
+        <p dir="ltr" className="type mt-10"></p>
+        <div id="user-type" className="hidden ">
+          <div className="ml-4  flex-col  items-start">
+            <span className="font-mono text-[#d6d8db]">
+              Microsoft Windows [Version 10.0.18363.1256]
+            </span>
+            <p className="font-mono text-[#d6d8db]">
+              (c) 2019 Microsoft Corporation. All rights reserved.
+            </p>
+            <br />
+            <p className="run font-mono">
+              <span className="text-[#d6d8db]">
+                EduSpace:\ErrorPage\404&gt;
+              </span>
+              <span className="text-[#28a745]">404page.html</span>
+              <span className="relative inline-block">
+                <span className="relative inline-block bottom-[-2px] left-1 w-[15px] h-[6px]  bg-gray-200 animate-pulse    p-1"></span>
+              </span>
+            </p>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center ">
+            <div className="flex flex-col items-center gap-4 text-center text-white">
+              <h1 className="font-mono text-5xl font-black text-white">
+                Not Found Error 404
+              </h1>
+              <div className="flex gap-4">
+                <Link href="/" className="rounded-lg border p-2 text-white">
+                  Back to Home
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
-}
+};
+
+export default NotFound;
