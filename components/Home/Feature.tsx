@@ -27,7 +27,7 @@ const features = {
     },
   ],
 
-  ge: [
+  ka: [
     {
       name: "Online Learning",
       description:
@@ -56,7 +56,7 @@ const languageData = {
     paragraph:
       "Our platform offers a wide range of courses and materials for effective online learning. Regular testing and evaluations are available to monitor your progress and ensure the best learning experience.",
   },
-  ge: {
+  ka: {
     title: "კეთილი იყოს თქვენი მობრძანება ჩვენს ონლაინ სასწავლო პლატფორმაზე",
     SecondTitle: "გააძლიერე შენი უნარები, ნებისმიერ დროს, ნებისმიერ ადგილას",
     paragraph:

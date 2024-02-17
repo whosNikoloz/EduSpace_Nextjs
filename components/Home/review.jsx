@@ -23,7 +23,7 @@ const Review = ({ lng }) => {
           comment:
             "EduSpace made coding feel like a breeze! Step-by-step tutorials and interactive exercises helped me get through the programming screen quickly.",
         },
-        ge: {
+        ka: {
           comment:
             "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
         },
@@ -41,7 +41,7 @@ const Review = ({ lng }) => {
           comment:
             "EduSpace made coding feel like a breeze! Step-by-step tutorials and interactive exercises helped me get through the programming screen quickly.",
         },
-        ge: {
+        ka: {
           comment:
             "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
         },
@@ -58,7 +58,7 @@ const Review = ({ lng }) => {
           comment:
             "EduSpace made coding feel like a breeze! Step-by-step tutorials and interactive exercises helped me get through the programming screen quickly.",
         },
-        ge: {
+        ka: {
           comment:
             "EduSpace-მა აგრძნობინა კოდირება, როგორც ნიავი! ნაბიჯ-ნაბიჯ გაკვეთილები და ინტერაქტიული სავარჯიშოები დამეხმარა პროგრამირების კონცეფციების სწრაფად გააზრებაში.გმადლობთ, EduSpace, რომ გადამაქციე კოდირების ენთუზიასტად!",
         },
@@ -109,7 +109,7 @@ const Review = ({ lng }) => {
                       </CardHeader>
                       <CardBody className="px-3 py-0 text-small text-default-400">
                         <p>
-                          {lng === "en" ? person.en.comment : person.ge.comment}
+                          {lng === "en" ? person.en.comment : person.ka.comment}
                         </p>
                         <span className="pt-2">{person.tag}</span>
                       </CardBody>

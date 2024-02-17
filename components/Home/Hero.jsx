@@ -19,7 +19,7 @@ export const Hero = ({ lng }) => {
       h1span: "EduSpace",
       h1span2: "Learn Programming Online",
     },
-    ge: {
+    ka: {
       span1: "პროექტის მიზანი.",
       span2: "გიაგე მეტი",
       h1: "Welcome to",

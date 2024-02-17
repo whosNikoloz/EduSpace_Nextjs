@@ -43,14 +43,14 @@ public class HelloWorld
         "Go ahead and try it. Our hands-on learning environment is you-write Real code from your very first lesson.",
       buttonTitel: "Start Learning",
     },
-    ge: {
+    ka: {
       paragraph:
         "წადი, სცადე. ჩვენი პრაქტიკული სასწავლო გარემო ნიშნავს თქვენ დაწერთ რეალურ კოდს თქვენი პირველივე გაკვეთილიდან.",
       buttonTitel: "დაიწყე სწავლა",
     },
   };
 
-  const { paragraph, buttonTitel } = languageData[lng ? lng : "ge"];
+  const { paragraph, buttonTitel } = languageData[lng];
 
   return (
     <div>

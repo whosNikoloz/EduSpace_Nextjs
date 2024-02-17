@@ -50,7 +50,7 @@ const languageData = {
       },
     ],
   },
-  ge: {
+  ka: {
     step: [
       {
         id: "1",

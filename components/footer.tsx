@@ -72,8 +72,7 @@ export const Footer = ({ lng }: { lng: string }) => {
   const pathName = usePathname();
   const router = useRouter();
 
-  const handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const selectedLanguage = event.target.value;
+  const handleLanguageChange = (selectedLanguage: string) => {
     if (!pathName) return "/";
     const segments = pathName.split("/");
     segments[1] = selectedLanguage;
@@ -209,14 +208,14 @@ export const Footer = ({ lng }: { lng: string }) => {
               <Select
                 className="w-[170px]"
                 size="sm"
-                onChange={handleLanguageChange}
+                onChange={(event) => handleLanguageChange(event.target.value)}
                 aria-label="Select Language"
                 labelPlacement="outside"
                 defaultSelectedKeys={[lng]}
                 startContent={lngstartCon}
               >
                 <SelectItem
-                  key="ge"
+                  key="ka"
                   value={"georgia"}
                   startContent={
                     <Avatar

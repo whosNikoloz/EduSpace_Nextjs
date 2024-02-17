@@ -111,7 +111,7 @@ export const Team = ({ lng }) => {
       paragraph:
         "Meet our certified and qualified team members,  Both active and inactive, dedicated to your study To facilitate the journey in programming.",
     },
-    ge: {
+    ka: {
       paragraph:
         "გაიცანით ჩვენი სერტიფიცირებული და კვალიფიციური გუნდის წევრები,როგორც აქტიური, ასევე არააქტიური, მიძღვნილი თქვენი სასწავლო მოგზაურობის გასაადვილებლად პროგრამირებაში.",
     },

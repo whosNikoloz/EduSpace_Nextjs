@@ -64,7 +64,7 @@ const dropdownItems = {
       ],
     },
   ],
-  ge: [
+  ka: [
     {
       key: "beg",
       description: "დამწყებებისათვის საუკეთესო, შესავალი პროგრამირებაში",
@@ -105,7 +105,7 @@ const dropdownItems = {
 };
 
 function MultiLevelDropdown({ isScrolled, lng }) {
-  const lngdropdownItems = dropdownItems[lng ? lng : "ge"];
+  const lngdropdownItems = dropdownItems[lng ? lng : "ka"];
 
   return (
     <Dropdown closeOnSelect={false} backdrop="blur">

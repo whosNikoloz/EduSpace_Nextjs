@@ -50,7 +50,7 @@ const DropDownItems = {
       ],
     },
   ],
-  ge: [
+  ka: [
     {
       label: "შესავალი",
       svg: Csharp,
@@ -110,8 +110,8 @@ const menuItems = {
       submenu: [],
     },
   ],
-  ge: [
-    { label: "სწავლა", href: null, submenu: DropDownItems["ge"] },
+  ka: [
+    { label: "სწავლა", href: null, submenu: DropDownItems["ka"] },
     {
       label: "სოციალური",
       href: "/social",
@@ -197,7 +197,7 @@ function NDropdown({
 
   useEffect(() => {
     switch (lng) {
-      case "ge":
+      case "ka":
         setLngstartCon(
           <Avatar
             alt="Georgia"
@@ -245,8 +245,7 @@ function NDropdown({
   const pathName = usePathname();
   const router = useRouter();
 
-  const handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const selectedLanguage = event.target.value;
+  const handleLanguageChange = (selectedLanguage: string) => {
     if (!pathName) return "/";
     const segments = pathName.split("/");
     segments[1] = selectedLanguage;
@@ -258,14 +257,14 @@ function NDropdown({
       <div
         ref={dropdownRef}
         onClick={handleDropdownClick}
-        className={`transition-all duration-300 ease-in-out overflow-hidden   sm:hidden w-full  ${
-          Open ? "max-h-96" : "max-h-0"
+        className={`transition-all duration-300 ease-in-out overflow-hidden sm:hidden w-full  ${
+          Open ? "max-h-[700px]" : "max-h-0"
         }`}
       >
         <div
-          className={`px-3 py-4 overflow-y-auto   bg-white rounded-xl shadow-xl dark:bg-[#18181B]`}
+          className={`px-3 py-4 overflow-y-auto bg-white rounded-xl shadow-xl dark:bg-[#18181B]`}
         >
-          <ul className="space-y-2 ">
+          <ul className="space-y-3">
             {LngmenuItems.map((item, index) => (
               <li key={index}>
                 {item.href ? (
@@ -368,7 +367,7 @@ function NDropdown({
                                       href={submenu.link || "#"}
                                       className="flex items-center w-full p-2 text-base font-normal bg-transparent transition duration-75 rounded-lg group"
                                     >
-                                      <span className="flex-1 ml-3 text-left whitespace-nowrap text-white">
+                                      <span className="flex-1 ml-3 text-left whitespace-nowrap dark:text-white text-black">
                                         {submenu.title}
                                       </span>
                                     </Link>
@@ -384,11 +383,9 @@ function NDropdown({
                 )}
               </li>
             ))}
-          </ul>
-          <Divider className="my-4 " />
-          <ul className="space-y-2 ">
-            <div className="flex gap-4">
-              <p className="px-4 py-3 text-sm  justify-between text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300   ">
+            <Divider className="my-4 " />
+            <div className="flex gap-4  justify-between ">
+              <p className="px-4 py-3 text-sm   text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300   ">
                 Theme
               </p>
               <Select
@@ -427,21 +424,21 @@ function NDropdown({
                 </SelectItem>
               </Select>
             </div>
-            <div className="flex">
-              <p className="px-4 py-3 text-sm  justify-between text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300   ">
+            <div className="flex justify-between">
+              <p className="px-4 py-3 text-sm   text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300   ">
                 Language
               </p>
               <Select
                 className="w-[150px]"
                 size="sm"
-                onChange={handleLanguageChange}
+                onChange={(event) => handleLanguageChange(event.target.value)}
                 aria-label="Select Language"
                 labelPlacement="outside"
-                defaultSelectedKeys={[lng || "system"]}
+                defaultSelectedKeys={[lng || `ka`]}
                 startContent={lngstartCon}
               >
                 <SelectItem
-                  key="ge"
+                  key="ka"
                   value={"georgia"}
                   startContent={
                     <Avatar
@@ -458,7 +455,7 @@ function NDropdown({
                   value={"english"}
                   startContent={
                     <Avatar
-                      alt="Georgia"
+                      alt="English"
                       className="w-5 h-5 bg-transparent"
                       src="https://flagsapi.com/US/flat/64.png"
                     />

@@ -63,7 +63,7 @@ export const Navbar = ({ lng }: { lng: string }) => {
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
-                  stroke="currentColor"
+                  stroke={isScrolled ? "currentColor" : "#ffff"}
                   aria-hidden="true"
                 >
                   <path
@@ -161,7 +161,7 @@ export const Navbar = ({ lng }: { lng: string }) => {
                       variant="shadow"
                     >
                       <Link href="/user/auth" className="text-white text-sm">
-                        დაწყება
+                        {lng === "en" ? "Start" : "დაწყება"}
                       </Link>
                     </Button>
                   </div>
@@ -172,7 +172,7 @@ export const Navbar = ({ lng }: { lng: string }) => {
         </div>
         <NDropdown
           Open={isMenuOpen}
-          lng={lng as "en" | "ge"}
+          lng={lng as "en" | "ka"}
           onClose={() => setIsMenuOpen(false)}
         />
       </nav>
