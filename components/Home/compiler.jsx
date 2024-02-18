@@ -103,6 +103,7 @@ export const Compiler = ({ code, isDarkMode, onChange, lng }) => {
                   fontSize: 11, // Adjust the font size as needed
                   minimap: { enabled: false }, // Optional minimap configuration
                   scrollbar: { vertical: "hidden", horizontal: "hidden" },
+                  smoothScrolling: true,
                 }}
               />
             </div>
@@ -158,6 +159,7 @@ export const Compiler = ({ code, isDarkMode, onChange, lng }) => {
                 options={{
                   fontSize: 10,
                   minimap: { enabled: false },
+                  smoothScrolling: true,
                 }}
               />
             </div>

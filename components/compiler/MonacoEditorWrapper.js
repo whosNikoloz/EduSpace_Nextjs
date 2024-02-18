@@ -31,6 +31,9 @@ const CodeEditorWindow = ({ onChange, language, code, isDarkMode }) => {
         theme={isDarkMode ? "githubdark" : "githublight"}
         defaultValue="// some comment"
         onChange={handleEditorChange}
+        options={{
+          smoothScrolling: true,
+        }}
       />
     </div>
   );
