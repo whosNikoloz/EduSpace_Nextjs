@@ -247,9 +247,25 @@ function NDropdown({
 
   const handleLanguageChange = (selectedLanguage: string) => {
     if (!pathName) return "/";
-    const segments = pathName.split("/");
-    segments[1] = selectedLanguage;
-    router.push(segments.join("/"));
+
+    // Check if the path already contains the selected language
+    if (pathName.startsWith("/" + selectedLanguage + "/")) return pathName;
+
+    // Find the index of the second occurrence of "/"
+    const secondSlashIndex = pathName.indexOf("/", 1);
+
+    if (secondSlashIndex !== -1) {
+      // Replace the language segment with the selected language
+      const newPath =
+        "/" + selectedLanguage + pathName.substring(secondSlashIndex);
+      router.push(newPath);
+      return newPath;
+    }
+
+    // If there's no second occurrence of "/", just append the selected language
+    const newPath = "/" + selectedLanguage;
+    router.push(newPath);
+    return newPath;
   };
 
   return (
@@ -453,6 +469,7 @@ function NDropdown({
                 <SelectItem
                   key="en"
                   value={"english"}
+                  onClick={() => handleLanguageChange("en")}
                   startContent={
                     <Avatar
                       alt="English"
