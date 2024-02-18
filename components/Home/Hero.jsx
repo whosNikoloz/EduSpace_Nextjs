@@ -51,18 +51,10 @@ export const Hero = ({ lng }) => {
             <h1 className="text-5xl flex flex-col text-mono font-bold tracking-tight  lg:text-6xl text-white">
               {h1}
               <Link href="user/auth">
-                <TypingEffect
-                  text={h1span}
-                  options={{
-                    typeSpeed: 100,
-                    loop: false,
-                    showCursor: true,
-                  }}
-                  once={false}
-                  className="bg-gradient-to-r from-blue-600 via-blue-600 text-5xl sm:text-7xl  to-white  text-transparent bg-clip-text "
-                />
+                <span className="bg-gradient-to-r from-blue-600 via-blue-600 text-5xl sm:text-7xl  to-white  text-transparent bg-clip-text">
+                  {h1span}
+                </span>
               </Link>
-
               {h1span2}
             </h1>
           </div>

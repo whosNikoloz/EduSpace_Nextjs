@@ -42,13 +42,13 @@ const footerLearn = [
 export const Footer = ({ lng }: { lng: string }) => {
   const { resolvedTheme, theme, setTheme } = useTheme();
 
-  const lang = lng === "ge" ? "ქართული" : "ინგლისური";
+  const lang = lng === "ka" ? "ქართული" : "English";
 
   const [lngstartCon, setLngstartCon] = useState<ReactNode>(null);
 
   useEffect(() => {
     switch (lng) {
-      case "ge":
+      case "ka":
         setLngstartCon(
           <Avatar
             alt="Georgia"
@@ -225,7 +225,7 @@ export const Footer = ({ lng }: { lng: string }) => {
                     />
                   }
                 >
-                  ქართული
+                  {lng === "ka" ? "ქართული" : "Georgian"}
                 </SelectItem>
                 <SelectItem
                   key="en"
@@ -238,7 +238,7 @@ export const Footer = ({ lng }: { lng: string }) => {
                     />
                   }
                 >
-                  English
+                  {lng === "en" ? "English" : "ინგლისური"}
                 </SelectItem>
               </Select>
             </div>

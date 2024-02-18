@@ -112,7 +112,7 @@ function MultiLevelDropdown({ isScrolled, lng }) {
       <DropdownTrigger>
         <Button
           disableRipple
-          className={`p-0 bg-transparent data-[hover=true]:bg-transparent  ${
+          className={`p-0 bg-transparent data-[hover=true]:bg-transparent font-bold text-md  ${
             isScrolled
               ? "dark:text-white text-black"
               : "dark:text-white text-white"

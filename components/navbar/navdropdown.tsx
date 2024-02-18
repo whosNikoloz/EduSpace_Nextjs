@@ -273,7 +273,7 @@ function NDropdown({
       <div
         ref={dropdownRef}
         onClick={handleDropdownClick}
-        className={`transition-all duration-300 ease-in-out overflow-hidden sm:hidden w-full  ${
+        className={`transition-all  ease-in-out overflow-hidden sm:hidden w-full  ${
           Open ? "max-h-[700px]" : "max-h-0"
         }`}
       >
@@ -401,7 +401,7 @@ function NDropdown({
             ))}
             <Divider className="my-4 " />
             <div className="flex gap-4  justify-between ">
-              <p className="px-4 py-3 text-sm   text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300   ">
+              <p className="px-4 py-3 text-sm   text-gray-600 bg-transparent capitalize  dark:text-gray-300   ">
                 Theme
               </p>
               <Select
@@ -441,7 +441,7 @@ function NDropdown({
               </Select>
             </div>
             <div className="flex justify-between">
-              <p className="px-4 py-3 text-sm   text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300   ">
+              <p className="px-4 py-3 text-sm   text-gray-600 bg-transparent capitalize  dark:text-gray-300   ">
                 Language
               </p>
               <Select
@@ -464,7 +464,7 @@ function NDropdown({
                     />
                   }
                 >
-                  ქართული
+                  {lng === "ka" ? "ქართული" : "Georgian"}
                 </SelectItem>
                 <SelectItem
                   key="en"
@@ -478,7 +478,7 @@ function NDropdown({
                     />
                   }
                 >
-                  English
+                  {lng === "en" ? "English" : "ინგლისური"}
                 </SelectItem>
               </Select>
             </div>

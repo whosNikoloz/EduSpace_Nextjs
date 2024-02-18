@@ -112,7 +112,7 @@ export const Navbar = ({ lng }: { lng: string }) => {
                   <Link href="/social">
                     <Button
                       disableRipple
-                      className={`p-0 bg-transparent data-[hover=true]:bg-transparent  ${
+                      className={`p-0 bg-transparent data-[hover=true]:bg-transparent font-bold text-md ${
                         isScrolled
                           ? "dark:text-blue-500 text-blue-800"
                           : "dark:text-blue-500 text-blue-400"
@@ -126,7 +126,7 @@ export const Navbar = ({ lng }: { lng: string }) => {
                   <Link href="/compiler/csharp">
                     <Button
                       disableRipple
-                      className={`p-0 bg-transparent data-[hover=true]:bg-transparent  ${
+                      className={`p-0 bg-transparent data-[hover=true]:bg-transparent font-bold text-md  ${
                         isScrolled
                           ? "dark:text-white text-black"
                           : "dark:text-white text-white "
@@ -160,7 +160,10 @@ export const Navbar = ({ lng }: { lng: string }) => {
                       color="primary"
                       variant="shadow"
                     >
-                      <Link href="/user/auth" className="text-white text-sm">
+                      <Link
+                        href="/user/auth"
+                        className="text-white font-bold text-md"
+                      >
                         {lng === "en" ? "Start" : "დაწყება"}
                       </Link>
                     </Button>
