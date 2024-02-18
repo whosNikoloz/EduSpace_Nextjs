@@ -397,7 +397,7 @@ function PostCard({ postData, onDelete }) {
                         )}
                         {postData.picture && (
                           <Image
-                            className="max-w-lg max-h-screen rounded"
+                            className="max-w-lg max-h-[500px] rounded"
                             src={postData.picture}
                             alt="Image Description"
                           />
