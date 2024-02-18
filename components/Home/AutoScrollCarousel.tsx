@@ -10,6 +10,7 @@ import Courses from "@/app/api/Learn/Course";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Reveal } from "../RevealFramer";
 import { Card, CardFooter, CardBody } from "@nextui-org/react";
+import TypingEffect from "../typedtext";
 
 interface Course {
   courseId: number;
@@ -48,8 +49,8 @@ const AutoScrollCarousel = ({ lng }: { lng: string }) => {
   }, []);
 
   useEffect(() => {
-    const perPage = isMobile ? 4 : 6; // Adjust perPage based on the device type.
-    const gap = isMobile ? "3rem" : "1.5rem";
+    const perPage = isMobile ? 3 : 6; // Adjust perPage based on the device type.
+    const gap = isMobile ? "1.5rem" : "1.5rem";
 
     const splide = new Splide(".splide", {
       type: "loop",
@@ -81,9 +82,16 @@ const AutoScrollCarousel = ({ lng }: { lng: string }) => {
             </div>
           </div>
           <div className="text-left">
-            <h1 className="text-3xl  font-bold tracking-tight dark:text-white text-black sm:text-5xl">
-              {lng === "en" ? "Courses" : "სასწავლო კურსებ"}
-            </h1>
+            <TypingEffect
+              text={lng === "en" ? "Courses" : "სასწავლო კურსები"}
+              options={{
+                typeSpeed: 40,
+                loop: false,
+                showCursor: false,
+              }}
+              once={false}
+              className="text-3xl  font-bold tracking-tight dark:text-white text-black sm:text-5xl"
+            />
           </div>
         </div>
       </div>
@@ -130,7 +138,7 @@ const AutoScrollCarousel = ({ lng }: { lng: string }) => {
                   <li className="splide__slide">
                     <div className="slide-content">
                       <div className="max-w-xsborder  rounded-lg shadow bg-gray-800 border-gray-700">
-                        <div className="flex items-center animate-pulse justify-center h-24 md:h-48 mb-4 rounded dark:bg-gray-700">
+                        <div className="flex items-center animate-pulse justify-center h-24 md:h-48 mb-4 rounded ">
                           <svg
                             className="w-10 h-10 text-gray-200 dark:text-gray-600"
                             aria-hidden="true"
@@ -143,7 +151,7 @@ const AutoScrollCarousel = ({ lng }: { lng: string }) => {
                           </svg>
                         </div>
                         <div className="p-3 animate-pulse">
-                          <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 max-w-48 w-auto mb-4"></div>
+                          <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 max-w-48 sm:w-20 w-10 mb-4"></div>
                         </div>
                       </div>
                     </div>
