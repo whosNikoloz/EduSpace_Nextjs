@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Image } from "@nextui-org/react";
 import { Reveal } from "../RevealFramer";
 import { Card, CardHeader } from "@nextui-org/react";
+import TypingEffect from "@/components/typedtext";
 
 export const Team = ({ lng }) => {
   const [selectedCategory, setSelectedCategory] = useState("mobile");
@@ -122,10 +123,17 @@ export const Team = ({ lng }) => {
   return (
     <>
       <section className="">
-        <div className="container px-6 py-10 mx-auto">
-          <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
-            our team
-          </h1>
+        <div className="container px-6 py-10 mx-auto text-center">
+          <TypingEffect
+            text={"our team"}
+            options={{
+              typeSpeed: 70,
+              loop: false,
+              showCursor: false,
+            }}
+            once={false}
+            className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white"
+          />
 
           <p className="max-w-2xl mx-auto my-6 text-center text-gray-500 dark:text-gray-300">
             {paragraph}

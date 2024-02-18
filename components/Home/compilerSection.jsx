@@ -6,6 +6,7 @@ import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Reveal } from "../RevealFramer";
+import TypingEffect from "@/components/typedtext";
 
 const CompilerSection = ({ lng }) => {
   const { user } = useUser();
@@ -60,12 +61,19 @@ public class HelloWorld
           <div className="text-center md:text-left">
             {" "}
             {/* Add responsive classes */}
-            <h1 className="text-5xl font-bold tracking-tight text-black dark:text-white">
-              <Reveal direction="down">
-                <span className="text-blue-600">Start Coding</span>
-              </Reveal>
+            <div className="text-5xl font-bold tracking-tight text-black flex flex-col dark:text-white">
+              <TypingEffect
+                text={"Start Coding"}
+                options={{
+                  typeSpeed: 40,
+                  loop: false,
+                  showCursor: false,
+                }}
+                once={false}
+                className="text-blue-600"
+              />
               in seconds
-            </h1>
+            </div>
             <p className="mt-6 text-sm text-gray-600 dark:text-white">
               {paragraph}
               <br />

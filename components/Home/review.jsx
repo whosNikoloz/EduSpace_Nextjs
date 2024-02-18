@@ -83,7 +83,7 @@ const Review = ({ lng }) => {
                 <span className="inline-block w-1 h-1 rounded-full bg-blue-600 ml-1"></span>
               </div>
             </div>
-            <div className="-mx-3 md:flex items-start">
+            <div className="mx-auto md:flex items-start">
               {peopleData.user.map((person, index) => (
                 <Reveal key={index} delay={index * 0.2}>
                   <div className="w-full mx-auto rounded-lg  p-5 text-gray-800  font-light mb-6">

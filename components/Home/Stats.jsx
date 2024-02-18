@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Reveal } from "../RevealFramer";
 import dynamic from "next/dynamic";
 import { GitBashIcon } from "../icons";
+import TypingEffect from "@/components/typedtext";
 
 const Typewriter = dynamic(() => import("typewriter-effect"), {
   ssr: false, // Disable server-side rendering for this component
@@ -66,15 +67,24 @@ const languageData = {
 
 const Stats = ({ lng }) => {
   const { title, paragraph, list1, list2, list3 } =
-    languageData[lng ? lng : "ge"];
+    languageData[lng ? lng : "ka"];
   return (
     <>
       <div className="container mx-auto text-center lg:text-left xl:px-32">
         <div className="grid items-center lg:grid-cols-2">
           <div className="mb-12 lg:mb-0">
             <div className="relative z-[1] block rounded-lg  px-6 py-12  md:px-12 lg:-mr-14 backdrop-blur-[30px]">
-              <h2 className="mb-6 text-4xl font-bold">{title}</h2>
-              <p className="mb-12 text-neutral-500 dark:text-neutral-300">
+              <TypingEffect
+                text={title}
+                options={{
+                  typeSpeed: 70,
+                  loop: false,
+                  showCursor: false,
+                }}
+                once={false}
+                className="text-4xl font-bold "
+              />
+              <p className="mb-12 mt-6 text-neutral-500 dark:text-neutral-300">
                 {paragraph}
               </p>
 
