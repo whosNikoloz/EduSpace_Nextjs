@@ -110,7 +110,7 @@ export const StepsNew = ({ lng }) => {
             </StepCard>
           ))}
         </div>
-        <div className="sticky top-0 x mr-3 flex h-screen w-full items-center hidden md:flex">
+        <div className="sticky top-0 x mr-3  h-screen w-full items-center hidden md:flex">
           <div className="relative aspect-square w-full h-[400px] bg-transparent">
             {step.map((step, index) => (
               <step.card id={step.id} key={index} />

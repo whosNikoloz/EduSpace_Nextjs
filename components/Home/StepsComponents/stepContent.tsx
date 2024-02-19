@@ -51,7 +51,7 @@ export const FirstContent = ({ id }: ContentProps) => {
 export const SecondContent = ({ id }: ContentProps) => {
   return (
     <StepsContent id={id} gradient="from-[0] to-[0]">
-      <div className="bg-black text-white p-6 rounded-2xl w-full h-[400px]  font-mono">
+      <div className="bg-black text-white p-6 rounded-2xl w-full h-[400px] md:text-[13px] lg:text-[17px]   font-mono">
         <div className="flex justify-between items-center">
           <div className="flex space-x-2 text-red-500">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
