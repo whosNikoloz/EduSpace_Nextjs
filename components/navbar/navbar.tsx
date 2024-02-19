@@ -9,6 +9,7 @@ import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import UDropdown from "./Userdropdown";
 import NDropdown from "./navdropdown";
+import { useRouter } from "next/navigation";
 
 export const Navbar = ({ lng }: { lng: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,6 +36,8 @@ export const Navbar = ({ lng }: { lng: string }) => {
   const handleLogout = () => {
     logout();
   };
+
+  const router = useRouter();
 
   return (
     <>
@@ -109,33 +112,25 @@ export const Navbar = ({ lng }: { lng: string }) => {
               <div className="hidden  sm:ml-6 sm:block ">
                 <div className="flex space-x-4">
                   <MultiLevelDropdown isScrolled={isScrolled} lng={lng} />
-                  <Link href="/social">
-                    <Button
-                      disableRipple
-                      className={`p-0 bg-transparent data-[hover=true]:bg-transparent font-bold text-md ${
-                        isScrolled
-                          ? "dark:text-blue-500 text-blue-800"
-                          : "dark:text-blue-500 text-blue-400"
-                      }`}
-                      radius="sm"
-                      variant="light"
-                    >
-                      {lng === "en" ? "Social" : "სოციალური"}
-                    </Button>
+                  <Link
+                    href="/social"
+                    className={`p-0 bg-transparent data-[hover=true]:bg-transparent font-bold text-md ${
+                      isScrolled
+                        ? "dark:text-blue-500 text-blue-800"
+                        : "dark:text-blue-500 text-blue-400"
+                    }`}
+                  >
+                    {lng === "en" ? "Social" : "სოციალური"}
                   </Link>
-                  <Link href="/compiler/csharp">
-                    <Button
-                      disableRipple
-                      className={`p-0 bg-transparent data-[hover=true]:bg-transparent font-bold text-md  ${
-                        isScrolled
-                          ? "dark:text-white text-black"
-                          : "dark:text-white text-white "
-                      }`}
-                      radius="sm"
-                      variant="light"
-                    >
-                      Compiler
-                    </Button>
+                  <Link
+                    href="/compiler/csharp"
+                    className={`p-0 bg-transparent data-[hover=true]:bg-transparent font-bold text-md  ${
+                      isScrolled
+                        ? "dark:text-white text-black"
+                        : "dark:text-white text-white "
+                    }`}
+                  >
+                    Compiler
                   </Link>
                 </div>
               </div>
@@ -158,14 +153,10 @@ export const Navbar = ({ lng }: { lng: string }) => {
                     <Button
                       className="bg-blue-600 text-white"
                       color="primary"
+                      onClick={() => router.push("/user/auth")}
                       variant="shadow"
                     >
-                      <Link
-                        href="/user/auth"
-                        className="text-white font-bold text-md"
-                      >
-                        {lng === "en" ? "Start" : "დაწყება"}
-                      </Link>
+                      {lng === "en" ? "Start" : "დაწყება"}
                     </Button>
                   </div>
                 </>
