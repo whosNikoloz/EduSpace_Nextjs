@@ -1,7 +1,7 @@
 import Ilustration from "@/public/ProgiLust3.png";
 import Image from "next/image";
 
-export const Hero = ({ userEmail }) => {
+export const Hero = ({ userEmail, lng }) => {
   return (
     <>
       <div className="flex flex-wrap md:mt-36">
@@ -19,11 +19,15 @@ export const Hero = ({ userEmail }) => {
               Awesome <span className="text-blue-600">!</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-white">
-              პაროლის აღდგენა წარმატებით დასრულდა,{" "}
+              {lng === "ka"
+                ? "პაროლის აღდგენა წარმატებით დასრულდა,"
+                : "Password reset was successful,"}
               <span className="text-blue-600">{userEmail}!</span>
               <br />
               <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-white">
-                თქვენი პაროლი წარმატებით გადაკეთდა EduSpace-ზე.
+                {lng === "ka"
+                  ? " თქვენი პაროლი წარმატებით გადაკეთდა EduSpace-ზე."
+                  : "Your password has been successfully reset on EduSpace."}
                 <br />
               </p>
             </p>
