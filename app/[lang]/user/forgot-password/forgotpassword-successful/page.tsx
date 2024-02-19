@@ -1,18 +1,22 @@
-"use client";
+import { Locale } from "@/i18n.config";
+import { Metadata } from "next";
+import SSRFPS from "@/app/[lang]/user/forgot-password/forgotpassword-successful/ssrFPS";
 
-import { Hero } from "@/components/forgotpasswordsuccessful/Hero";
-import { useEffect, useState } from "react";
-import Cookies from "universal-cookie";
+export const metadata: Metadata = {
+  title: "Forgot Password Successfull | EduSpace",
+  description: "Forgot your password? No worries, we got you covered",
+  keywords: [
+    "forgot password successfull",
+    "authentication",
+    "account",
+    "online learning",
+  ],
+};
 
-export default function VerificationSuccessfulPage() {
-  const [userEmail, setUserEmail] = useState(null);
-
-  useEffect(() => {
-    var cookie = new Cookies();
-    setUserEmail(cookie.get("forgetEmail"));
-
-    cookie.remove("forgetEmail");
-  },[setUserEmail]);
-
-  return <Hero userEmail={userEmail} />;
+export default function VerificationSuccessfulPage({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  return <SSRFPS lang={lang} />;
 }
