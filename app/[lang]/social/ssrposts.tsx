@@ -93,9 +93,12 @@ const SSRPosts = ({ params: { lang } }: { params: { lang: Locale } }) => {
             <PostCardSkeleton />
           </>
         ) : isError ? (
-          <div className={Styles.Loader}>
-            <h1>Failed To Load</h1>
-          </div>
+          <>
+            <h1 className="text-center items-center p-10">API ERROR 505</h1>
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+            <PostCardSkeleton />
+          </>
         ) : (
           <>
             <CreatePost setPosts={setPosts} />
