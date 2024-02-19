@@ -4,8 +4,9 @@ import SSRPosts from "@/app/[lang]/social/ssrposts";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Social",
-  description: "Online Learning Platform",
+  title: "Social | EduSpace",
+  description:
+    "Connect and collaborate with other learners on our online learning platform",
 };
 
 const SocialPage = ({ params: { lang } }: { params: { lang: Locale } }) => {
