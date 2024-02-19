@@ -10,8 +10,8 @@ import { Button, Input } from "@nextui-org/react";
 import { signIn } from "next-auth/react";
 import { Link } from "@nextui-org/react";
 import React from "react";
-import AnimatedSvg1 from "@/public/AnimatedSvg1.gif";
-import AnimatedSvg2 from "@/public/AnimatedSvg2.gif";
+import AnimatedAuth from "@/public/AnimatedAuth.gif";
+import AnimatedReg from "@/public/AnimatedReg.gif";
 import { Locale } from "@/i18n.config";
 
 interface ApiResponse {
@@ -615,7 +615,7 @@ export default function AuthPage({
               </button>
             </div>
             <Image
-              src={AnimatedSvg2}
+              src={AnimatedAuth}
               priority={true}
               className={`${Style.image} mx-auto`}
               alt=""
@@ -635,7 +635,7 @@ export default function AuthPage({
               </button>
             </div>
             <Image
-              src={AnimatedSvg1}
+              src={AnimatedReg}
               priority={true}
               className={`${Style.image} mx-auto`}
               alt=""
