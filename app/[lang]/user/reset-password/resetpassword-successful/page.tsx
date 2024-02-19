@@ -1,25 +1,18 @@
-"use client";
+import { Locale } from "@/i18n.config";
+import { Metadata } from "next";
+import SSRResetSuccess from "@/app/[lang]/user/reset-password/resetpassword-successful/ssrresetsucess";
 
-import { Hero } from "@/components/resetpasswordsuccessful/Hero";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import Cookies from "universal-cookie";
+export const metadata: Metadata = {
+  title: "Reset Password | EduSpace",
+  description:
+    "Verify your account and gain access to EduSpace, an online learning platform",
+  keywords: ["resetpassword", "authentication", "account", "online learning"],
+};
 
-export default function VerificationSuccessfulPage() {
-  const router = useRouter();
-  const [userEmail, setUserEmail] = useState(null);
-
-  useEffect(() => {
-    var cookie = new Cookies();
-    setUserEmail(cookie.get("regEmail"));
-
-    cookie.remove("regUserName");
-    cookie.remove("regEmail");
-
-    setTimeout(() => {
-      router.push("/user/auth");
-    }, 3000);
-  }, [setUserEmail, router]);
-
-  return <Hero userEmail={userEmail} />;
+export default function ResetPasswordSuccessPage({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  return <SSRResetSuccess lang={lang} />;
 }
