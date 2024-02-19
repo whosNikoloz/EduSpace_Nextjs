@@ -11,6 +11,7 @@ import Courses from "@/app/api/Learn/Course";
 import { Skeleton } from "@nextui-org/react";
 import Link from "next/link";
 import { useUser } from "@/app/dbcontext/UserdbContext";
+import { useRouter } from "next/navigation";
 
 interface Course {
   courseId: number;
@@ -25,13 +26,14 @@ const EnrolledCarusel = () => {
   const [courses, setCourses] = useState<Course[]>([]);
 
   const { user } = useUser();
+  const router = useRouter();
 
   const handleCourse = (FormatedName: string) => {
     if (user) {
-      window.location.href = `/learn/course/${FormatedName}`;
+      router.push(`/learn/course/${FormatedName}`);
     } else {
       sessionStorage.setItem("redirect_url", `/learn/course/${FormatedName}`);
-      window.location.href = "/user/auth";
+      router.push("/user/auth");
     }
   };
 

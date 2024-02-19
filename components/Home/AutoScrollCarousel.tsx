@@ -11,6 +11,7 @@ import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Reveal } from "../RevealFramer";
 import { Card, CardFooter, CardBody } from "@nextui-org/react";
 import TypingEffect from "@/components/typedtext";
+import { useRouter } from "next/navigation";
 
 interface Course {
   courseId: number;
@@ -26,12 +27,14 @@ const AutoScrollCarousel = ({ lng }: { lng: string }) => {
 
   const { user } = useUser();
 
+  const router = useRouter();
+
   const handleCourse = (FormatedName: string) => {
     if (user) {
-      window.location.href = `/learn/course/${FormatedName}`;
+      router.push(`/learn/course/${FormatedName}`);
     } else {
       sessionStorage.setItem("redirect_url", `/learn/course/${FormatedName}`);
-      window.location.href = "/user/auth";
+      router.push("/user/auth");
     }
   };
 

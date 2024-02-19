@@ -7,16 +7,18 @@ import Link from "next/link";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Reveal } from "../RevealFramer";
 import TypingEffect from "@/components/typedtext";
+import { useRouter } from "next/navigation";
 
 const CompilerSection = ({ lng }) => {
   const { user } = useUser();
+  const router = useRouter();
 
   const handleCourse = () => {
     if (user) {
-      window.location.href = "/learn/course/c-sharp-beginner";
+      router.push("/learn/course/c-sharp-beginner");
     } else {
       sessionStorage.setItem("redirect_url", "/learn/course/c-sharp-beginner");
-      window.location.href = "/user/auth";
+      router.push("/user/auth");
     }
   };
 

@@ -8,11 +8,13 @@ function UDropdown({
   email,
   avatar,
   logout,
+  lng,
 }: {
   username: string;
   email: string;
   avatar: string;
   logout: () => void;
+  lng: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -76,7 +78,7 @@ function UDropdown({
               endContent={<Settingicon size={20} height={20} width={20} />}
               className="px-4 py-3 text-sm w-full justify-between text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
             >
-              პარამეტრები
+              {lng === "en" ? "Account Settings" : "პროფილი"}
             </Button>
           </Link>
           <Button
@@ -84,7 +86,7 @@ function UDropdown({
             onClick={logout}
             className="block px-4 py-3 w-full text-start text-sm bg-transparent text-danger hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 transform"
           >
-            გამოსვლა
+            {lng === "en" ? "Log Out" : "გასვლა"}
           </Button>
         </div>
       </div>

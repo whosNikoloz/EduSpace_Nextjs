@@ -144,20 +144,22 @@ export const Navbar = ({ lng }: { lng: string }) => {
                     avatar={user.picture}
                     email={user.email}
                     logout={handleLogout}
+                    lng={lng}
                   />
                 </>
               ) : (
                 // Render this content if user is null
                 <>
                   <div className="relative ml-3">
-                    <Button
-                      className="bg-blue-600 text-white"
-                      color="primary"
-                      onClick={() => router.push("/user/auth")}
-                      variant="shadow"
-                    >
-                      {lng === "en" ? "Start" : "დაწყება"}
-                    </Button>
+                    <Link href="/user/auth">
+                      <Button
+                        className="bg-blue-600 text-white"
+                        color="primary"
+                        variant="shadow"
+                      >
+                        {lng === "en" ? "Start" : "დაწყება"}
+                      </Button>
+                    </Link>
                   </div>
                 </>
               )}

@@ -189,10 +189,8 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
 
         <div
           ref={dropdownRef}
-          className={`absolute right-0 mt-3  rounded-md shadow-lg overflow-hidden z-20  w-72  transition-all duration-350 ease-in-out${
-            dropdownOpen
-              ? "max-h-96 dark:bg-zinc-800 bg-white"
-              : "max-h-0 invisible"
+          className={`absolute right-0 mt-3  rounded-md shadow-lg overflow-hidden z-20  dark:bg-zinc-800 bg-white  w-72  transition-all duration-350 ease-in-out${
+            dropdownOpen ? "max-h-96 " : "max-h-0 hidden"
           }`}
         >
           {notifications.length === 0 ? ( // Check if there are no notifications

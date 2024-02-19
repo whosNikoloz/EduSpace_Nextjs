@@ -5,7 +5,6 @@ import { Hero } from "@/components/Home/Hero";
 import MainLayout from "@/app/[lang]/layouts/Mainlayout";
 const Fab = dynamic(() => import("@/components/FAB"), { ssr: false });
 import { ConnectorFirst } from "@/components/Home/ConnectorFirst";
-import { Toaster } from "react-hot-toast";
 import { StepsNew } from "@/components/Home/StepsComponents/stepsNew";
 import Feature from "@/components/Home/Feature";
 import { Team } from "@/components/Home/team";
@@ -41,11 +40,12 @@ export default function Home({
         <div className="relative bottom-16">
           {/* Video Background */}
           <video
+            className="absolute inset-0 object-cover w-full h-full"
             autoPlay
             loop
             muted
             playsInline
-            className="absolute inset-0 object-cover w-full h-full"
+            preload="none"
           >
             <source src="/EduSpaceHeroBg.mp4" type="video/mp4" />
             Your browser does not support the video tag.
@@ -147,7 +147,6 @@ export default function Home({
           </section>
         </div>
         <Fab />
-        <Toaster position="bottom-left" reverseOrder={false} />
       </MainLayout>
     </>
   );
