@@ -2,7 +2,7 @@ import Ilustration from "@/public/ProgiLust1.png";
 import Image from "next/image";
 import { Reveal } from "../RevealFramer";
 
-export const Hero = ({ userEmail, userName }) => {
+export const Hero = ({ userEmail, userName, lng }) => {
   return (
     <>
       <div className="flex flex-wrap md:mt-36">
@@ -22,9 +22,13 @@ export const Hero = ({ userEmail, userName }) => {
               Awesome, <span className="text-blue-600">{userName}!</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-white">
-              ელფოსტა {userEmail} წარმატებით დადასტურდა!
+              {lng === "en"
+                ? `Your email ${userEmail} has been successfully verified!`
+                : `ელფოსტა ${userEmail} წარმატებით დადასტურდა!`}
               <br />
-              მალე გადამისამართდებით.
+              {lng === "en"
+                ? "You can now login to your account."
+                : "შეგიძლიათ შესვლა თქვენს ანგარიშზე."}
             </p>
           </div>
         </div>
