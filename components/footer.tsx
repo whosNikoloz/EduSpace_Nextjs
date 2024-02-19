@@ -178,6 +178,7 @@ export const Footer = ({ lng }: { lng: string }) => {
                   }`}
                   isIconOnly
                   onClick={() => setTheme("dark")}
+                  aria-label="Switch to dark theme"
                 >
                   <MoonFilledIcon />
                 </Button>
@@ -187,6 +188,7 @@ export const Footer = ({ lng }: { lng: string }) => {
                   }`}
                   isIconOnly
                   onClick={() => setTheme("light")}
+                  aria-label="Switch to light theme"
                 >
                   <SunFilledIcon />
                 </Button>
@@ -196,6 +198,7 @@ export const Footer = ({ lng }: { lng: string }) => {
                   }`}
                   isIconOnly
                   onClick={() => setTheme("system")}
+                  aria-label="Switch to system theme"
                 >
                   <SystemIcon />
                 </Button>
