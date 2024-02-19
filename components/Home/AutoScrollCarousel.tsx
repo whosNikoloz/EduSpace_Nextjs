@@ -10,7 +10,7 @@ import Courses from "@/app/api/Learn/Course";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import { Reveal } from "../RevealFramer";
 import { Card, CardFooter, CardBody } from "@nextui-org/react";
-import TypingEffect from "../typedtext";
+import TypingEffect from "@/components/typedtext";
 
 interface Course {
   courseId: number;

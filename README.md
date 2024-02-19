@@ -12,7 +12,7 @@ This template is designed for developing applications within the Eduspace projec
 - [Framer Motion](https://www.framer.com/motion/)
 - [next-themes](https://github.com/pacocoursey/next-themes)
 
-## How to Use
+## How to Usek
 
 ### Use the template with create-next-app
 
