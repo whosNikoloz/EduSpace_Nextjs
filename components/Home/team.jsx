@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import { Image } from "@nextui-org/react";
@@ -5,7 +7,7 @@ import { Reveal } from "../RevealFramer";
 import { Card, CardHeader } from "@nextui-org/react";
 import TypingEffect from "@/components/typedtext";
 
-export const Team = ({ lng }) => {
+export default function Team({ lng }) {
   const [selectedCategory, setSelectedCategory] = useState("mobile");
   const [inputValue, setInputValue] = useState("");
 
@@ -277,4 +279,4 @@ export const Team = ({ lng }) => {
       </section>
     </>
   );
-};
+}

@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { Reveal } from "../RevealFramer";
-import { useRef } from "react";
-import TypingEffect from "@/components/typedtext";
+"use client";
 
-export const Hero = ({ lng }) => {
+import Link from "next/link";
+import { useRef } from "react";
+
+export default function Hero({ lng }) {
   const scrollRef = useRef(null);
 
   const handleScroll = () => {
@@ -75,4 +75,4 @@ export const Hero = ({ lng }) => {
       </div>
     </>
   );
-};
+}

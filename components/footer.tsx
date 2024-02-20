@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { AppLinks } from "@/components/Home/applinks";
 import EduSpace from "@/public/EduSpaceLogo.png";

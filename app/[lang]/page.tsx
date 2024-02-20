@@ -1,31 +1,32 @@
-"use client";
-
 import dynamic from "next/dynamic";
-import { Hero } from "@/components/Home/Hero";
-import MainLayout from "@/app/[lang]/layouts/Mainlayout";
-const Fab = dynamic(() => import("@/components/FAB"), { ssr: true });
-import { ConnectorFirst } from "@/components/Home/ConnectorFirst";
-import { StepsNew } from "@/components/Home/StepsComponents/stepsNew";
+
+import Hero from "@/components/Home/Hero";
+import AutoScrollCarousel from "@/components/Home/AutoScrollCarousel";
 import Feature from "@/components/Home/Feature";
-import { Team } from "@/components/Home/team";
+import Review from "@/components/Home/Review";
+import Fab from "@/components/FAB";
 
-const AutoScrollCarousel = dynamic(
-  () => import("@/components/Home/AutoScrollCarousel")
+// Lazy load non-critical components
+const Team = dynamic(() => import("@/components/Home/team"));
+const StepsNew = dynamic(() =>
+  import("@/components/Home/StepsComponents/stepsNew").then(
+    (module) => module.StepsNew
+  )
 );
-
-// Lazy load Review component
-const Review = dynamic(() => import("@/components/Home/review"));
-
+const MainLayout = dynamic(() => import("@/app/[lang]/layouts/Mainlayout"));
 const CompilerSection = dynamic(
   () => import("@/components/Home/compilerSection")
 );
-
 const ConnectorSecond = dynamic(() =>
   import("@/components/Home/ConnectorSecond").then(
     (module) => module.ConnectorSecond
   )
 );
-
+const ConnectorFirst = dynamic(() =>
+  import("@/components/Home/ConnectorFirst").then(
+    (module) => module.ConnectorFirst
+  )
+);
 const Stats = dynamic(() => import("@/components/Home/StatsComponents/Stats"));
 import { Locale } from "@/i18n.config";
 
