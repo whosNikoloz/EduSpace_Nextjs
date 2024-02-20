@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import Hero from "@/components/Home/Hero";
 import AutoScrollCarousel from "@/components/Home/AutoScrollCarousel";
 import Feature from "@/components/Home/Feature";
-import Review from "@/components/Home/Review";
+
 import Fab from "@/components/FAB";
 
 // Lazy load non-critical components
@@ -13,6 +13,9 @@ const StepsNew = dynamic(() =>
     (module) => module.StepsNew
   )
 );
+
+const Review = dynamic(() => import("@/components/Home/review"));
+
 const MainLayout = dynamic(() => import("@/app/[lang]/layouts/Mainlayout"));
 const CompilerSection = dynamic(
   () => import("@/components/Home/compilerSection")
