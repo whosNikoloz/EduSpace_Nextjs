@@ -38,6 +38,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
         ...userOptions,
       };
 
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       typed = new TypedJS(typedTextRef.current, mergedOptions); // Initialize TypedJS
 
       return () => {

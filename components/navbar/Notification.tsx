@@ -57,6 +57,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
   // Use an empty dependency array to make sure this effect runs only once
   useEffect(() => {
     fetchNotifications();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
