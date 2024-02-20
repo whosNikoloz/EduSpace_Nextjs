@@ -18,6 +18,7 @@ import {
   Image,
   Input,
 } from "@nextui-org/react";
+import { ChatMessage } from "./chat/chat-message";
 
 const FAB: React.FC = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -79,6 +80,7 @@ const FAB: React.FC = () => {
         backdrop="opaque"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+        className="w-full max-w-lg"
         motionProps={{
           variants: {
             enter: {
@@ -115,7 +117,7 @@ const FAB: React.FC = () => {
               </ModalHeader>
               <ModalBody>
                 <div
-                  className="pr-4 h-[474px]"
+                  className="w-full h-[474px]"
                   style={{ minWidth: "100%", display: "table" }}
                 >
                   {messages.length > 0
@@ -124,21 +126,7 @@ const FAB: React.FC = () => {
                           key={m.id}
                           className="flex gap-3 my-4 text-gray-600 dark:text-white text-sm flex-1"
                         >
-                          <span className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8">
-                            <div className="rounded-full bg-gray-100">
-                              {m.role === "user" ? (
-                                <Image src={user?.picture} alt="user" />
-                              ) : (
-                                <EduSpace />
-                              )}
-                            </div>
-                          </span>
-                          <p className="leading-relaxed dark:text-white">
-                            <span className="block font-bold text-gray-700 dark:text-blue-600">
-                              {m.role === "user" ? user?.userName : "EduSpace"}
-                            </span>
-                            {m.content}
-                          </p>
+                          <ChatMessage message={m} />
                         </div>
                       ))
                     : null}
