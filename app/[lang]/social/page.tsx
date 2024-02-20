@@ -14,11 +14,13 @@ const SocialPage = ({ params: { lang } }: { params: { lang: Locale } }) => {
 
   return (
     <LayoutNavbar lang={lang}>
-      <SSRPosts
-        params={{
-          lang: Language,
-        }}
-      />
+      <main className="dark:bg-pattern-dark bg-pattern-white">
+        <SSRPosts
+          params={{
+            lang: Language,
+          }}
+        />
+      </main>
     </LayoutNavbar>
   );
 };

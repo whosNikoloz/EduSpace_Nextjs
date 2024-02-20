@@ -84,7 +84,7 @@ export default function CsharpBeginnerPage({
   return (
     <MainLayout lang={lang}>
       {course && (
-        <div className="flex flex-col items-center justify-center bg-gradient-to-t dark:from-black dark:via-blue-900 dark:to-black from-white to-white via-blue-300">
+        <div className="flex flex-col items-center justify-center  dark:bg-pattern-dark bg-pattern-white text-white">
           <Hero
             logo={course.courseLogo}
             courseName={course.courseName}

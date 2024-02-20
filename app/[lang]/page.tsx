@@ -37,7 +37,7 @@ export default function Home({
   return (
     <>
       <MainLayout lang={lang}>
-        <div className="dark:bg-pattern-dark bg-pattern-white">
+        <main className="dark:bg-pattern-dark bg-pattern-white">
           <div className="relative bottom-16">
             {/* Video Background */}
             <video
@@ -135,7 +135,7 @@ export default function Home({
               <Review lng={lang} />
             </div>
           </section>
-        </div>
+        </main>
         <Fab />
       </MainLayout>
     </>

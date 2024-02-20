@@ -83,44 +83,42 @@ const SSRPosts = ({ params: { lang } }: { params: { lang: Locale } }) => {
 
   return (
     <>
-      <div className="dark:bg-gradient-to-t dark:from-blue-900 dark:to-black ">
-        <SearchSubject searchPostFunction={setSearchQuery} />
-        <br />
-        {isLoading ? (
-          <>
-            <PostCardSkeleton />
-            <PostCardSkeleton />
-            <PostCardSkeleton />
-          </>
-        ) : isError ? (
-          <>
-            <h1 className="text-center items-center p-10">API ERROR 505</h1>
-            <PostCardSkeleton />
-            <PostCardSkeleton />
-            <PostCardSkeleton />
-          </>
-        ) : (
-          <>
-            <CreatePost setPosts={setPosts} />
-            {filteredPosts.map((post: { postId: Key | null | undefined }) => (
-              <PostCard
-                key={post.postId}
-                postData={post}
-                onDelete={handleDeletePost}
-              />
-            ))}
-            {!hasNextPage && (
-              <CustomTitle
-                title1={"End of Posts"}
-                title2={searchQuery}
-                margin={14}
-                direct={"center"}
-              />
-            )}
-            {isFetching && <PostCardSkeleton />}
-          </>
-        )}
-      </div>
+      <SearchSubject searchPostFunction={setSearchQuery} />
+      <br />
+      {isLoading ? (
+        <>
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+        </>
+      ) : isError ? (
+        <>
+          <h1 className="text-center items-center p-10">API ERROR 505</h1>
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+        </>
+      ) : (
+        <>
+          <CreatePost setPosts={setPosts} />
+          {filteredPosts.map((post: { postId: Key | null | undefined }) => (
+            <PostCard
+              key={post.postId}
+              postData={post}
+              onDelete={handleDeletePost}
+            />
+          ))}
+          {!hasNextPage && (
+            <CustomTitle
+              title1={"End of Posts"}
+              title2={searchQuery}
+              margin={14}
+              direct={"center"}
+            />
+          )}
+          {isFetching && <PostCardSkeleton />}
+        </>
+      )}
       <Toaster position="bottom-left" reverseOrder={false} />
     </>
   );
