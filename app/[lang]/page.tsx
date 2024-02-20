@@ -37,38 +37,38 @@ export default function Home({
   return (
     <>
       <MainLayout lang={lang}>
-        <div className="relative bottom-16">
-          {/* Video Background */}
-          <video
-            className="absolute inset-0 object-cover w-full h-full"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
-          >
-            <source src="/EduSpaceHeroBg.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+        <div className="dark:bg-pattern-dark bg-pattern-white">
+          <div className="relative bottom-16">
+            {/* Video Background */}
+            <video
+              className="absolute inset-0 object-cover w-full h-full"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+            >
+              <source src="/EduSpaceHeroBg.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
 
-          {/* Content Overlay */}
-          <div className="bg-opacity-50 bg-black absolute inset-0"></div>
+            {/* Content Overlay */}
+            <div className="bg-opacity-50 bg-black absolute inset-0"></div>
 
-          {/* Content */}
-          <div className="mb-4 container mx-auto pt-9 lg:px-32 h-[100vh]  sm:px-6 flex-grow relative z-10">
-            <Hero lng={lang} />
+            {/* Content */}
+            <div className="mb-4 container mx-auto pt-9 lg:px-32 h-[100vh]  sm:px-6 flex-grow relative z-10">
+              <Hero lng={lang} />
+            </div>
           </div>
-        </div>
-        <section className=" items-center justify-center">
-          <div className="mb-10">
-            <AutoScrollCarousel lng={lang} />
+          <section className=" items-center justify-center">
+            <div className="mb-10">
+              <AutoScrollCarousel lng={lang} />
+            </div>
+          </section>
+          <div className="hidden md:block">
+            <ConnectorSecond text="ყველა საიდანღაც იწყებს" color={"blue"} />
           </div>
-        </section>
-        <div className="hidden md:block">
-          <ConnectorSecond text="ყველა საიდანღაც იწყებს" color={"blue"} />
-        </div>
 
-        <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300  dark:to-black ">
           <div className="mt-7 ">
             <div className="mt-20">
               <Feature lng={lang} />
@@ -77,8 +77,6 @@ export default function Home({
           <div className="hidden md:block">
             <ConnectorFirst text="არ არსებობს იდეალური დრო" color={"white"} />
           </div>
-        </div>
-        <div className="bg-gradient-to-b dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section className=" items-center justify-center gap-4 py-8 md:py-10 container mx-auto max-w-7xl pt-9 px-6 flex-grow">
             <div className="mt-7 ">
               <CompilerSection lng={lang} />
@@ -90,8 +88,6 @@ export default function Home({
               color={"blue"}
             />
           </div>
-        </div>
-        <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
             <div className="mt-7">
               <Team lng={lang} />
@@ -104,8 +100,6 @@ export default function Home({
               color={"white"}
             />
           </div>
-        </div>
-        <div className="bg-gradient-to-b dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section
             className=" items-center justify-center gap-4 py-8 md:py-10"
             id="step-section"
@@ -123,8 +117,6 @@ export default function Home({
               color={"blue"}
             />
           </div>
-        </div>
-        <div className="bg-gradient-to-t dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
             <div className="mt-7 ">
               <div className="mt-10">
@@ -138,8 +130,6 @@ export default function Home({
               color={"white"}
             />
           </div>
-        </div>
-        <div className="bg-gradient-to-b dark:from-blue-900 from-blue-300  dark:to-black  ">
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
             <div className=" text-center   justify-center">
               <Review lng={lang} />

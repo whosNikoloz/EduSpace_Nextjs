@@ -10,6 +10,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "pattern-dark": "url('/tortoise-shell-dark.png')",
+        "pattern-white": "url('/tortoise-shell.png')",
+      },
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
       },
