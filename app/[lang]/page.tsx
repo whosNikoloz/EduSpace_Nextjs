@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { Hero } from "@/components/Home/Hero";
 import MainLayout from "@/app/[lang]/layouts/Mainlayout";
-const Fab = dynamic(() => import("@/components/FAB"), { ssr: false });
+const Fab = dynamic(() => import("@/components/FAB"), { ssr: true });
 import { ConnectorFirst } from "@/components/Home/ConnectorFirst";
 import { StepsNew } from "@/components/Home/StepsComponents/stepsNew";
 import Feature from "@/components/Home/Feature";
@@ -26,7 +26,7 @@ const ConnectorSecond = dynamic(() =>
   )
 );
 
-const Stats = dynamic(() => import("@/components/Home/Stats"));
+const Stats = dynamic(() => import("@/components/Home/StatsComponents/Stats"));
 import { Locale } from "@/i18n.config";
 
 export default function Home({
