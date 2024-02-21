@@ -24,17 +24,15 @@ export function ChatMessageActions({
   };
 
   return (
-    <div
-      className={cn(
-        "flex items-center justify-end transition-opacity group-hover:opacity-100 md:absolute md:-right-10 md:-top-2 md:opacity-0",
-        className
-      )}
-      {...props}
+    <Button
+      variant="ghost"
+      className="ml-4 bottom-2   transition-opacity hover:opacity-100  md:opacity-0"
+      size="sm"
+      isIconOnly
+      onClick={onCopy}
     >
-      <Button variant="ghost" size="sm" isIconOnly onClick={onCopy}>
-        {isCopied ? <IconCheck /> : <IconCopy />}
-        <span className="sr-only">Copy message</span>
-      </Button>
-    </div>
+      {isCopied ? <IconCheck /> : <IconCopy />}
+      <span className="sr-only">Copy message</span>
+    </Button>
   );
 }

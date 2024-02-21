@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { Fab, Action } from "react-tiny-fab";
-import { Button } from "@nextui-org/button";
 import { EduSpace } from "./EduSpaceLogo";
-import { Chat, UpVector } from "./icons";
+import { IconOpenAI, UpVector } from "./icons";
 import { useChat } from "ai/react";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import { useRouter } from "next/navigation";
@@ -15,16 +14,21 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-  Image,
+  Button,
   Input,
+  Textarea,
 } from "@nextui-org/react";
 import { ChatMessage } from "./chat/chat-message";
+import { useTheme } from "next-themes";
+import { EmptyScreen } from "@/components/chat/empty-screen";
 
-const FAB: React.FC = () => {
+const FAB: React.FC<{ lang: string }> = ({ lang }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const { messages, input, setInput, handleSubmit } = useChat();
   const { user } = useUser();
   const router = useRouter();
+
+  const { theme } = useTheme();
 
   // Function to scroll to the top when the button is clicked
   const scrollToTop = () => {
@@ -36,6 +40,15 @@ const FAB: React.FC = () => {
 
   const [userCount, setUserCount] = useState(0);
   const maxUserLimit = 10; // Set your desired maximum user limit
+
+  const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(input);
+    if (input) {
+      handleSubmit(e);
+      setInput("");
+    }
+  };
 
   const openChat = () => {
     // if (userCount < maxUserLimit) {
@@ -66,21 +79,26 @@ const FAB: React.FC = () => {
           style={{ backgroundColor: "transparent" }}
           onClick={openChat}
         >
-          <Chat size={30} height={undefined} width={undefined} />
+          <IconOpenAI
+            size={30}
+            height={undefined}
+            width={undefined}
+            theme={theme}
+          />
         </Action>
         <Action
           style={{ backgroundColor: "transparent" }}
           onClick={scrollToTop}
         >
-          <UpVector size={30} />
+          <UpVector size={30} theme={theme} />
         </Action>
       </Fab>
       <Modal
         scrollBehavior="inside"
         backdrop="opaque"
+        size="3xl"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        className="w-full max-w-lg"
         motionProps={{
           variants: {
             enter: {
@@ -120,42 +138,43 @@ const FAB: React.FC = () => {
                   className="w-full h-[474px]"
                   style={{ minWidth: "100%", display: "table" }}
                 >
-                  {messages.length > 0
-                    ? messages.map((m) => (
-                        <div
-                          key={m.id}
-                          className="flex gap-3 my-4 text-gray-600 dark:text-white text-sm flex-1"
-                        >
-                          <ChatMessage message={m} />
-                        </div>
-                      ))
-                    : null}
+                  {messages.length > 0 ? (
+                    messages.map((m) => <ChatMessage message={m} key={m.id} />)
+                  ) : (
+                    <EmptyScreen setInput={setInput} lang={lang} />
+                  )}
                 </div>
               </ModalBody>
-              <ModalFooter>
-                <div className="flex items-center pt-0">
-                  <form
-                    className="flex items-center justify-center w-full space-x-2"
-                    onSubmit={handleSubmit}
+              <ModalFooter className="flex items-center pt-0">
+                <form
+                  className="flex items-center justify-center w-full space-x-2"
+                  onSubmit={handleSubmitForm}
+                >
+                  <Textarea
+                    variant="bordered"
+                    classNames={{
+                      input: ["text-[16px] "],
+                    }}
+                    minRows={1}
+                    value={input}
+                    onValueChange={setInput}
+                    placeholder={
+                      lang === "en"
+                        ? "Message EduSpaceAI..."
+                        : "შეიყვანეთ შეტყობინება EduSpaceAI..."
+                    }
+                    className="w-2xl"
+                  />
+                  <Button
+                    type="submit"
+                    onClick={() => setUserCount((prevCount) => prevCount + 1)}
+                    isIconOnly
+                    className="bg-transparent"
+                    size="sm"
                   >
-                    <Input
-                      classNames={{
-                        input: ["text-[16px] "],
-                      }}
-                      placeholder="Type your message"
-                      variant="bordered"
-                      onChange={handleInputChange}
-                      value={input}
-                    />
-                    <Button
-                      type="submit"
-                      className="text-sm font-medium bg-black text-white  hover:bg-blue-600 h-10 px-4 py-2"
-                      onClick={() => setUserCount((prevCount) => prevCount + 1)}
-                    >
-                      Send
-                    </Button>
-                  </form>
-                </div>
+                    <UpVector size={20} />
+                  </Button>
+                </form>
               </ModalFooter>
             </>
           )}

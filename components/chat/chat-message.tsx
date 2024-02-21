@@ -5,8 +5,8 @@ import cn from "classnames";
 
 import { CodeBlock } from "@/components/chat/codeblock";
 import { MemoizedReactMarkdown } from "@/components/chat/markdown";
-import { IconOpenAI, IconUser } from "@/components/icons";
 import { ChatMessageActions } from "@/components/chat/chat-message-actions";
+import { Avatar } from "@nextui-org/react";
 
 export interface ChatMessageProps {
   message: Message;
@@ -15,26 +15,39 @@ export interface ChatMessageProps {
 export function ChatMessage({ message, ...props }: ChatMessageProps) {
   return (
     <div
-      className={cn("group relative mb-4 overflow-hidden flex items-start ")}
+      className={cn(
+        "flex flex-col md:mb-4 space-x-1  overflow-hidden  items-start "
+      )}
       {...props}
     >
       <div
         className={cn(
-          "flex size-8 shrink-0 select-none items-center justify-center rounded-md border shadow",
-          message.role === "user"
-            ? "bg-background"
-            : "bg-primary text-primary-foreground"
+          "flex size-8 shrink-0 select-none items-center  justify-around rounded-md  shadow"
         )}
       >
         {message.role === "user" ? (
-          <IconUser size={24} />
+          <>
+            <Avatar
+              name="Nikoloz Kobaidze"
+              size="sm"
+              src="https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75"
+            />
+            <p className="ml-3 mb-2 text-md font-bold">You</p>
+          </>
         ) : (
-          <IconOpenAI size={24} />
+          <>
+            <Avatar
+              name="Eduspace AI"
+              size="sm"
+              src="https://firebasestorage.googleapis.com/v0/b/eduspace-a81b5.appspot.com/o/EduSpaceLogo.png?alt=media&token=7b7dc8a5-05d8-4348-9b4c-c19913949c67"
+            />
+            <p className="ml-3 mb-2 text-md font-bold">EduspaceAI</p>
+          </>
         )}
       </div>
-      <div className="flex-1 px-1 ml-4 space-y-2 overflow-hidden">
+      <div className="flex px-1 ml-4 space-y-2 justify-around flex-row overflow-hidden">
         <MemoizedReactMarkdown
-          className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0"
+          className="prose break-words dark:prose-invert prose-p:leading-relaxed  mb-2 ml-9 prose-pre:p-0"
           remarkPlugins={[remarkGfm, remarkMath]}
           components={{
             p({ children }) {
@@ -68,6 +81,7 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
         >
           {message.content}
         </MemoizedReactMarkdown>
+
         <ChatMessageActions message={message} />
       </div>
     </div>

@@ -140,7 +140,7 @@ export default function Home({
             </div>
           </section>
         </main>
-        <Fab />
+        <Fab lang={lang} />
       </MainLayout>
     </>
   );

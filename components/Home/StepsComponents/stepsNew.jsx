@@ -87,7 +87,7 @@ const languageData = {
 };
 
 export const StepsNew = ({ lng }) => {
-  const { step } = languageData[lng ? lng : "ge"];
+  const { step } = languageData[lng ? lng : "ka"];
 
   return (
     <>
