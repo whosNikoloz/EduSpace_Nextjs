@@ -105,14 +105,10 @@ export default function Home({
             />
           </div>
           <section
-            className=" items-center justify-center gap-4 py-8 md:py-10"
+            className=" items-center justify-center gap-4 "
             id="step-section"
           >
-            <div className="mt-7 ">
-              <div className="mt-10">
-                <StepsNew lng={lang} />
-              </div>
-            </div>
+            <StepsNew lng={lang} />
           </section>
 
           <div className="hidden md:block">
@@ -122,10 +118,8 @@ export default function Home({
             />
           </div>
           <section className=" items-center justify-center gap-4 py-8 md:py-10">
-            <div className="mt-7 ">
-              <div className="mt-10">
-                <Stats lng={lang} />
-              </div>
+            <div className="mt-10">
+              <Stats lng={lang} />
             </div>
           </section>
           <div className="hidden md:block">

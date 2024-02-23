@@ -10,38 +10,84 @@ import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
 import { ChangeEvent, ReactNode, useEffect, useState } from "react";
 
-const footerLearn = [
-  {
-    title: "შესავალი კურსები / Introduction Courses",
-    links: [
-      { href: "/learn/course/c-sharp-beginner", label: "C# შესავალი" },
-      { href: "/learn/course/python-beginner", label: "Python შესავალი" },
-      { href: "/learn/course/swift-beginner", label: "Swift შესავალი" },
-      { href: "/learn/course/c-plus-beginner", label: "C++ შესავალი" },
-    ],
-  },
-  {
-    title: "მოწინავე კურსები / Advanced Courses",
-    links: [
-      { href: "/learn/course/c-sharp-beginner", label: "C# მოწინავე" },
-      { href: "/learn/course/python-beginner", label: "Python მოწინავე" },
-      { href: "/learn/course/swift-beginner", label: "Swift მოწინავე" },
-      { href: "/learn/course/c-plus-beginner", label: "C++ მოწინავე" },
-    ],
-  },
-  {
-    title: "ექსპერტი კურსები / Expert Courses",
-    links: [
-      { href: "/learn/course/c-sharp-beginner", label: "C# ექსპერტი" },
-      { href: "/learn/course/python-beginner", label: "Python ექსპერტი" },
-      { href: "/learn/course/swift-beginner", label: "Swift ექსპერტი" },
-      { href: "/learn/course/c-plus-beginner", label: "C++ ექსპერტი" },
-    ],
-  },
-  // Add more sections as needed
-];
+const Learn = {
+  en: [
+    {
+      title: "Introduction Courses",
+      links: [
+        {
+          href: "/learn/course/c-sharp-beginner",
+          label: "Introduction to C#",
+        },
+        {
+          href: "/learn/course/python-beginner",
+          label: "Introduction to  Python",
+        },
+        {
+          href: "/learn/course/swift-beginner",
+          label: "Introduction to  Swift",
+        },
+        {
+          href: "/learn/course/c-plus-beginner",
+          label: "Introduction to  C++",
+        },
+      ],
+    },
+    {
+      title: "Advanced Courses",
+      links: [
+        { href: "/learn/course/c-sharp-beginner", label: "C# Advanced" },
+        { href: "/learn/course/python-beginner", label: "Python Advanced" },
+        { href: "/learn/course/swift-beginner", label: "Swift Advanced" },
+        { href: "/learn/course/c-plus-beginner", label: "C++ Advanced" },
+      ],
+    },
+    {
+      title: "Expert Courses",
+      links: [
+        { href: "/learn/course/c-sharp-beginner", label: "C# Expert" },
+        { href: "/learn/course/python-beginner", label: "Python Expert" },
+        { href: "/learn/course/swift-beginner", label: "Swift Expert" },
+        { href: "/learn/course/c-plus-beginner", label: "C++ Expert" },
+      ],
+    },
+  ],
+  ka: [
+    {
+      title: "შესავალი კურსები",
+      links: [
+        { href: "/learn/course/c-sharp-beginner", label: "შესავალი C#-ში" },
+        { href: "/learn/course/python-beginner", label: "შესავალი Python-ში " },
+        { href: "/learn/course/swift-beginner", label: "შესავალი Swift-ში " },
+        { href: "/learn/course/c-plus-beginner", label: "შესავალი C++-ში " },
+      ],
+    },
+    {
+      title: "მოწინავე კურსები",
+      links: [
+        { href: "/learn/course/c-sharp-beginner", label: "C#-ში მოწინავე" },
+        { href: "/learn/course/python-beginner", label: "Python-ში მოწინავე " },
+        { href: "/learn/course/swift-beginner", label: "Swift-ში მოწინავე " },
+        { href: "/learn/course/c-plus-beginner", label: "C++-ში მოწინავე " },
+      ],
+    },
+    {
+      title: "ექსპერტი კურსები",
+      links: [
+        { href: "/learn/course/c-sharp-beginner", label: "ექსპერტი C#-ში" },
+        { href: "/learn/course/python-beginner", label: "ექსპერტი Python-ში " },
+        { href: "/learn/course/swift-beginner", label: "ექსპერტი Swift-ში " },
+        { href: "/learn/course/c-plus-beginner", label: "ექსპერტი C++-ში " },
+      ],
+    },
+  ],
+};
 
 export const Footer = ({ lng }: { lng: string }) => {
+  const language = lng === "ka" ? "ka" : "en";
+
+  const footerLearn = Learn[language];
+
   const { resolvedTheme, theme, setTheme } = useTheme();
 
   const lang = lng === "ka" ? "ქართული" : "English";

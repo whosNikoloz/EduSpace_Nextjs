@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import TypedJS, { TypedOptions } from "typed.js"; // Rename the import to avoid conflict
-import { motion, useInView } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 interface TypingEffectProps {
   text: string;
@@ -24,7 +24,11 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   const isInView = useInView(ref, { once: once });
 
   useEffect(() => {
-    if (typedTextRef.current && isInView) {
+    let typedInstance: TypedJS | null = null;
+
+    const initializeTyped = () => {
+      if (!typedTextRef.current || !isInView || typedInstance) return;
+
       const defaultOptions: TypedOptions = {
         strings: [text],
         typeSpeed: 100,
@@ -38,24 +42,27 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
         ...userOptions,
       };
 
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      typed = new TypedJS(typedTextRef.current, mergedOptions); // Initialize TypedJS
+      typedInstance = new TypedJS(typedTextRef.current, mergedOptions);
+    };
 
-      return () => {
-        if (typed) {
-          typed.destroy(); // Cleanup TypedJS
-        }
-      };
-    }
+    const destroyTyped = () => {
+      if (typedInstance) {
+        typedInstance.destroy();
+        typedInstance = null;
+      }
+    };
+
+    initializeTyped();
+
+    return () => {
+      destroyTyped();
+    };
   }, [text, userOptions, delay, isInView]); // Dependencies
 
   return (
-    <motion.span
-      ref={ref}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isInView ? 1 : 0 }}
-    >
+    <motion.span ref={ref}>
       <span ref={typedTextRef} className={className}></span>
+      <span className="text-transparent">.</span>
     </motion.span>
   );
 };

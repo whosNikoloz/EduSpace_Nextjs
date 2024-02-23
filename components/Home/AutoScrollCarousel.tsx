@@ -79,11 +79,6 @@ const AutoScrollCarousel = ({ lng }: { lng: string }) => {
     <>
       <div className="relative isolate">
         <div className="ml-5 sm:ml-20 max-w-2xl  mt-10 mb-20">
-          <div className="hidden sm:flex sm:justify-start">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              For Now.{" "}
-            </div>
-          </div>
           <div className="text-left">
             <TypingEffect
               text={lng === "en" ? "Courses" : "სასწავლო კურსები"}
