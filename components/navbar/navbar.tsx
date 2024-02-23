@@ -42,7 +42,7 @@ export const Navbar = ({ lng }: { lng: string }) => {
   return (
     <>
       <nav
-        className={`z-50 fixed w-full top-0 ${
+        className={`z-50 fixed w-full top-0 transition-colors ${
           isScrolled
             ? "dark:backdrop-blur-lg dark:bg-black/10 bg-white shadow-md"
             : "bg-transparent"
@@ -52,7 +52,7 @@ export const Navbar = ({ lng }: { lng: string }) => {
           <div className="relative flex h-16 items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center ">
               <Button
-                className="relative inline-flex items-center justify-center rounded-md p-2 bg-transparent  "
+                className="relative inline-flex transition-colors items-center justify-center rounded-md p-2 bg-transparent  "
                 aria-controls="mobile-menu"
                 aria-expanded="false"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
