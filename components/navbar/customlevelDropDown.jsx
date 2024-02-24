@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
 import {
   Dropdown,
   DropdownTrigger,
@@ -7,6 +9,7 @@ import {
   Button,
 } from "@nextui-org/react";
 import { ChevronDown, Python, Cpp, Csharp } from "@/components/icons";
+import { motion } from "framer-motion";
 
 const icons = {
   chevron: (
@@ -104,72 +107,94 @@ const dropdownItems = {
   ],
 };
 
+const transition = {
+  type: "spring",
+  mass: 0.5,
+  damping: 11.5,
+  stiffness: 100,
+  restDelta: 0.001,
+  restSpeed: 0.001,
+};
+
 function MultiLevelDropdown({ isScrolled, lng }) {
   const lngdropdownItems = dropdownItems[lng ? lng : "ka"];
 
+  const [isActive, setIsActive] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (
+        isActive &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target)
+      ) {
+        setIsActive(false);
+        setActiveIndex(null);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [isActive]);
+
+  const handleMouseEnter = (index) => {
+    setIsActive(true);
+    setActiveIndex(index);
+  };
+
   return (
-    <Dropdown closeOnSelect={false} backdrop="blur">
-      <DropdownTrigger>
-        <Button
-          disableRipple
-          className={`p-0 bg-transparent data-[hover=true]:bg-transparent font-bold text-md  ${
-            isScrolled
-              ? "dark:text-white text-black"
-              : "dark:text-white text-white"
-          }`}
-          endContent={icons.chevron}
-          radius="sm"
-          variant="light"
-        >
+    <div
+      ref={dropdownRef}
+      onMouseEnter={() => handleMouseEnter(activeIndex)}
+      className="inline-block relative"
+    >
+      <span className="text-white font-semibold py-2 px-4 rounded inline-flex items-center">
+        <span className="cursor-pointer">
           {lng === "en" ? "Courses" : "კურსები"}
-        </Button>
-      </DropdownTrigger>
-      <DropdownMenu
-        aria-label="ACME features"
-        className="w-[340px]"
-        itemClasses={{
-          base: "gap-4",
-        }}
-      >
-        {lngdropdownItems.map((item) => (
-          <DropdownItem
-            key={item.key}
-            description={item.description}
-            startContent={item.startContent}
-            textValue={item.textValue}
-          >
-            <Dropdown>
-              <DropdownTrigger>
-                <Button
-                  size="sm"
-                  disableRipple
-                  className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                  endContent={icons.chevron}
-                  radius="sm"
-                  variant="light"
+        </span>
+      </span>
+      {isActive && (
+        <motion.ul
+          initial={{ opacity: 0, scale: 0.85, y: -10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={transition}
+          className="absolute text-sm  bg-white p-3 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+        >
+          {lngdropdownItems.map((item, index) => (
+            <li key={index} onMouseEnter={() => handleMouseEnter(index)}>
+              <span className="rounded-t cursor-pointer py-2 px-4 block whitespace-no-wrap">
+                {item.textValue}
+              </span>
+              {activeIndex === index && (
+                <motion.ul
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={transition}
+                  className="absolute ml-28 -mt-10 text-sm bg-white dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
                 >
-                  {item.textValue}
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu aria-label="Dynamic Actions">
-                {item.courses.map((course) => (
-                  <DropdownItem
-                    key={course.text}
-                    color="default"
-                    onClick={() => {
-                      window.location.href = course.link;
-                    }}
-                    textValue={course.text}
-                  >
-                    {course.text}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-          </DropdownItem>
-        ))}
-      </DropdownMenu>
-    </Dropdown>
+                  {item.courses.map((course, subIndex) => (
+                    <li key={subIndex}>
+                      <a
+                        className="py-2  mx-auto text-center w-[150px] block whitespace-no-wrap"
+                        href="#"
+                      >
+                        {course.text}
+                      </a>
+                    </li>
+                  ))}
+                </motion.ul>
+              )}
+            </li>
+          ))}
+        </motion.ul>
+      )}
+    </div>
   );
 }
 
