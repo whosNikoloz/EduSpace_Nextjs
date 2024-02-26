@@ -164,7 +164,7 @@ function MultiLevelDropdown({ isScrolled, lng }) {
           initial={{ opacity: 0, scale: 0.85, y: -10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={transition}
-          className="absolute text-sm  bg-white p-2 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+          className="absolute text-sm  bg-white p-2 mt-3 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
         >
           {lngdropdownItems.map((item, index) => (
             <li key={index} onMouseEnter={() => handleMouseEnter(index)}>

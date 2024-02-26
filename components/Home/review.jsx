@@ -86,8 +86,8 @@ const Review = ({ lng }) => {
             <div className="mx-auto md:flex items-start">
               {peopleData.user.map((person, index) => (
                 <Reveal key={index} delay={index * 0.2}>
-                  <div className="w-full mx-auto rounded-lg  p-5 text-gray-800  font-light mb-6">
-                    <Card className="max-w-[340px] bg-[#161b22] ">
+                  <div className="w-full mx-auto rounded-lg  p-5  font-light mb-6">
+                    <Card className="max-w-[340px] bg-white p-2 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl">
                       <CardHeader className="justify-between">
                         <div className="flex gap-5">
                           <Avatar
@@ -107,7 +107,7 @@ const Review = ({ lng }) => {
                           </div>
                         </div>
                       </CardHeader>
-                      <CardBody className="px-3 py-0 text-small text-default-400">
+                      <CardBody className="px-3 py-0 text-small ">
                         <p>
                           {lng === "en" ? person.en.comment : person.ka.comment}
                         </p>
