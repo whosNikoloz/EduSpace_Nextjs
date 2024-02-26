@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, ChangeEvent, ReactNode } from "react";
 import { Avatar, Button, Divider, Select, SelectItem } from "@nextui-org/react";
 import Link from "next/link";
-import { Settingicon } from "@/components/icons";
+import { Settingicon, LogoutIcon } from "@/components/icons";
 import { motion } from "framer-motion";
 
 const transition = {
@@ -97,7 +97,8 @@ function UDropdown({
               <Button
                 color="danger"
                 onClick={logout}
-                className="block px-4 py-3 w-full text-start text-sm bg-transparent text-danger hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 transform"
+                className="px-4 py-3 text-sm w-full justify-between  bg-transparent capitalize transition-colors duration-300 transform text-danger hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 transform"
+                endContent={<LogoutIcon size={20} height={20} width={20} />}
               >
                 {lng === "en" ? "Log Out" : "გასვლა"}
               </Button>
