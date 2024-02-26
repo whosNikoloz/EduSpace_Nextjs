@@ -5,7 +5,6 @@ import React, { useState, useEffect } from "react";
 import CoursesAPI from "@/app/api/Learn/Course";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import ProgressAPI from "@/app/api/Learn/Progress";
-import MainLayout from "@/app/[lang]/layouts/Mainlayout";
 import { Hero } from "@/components/Learn/Hero";
 import Subject from "@/components/Learn/subject";
 import {
@@ -36,21 +35,22 @@ interface UserProgress {
   complete: boolean;
 }
 
-export default function CsharpBeginnerPage({
-  params: { lang },
+export default function SSRCourse({
+  params: { lang, course },
 }: {
-  params: { lang: Locale };
+  params: { lang: Locale; course: string };
 }) {
   const { user } = useUser();
-  const [course, setCourse] = useState<Course | null>(null);
+  const [courses, setCourses] = useState<Course | null>(null);
   const [progress, setProgress] = useState<UserProgress | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     const fetchCourseAndProgress = async () => {
       try {
-        const courseResponse = await CoursesAPI().GetCourse("c-sharp-beginner");
-        setCourse(courseResponse);
+        const courseResponse = await CoursesAPI().GetCourse(course);
+        console.log(courseResponse);
+        setCourses(courseResponse);
         if (user) {
           const userProgress = await ProgressAPI().GetProgress(
             { userid: user.userId },
@@ -79,18 +79,18 @@ export default function CsharpBeginnerPage({
     return () => {
       setProgress(null);
     }; // Clean up course and progress on unmount
-  }, [user, onOpen]);
+  }, [user, onOpen, course]);
 
   return (
-    <MainLayout lang={lang}>
-      {course && (
+    <>
+      {courses && (
         <div className="flex flex-col items-center justify-center  dark:bg-pattern-dark bg-pattern-white text-white">
           <Hero
-            logo={course.courseLogo}
-            courseName={course.courseName}
-            description={course.description}
+            logo={courses.courseLogo}
+            courseName={courses.courseName}
+            description={courses.description}
           />
-          <Subject courseData={course} userProgress={progress} />
+          <Subject courseData={courses} userProgress={progress} />
         </div>
       )}
       <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
@@ -112,6 +112,6 @@ export default function CsharpBeginnerPage({
           )}
         </ModalContent>
       </Modal>
-    </MainLayout>
+    </>
   );
 }
