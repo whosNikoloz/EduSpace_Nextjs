@@ -50,11 +50,14 @@ export default function Hero({ lng }) {
           <div className="text-left lg:mt-14 mt-1">
             <h1 className="text-5xl flex flex-col text-mono font-bold tracking-tight  lg:text-6xl text-white">
               {h1}
-              <Link href="user/auth">
-                <span className="bg-gradient-to-r from-blue-600 via-blue-600 text-5xl sm:text-7xl  to-white  text-transparent bg-clip-text">
+              <p>
+                <Link
+                  href="user/auth"
+                  className="bg-gradient-to-r from-blue-600 via-blue-600 text-5xl sm:text-7xl  to-white  text-transparent bg-clip-text"
+                >
                   {h1span}
-                </span>
-              </Link>
+                </Link>
+              </p>
               {h1span2}
             </h1>
           </div>
