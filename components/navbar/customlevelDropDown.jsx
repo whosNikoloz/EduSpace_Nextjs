@@ -20,9 +20,9 @@ const icons = {
       width={undefined}
     />
   ),
-  Beginner: <Csharp height={30} width={30} />,
-  advanced: <Cpp height={30} width={30} />,
-  intermediate: <Python height={30} width={30} />,
+  Beginner: <Csharp height={25} width={25} />,
+  advanced: <Cpp height={25} width={25} />,
+  intermediate: <Python height={25} width={25} />,
 };
 
 const dropdownItems = {
@@ -72,7 +72,7 @@ const dropdownItems = {
       key: "beg",
       description: "დამწყებებისათვის საუკეთესო, შესავალი პროგრამირებაში",
       startContent: icons.Beginner,
-      textValue: "Beginner",
+      textValue: "შესავალი",
       courses: [
         { text: "C# შესავალი", link: "/learn/course/c-sharp-beginner" },
         { text: "Python შესავალი", link: "/learn/course/python-beginner" },
@@ -84,7 +84,7 @@ const dropdownItems = {
       key: "adv",
       description: "გამოცადე შენი თავი და განავითარე თავი",
       startContent: icons.advanced,
-      textValue: "Advanced",
+      textValue: "მოწინავე",
       courses: [
         { text: "C# მოწინავე", link: "/learn/course/c-sharp-beginner" },
         { text: "Python მოწინავე", link: "/learn/course/python-beginner" },
@@ -96,7 +96,7 @@ const dropdownItems = {
       key: "exp",
       description: "გახდი საუკეთესო პროგრამირებში",
       startContent: icons.intermediate,
-      textValue: "Expert",
+      textValue: "ექსპერტი",
       courses: [
         { text: "C# ექსპერტი", link: "/learn/course/c-sharp-beginner" },
         { text: "Python ექსპერტი", link: "/learn/course/python-beginner" },
@@ -164,28 +164,31 @@ function MultiLevelDropdown({ isScrolled, lng }) {
           initial={{ opacity: 0, scale: 0.85, y: -10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={transition}
-          className="absolute text-sm  bg-white p-3 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+          className="absolute text-sm  bg-white p-2 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
         >
           {lngdropdownItems.map((item, index) => (
             <li key={index} onMouseEnter={() => handleMouseEnter(index)}>
-              <span className="rounded-t cursor-pointer py-2 px-4 block whitespace-no-wrap">
+              <Button
+                className="rounded-t cursor-pointer bg-transparent py-2 px-4  whitespace-no-wrap"
+                startContent={item.startContent}
+              >
                 {item.textValue}
-              </span>
+              </Button>
               {activeIndex === index && (
                 <motion.ul
                   initial={{ opacity: 0, x: 40 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={transition}
-                  className="absolute ml-28 -mt-10 text-sm bg-white dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+                  className="absolute ml-36 -mt-10 text-sm bg-white dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
                 >
                   {item.courses.map((course, subIndex) => (
                     <li key={subIndex}>
-                      <a
-                        className="py-2  mx-auto text-center w-[150px] block whitespace-no-wrap"
+                      <Button
+                        className="py-2 bg-transparent  mx-auto text-center w-[150px]  whitespace-no-wrap"
                         href="#"
                       >
                         {course.text}
-                      </a>
+                      </Button>
                     </li>
                   ))}
                 </motion.ul>

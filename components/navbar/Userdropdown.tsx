@@ -1,7 +1,17 @@
 import { useState, useEffect, useRef, ChangeEvent, ReactNode } from "react";
 import { Avatar, Button, Divider, Select, SelectItem } from "@nextui-org/react";
 import Link from "next/link";
-import { Settingicon } from "../icons";
+import { Settingicon } from "@/components/icons";
+import { motion } from "framer-motion";
+
+const transition = {
+  type: "spring",
+  mass: 0.5,
+  damping: 11.5,
+  stiffness: 100,
+  restDelta: 0.001,
+  restSpeed: 0.001,
+};
 
 function UDropdown({
   username,
@@ -62,33 +72,38 @@ function UDropdown({
           />
         </Button>
 
-        <div
-          ref={dropdownRef}
-          className={`absolute right-0 z-20 p-2 mt-2 transition-all overflow-hidden duration-300 ease-in-out origin-top-right rounded-xl shadow-xl ${
-            isOpen ? "max-h-96 bg-white dark:bg-[#18181B]" : "max-h-0 invisible"
-          }`}
-          onClick={handleDropdownClick}
-        >
-          <div className="h-14 px-4 py-1 gap-2">
-            <p className="font-semibold text-md">@{username}</p>
-            <p className="font-semibold text-sm text-gray-300">{email}</p>
-          </div>
-          <Link href="/user/profile">
-            <Button
-              endContent={<Settingicon size={20} height={20} width={20} />}
-              className="px-4 py-3 text-sm w-full justify-between text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={transition}
+              ref={dropdownRef}
+              className={`absolute right-0 z-20 p-2 mt-2  overflow-hidden max-h-96 bg-white  dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl origin-top-right  `}
+              onClick={handleDropdownClick}
             >
-              {lng === "en" ? "Account Settings" : "პროფილი"}
-            </Button>
-          </Link>
-          <Button
-            color="danger"
-            onClick={logout}
-            className="block px-4 py-3 w-full text-start text-sm bg-transparent text-danger hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 transform"
-          >
-            {lng === "en" ? "Log Out" : "გასვლა"}
-          </Button>
-        </div>
+              <div className="h-14 px-4 py-1 gap-2">
+                <p className="font-semibold text-md">@{username}</p>
+                <p className="font-semibold text-sm text-gray-300">{email}</p>
+              </div>
+              <Link href="/user/profile">
+                <Button
+                  endContent={<Settingicon size={20} height={20} width={20} />}
+                  className="px-4 py-3 text-sm w-full justify-between text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                  {lng === "en" ? "Account Settings" : "პროფილი"}
+                </Button>
+              </Link>
+              <Button
+                color="danger"
+                onClick={logout}
+                className="block px-4 py-3 w-full text-start text-sm bg-transparent text-danger hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 transform"
+              >
+                {lng === "en" ? "Log Out" : "გასვლა"}
+              </Button>
+            </motion.div>
+          </>
+        )}
       </div>
     </>
   );
