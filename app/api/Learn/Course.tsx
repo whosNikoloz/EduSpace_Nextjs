@@ -31,13 +31,11 @@ const Courses = () => {
 
   const GetCourse = async (courseName: string) => {
     try {
-      const token = localStorage.getItem("jwt");
       const response = await fetch(learn_API + "Course/" + courseName, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           // Include the bearer token in the Authorization header
-          Authorization: `Bearer ${token}`,
         },
       });
 
