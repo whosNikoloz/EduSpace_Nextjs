@@ -97,7 +97,7 @@ function UDropdown({
               <Button
                 color="danger"
                 onClick={logout}
-                className="px-4 py-3 text-sm w-full justify-between  bg-transparent capitalize transition-colors duration-300 transform text-danger hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-300 transform"
+                className="px-4 py-3 text-sm w-full justify-between  bg-transparent capitalize transition-colors duration-300 transform text-danger hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white "
                 endContent={<LogoutIcon size={20} height={20} width={20} />}
               >
                 {lng === "en" ? "Log Out" : "გასვლა"}
