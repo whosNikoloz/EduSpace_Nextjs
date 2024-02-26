@@ -1,11 +1,12 @@
 "use client";
+
 import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 
 import { Locked, Vector, Run, Quiz, Certification } from "@/components/icons";
 import { Reveal } from "../RevealFramer";
-import { Card, CardBody, Image } from "@nextui-org/react";
+import { Card, CardBody } from "@nextui-org/react";
 
 const Subject = ({ courseData, userProgress }) => {
   return (
@@ -42,7 +43,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
           {progress?.subjectId > subject.subjectId ? (
             <Vector height={25} width={25} />
           ) : progress?.subjectId === subject.subjectId ? (
-            <Run height={20} width={20} />
+            <Run height={25} width={25} />
           ) : (
             <Locked height={25} width={25} />
           )}
@@ -79,7 +80,8 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
           return (
             <Reveal
               key={lessonIndex}
-              direction="up"
+              direction="down"
+              once={true}
               duration={0.5}
               delay={lessonIndex * 0.1}
             >
