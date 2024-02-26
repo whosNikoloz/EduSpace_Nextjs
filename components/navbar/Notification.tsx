@@ -11,6 +11,7 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import { motion } from "framer-motion";
 
 interface NotificationProps {
   notificationId: number;
@@ -42,6 +43,15 @@ function formatTimeAgo(timestamp: string | number | Date) {
     return `${days} დღის${days > 1 ? "" : ""} წინ`;
   }
 }
+
+const transition = {
+  type: "spring",
+  mass: 0.5,
+  damping: 11.5,
+  stiffness: 100,
+  restDelta: 0.001,
+  restSpeed: 0.001,
+};
 
 const Notification: React.FC<{ userid: number }> = ({ userid }) => {
   const notf = Notifications();
@@ -187,105 +197,112 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
             />
           </Button>
         )}
-
-        <div
-          ref={dropdownRef}
-          className={`absolute right-0 mt-3  rounded-md shadow-lg overflow-hidden z-20  dark:bg-zinc-800 bg-white  w-72  transition-all duration-350 ease-in-out${
-            dropdownOpen ? "max-h-96 " : "max-h-0 hidden"
-          }`}
-        >
-          {notifications.length === 0 ? ( // Check if there are no notifications
-            <div>
-              <p className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 mx-2">
-                თქვენ არ გაქვთ შეტყობინება
-              </p>
-            </div>
-          ) : (
-            <>
-              <div className="container p-2 flex justify-between">
-                <span className="p-2 text-xl">ცნობები</span>
-                <Dropdown backdrop="opaque">
-                  <DropdownTrigger>
-                    <Button isIconOnly variant="light">
-                      <DotsIcon
-                        size={35}
-                        fill={undefined}
-                        height={undefined}
-                        width={undefined}
-                      />
-                    </Button>
-                  </DropdownTrigger>
-                  <DropdownMenu variant="faded" aria-label="Static Actions">
-                    <DropdownItem key="new" textValue="MarkAsReadAll">
-                      <Button
-                        size="sm"
-                        className="bg-transparent "
-                        startContent={
-                          <Vector size={24} height={24} width={24} />
-                        }
-                        onClick={markAsRead}
-                      >
-                        ყველას მონიშვნა წაკითხულად
-                      </Button>
-                    </DropdownItem>
-                    <DropdownItem textValue="OpenNotf">
-                      <Button
-                        size="sm"
-                        className="bg-transparent "
-                        startContent={
-                          <Vector size={24} height={24} width={24} />
-                        }
-                      >
-                        Open Notifications
-                      </Button>
-                    </DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-                {seconddropdownOpen && <></>}
-              </div>
-              {notifications.map((notification) => (
-                <div
-                  key={notification.notificationId}
-                  className="relative cursor-pointer"
-                >
-                  {!notification.isRead && (
-                    <div className=" rounded-full  absolute top-8 right-4 ">
-                      <span className="relative flex h-3 w-3">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-                      </span>
-                    </div>
-                  )}
-
-                  <div
-                    className={`flex items-center px-6 py-3 hover:bg-zinc-200 dark:hover:bg-zinc-600 -mx-2 `}
-                  >
-                    <Avatar
-                      className="h-8 w-11 rounded-full object-cover mx-1"
-                      isBordered
-                      as="button"
-                      color="primary"
-                      name={notification.commentAuthorUsername}
-                      size="sm"
-                      src={notification.commentAuthorPicture}
-                    />
-                    <p className="dark:text-white text-black text-sm mx-1">
-                      <span className="font-bold">
-                        {notification.commentAuthorUsername}
-                      </span>{" "}
-                      დატოვა კომენტარი :{" "}
-                      <span className="font-bold text-blue-500">
-                        {notification.message}
-                      </span>
-                      {"   "}
-                      {formatTimeAgo(notification.createdAt)}
-                    </p>
-                  </div>
+        {dropdownOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={transition}
+              ref={dropdownRef}
+              className={`absolute right-0 mt-3 max-h-96   overflow-hidden z-20 w-72   bg-white p-2 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl`}
+            >
+              {notifications.length === 0 ? ( // Check if there are no notifications
+                <div>
+                  <p className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 ">
+                    თქვენ არ გაქვთ შეტყობინება
+                  </p>
                 </div>
-              ))}
-            </>
-          )}
-        </div>
+              ) : (
+                <>
+                  <div className="container p-2 flex justify-between">
+                    <span className="p-2 text-xl">ცნობები</span>
+                    <Dropdown backdrop="opaque">
+                      <DropdownTrigger>
+                        <Button isIconOnly variant="light">
+                          <DotsIcon
+                            size={35}
+                            fill={undefined}
+                            height={undefined}
+                            width={undefined}
+                          />
+                        </Button>
+                      </DropdownTrigger>
+                      <DropdownMenu variant="faded" aria-label="Static Actions">
+                        <DropdownItem key="new" textValue="MarkAsReadAll">
+                          <Button
+                            size="sm"
+                            className="bg-transparent "
+                            startContent={
+                              <Vector size={24} height={24} width={24} />
+                            }
+                            onClick={markAsRead}
+                          >
+                            ყველას მონიშვნა წაკითხულად
+                          </Button>
+                        </DropdownItem>
+                        <DropdownItem textValue="OpenNotf">
+                          <Button
+                            size="sm"
+                            className="bg-transparent "
+                            startContent={
+                              <Vector size={24} height={24} width={24} />
+                            }
+                          >
+                            Open Notifications
+                          </Button>
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </Dropdown>
+                    {seconddropdownOpen && <></>}
+                  </div>
+                  {notifications.map((notification) => (
+                    <motion.div
+                      key={notification.notificationId}
+                      className="relative cursor-pointer"
+                      initial={{ opacity: 0, y: -40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                      {!notification.isRead && (
+                        <div className=" rounded-full  absolute top-8 right-4 ">
+                          <span className="relative flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                          </span>
+                        </div>
+                      )}
+
+                      <div
+                        className={`flex items-center px-6 py-3 hover:bg-zinc-200 dark:hover:bg-zinc-600 -mx-2 `}
+                      >
+                        <Avatar
+                          className="h-8 w-11 rounded-full object-cover mx-1"
+                          isBordered
+                          as="button"
+                          color="primary"
+                          name={notification.commentAuthorUsername}
+                          size="sm"
+                          src={notification.commentAuthorPicture}
+                        />
+                        <p className="dark:text-white text-black text-sm mx-1">
+                          <span className="font-bold">
+                            {notification.commentAuthorUsername}
+                          </span>{" "}
+                          დატოვა კომენტარი :{" "}
+                          <span className="font-bold text-blue-500">
+                            {notification.message}
+                          </span>
+                          {"   "}
+                          {formatTimeAgo(notification.createdAt)}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </>
+              )}
+            </motion.div>
+          </>
+        )}
       </div>
     </>
   );
