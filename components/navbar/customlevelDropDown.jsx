@@ -10,6 +10,7 @@ import {
 } from "@nextui-org/react";
 import { ChevronDown, Python, Cpp, Csharp } from "@/components/icons";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const icons = {
   chevron: (
@@ -183,12 +184,14 @@ function MultiLevelDropdown({ isScrolled, lng }) {
                 >
                   {item.courses.map((course, subIndex) => (
                     <li key={subIndex}>
-                      <Button
-                        className="py-2 bg-transparent  mx-auto text-center w-[150px]  whitespace-no-wrap"
-                        href="#"
-                      >
-                        {course.text}
-                      </Button>
+                      <Link href={course.link}>
+                        <Button
+                          className="py-2 bg-transparent  mx-auto text-center w-[150px]  whitespace-no-wrap"
+                          href="#"
+                        >
+                          {course.text}
+                        </Button>
+                      </Link>
                     </li>
                   ))}
                 </motion.ul>

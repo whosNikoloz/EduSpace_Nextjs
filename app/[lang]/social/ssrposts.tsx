@@ -1,11 +1,9 @@
 "use client";
 
-import LayoutNavbar from "@/app/[lang]/layouts/LayoutNavbar";
 import React, { Key, useState, useEffect, useCallback, useMemo } from "react";
 import Social from "@/app/api/Social/Post";
 import { useInfiniteQuery } from "react-query";
 import toast, { Toaster } from "react-hot-toast";
-import Styles from "@/styles/loader.module.css";
 import CreatePost from "@/components/social/CreatePost";
 import SearchSubject from "@/components/social/SearchSubject";
 import PostCardSkeleton from "@/components/social/PostCardSkeleton";

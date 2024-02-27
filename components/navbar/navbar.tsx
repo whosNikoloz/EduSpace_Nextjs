@@ -9,7 +9,6 @@ import MultiLevelDropdown from "@/components/navbar/customlevelDropDown.jsx";
 import { useUser } from "@/app/dbcontext/UserdbContext";
 import UDropdown from "./Userdropdown";
 import NDropdown from "./navdropdown";
-import { useRouter } from "next/navigation";
 
 export const Navbar = ({ lng }: { lng: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,8 +35,6 @@ export const Navbar = ({ lng }: { lng: string }) => {
   const handleLogout = () => {
     logout();
   };
-
-  const router = useRouter();
 
   return (
     <>
