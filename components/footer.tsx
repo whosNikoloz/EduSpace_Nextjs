@@ -135,16 +135,16 @@ export const Footer = ({ lng }: { lng: string }) => {
             <Link
               rel="noopener noreferrer"
               href="/"
-              className="flex justify-center space-x-3 lg:justify-start"
+              className="flex justify-center space-x-3 items-center"
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-full dark:bg-violet-400">
+              <div className="flex  justify-center w-12 h-12 rounded-full dark:bg-violet-400">
                 <Image src={EduSpace} alt="icon" priority={true} />
               </div>
               <span className="self-center text-2xl font-semibold">
                 EduSpace
               </span>
             </Link>
-            <div className="md:mr-20">
+            <div className="md:mr-20 ">
               <AppLinks />
             </div>
           </div>
