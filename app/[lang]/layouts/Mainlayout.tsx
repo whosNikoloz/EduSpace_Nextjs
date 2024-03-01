@@ -11,7 +11,7 @@ export default function MainLayout({
 }) {
   return (
     <div className="relative flex flex-col h-full  ">
-      <Navbar lng={lang} />
+      <Navbar lng={lang} NotMain={false} />
       <div className="mt-16">{children}</div>
       <Footer lng={lang} />
     </div>

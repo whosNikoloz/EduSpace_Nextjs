@@ -1,4 +1,4 @@
-import MainLayout from "@/app/[lang]/layouts/Mainlayout";
+import Secondlayout from "@/app/[lang]/layouts/Secondlayout";
 import { Locale } from "@/i18n.config";
 import { Metadata } from "next";
 import SSRCourse from "@/app/[lang]/learn/course/[course]/ssrcourse";
@@ -23,8 +23,8 @@ export default function CoursePage({
   params: { lang: Locale; course: string };
 }) {
   return (
-    <MainLayout lang={lang}>
+    <Secondlayout lang={lang}>
       <SSRCourse params={{ lang, course }} />
-    </MainLayout>
+    </Secondlayout>
   );
 }

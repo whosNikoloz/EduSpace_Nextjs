@@ -155,7 +155,11 @@ function MultiLevelDropdown({ isScrolled, lng }) {
       onMouseEnter={() => handleMouseEnter(activeIndex)}
       className="inline-block relative"
     >
-      <span className="text-white font-semibold py-2 px-4 rounded inline-flex items-center">
+      <span
+        className={` font-semibold py-2 px-4 rounded inline-flex transition-colors items-center ${
+          isScrolled ? "dark:text-white text-black" : "text-white"
+        }`}
+      >
         <span className="cursor-pointer">
           {lng === "en" ? "Courses" : "კურსები"}
         </span>
