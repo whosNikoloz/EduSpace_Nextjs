@@ -3,7 +3,7 @@ import React, { useCallback, useState, useEffect, useRef } from "react";
 import Notifications from "@/app/api/Social/Notification";
 import { Avatar, Badge } from "@nextui-org/react";
 import toast from "react-hot-toast";
-import { DotsIcon, NotificationIcon, Vector } from "../icons";
+import { DotsIcon, NotificationIcon, IconCheck } from "../icons";
 import {
   Dropdown,
   DropdownTrigger,
@@ -233,7 +233,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                             size="sm"
                             className="bg-transparent "
                             startContent={
-                              <Vector size={24} height={24} width={24} />
+                              <IconCheck size={24} height={24} width={24} />
                             }
                             onClick={markAsRead}
                           >
@@ -245,7 +245,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
                             size="sm"
                             className="bg-transparent "
                             startContent={
-                              <Vector size={24} height={24} width={24} />
+                              <IconCheck size={24} height={24} width={24} />
                             }
                           >
                             Open Notifications
