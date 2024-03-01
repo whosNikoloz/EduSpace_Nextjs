@@ -13,6 +13,8 @@ import React from "react";
 import AnimatedAuth from "@/public/AnimatedAuth.gif";
 import AnimatedReg from "@/public/AnimatedReg.gif";
 import { Locale } from "@/i18n.config";
+import { InputLoadingBtn } from "@/components/auth/inputloadingbtn";
+import { set } from "nprogress";
 
 interface ApiResponse {
   success: boolean;
@@ -90,6 +92,18 @@ export default function SSRAuth({
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const [regRegPasswordError, setRegPasswordError] = useState("");
+
+  const [Logloader, setLogLoader] = useState(false);
+
+  const [Regusernameloader, setRegusernameLoader] = useState(false);
+
+  const [Regemailloader, setRegemailLoader] = useState(false);
+
+  const [regUserNameHasBlurred, setRegUserNameHasBlurred] = useState(false);
+
+  const [regEmailHasBlurred, setRegEmailHasBlurred] = useState(false);
+
+  const [logEmailHasBlurred, setEmailLogHasBlurred] = useState(false);
 
   const auth = Authentication();
 
@@ -217,6 +231,8 @@ export default function SSRAuth({
     const isEmailValid = validateEmail(loginState.email);
     try {
       if (loginState.email === "") {
+        setLoginEmailError("");
+        setEmailLogHasBlurred(false);
         return;
       }
       if (!isEmailValid) {
@@ -225,15 +241,19 @@ export default function SSRAuth({
             ? "შეიყვანეთ ელ-ფოსტა სწორად"
             : "Please enter a valid email"
         );
-
+        setEmailLogHasBlurred(false);
         return;
       }
+      setEmailLogHasBlurred(true);
+      setLogLoader(true);
       const response = (await auth.checkEmailLogin(
         loginState.email
       )) as ApiResponse;
-
       if (!response.success) {
-        setLoginEmailError(response.result || "Email already exists");
+        setLoginEmailError(response.result || "Email doesnot exists");
+        setEmailLogHasBlurred(false);
+      } else {
+        setLogLoader(false);
       }
     } catch (error) {
       // Handle any errors during the API call
@@ -243,10 +263,12 @@ export default function SSRAuth({
   };
 
   const handleRegisterEmailExists = async () => {
-    const isEmailValid = validateEmail(registrationState.email);
     setRegEmailError("");
+    const isEmailValid = validateEmail(registrationState.email);
     try {
       if (registrationState.email === "") {
+        setRegEmailError("");
+        setRegEmailHasBlurred(false);
         return;
       }
       if (!isEmailValid) {
@@ -255,14 +277,20 @@ export default function SSRAuth({
             ? "შეიყვანეთ ელ-ფოსტა სწორად"
             : "Please enter a valid email"
         );
+        setRegEmailHasBlurred(false);
         return;
       }
+      setRegEmailHasBlurred(true);
+      setRegemailLoader(true);
       const response = (await auth.checkEmailRegister(
         registrationState.email
       )) as ApiResponse;
 
       if (!response.success) {
         setRegEmailError(response.result || "UserName already exists");
+        setRegEmailHasBlurred(false);
+      } else {
+        setRegemailLoader(false);
       }
     } catch (error) {
       // Handle any errors during the API call
@@ -271,28 +299,31 @@ export default function SSRAuth({
   };
 
   const handleRegisterUsernameExists = async () => {
+    setRegUserNameError("");
     try {
       if (registrationState.username === "") {
+        setRegUserNameError("");
+        setRegUserNameHasBlurred(false);
         return;
       }
+
+      setRegUserNameHasBlurred(true);
+      setRegusernameLoader(true);
       const response = (await auth.checkUserNameRegister(
         registrationState.username
       )) as ApiResponse;
 
       if (!response.success) {
         setRegUserNameError(response.result || "UserName already exists");
+        setRegUserNameHasBlurred(false);
+      } else {
+        setRegusernameLoader(false);
       }
     } catch (error) {
       // Handle any errors during the API call
       console.error("Error:", error);
     }
   };
-
-  const handleLoginEmailClear = async () => {
-    setLoginEmailError("");
-    setLoginState({ ...loginState, email: "" });
-  };
-
   const handleLoginPasswordClear = async () => {
     setLoginPasswordError("");
     setLoginState({ ...loginState, password: "" });
@@ -374,8 +405,13 @@ export default function SSRAuth({
                   }
                   onBlur={handleLoginEmailExists}
                   startContent={<i className="fas fa-envelope"></i>}
-                  isClearable
-                  onClear={handleLoginEmailClear}
+                  endContent={
+                    logEmailHasBlurred ? (
+                      <InputLoadingBtn loading={Logloader} success={true} />
+                    ) : (
+                      <></>
+                    )
+                  }
                   isInvalid={loginEmailError !== ""}
                   errorMessage={loginEmailError}
                 />
@@ -477,8 +513,16 @@ export default function SSRAuth({
                   }
                   onBlur={handleRegisterUsernameExists}
                   startContent={<i className="fas fa-user"></i>}
-                  isClearable
-                  onClear={handleRegUserNameClear}
+                  endContent={
+                    regUserNameHasBlurred ? (
+                      <InputLoadingBtn
+                        loading={Regusernameloader}
+                        success={true}
+                      />
+                    ) : (
+                      <></>
+                    )
+                  }
                   isInvalid={regUserNameError !== ""}
                   errorMessage={regUserNameError}
                 />
@@ -495,10 +539,18 @@ export default function SSRAuth({
                       email: e.target.value,
                     })
                   }
-                  startContent={<i className="fas fa-envelope"></i>}
-                  isClearable
                   onBlur={handleRegisterEmailExists}
-                  onClear={handleRegEmailClear}
+                  startContent={<i className="fas fa-envelope"></i>}
+                  endContent={
+                    regEmailHasBlurred ? (
+                      <InputLoadingBtn
+                        loading={Regemailloader}
+                        success={true}
+                      />
+                    ) : (
+                      <></>
+                    )
+                  }
                   isInvalid={regEmailError !== ""}
                   errorMessage={regEmailError}
                 />
