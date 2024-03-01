@@ -4,7 +4,13 @@ import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 
-import { Locked, Vector, Run, Quiz, Certification } from "@/components/icons";
+import {
+  Locked,
+  IconCheck,
+  Run,
+  Quiz,
+  Certification,
+} from "@/components/icons";
 import { Reveal } from "../RevealFramer";
 import { Card, CardBody } from "@nextui-org/react";
 
@@ -41,7 +47,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
       >
         <div className="flex items-center gap-2">
           {progress?.subjectId > subject.subjectId ? (
-            <Vector height={25} width={25} />
+            <IconCheck height={25} width={25} />
           ) : progress?.subjectId === subject.subjectId ? (
             <Run height={25} width={25} />
           ) : (
@@ -96,7 +102,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
               >
                 {isCompletedLesson ? (
                   <div>
-                    <div className="flex flex-row justify-between">
+                    <div className="flex flex-row justify-between dark:text-white text-black">
                       <div className="flex flex-row items-center gap-4">
                         <Quiz size={25} />
                         <div className="flex flex-col gap-1">
@@ -108,12 +114,12 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                           </p>
                         </div>
                       </div>
-                      <Vector size={30} />
+                      <IconCheck size={30} />
                     </div>
                   </div>
                 ) : isCurrentLesson ? (
                   <div>
-                    <div className="flex flex-row justify-between">
+                    <div className="flex flex-row justify-between dark:text-white text-black">
                       <div className="flex flex-row items-center gap-4">
                         <Quiz size={25} />
                         <div className="flex flex-col gap-1">
@@ -153,7 +159,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                     </Link>
                   </div>
                 ) : (
-                  <div className="flex flex-row justify-between">
+                  <div className="flex flex-row justify-between dark:text-white text-black">
                     <div className="flex flex-row items-center gap-4">
                       <Quiz size={25} />
                       <div className="flex flex-col gap-1">

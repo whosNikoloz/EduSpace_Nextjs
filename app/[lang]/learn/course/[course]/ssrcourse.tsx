@@ -91,14 +91,14 @@ export default function SSRCourse({
         <div className="flex flex-col items-center justify-center  dark:bg-pattern-dark bg-pattern-white text-white">
           <CourseHeroSkeleton />
           <SubjectSkeleton />
-          <div className="mt-14 w-full max-w-2xl mx-auto">
+          <div className="mt-14 mb-2 w-full items-center flex justify-center  mx-auto">
             <Card
               isBlurred
-              className="border-none  bg-white dark:bg-gray-800 max-w-[680px] justify-center items-center "
+              className="border-none  bg-white dark:bg-gray-800  w-80 md:max-w-[610px] md:w-full justify-center items-center "
               shadow="sm"
             >
               <CardBody>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center text-center text-sm">
                   <Certification size={100} height={0} width={0} />
                   <h1 className="dark:text-white text-black mt-4">
                     თქვენი სერთიფიკატი ახლოს არის
@@ -108,7 +108,7 @@ export default function SSRCourse({
                     აღებისთვის!
                   </p>
                   <Button
-                    className="bg-blue-600 w-1/2 text-white"
+                    className="bg-blue-600  text-white text-sm"
                     color="primary"
                     variant="ghost"
                     isDisabled

@@ -1,5 +1,5 @@
 import { Button, Link } from "@nextui-org/react";
-import { Vector, Run, Locked, Quiz } from "@/components/icons";
+import { Run, Locked, Quiz, IconCheck } from "@/components/icons";
 
 function SubjectSkeleton() {
   return (
@@ -30,7 +30,7 @@ function SubjectSkeleton() {
           </h4>
 
           <div
-            className={`px-5 py-4 bg-white dark:bg-gray-800 shadow justify-between rounded-lg mb-4 `}
+            className={`px-5 py-4 bg-white dark:bg-gray-800 shadow justify-between rounded-lg mb-4 dark:text-white text-black `}
           >
             <div className="flex flex-row justify-between ">
               <div className="flex flex-row items-center gap-4">
@@ -42,15 +42,15 @@ function SubjectSkeleton() {
                   <p className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 animate-pulse"></p>
                 </div>
               </div>
-              <Vector size={30} height={0} width={0} />
+              <IconCheck size={25} height={0} width={0} />
             </div>
           </div>
 
           <div
-            className={`px-5 py-4 bg-white dark:bg-gray-800 shadow justify-between rounded-lg mb-4`}
+            className={`px-5 py-4 bg-white dark:bg-gray-800 shadow dark:text-white text-black justify-between rounded-lg mb-4`}
           >
             <div className="flex flex-row justify-between ">
-              <div className="flex flex-row items-center gap-4">
+              <div className="flex flex-row items-center gap-4 ">
                 <Quiz size={25} height={0} width={0} />
                 <div className="flex flex-col gap-1">
                   <div className="flex flex-col gap-1 ">
@@ -80,10 +80,10 @@ function SubjectSkeleton() {
           </div>
 
           <div
-            className={`px-5 py-4 bg-white dark:bg-gray-800 shadow justify-between rounded-lg mb-4`}
+            className={`px-5 py-4 bg-white dark:bg-gray-800 shadow dark:text-white text-black justify-between rounded-lg mb-4`}
           >
             <div className="flex flex-row justify-between">
-              <div className="flex flex-row items-center gap-4">
+              <div className="flex flex-row items-center gap-4 ">
                 <Quiz size={25} height={0} width={0} />
                 <div className="flex flex-col gap-1">
                   <div className="flex flex-col gap-1 ">
@@ -103,11 +103,11 @@ function SubjectSkeleton() {
             </div>
           </div>
         </section>
-        <section className="leading-relaxed w-full max-w-screen-xl  mx-auto px-4 md-px-8 ">
+        <section className="leading-relaxed w-full max-w-screen-xl  mx-auto px-4 md-px-8 dark:text-white text-black">
           <h4
-            className={`cursor-pointer pb-5 flex items-center justify-between text-lg dark:text-white text-black  font-medium `}
+            className={`cursor-pointer pb-5 flex items-center justify-between text-lg   font-medium `}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ">
               <Locked height={25} width={25} size={0} />
               <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48  animate-pulse"></div>
             </div>
@@ -129,8 +129,8 @@ function SubjectSkeleton() {
           <div
             className={`px-5 py-4 bg-white dark:bg-gray-800 shadow justify-between rounded-lg mb-4`}
           >
-            <div className="flex flex-row justify-between">
-              <div className="flex flex-row items-center gap-4">
+            <div className="flex flex-row justify-between dark:text-white text-black">
+              <div className="flex flex-row items-center gap-4 ">
                 <Quiz size={25} height={0} width={0} />
                 <div className="flex flex-col gap-1">
                   <div className="flex flex-col gap-1 ">
@@ -153,7 +153,7 @@ function SubjectSkeleton() {
           <div
             className={`px-5 py-4 bg-white dark:bg-gray-800 shadow justify-between rounded-lg mb-4`}
           >
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between dark:text-white text-black">
               <div className="flex flex-row items-center gap-4">
                 <Quiz size={25} height={0} width={0} />
                 <div className="flex flex-col gap-1">
