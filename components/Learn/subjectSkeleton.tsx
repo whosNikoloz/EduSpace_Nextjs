@@ -72,6 +72,7 @@ function SubjectSkeleton() {
                 className="bg-blue-600 w-full text-white mt-4"
                 color="primary"
                 variant="ghost"
+                isLoading={true}
               >
                 სწავლა
               </Button>

@@ -3,7 +3,11 @@ import { Card, CardBody } from "@nextui-org/react";
 function CourseHeroSkeleton() {
   return (
     <>
-      <Card isBlurred className="border-none  max-w-[610px]" shadow="sm">
+      <Card
+        isBlurred
+        className="border-none bg-white dark:bg-gray-800  max-w-[610px]"
+        shadow="sm"
+      >
         <CardBody>
           <div
             role="status"

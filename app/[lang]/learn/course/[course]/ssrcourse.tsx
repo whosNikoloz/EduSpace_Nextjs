@@ -94,7 +94,7 @@ export default function SSRCourse({
           <div className="mt-14 w-full max-w-2xl mx-auto">
             <Card
               isBlurred
-              className="border-none  bg-background/60 dark:bg-default-100/50 max-w-[680px] justify-center items-center "
+              className="border-none  bg-white dark:bg-gray-800 max-w-[680px] justify-center items-center "
               shadow="sm"
             >
               <CardBody>
@@ -111,6 +111,7 @@ export default function SSRCourse({
                     className="bg-blue-600 w-1/2 text-white"
                     color="primary"
                     variant="ghost"
+                    isDisabled
                   >
                     სერთიფიკატის მიღება
                   </Button>
