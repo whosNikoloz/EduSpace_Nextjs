@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 
 import Hero from "@/components/Home/Hero";
 import AutoScrollCarousel from "@/components/Home/AutoScrollCarousel";
-import Feature from "@/components/Home/Feature";
 
 import Fab from "@/components/FAB";
 
@@ -70,16 +69,7 @@ export default function Home({
             </div>
           </section>
           <div className="hidden md:block">
-            <ConnectorSecond text="ყველა საიდანღაც იწყებს" color={"blue"} />
-          </div>
-
-          <div className="mt-7 ">
-            <div className="mt-20">
-              <Feature lng={lang} />
-            </div>
-          </div>
-          <div className="hidden md:block">
-            <ConnectorFirst text="არ არსებობს იდეალური დრო" color={"white"} />
+            <ConnectorFirst text="ყველა საიდანღაც იწყებს" color={"white"} />
           </div>
           <section className=" items-center justify-center gap-4 py-8 md:py-10 container mx-auto max-w-7xl pt-9 px-6 flex-grow">
             <div className="mt-7 ">
