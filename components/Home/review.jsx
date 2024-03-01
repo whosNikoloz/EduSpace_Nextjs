@@ -87,7 +87,7 @@ const Review = ({ lng }) => {
               {peopleData.user.map((person, index) => (
                 <Reveal key={index} delay={index * 0.2}>
                   <div className="w-full mx-auto rounded-lg  p-5  font-light mb-6">
-                    <Card className="max-w-[340px] bg-white p-2 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl">
+                    <Card className="max-w-[340px] bg-white p-2 dark:bg-[#0A0A0A] backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl">
                       <CardHeader className="justify-between">
                         <div className="flex gap-5">
                           <Avatar
@@ -98,7 +98,7 @@ const Review = ({ lng }) => {
                             src={person.image}
                           />
                           <div className="flex flex-col gap-1 items-start justify-center">
-                            <h4 className="text-small font-semibold leading-none text-default-600">
+                            <h4 className="text-small font-semibold leading-none text-black dark:text-white">
                               {person.name}
                             </h4>
                             <h5 className="text-small tracking-tight text-default-400">
@@ -107,7 +107,7 @@ const Review = ({ lng }) => {
                           </div>
                         </div>
                       </CardHeader>
-                      <CardBody className="px-3 py-0 text-small ">
+                      <CardBody className="px-3 py-0 text-small text-black dark:text-white">
                         <p>
                           {lng === "en" ? person.en.comment : person.ka.comment}
                         </p>
@@ -115,7 +115,7 @@ const Review = ({ lng }) => {
                       </CardBody>
                       <CardFooter className="gap-3">
                         <div className="flex gap-1">
-                          <p className="font-semibold text-default-400 text-small">
+                          <p className="font-semibold text-default-400 text-small dark:text-white">
                             {person.following}
                           </p>
                           <p className=" text-default-400 text-small">

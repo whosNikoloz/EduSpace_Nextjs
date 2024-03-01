@@ -67,7 +67,7 @@ const Stats = ({ lng }) => {
       <div className="container mx-auto text-center lg:text-left xl:px-32">
         <div className="grid items-center lg:grid-cols-2">
           <div className="mb-12 lg:mb-0">
-            <div className="relative z-[1] block rounded-lg  px-6 py-12  md:px-12 lg:-mr-14 backdrop-blur-[30px]">
+            <div className="relative z-[1] block rounded-lg  px-6 py-12  md:px-12 lg:-mr-14 backdrop-blur-[30px] shadow-2xl  dark:bg-[#0A0A0A]">
               <TypingEffect
                 text={title}
                 options={{

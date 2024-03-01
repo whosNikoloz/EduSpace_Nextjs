@@ -1,6 +1,6 @@
 export const AppLinks = () => {
   return (
-    <section className="py-6 dark:bg-black dark:text-white">
+    <section className="py-6 bg-transparent">
       <div className="container mx-auto flex flex-col justify-around p-4 text-center md:p-10 lg:flex-row">
         <div className="flex flex-col items-center justify-center flex-shrink-0 mt-6 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 lg:ml-4 lg:mt-0 lg:justify-end">
           <button className="inline-flex items-center px-6 py-3 rounded-lg dark:bg-blue-600 dark:text-gray-900">
