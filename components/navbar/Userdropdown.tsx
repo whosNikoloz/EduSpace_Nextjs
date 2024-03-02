@@ -84,7 +84,9 @@ function UDropdown({
             >
               <div className="h-14 px-4 py-1 gap-2">
                 <p className="font-semibold text-md">@{username}</p>
-                <p className="font-semibold text-sm text-gray-300">{email}</p>
+                <p className="font-semibold text-sm text-gray-500 dark:text-gray-400">
+                  {email}
+                </p>
               </div>
               <Link href="/user/profile">
                 <Button
