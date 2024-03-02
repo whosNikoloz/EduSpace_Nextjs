@@ -53,7 +53,10 @@ const transition = {
   restSpeed: 0.001,
 };
 
-const Notification: React.FC<{ userid: number }> = ({ userid }) => {
+const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
+  userid,
+  isScrolled,
+}) => {
   const notf = Notifications();
   const [notifications, setNotifications] = useState<NotificationProps[]>([]);
   const [newNotf, setNewNotf] = useState<NotificationProps[]>([]);
@@ -150,7 +153,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
               variant="light"
               className={` transition-transform ${
                 dropdownOpen ? "scale-90 " : "scale-100"
-              }`}
+              } ${isScrolled ? "dark:text-white text-black" : "text-white"}`}
             >
               <NotificationIcon
                 size={24}
@@ -169,7 +172,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
               variant="light"
               className={` transition-transform ${
                 dropdownOpen ? "scale-90 " : "scale-100"
-              }`}
+              } ${isScrolled ? "dark:text-white text-black" : "text-white"}`}
             >
               <NotificationIcon
                 size={24}
@@ -187,7 +190,7 @@ const Notification: React.FC<{ userid: number }> = ({ userid }) => {
             variant="light"
             className={` transition-transform ${
               dropdownOpen ? "scale-90 " : "scale-100"
-            }`}
+            } ${isScrolled ? "dark:text-white text-black" : "text-white"}`}
           >
             <NotificationIcon
               isActive={dropdownOpen}

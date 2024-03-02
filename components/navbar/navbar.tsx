@@ -123,7 +123,7 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
               <div className="pr-2 absolute inset-y-0 right-0 flex items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {user ? (
                   <>
-                    <Notification userid={user.userId} />
+                    <Notification userid={user.userId} isScrolled={true} />
                     <UDropdown
                       username={user.userName}
                       avatar={user.picture}
@@ -259,7 +259,10 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
               <div className="pr-2 absolute inset-y-0 right-0 flex items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {user ? (
                   <>
-                    <Notification userid={user.userId} />
+                    <Notification
+                      userid={user.userId}
+                      isScrolled={isScrolled}
+                    />
                     <UDropdown
                       username={user.userName}
                       avatar={user.picture}

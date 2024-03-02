@@ -331,7 +331,7 @@ export const NotificationIcon = ({
 }) => {
   return (
     <svg
-      fill="none"
+      fill="currentColor"
       height={size || height || 24}
       viewBox="0 0 24 24"
       width={size || width || 24}
