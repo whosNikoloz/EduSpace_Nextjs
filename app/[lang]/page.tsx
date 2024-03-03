@@ -2,10 +2,12 @@ import dynamic from "next/dynamic";
 
 import Hero from "@/components/Home/Hero";
 import AutoScrollCarousel from "@/components/Home/AutoScrollCarousel";
+import MainLayout from "@/app/[lang]/layouts/Mainlayout";
 
 import Fab from "@/components/FAB";
 
 // Lazy load non-critical components
+
 const Team = dynamic(() => import("@/components/Home/team"));
 const StepsNew = dynamic(() =>
   import("@/components/Home/StepsComponents/stepsNew").then(
@@ -15,7 +17,6 @@ const StepsNew = dynamic(() =>
 
 const Review = dynamic(() => import("@/components/Home/review"));
 
-const MainLayout = dynamic(() => import("@/app/[lang]/layouts/Mainlayout"));
 const CompilerSection = dynamic(
   () => import("@/components/Home/compilerSection")
 );
@@ -49,7 +50,7 @@ export default function Home({
               loop
               muted
               playsInline
-              preload="none"
+              preload="auto"
             >
               <source src="/EduSpaceHeroBg.mp4" type="video/mp4" />
               Your browser does not support the video tag.
