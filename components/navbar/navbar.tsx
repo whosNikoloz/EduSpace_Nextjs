@@ -188,7 +188,10 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                   // Render this content if user is null
                   <>
                     <div className="relative ml-3">
-                      <Link href={`/${lng}/user/auth`}>
+                      <Link
+                        href={`/${lng}/user/auth`}
+                        aria-label="Start User Authentication"
+                      >
                         <Button
                           className="bg-blue-600 text-white"
                           color="primary"
@@ -404,7 +407,10 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                   // Render this content if user is null
                   <>
                     <div className="relative ml-3">
-                      <Link href={`/${lng}/user/auth`}>
+                      <Link
+                        href={`/${lng}/user/auth`}
+                        aria-label="Start User Authentication"
+                      >
                         <Button
                           className="bg-blue-600 text-white"
                           color="primary"
