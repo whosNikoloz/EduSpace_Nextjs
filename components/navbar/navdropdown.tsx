@@ -407,6 +407,7 @@ function NDropdown({
               <Select
                 className="w-[150px]"
                 size="sm"
+                variant="underlined"
                 onChange={handleThemeChange}
                 aria-label="Select theme"
                 labelPlacement="outside"
@@ -447,6 +448,7 @@ function NDropdown({
               <Select
                 className="w-[150px]"
                 size="sm"
+                variant="underlined"
                 onChange={(event) => handleLanguageChange(event.target.value)}
                 aria-label="Select Language"
                 labelPlacement="outside"
