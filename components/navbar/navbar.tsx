@@ -120,10 +120,9 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                   </div>
                 </div>
               </div>
-              <div className="pr-2 absolute inset-y-0 right-0 flex items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="pr-2 absolute inset-y-0 right-0 flex items-center   sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {user ? (
                   <>
-                    <Notification userid={user.userId} isScrolled={true} />
                     <UDropdown
                       username={user.userName}
                       avatar={user.picture}
@@ -131,6 +130,7 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                       logout={handleLogout}
                       lng={lng}
                     />
+                    <Notification userid={user.userId} isScrolled={true} />
                   </>
                 ) : (
                   // Render this content if user is null
@@ -256,19 +256,19 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                   </div>
                 </div>
               </div>
-              <div className="pr-2 absolute inset-y-0 right-0 flex items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="pr-2 absolute inset-y-0 right-0 flex  items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {user ? (
                   <>
-                    <Notification
-                      userid={user.userId}
-                      isScrolled={isScrolled}
-                    />
                     <UDropdown
                       username={user.userName}
                       avatar={user.picture}
                       email={user.email}
                       logout={handleLogout}
                       lng={lng}
+                    />
+                    <Notification
+                      userid={user.userId}
+                      isScrolled={isScrolled}
                     />
                   </>
                 ) : (
