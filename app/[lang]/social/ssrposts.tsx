@@ -81,7 +81,10 @@ const SSRPosts = ({ params: { lang } }: { params: { lang: Locale } }) => {
 
   return (
     <>
-      <SearchSubject searchPostFunction={setSearchQuery} />
+      <SearchSubject
+        searchPostFunction={setSearchQuery}
+        lang={lang === "en" ? "en" : "ka"}
+      />
       <br />
       {isLoading ? (
         <>
@@ -102,6 +105,7 @@ const SSRPosts = ({ params: { lang } }: { params: { lang: Locale } }) => {
           {filteredPosts.map((post: { postId: Key | null | undefined }) => (
             <PostCard
               key={post.postId}
+              lang={lang}
               postData={post}
               onDelete={handleDeletePost}
             />
