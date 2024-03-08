@@ -158,13 +158,13 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                   <div className="flex space-x-4">
                     <MultiLevelDropdown isScrolled={true} lng={lng} />
                     <Link
-                      href="/social"
+                      href={`/${lng}/social`}
                       className={`p-0 bg-transparent data-[hover=true]:bg-transparent font-bold text-md dark:text-blue-500 text-blue-800`}
                     >
                       {lng === "en" ? "Social" : "სოციალური"}
                     </Link>
                     <Link
-                      href="/compiler/csharp"
+                      href={`/${lng}/compiler/csharp`}
                       className={`p-0 bg-transparent data-[hover=true]:bg-transparent font-bold text-md dark:text-white text-black `}
                     >
                       Compiler
@@ -188,7 +188,7 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                   // Render this content if user is null
                   <>
                     <div className="relative ml-3">
-                      <Link href="/user/auth">
+                      <Link href={`/${lng}/user/auth`}>
                         <Button
                           className="bg-blue-600 text-white"
                           color="primary"
@@ -323,7 +323,7 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                   <div className="flex space-x-4">
                     <MultiLevelDropdown isScrolled={isScrolled} lng={lng} />
                     <Link
-                      href="/social"
+                      href={`/${lng}/social`}
                       className={`p-0 bg-transparent data-[hover=true]:bg-transparent transition-colors font-bold text-md ${
                         isScrolled
                           ? "dark:text-blue-500 text-blue-800"
@@ -333,7 +333,7 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                       {lng === "en" ? "Social" : "სოციალური"}
                     </Link>
                     <Link
-                      href="/compiler/csharp"
+                      href={`/${lng}/compiler/csharp`}
                       className={`p-0 bg-transparent data-[hover=true]:bg-transparent font-bold text-md  ${
                         isScrolled
                           ? "dark:text-white text-black"
@@ -404,7 +404,7 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                   // Render this content if user is null
                   <>
                     <div className="relative ml-3">
-                      <Link href="/user/auth">
+                      <Link href={`/${lng}/user/auth`}>
                         <Button
                           className="bg-blue-600 text-white"
                           color="primary"
