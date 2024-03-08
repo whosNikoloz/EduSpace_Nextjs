@@ -169,6 +169,46 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                     >
                       Compiler
                     </Link>
+                    <Select
+                      className={`w-[150px] mb-1 `}
+                      size="sm"
+                      variant="underlined"
+                      onChange={(event) =>
+                        handleLanguageChange(event.target.value)
+                      }
+                      aria-label="Select Language"
+                      labelPlacement="outside"
+                      defaultSelectedKeys={[lng || `ka`]}
+                      startContent={lngstartCon}
+                    >
+                      <SelectItem
+                        key="ka"
+                        value={"georgia"}
+                        startContent={
+                          <Avatar
+                            alt="Georgia"
+                            className="w-5 h-5 bg-transparent"
+                            src="https://flagsapi.com/GE/flat/64.png"
+                          />
+                        }
+                      >
+                        {lng === "ka" ? "ქართული" : "Georgian"}
+                      </SelectItem>
+                      <SelectItem
+                        key="en"
+                        value={"english"}
+                        onClick={() => handleLanguageChange("en")}
+                        startContent={
+                          <Avatar
+                            alt="English"
+                            className="w-5 h-5 bg-transparent"
+                            src="https://flagsapi.com/US/flat/64.png"
+                          />
+                        }
+                      >
+                        {lng === "en" ? "English" : "ინგლისური"}
+                      </SelectItem>
+                    </Select>
                   </div>
                 </div>
               </div>
@@ -203,43 +243,6 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                     </div>
                   </>
                 )}
-                <Select
-                  className="w-[150px]"
-                  size="sm"
-                  onChange={(event) => handleLanguageChange(event.target.value)}
-                  aria-label="Select Language"
-                  labelPlacement="outside"
-                  defaultSelectedKeys={[lng || `ka`]}
-                  startContent={lngstartCon}
-                >
-                  <SelectItem
-                    key="ka"
-                    value={"georgia"}
-                    startContent={
-                      <Avatar
-                        alt="Georgia"
-                        className="w-5 h-5 bg-transparent"
-                        src="https://flagsapi.com/GE/flat/64.png"
-                      />
-                    }
-                  >
-                    {lng === "ka" ? "ქართული" : "Georgian"}
-                  </SelectItem>
-                  <SelectItem
-                    key="en"
-                    value={"english"}
-                    onClick={() => handleLanguageChange("en")}
-                    startContent={
-                      <Avatar
-                        alt="English"
-                        className="w-5 h-5 bg-transparent"
-                        src="https://flagsapi.com/US/flat/64.png"
-                      />
-                    }
-                  >
-                    {lng === "en" ? "English" : "ინგლისური"}
-                  </SelectItem>
-                </Select>
               </div>
             </div>
           </div>
@@ -346,7 +349,9 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                       Compiler
                     </Link>
                     <Select
-                      className="w-[150px] mb-1"
+                      className={`w-[150px] mb-1${
+                        isScrolled ? "" : " text-white"
+                      }`}
                       size="sm"
                       variant="underlined"
                       onChange={(event) =>
