@@ -47,12 +47,10 @@ function formatTimeAgo(timestamp) {
   }
 }
 
-function PostCard({ postData, onDelete }) {
+function PostCard({ postData, onDelete, lang }) {
   const { user } = useUser();
 
   const post = Posts();
-
-  const [IsAddingComment, setIsAddingComment] = useState(false);
 
   const {
     isOpen: isOpenWarning,
@@ -124,11 +122,11 @@ function PostCard({ postData, onDelete }) {
     if (con) {
       con.on("ReceiveComment", (newComment) => {
         setComments((prevComments) => [...prevComments, newComment]);
-        toast.success("კომენტარი დაემატა");
+        toast.success(lang == "ka" ? "კომენტარი დაემატა" : "Comment Added");
       });
       setIsAddingComment(false);
     }
-  }, [con]);
+  }, [con, lang]);
 
   const handleClosePost = async () => {
     if (con) {
@@ -147,12 +145,16 @@ function PostCard({ postData, onDelete }) {
       postData.picture
     );
     if (errorMessage) {
-      setPostModelError("Invalid Email or Password");
+      setPostModelError(errorMessage);
       console.log(errorMessage);
     } else {
       setEditSuccess(false);
       onCloseEdit();
-      toast.success("წარმატებით დარედაქტირდა პოსტი");
+      toast.success(
+        lang == "ka"
+          ? "წარმატებით დარედაქტირდა პოსტი"
+          : "Post Edited Successfully"
+      );
       setPostcontent(edittextPost);
     }
   };
@@ -211,7 +213,7 @@ function PostCard({ postData, onDelete }) {
                     </DropdownTrigger>
                     <DropdownMenu variant="faded" aria-label="Static Actions">
                       <DropdownItem key="edit" onPress={onOpenChangeEdit}>
-                        პოსტის რედაქტირება
+                        {lang == "ka" ? "პოსტის რედაქტირება " : "Edit Post"}
                       </DropdownItem>
                       <DropdownItem
                         key="delete"
@@ -219,7 +221,7 @@ function PostCard({ postData, onDelete }) {
                         color="danger"
                         onPress={onOpenChangeWarning}
                       >
-                        პოსტის წაშლა
+                        {lang == "ka" ? "პოსტის წაშლა" : "Delete Post"}
                       </DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
@@ -273,8 +275,12 @@ function PostCard({ postData, onDelete }) {
                     onClick={() => handleOpenPost(postData.postId)}
                   >
                     {commentCount === 0
-                      ? "კომენტარი"
-                      : `${commentCount} კომენტარი`}
+                      ? lang == "ka"
+                        ? "კომენტარი"
+                        : "Comment"
+                      : lang == "ka"
+                      ? `${commentCount} კომენტარი`
+                      : `${commentCount} comments`}
                   </button>
                 </Link>
               </div>
@@ -293,7 +299,7 @@ function PostCard({ postData, onDelete }) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                პოსტის წაშლა
+                {lang == "ka" ? "პოსტის წაშლა" : "Delete Post"}
               </ModalHeader>
               <ModalBody>
                 <div className="flex flex-row gap-2">
@@ -332,7 +338,7 @@ function PostCard({ postData, onDelete }) {
               </ModalBody>
               <ModalFooter>
                 <Button color="foreground" variant="light" onPress={onClose}>
-                  დახურვა
+                  {lang == "ka" ? "დახურვა" : "Close"}
                 </Button>
                 <Button
                   onClick={handleDelete}
@@ -340,7 +346,7 @@ function PostCard({ postData, onDelete }) {
                   variant="shadow"
                   isLoading={deleteSuccess}
                 >
-                  წაშლა
+                  {lang == "ka" ? "წაშლა" : "Delete"}
                 </Button>
               </ModalFooter>
             </>
@@ -358,7 +364,8 @@ function PostCard({ postData, onDelete }) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                {postData.user.username}-ს პოსტი
+                {postData.user.username}
+                {lang == "ka" ? "-ს პოსტი" : "'s Post"}
               </ModalHeader>
               <ModalBody>
                 {/* post author profile */}
@@ -414,7 +421,7 @@ function PostCard({ postData, onDelete }) {
                   isLoading={editSuccess}
                   onClick={handleEditPost}
                 >
-                  რედაქტირება
+                  {lang == "ka" ? "რედაქტირება" : "Edit"}
                 </Button>
               </ModalFooter>
             </>
@@ -433,7 +440,8 @@ function PostCard({ postData, onDelete }) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                {postData.user.username}-ს პოსტი
+                {postData.user.username}
+                {lang == "ka" ? "-ს პოსტი" : "'s Post"}
               </ModalHeader>
               <ModalBody>
                 {/* post author profile */}
@@ -482,14 +490,19 @@ function PostCard({ postData, onDelete }) {
                   <Link>
                     <button className="mr-4 text-gray-500 dark:text-gray-400 font-light">
                       {commentCount === 0
-                        ? "კომენტარი"
-                        : `${commentCount} კომენტარი`}
+                        ? lang == "ka"
+                          ? "კომენტარი"
+                          : "Comment"
+                        : lang == "ka"
+                        ? `${commentCount} კომენტარი`
+                        : `${commentCount} comments`}
                     </button>
                   </Link>
                 </div>
                 <hr className="border-gray-700" />
                 {comments.map((comment) => (
                   <Comment
+                    lang={lang}
                     key={comment.commentId}
                     commentId={comment.commentId}
                     username={comment.commentUser.username}
@@ -519,7 +532,7 @@ function PostCard({ postData, onDelete }) {
                       size="sm"
                     />
                     <div className="mb-4 w-full max-w-lg">
-                      <CommentForm postid={postData.postId} />
+                      <CommentForm postid={postData.postId} lang={lang} />
                     </div>
                   </>
                 )}
