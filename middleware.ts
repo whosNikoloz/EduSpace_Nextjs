@@ -36,7 +36,7 @@ export function middleware(request: NextRequest) {
   );
 
   // Redirect if there is no locale and the user is on the homepage
-  if (pathnameIsMissingLocale && pathname === "/") {
+  if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
     return NextResponse.redirect(
       new URL(
