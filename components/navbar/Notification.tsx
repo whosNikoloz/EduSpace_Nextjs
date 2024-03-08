@@ -140,6 +140,8 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
     }
   }, [notifications]);
 
+  console.log(notifications);
+
   return (
     <>
       <div className="relative my-32">
@@ -207,7 +209,7 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={transition}
               ref={dropdownRef}
-              className={`absolute right-0 mt-3 max-h-96   overflow-hidden z-20 w-72   bg-white p-2 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl`}
+              className={`absolute right-0 mt-3 max-h-96  overflow-y-scroll z-20 w-72   bg-white p-2 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl`}
             >
               {notifications.length === 0 ? ( // Check if there are no notifications
                 <div>
@@ -217,9 +219,13 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
                 </div>
               ) : (
                 <>
-                  <div className="container p-2 flex justify-between">
+                  <div className="container flex justify-between">
                     <span className="p-2 text-xl">ცნობები</span>
-                    <Dropdown backdrop="opaque">
+                    <Dropdown
+                      backdrop="opaque"
+                      size="sm"
+                      className="bg-white  dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+                    >
                       <DropdownTrigger>
                         <Button isIconOnly variant="light">
                           <DotsIcon
@@ -234,9 +240,9 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
                         <DropdownItem key="new" textValue="MarkAsReadAll">
                           <Button
                             size="sm"
-                            className="bg-transparent "
+                            className="bg-transparent p-0"
                             startContent={
-                              <IconCheck size={24} height={24} width={24} />
+                              <IconCheck size={15} height={15} width={15} />
                             }
                             onClick={markAsRead}
                           >
@@ -246,9 +252,9 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
                         <DropdownItem textValue="OpenNotf">
                           <Button
                             size="sm"
-                            className="bg-transparent "
+                            className="bg-transparent p-0"
                             startContent={
-                              <IconCheck size={24} height={24} width={24} />
+                              <IconCheck size={15} height={15} width={15} />
                             }
                           >
                             Open Notifications
@@ -267,7 +273,7 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
                       transition={{ duration: 0.5, delay: 0.2 }}
                     >
                       {!notification.isRead && (
-                        <div className=" rounded-full  absolute top-8 right-4 ">
+                        <div className=" rounded-full  absolute top-6 right-0 ">
                           <span className="relative flex h-3 w-3">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
@@ -276,18 +282,18 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
                       )}
 
                       <div
-                        className={`flex items-center px-6 py-3 hover:bg-zinc-200 dark:hover:bg-zinc-600 -mx-2 `}
+                        className={`flex items-center px-2   py-3 hover:bg-zinc-200 dark:hover:bg-zinc-600`}
                       >
                         <Avatar
-                          className="h-8 w-11 rounded-full object-cover mx-1"
                           isBordered
+                          radius="full"
                           as="button"
                           color="primary"
                           name={notification.commentAuthorUsername}
                           size="sm"
                           src={notification.commentAuthorPicture}
                         />
-                        <p className="dark:text-white text-black text-sm mx-1">
+                        <p className="dark:text-white text-black text-xs px-2 ml-1">
                           <span className="font-bold">
                             {notification.commentAuthorUsername}
                           </span>{" "}
