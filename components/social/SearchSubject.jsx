@@ -5,7 +5,7 @@ import { Input } from "@nextui-org/react";
 import { SearchIcon } from "@/components/icons";
 import { Button } from "@nextui-org/button";
 
-const SearchSubject = ({ searchPostFunction }) => {
+const SearchSubject = ({ searchPostFunction, lang }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
@@ -33,11 +33,13 @@ const SearchSubject = ({ searchPostFunction }) => {
         }}
         contenteditable="true"
         spellcheck="true"
-        placeholder="მოძებნე თემის მიხედვით"
+        placeholder={
+          lang === "en" ? "Search for a subject" : "მოძებნე თემის მიხედვით"
+        }
         size="sm"
         radius="full"
         startContent={
-          <SearchIcon size={18} width={undefined} height={undefined} />
+          <SearchIcon size={20} width={undefined} height={undefined} />
         }
         type="search"
         value={searchQuery}
@@ -51,7 +53,7 @@ const SearchSubject = ({ searchPostFunction }) => {
       </datalist>
       <br />
       <Button color="primary" onClick={handleSearch}>
-        ძებნა
+        {lang === "en" ? "Search" : "ძებნა"}
       </Button>
     </div>
   );
