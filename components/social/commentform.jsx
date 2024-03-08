@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import { Textarea } from "@nextui-org/react";
 
-function CommentForm({ postid }) {
+function CommentForm({ postid, lang }) {
   const fileInputRef = useRef(null);
   const [commentText, setCommentText] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -105,7 +105,9 @@ function CommentForm({ postid }) {
               input: ["text-[16px] "],
             }}
             onChange={(e) => setCommentText(e.target.value)}
-            placeholder="დაწერე კომენტარი..."
+            placeholder={
+              lang === "en" ? "Write a comment..." : "დაწერე კომენტარი..."
+            }
             required
           />
           {selectedImage && (
@@ -183,7 +185,7 @@ function CommentForm({ postid }) {
             isLoading={isLoading}
             className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
           >
-            დაპოსტე კომენტარი
+            {lang === "en" ? "Post Comment" : "დაპოსტე კომენტარი"}
           </Button>
           <div className="flex pl-0 space-x-1 sm:pl-2">
             {!selectedImage && !selectedVideo && (
