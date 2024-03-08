@@ -13,7 +13,7 @@ export default function LayoutNavbar({
 }) {
   return (
     <div className="relative flex flex-col h-screen">
-      <Navbar lng={lang} NotMain={false} />
+      <Navbar lng={lang} NotMain={true} />
       <div className="mt-16">{children}</div>
     </div>
   );
