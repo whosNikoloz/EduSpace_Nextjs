@@ -34,7 +34,7 @@ export default function Team({ lng }) {
         name: "Nikoloz  Kobaidze2",
         role: "IOS Backend Developer",
         image:
-          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+          "https://firebasestorage.googleapis.com/v0/b/eduspace-a81b5.appspot.com/o/UserProfiles%2F1709757310950-aqj9p53e5a8-profilePic.jpg?alt=media&token=9d52da4d-3141-4ed8-a8c3-17388be047bb",
         facebook: "https://www.facebook.com/profile.php?id=100009152091053",
         in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
         github: "https://github.com/whosNikoloz",
@@ -54,7 +54,7 @@ export default function Team({ lng }) {
         name: "Nikoloz  Kobaidze4",
         role: "Full Stack Web Developer",
         image:
-          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+          "https://firebasestorage.googleapis.com/v0/b/eduspace-a81b5.appspot.com/o/UserProfiles%2F1709757310950-aqj9p53e5a8-profilePic.jpg?alt=media&token=9d52da4d-3141-4ed8-a8c3-17388be047bb",
         facebook: "https://www.facebook.com/profile.php?id=100009152091053",
         in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
         github: "https://github.com/whosNikoloz",
@@ -72,7 +72,7 @@ export default function Team({ lng }) {
         name: "Nikoloz  Kobaidze6",
         role: "Frontend Developer",
         image:
-          "https://nikolozkobaidze.vercel.app/_next/image?url=%2Fimg%2FNikoloz1.JPG&w=640&q=75",
+          "https://firebasestorage.googleapis.com/v0/b/eduspace-a81b5.appspot.com/o/UserProfiles%2F1709757310950-aqj9p53e5a8-profilePic.jpg?alt=media&token=9d52da4d-3141-4ed8-a8c3-17388be047bb",
         facebook: "https://www.facebook.com/profile.php?id=100009152091053",
         in: "https://www.linkedin.com/in/nikoloz-kobaidze-298a35254/",
         github: "https://github.com/whosNikoloz",
