@@ -30,6 +30,7 @@ interface CommentProps {
   avatarUrl: string;
   userid: number;
   onCommentDelete: (commentId: string) => void;
+  lang: string;
 }
 
 function formatTimeAgo(timestamp: string | number | Date) {
@@ -62,6 +63,7 @@ const Comment: React.FC<CommentProps> = ({
   pictureUrl,
   commentText,
   avatarUrl,
+  lang,
   onCommentDelete,
 }) => {
   const formattedTimeAgo = formatTimeAgo(createdAt);
@@ -139,14 +141,16 @@ const Comment: React.FC<CommentProps> = ({
               </Button>
             </DropdownTrigger>
             <DropdownMenu variant="faded" aria-label="Static Actions">
-              <DropdownItem key="new">პოსტის რედაქტირება</DropdownItem>
+              <DropdownItem key="new">
+                {lang === "en" ? "Edit Comment" : "კომენტარის რედაქტირება"}
+              </DropdownItem>
               <DropdownItem
                 key="delete"
                 className="text-danger"
                 color="danger"
                 onPress={onOpen}
               >
-                კომენტარის წაშლა
+                {lang === "en" ? "Delete Comment" : "კომენტარის წაშლა"}
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
@@ -161,7 +165,7 @@ const Comment: React.FC<CommentProps> = ({
             {(onClose) => (
               <>
                 <ModalHeader className="flex flex-col gap-1">
-                  კოემტარის წაშლა
+                  {lang === "en" ? "Delete Comment" : "კოემტარის წაშლა"}
                 </ModalHeader>
                 <ModalBody>
                   <div className="flex flex-row gap-2">
@@ -195,19 +199,23 @@ const Comment: React.FC<CommentProps> = ({
                         <path d="M225.819,242.111l-3.371-50.439c-0.632-9.83-0.943-16.887-0.943-21.167c0-5.826,1.527-10.372,4.576-13.635 c3.053-3.274,7.079-4.902,12.06-4.902c6.039,0,10.08,2.088,12.112,6.264c2.032,4.18,3.053,10.204,3.053,18.058 c0,4.636-0.247,9.347-0.733,14.11l-4.531,51.917c-0.49,6.181-1.542,10.918-3.162,14.222c-1.616,3.296-4.288,4.943-8.004,4.943 c-3.794,0-6.425-1.59-7.895-4.789C227.503,253.504,226.448,248.64,225.819,242.111z M237.508,311.401 c-4.284,0-8.026-1.381-11.214-4.153c-3.195-2.769-4.789-6.649-4.789-11.633c0-4.355,1.527-8.06,4.576-11.117 c3.053-3.053,6.795-4.58,11.218-4.58c4.426,0-3.053,4.913-1.579,8.771-4.745,11.581C245.403,309.997,241.721,311.401,237.508,311.401z"></path>
                       </g>
                     </svg>
-                    <p>დარწმუნებულიხართ რომ გსურთ ამ კომენტარის წაშლა ?</p>
+                    <p>
+                      {lang === "en"
+                        ? "Are you sure you want to delete this comment?"
+                        : "დარწმუნებულიხართ რომ გსურთ ამ კომენტარის წაშლა ?"}
+                    </p>
                   </div>
                 </ModalBody>
                 <ModalFooter>
                   <Button variant="light" onPress={onClose}>
-                    დახურვა
+                    {lang === "en" ? "Close" : "დახურვა"}
                   </Button>
                   <Button
                     onClick={handleDelete}
                     color="primary"
                     variant="shadow"
                   >
-                    წაშლა
+                    {lang === "en" ? "Delete" : "წაშლა"}
                   </Button>
                 </ModalFooter>
               </>
