@@ -291,29 +291,28 @@ export const SearchIcon = ({
   ...props
 }: IconSvgProps) => (
   <svg
-    aria-hidden="true"
+    viewBox="0 0 24 24"
     fill="none"
-    focusable="false"
     height={size || height || 24}
     width={size || width || 24}
-    role="presentation"
-    viewBox="0 0 24 24"
-    {...props}
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={10}
-    />
-    <path
-      d="M22 22L20 20"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={10}
-    />
+    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g
+      id="SVGRepo_tracerCarrier"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    ></g>
+    <g id="SVGRepo_iconCarrier">
+      {" "}
+      <path
+        d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></path>{" "}
+    </g>
   </svg>
 );
 
