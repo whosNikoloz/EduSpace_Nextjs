@@ -87,7 +87,15 @@ const languageData = {
 };
 
 export const StepsNew = ({ lng }) => {
-  const { step } = languageData[lng ? lng : "ka"];
+  const languageDataItem = languageData[lng] || languageData["ka"];
+
+  if (!languageDataItem) {
+    // Handle the case when both languageData[lng] and languageData["ka"] are undefined
+    console.error("Invalid language key");
+    return null;
+  }
+
+  const { step } = languageDataItem;
 
   return (
     <>
