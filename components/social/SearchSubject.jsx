@@ -28,8 +28,7 @@ const SearchSubject = ({ searchPostFunction, lang }) => {
           base: "max-w-[250px] sm:max-w-[40rem] h-10",
           mainWrapper: "h-full",
           input: "text-[16px]",
-          inputWrapper:
-            "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+          inputWrapper: "h-full font-normal text-default-500 ",
         }}
         contenteditable="true"
         spellcheck="true"
