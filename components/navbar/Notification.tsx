@@ -213,7 +213,7 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
             >
               {notifications.length === 0 ? ( // Check if there are no notifications
                 <div>
-                  <p className="flex items-center px-4 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 ">
+                  <p className="flex items-center px-2 py-3 dark:text-white text-black  hover:bg-zinc-200  dark:hover:bg-zinc-600 ">
                     თქვენ არ გაქვთ შეტყობინება
                   </p>
                 </div>
