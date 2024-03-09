@@ -63,7 +63,7 @@ public class HelloWorld
           <div className="text-center md:text-left">
             {" "}
             {/* Add responsive classes */}
-            <div className="text-5xl font-bold tracking-tight text-black flex flex-col dark:text-white">
+            <div className=" md:text-4xl lg:text-5xl font-bold tracking-tight text-black flex flex-col dark:text-white">
               <TypingEffect
                 text={"Start Coding"}
                 options={{

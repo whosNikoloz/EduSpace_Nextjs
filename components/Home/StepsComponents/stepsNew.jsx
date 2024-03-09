@@ -109,7 +109,7 @@ export const StepsNew = ({ lng }) => {
               <div className="flex flex-col justify-center max-w-3xl text-center col-span-full lg:col-span-3 lg:text-left">
                 <p
                   className={
-                    "font-heading text-xl md:text-5xl font-bold transition-colors"
+                    "font-heading text-xl md:text-4xl lg:text-5xl font-bold transition-colors"
                   }
                 >
                   {step.title}
