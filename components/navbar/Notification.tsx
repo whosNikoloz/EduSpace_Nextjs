@@ -140,8 +140,6 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
     }
   }, [notifications]);
 
-  console.log(notifications);
-
   return (
     <>
       <div className="relative my-32">
@@ -172,6 +170,7 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
               isIconOnly
               onClick={() => setDropdownOpen(!dropdownOpen)}
               variant="light"
+              aria-label="more than 0 notifications"
               className={` transition-transform ${
                 dropdownOpen ? "scale-90 " : "scale-100"
               } ${isScrolled ? "dark:text-white text-black" : "text-white"}`}
@@ -190,6 +189,7 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
             isIconOnly
             onClick={() => setDropdownOpen(!dropdownOpen)}
             variant="light"
+            aria-label="0 notifications"
             className={` transition-transform ${
               dropdownOpen ? "scale-90 " : "scale-100"
             } ${isScrolled ? "dark:text-white text-black" : "text-white"}`}
