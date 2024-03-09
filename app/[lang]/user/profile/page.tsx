@@ -105,7 +105,7 @@ export default function ProfilePage({
                 phonenumber={user.phoneNumber}
                 onGeneralInfoChange={handleGeneralInfoChange}
                 email={user.email}
-                oauth={user.email == "OAuth" ? true : false}
+                oauth={user.oauth ? true : false}
                 userid={user.userId}
               />
             </>

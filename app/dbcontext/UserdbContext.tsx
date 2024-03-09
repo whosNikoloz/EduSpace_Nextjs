@@ -17,6 +17,7 @@ class User {
   email: string;
   phoneNumber: string;
   role: string;
+  oauth: string;
   joinedAt: string;
 
   constructor(
@@ -28,6 +29,7 @@ class User {
     email: string,
     phoneNumber: string,
     role: string,
+    oauth: string,
     joinedAt: string
   ) {
     this.userId = userId;
@@ -38,6 +40,7 @@ class User {
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.role = role;
+    this.oauth = oauth;
     this.joinedAt = joinedAt;
   }
 }
@@ -95,6 +98,7 @@ const EncodeJwtIntoUser = (userToken: string) => {
     role: decodedToken[
       "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
     ],
+    oauth: decodedToken["Oauth"],
     joinedAt: decodedToken["joinedAt"],
   };
   return userData;
