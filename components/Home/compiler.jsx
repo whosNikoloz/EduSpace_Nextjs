@@ -104,7 +104,9 @@ export const Compiler = ({ code, isDarkMode, onChange, lng }) => {
                   minimap: { enabled: false }, // Optional minimap configuration
                   scrollbar: { vertical: "hidden", horizontal: "hidden" },
                   smoothScrolling: true,
+                  scrollBeyondLastLine: false,
                 }}
+                onPaste={(event) => event.preventDefault()}
               />
             </div>
           </div>
@@ -157,10 +159,13 @@ export const Compiler = ({ code, isDarkMode, onChange, lng }) => {
                 theme={isDarkMode ? "githubdark" : "githublight"}
                 defaultValue="// some comment"
                 options={{
-                  fontSize: 10,
-                  minimap: { enabled: false },
+                  fontSize: 10, // Adjust the font size as needed
+                  minimap: { enabled: false }, // Optional minimap configuration
+                  scrollbar: { vertical: "hidden", horizontal: "hidden" },
                   smoothScrolling: true,
+                  scrollBeyondLastLine: false,
                 }}
+                onPaste={(event) => event.preventDefault()}
               />
             </div>
           )}
