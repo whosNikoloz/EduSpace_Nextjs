@@ -101,7 +101,7 @@ const SSRPosts = ({ params: { lang } }: { params: { lang: Locale } }) => {
         </>
       ) : (
         <>
-          <CreatePost setPosts={setPosts} />
+          <CreatePost setPosts={setPosts} lang={lang} />
           {filteredPosts.map((post: { postId: Key | null | undefined }) => (
             <PostCard
               key={post.postId}

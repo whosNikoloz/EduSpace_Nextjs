@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
 
-function FileUpload({ onFileSelect, onCancelUpload }) {
+function FileUpload({ onFileSelect, onCancelUpload, lang }) {
   const [mediaSrc, setMediaSrc] = useState(null);
 
   const handleFileChange = (event) => {
@@ -94,7 +94,7 @@ function FileUpload({ onFileSelect, onCancelUpload }) {
             color="danger"
             className="mt-2 px-4 py-2  rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-200"
           >
-            თავიდან ატვირთვა
+            {lang == "ka" ? "თავიდან ატვირთვა" : "Upload again"}
           </Button>
         </div>
       ) : (
@@ -118,9 +118,13 @@ function FileUpload({ onFileSelect, onCancelUpload }) {
                 d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
               />
             </svg>
-            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-              <span className="font-semibold">დააჭირე რათა ატვირთო</span> ან
-              ჩააგდე
+            <p className="mb-2 text-sm mx-4 text-gray-500 dark:text-gray-400">
+              <span className="font-semibold">
+                {lang == "ka" ? "დააჭირე რათა ატვირთო" : "Click to upload"}
+              </span>{" "}
+              {lang == "ka"
+                ? "ფაილი ან ჩააგდე"
+                : "a file or drag and drop it here."}
             </p>
             <p className="text-xs text-gray-500 dark:text-gray-400">
               MP4, PNG, JPG ან GIF
