@@ -209,7 +209,7 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={transition}
               ref={dropdownRef}
-              className={`absolute right-0 mt-3 max-h-96  overflow-y-scroll z-20 w-72   bg-white p-2 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl`}
+              className={`absolute right-0 mt-3 h-dvh  overflow-y-scroll z-20 w-72   bg-white p-2 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl`}
             >
               {notifications.length === 0 ? ( // Check if there are no notifications
                 <div>
@@ -272,38 +272,67 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                      {!notification.isRead && (
-                        <div className=" rounded-full  absolute top-6 right-0 ">
-                          <span className="relative flex h-3 w-3">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-                          </span>
-                        </div>
-                      )}
-
-                      <div
-                        className={`flex items-center px-2   py-3 hover:bg-zinc-200 dark:hover:bg-zinc-600`}
-                      >
-                        <Avatar
-                          isBordered
-                          radius="full"
-                          as="button"
-                          color="primary"
-                          name={notification.commentAuthorUsername}
-                          size="sm"
-                          src={notification.commentAuthorPicture}
-                        />
-                        <p className="dark:text-white text-black text-xs px-2 ml-1">
-                          <span className="font-bold">
-                            {notification.commentAuthorUsername}
-                          </span>{" "}
-                          დატოვა კომენტარი :{" "}
-                          <span className="font-bold text-blue-500">
-                            {notification.message}
-                          </span>
-                          {"   "}
-                          {formatTimeAgo(notification.createdAt)}
-                        </p>
+                      <div className={`flex items-center ml-2  py-3 `}>
+                        {!notification.isRead ? (
+                          <>
+                            <div className=" rounded-full  absolute top-6 right-1 ">
+                              <span className="relative flex">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                              </span>
+                            </div>
+                            <Avatar
+                              isBordered
+                              radius="full"
+                              className="w-8 h-8"
+                              as="button"
+                              color="primary"
+                              name={notification.commentAuthorUsername}
+                              size="sm"
+                              src={notification.commentAuthorPicture}
+                            />
+                            <p className="dark:text-white text-black text-[11px]  ml-3 mx-4">
+                              <span className="font-bold">
+                                {notification.commentAuthorUsername}
+                              </span>{" "}
+                              დატოვა კომენტარი :{" "}
+                              <span className="font-bold text-blue-500">
+                                {notification.message}
+                              </span>
+                              {"   "}
+                              <span className="text-[8px]">
+                                {formatTimeAgo(notification.createdAt)}
+                              </span>
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <Avatar
+                              isBordered
+                              radius="full"
+                              isDisabled
+                              className="w-8 h-8"
+                              as="button"
+                              color="primary"
+                              name={notification.commentAuthorUsername}
+                              size="sm"
+                              src={notification.commentAuthorPicture}
+                            />
+                            <p className="dark:text-slate-300 text-black text-[11px]  ml-3 mx-4">
+                              <span className="font-bold">
+                                {notification.commentAuthorUsername}
+                              </span>{" "}
+                              დატოვა კომენტარი :{" "}
+                              <span className="font-bold text-blue-500">
+                                {notification.message}
+                              </span>
+                              {"   "}
+                              <span className="text-[8px]">
+                                {formatTimeAgo(notification.createdAt)}
+                              </span>
+                            </p>
+                          </>
+                        )}
                       </div>
                     </motion.div>
                   ))}
