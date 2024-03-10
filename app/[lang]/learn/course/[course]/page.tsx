@@ -11,9 +11,10 @@ type Props = {
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
+  const CourseName = await CoursesAPI().GetCourseName(params.course);
   return {
-    title: `${params.course}`,
-    description: `სასწავლო კურსი - ${params.course}`,
+    title: `${CourseName}`,
+    description: `სასწავლო კურსი - ${CourseName}`,
   };
 };
 

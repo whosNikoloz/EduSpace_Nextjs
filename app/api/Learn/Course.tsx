@@ -53,9 +53,38 @@ const Courses = () => {
     }
   };
 
+  const GetCourseName = async (notFornametCourseName: string) => {
+    try {
+      const response = await fetch(
+        learn_API + "Courses/CourseName/" + notFornametCourseName,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // Include the bearer token in the Authorization header
+          },
+        }
+      );
+
+      if (response.ok) {
+        const courseName = await response.text();
+        console.log(courseName);
+        return courseName;
+      } else {
+        const errorText = await response.text();
+        console.error("Courses Get:", errorText); // Log the error
+        return errorText;
+      }
+    } catch (error) {
+      console.error("Courses Get error:", error); // Log the error
+      return error;
+    }
+  };
+
   return {
     GetCourses,
     GetCourse,
+    GetCourseName,
   };
 };
 
