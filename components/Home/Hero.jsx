@@ -35,18 +35,6 @@ export default function Hero({ lng }) {
     <>
       <div className="relative isolate px-6 pt-40 lg:px-8">
         <div className="mx-auto max-w-3xl ">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-gray-500 hover:ring-blue-600">
-              {span1}{" "}
-              <Link
-                href="#step-section"
-                className="font-semibold text-blue-600 "
-              >
-                <span className="absolute inset-0" aria-hidden="true"></span>
-                {span2} <span aria-hidden="true">&rarr;</span>
-              </Link>
-            </div>
-          </div>
           <div className="text-left lg:mt-14 mt-1">
             <h1 className="text-5xl flex flex-col text-mono font-bold tracking-tight  lg:text-6xl text-white">
               {h1}

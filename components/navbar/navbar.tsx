@@ -172,10 +172,11 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                     <Select
                       className={`w-[150px] mb-1 `}
                       size="sm"
-                      variant="underlined"
                       onChange={(event) =>
                         handleLanguageChange(event.target.value)
                       }
+                      variant="bordered"
+                      color="primary"
                       aria-label="Select Language"
                       labelPlacement="outside"
                       defaultSelectedKeys={[lng || `ka`]}
@@ -353,11 +354,12 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                         isScrolled ? "" : " text-white"
                       }`}
                       size="sm"
-                      variant="underlined"
                       onChange={(event) =>
                         handleLanguageChange(event.target.value)
                       }
                       aria-label="Select Language"
+                      variant="bordered"
+                      color="primary"
                       labelPlacement="outside"
                       defaultSelectedKeys={[lng || `ka`]}
                       startContent={lngstartCon}
