@@ -19,11 +19,14 @@ import {
   RadioGroup,
   Radio,
 } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 export default function CreatePost({ setPosts, lang }) {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [isCreateLoading, setCreateLoading] = useState(false);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+
+  const router = useRouter();
 
   const { user } = useUser();
 
@@ -122,6 +125,11 @@ export default function CreatePost({ setPosts, lang }) {
       isOpen = false;
     }
     onOpenChange(isOpen);
+  };
+
+  const handelAuthNeeded = () => {
+    sessionStorage.setItem("redirect_url", `/${lang}/social`);
+    router.push(`/${lang}/user/auth`);
   };
 
   const handlePost = async () => {
@@ -301,7 +309,37 @@ export default function CreatePost({ setPosts, lang }) {
           </>
         ) : (
           // Render this content if user is null
-          <>Login To Post</>
+          <>
+            <div className="flex items-center justify-center ">
+              <div className="p-4 md:p-6 shadow-md bg-white rounded-lg dark:bg-gray-800 w-[350px] sm:w-[750px] mb-4">
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0">
+                    <Avatar
+                      className="transition-transform"
+                      size="sm"
+                      isBordered
+                      color="primary"
+                      name={"nika kobaidze"}
+                      src={
+                        "https://firebasestorage.googleapis.com/v0/b/eduspace-a81b5.appspot.com/o/UserProfiles%2F1709757310950-aqj9p53e5a8-profilePic.jpg?alt=media&token=9d52da4d-3141-4ed8-a8c3-17388be047bb"
+                      }
+                    />
+                  </div>
+                  <div
+                    className="w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full cursor-pointer"
+                    onClick={() => handelAuthNeeded()}
+                  >
+                    <h3 className="md:text-md text-sm text-gray-500">
+                      {lang == "ka"
+                        ? "კითხვის დასასმელად აუცილებელია რეგისტრაცია"
+                        : "Registration is required to ask a question"}
+                      ?
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
         )}
       </>
     </>
