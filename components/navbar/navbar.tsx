@@ -143,11 +143,11 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
                 <div className="flex flex-shrink-0 items-center">
-                  <Link href="/">
+                  <Link href={`/${lng}`}>
                     <EduSpace />
                   </Link>
                   <Link
-                    href="/"
+                    href={`/${lng}`}
                     className={`font-bold text-inherit dark:text-white text-black`}
                   >
                     {" "}
@@ -311,11 +311,11 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
                 <div className="flex flex-shrink-0 items-center">
-                  <Link href="/">
+                  <Link href={`/${lng}`}>
                     <EduSpace />
                   </Link>
                   <Link
-                    href="/"
+                    href={`/${lng}`}
                     className={`font-bold text-inherit  ${
                       isScrolled
                         ? "dark:text-white text-black"
