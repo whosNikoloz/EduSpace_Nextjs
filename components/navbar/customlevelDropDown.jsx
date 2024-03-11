@@ -1,13 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Button,
-} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { ChevronDown, Python, Cpp, Csharp } from "@/components/icons";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -34,10 +28,10 @@ const dropdownItems = {
       startContent: icons.Beginner,
       textValue: "Beginner",
       courses: [
-        { text: "C# Beginner", link: "/learn/course/c-sharp-beginner" },
-        { text: "Python Beginner", link: "/learn/course/python-beginner" },
-        { text: "C++ Beginner", link: "/learn/course/c-plus-beginner" },
-        { text: "Swift Beginner", link: "/learn/course/swift-beginner" },
+        { text: "C# Beginner", link: "en/learn/course/c-sharp-beginner" },
+        { text: "Python Beginner", link: "en/learn/course/python-beginner" },
+        { text: "C++ Beginner", link: "en/learn/course/c-plus-beginner" },
+        { text: "Swift Beginner", link: "en/learn/course/swift-beginner" },
       ],
     },
     {
@@ -75,10 +69,10 @@ const dropdownItems = {
       startContent: icons.Beginner,
       textValue: "შესავალი",
       courses: [
-        { text: "C# შესავალი", link: "/learn/course/c-sharp-beginner" },
-        { text: "Python შესავალი", link: "/learn/course/python-beginner" },
-        { text: "C++ შესავალი", link: "/learn/course/c-plus-beginner" },
-        { text: "Swift შესავალი", link: "/learn/course/swift-beginner" },
+        { text: "C# შესავალი", link: "ka/learn/course/c-sharp-beginner" },
+        { text: "Python შესავალი", link: "ka/learn/course/python-beginner" },
+        { text: "C++ შესავალი", link: "ka/learn/course/c-plus-beginner" },
+        { text: "Swift შესავალი", link: "ka/learn/course/swift-beginner" },
       ],
     },
     {
