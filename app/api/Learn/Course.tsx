@@ -6,9 +6,9 @@ const learn_conveyAPI = "https://othergreencat21.conveyor.cloud/api/Learn/";
 const mac_learn_API = "https://localhost:7163/api/Learn/";
 
 const Courses = () => {
-  const GetCourses = async () => {
+  const GetCourses = async (lang: string) => {
     try {
-      const response = await fetch(learn_API + "Courses/", {
+      const response = await fetch(learn_API + `Courses?lang=${lang}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -29,34 +29,10 @@ const Courses = () => {
     }
   };
 
-  const GetCourse = async (courseName: string) => {
-    try {
-      const response = await fetch(learn_API + "Course/" + courseName, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          // Include the bearer token in the Authorization header
-        },
-      });
-
-      if (response.ok) {
-        const courses = await response.json();
-        return courses;
-      } else {
-        const errorText = await response.text();
-        console.error("Courses Get:", errorText); // Log the error
-        return errorText;
-      }
-    } catch (error) {
-      console.error("Courses Get error:", error); // Log the error
-      return error;
-    }
-  };
-
-  const GetCourseName = async (notFornametCourseName: string) => {
+  const GetCourse = async (courseName: string, lang: string) => {
     try {
       const response = await fetch(
-        learn_API + "Courses/CourseName/" + notFornametCourseName,
+        learn_API + "Course/" + `${courseName}?lang=${lang}`,
         {
           method: "GET",
           headers: {
@@ -65,10 +41,40 @@ const Courses = () => {
           },
         }
       );
+      if (response.ok) {
+        const courses = await response.json();
+        return courses;
+      } else {
+        const errorText = await response.text();
+        console.error("Courses Get:", errorText); // Log the error
+        return errorText;
+      }
+    } catch (error) {
+      console.error("Courses Get error:", error); // Log the error
+      return error;
+    }
+  };
+
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+  const GetCourseName = async (
+    notFormattedCourseName: string,
+    lang: string
+  ) => {
+    try {
+      const response = await fetch(
+        `${learn_API}Courses/CourseName/${notFormattedCourseName}?lang=${lang}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // Include other headers if needed
+          },
+        }
+      );
 
       if (response.ok) {
         const courseName = await response.text();
-        console.log(courseName);
         return courseName;
       } else {
         const errorText = await response.text();

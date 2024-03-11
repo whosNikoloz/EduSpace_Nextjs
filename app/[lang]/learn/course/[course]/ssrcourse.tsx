@@ -52,7 +52,7 @@ export default function SSRCourse({
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const fetchCourseAndProgress = async () => {
-    const courseResponse = await CoursesAPI().GetCourse(course);
+    const courseResponse = await CoursesAPI().GetCourse(course, lang);
     if (user) {
       const userProgress = await ProgressAPI().GetProgress(
         { userid: user.userId },
@@ -101,11 +101,14 @@ export default function SSRCourse({
                 <div className="flex flex-col items-center text-center text-sm">
                   <Certification size={100} height={0} width={0} />
                   <h1 className="dark:text-white text-black mt-4">
-                    თქვენი სერთიფიკატი ახლოს არის
+                    {lang == "en"
+                      ? "Your certificate is close"
+                      : "თქვენი სერთიფიკატი ახლოს არის"}
                   </h1>
                   <p className="dark:text-white text-black mt-3 mb-4">
-                    მშვენივრად აკეთებ! განაგრძეთ სწავლა თქვენი სერტიფიკატის
-                    აღებისთვის!
+                    {lang == "en"
+                      ? "You are doing great! Keep learning to unlock your certificate!"
+                      : "მშვენივრად აკეთებ! განაგრძეთ სწავლა თქვენი სერტიფიკატის აღებისთვის!"}
                   </p>
                   <Button
                     className="bg-blue-600  text-white text-sm"
@@ -113,7 +116,9 @@ export default function SSRCourse({
                     variant="ghost"
                     isDisabled
                   >
-                    სერთიფიკატის მიღება
+                    {lang == "ka"
+                      ? "სერთიფიკატის მიღება"
+                      : "Claim Certifiaction"}
                   </Button>
                 </div>
               </CardBody>
@@ -132,7 +137,7 @@ export default function SSRCourse({
               courseName={courses.courseName}
               description={courses.description}
             />
-            <Subject courseData={courses} userProgress={progress} />
+            <Subject courseData={courses} userProgress={progress} lang={lang} />
           </div>
         )}
         <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
@@ -141,12 +146,16 @@ export default function SSRCourse({
               <>
                 <ModalHeader className="flex flex-col gap-1">!</ModalHeader>
                 <ModalBody>
-                  <p>დასაწყებად აუცილებელია ავტორიზაცია</p>
+                  <p>
+                    {lang == "en"
+                      ? "Authorization is required to begin"
+                      : "დასაწყებად აუცილებელია ავტორიზაცია"}
+                  </p>
                 </ModalBody>
                 <ModalFooter>
                   <Link href="/user/auth">
                     <Button color="primary" onPress={onClose}>
-                      შესვლა
+                      {lang == "ka" ? "შესვლა" : "Log In"}
                     </Button>
                   </Link>
                 </ModalFooter>
