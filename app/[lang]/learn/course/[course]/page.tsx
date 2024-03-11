@@ -5,13 +5,16 @@ import SSRCourse from "@/app/[lang]/learn/course/[course]/ssrcourse";
 import CoursesAPI from "@/app/api/Learn/Course";
 
 type Props = {
-  params: { course: string };
+  params: { lang: Locale; course: string };
 };
 
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
-  const CourseName = await CoursesAPI().GetCourseName(params.course);
+  const CourseName = await CoursesAPI().GetCourseName(
+    params.course,
+    params.lang
+  );
   return {
     title: `${CourseName}`,
     description: `სასწავლო კურსი - ${CourseName}`,
