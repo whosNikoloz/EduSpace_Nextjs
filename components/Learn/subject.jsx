@@ -53,8 +53,8 @@ const SubjectItem = ({
         onClick={handleToggleContainer}
       >
         <div className="flex items-center gap-2">
-          {progress?.subjectId > subject.subjectId ? (
-            <IconCheck height={20} width={20} />
+          {progress?.subjectId > subject.subjectId || progress?.complete ? (
+            <IconCheck height={25} width={25} />
           ) : progress?.subjectId === subject.subjectId ? (
             <Run height={25} width={25} />
           ) : (
@@ -89,7 +89,6 @@ const SubjectItem = ({
             progress?.lessonId > lesson.lessonId || progress?.complete;
           const isCurrentLesson = progress?.lessonId === lesson.lessonId;
           const isLockedLesson = !isCompletedLesson && !isCurrentLesson;
-
           return (
             <Reveal
               key={lessonIndex}
