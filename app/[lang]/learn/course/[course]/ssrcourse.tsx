@@ -51,41 +51,65 @@ export default function SSRCourse({
   const [progress, setProgress] = useState<UserProgress | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const fetchCourseAndProgress = async () => {
-    const courseResponse = await CoursesAPI().GetCourse(course, lang);
-    if (user) {
-      const userProgress = await ProgressAPI().GetProgress(
-        { userid: user.userId },
-        { courseid: courseResponse.courseId }
-      );
-      return { course: courseResponse, progress: userProgress };
-    } else {
-      return { course: courseResponse, progress: null };
-    }
+  // Function to fetch the user progress
+  const fetchUserProgress = async (courseId: number, userId: number) => {
+    return await ProgressAPI().GetProgress(
+      { userid: userId },
+      { courseid: courseId }
+    );
   };
 
-  const { data, isLoading, error } = useQuery(
-    ["courseAndProgress", course, user],
-    fetchCourseAndProgress,
+  const {
+    data: courseData,
+    isLoading: isCourseLoading,
+    error: courseError,
+  } = useQuery(
+    ["fetchCourse", course],
+    () => CoursesAPI().GetCourse(course, lang),
     {
+      refetchInterval: 30000, // Refetch the data every 30 seconds
+      onSuccess: (data) => {
+        if (user) {
+          fetchUserProgress(data.courseId, user.userId);
+        }
+      },
+    }
+  );
+
+  const {
+    data: userProgress,
+    isLoading: isUserProgressLoading,
+    error: userProgressError,
+  } = useQuery(
+    ["fetchUserProgress", user],
+    () => {
+      if (courseData && user) {
+        return ProgressAPI().GetProgress(
+          { userid: user.userId },
+          { courseid: courseData.courseId }
+        );
+      }
+    },
+    {
+      enabled: !!courseData && !!user,
       refetchInterval: 30000, // Refetch the data every 30 seconds
     }
   );
 
   useEffect(() => {
-    if (!isLoading && !user && (!data || data.progress === null)) {
+    if (courseData) {
+      setCourses(courseData);
+      setProgress(userProgress);
+    }
+    if (!user && (!userProgress || userProgress === null)) {
       const timeoutId = setTimeout(() => {
         onOpen();
       }, 3000);
       return () => clearTimeout(timeoutId);
     }
-    if (data) {
-      setCourses(data.course);
-      setProgress(data.progress);
-    }
-  }, [isLoading, user, data, onOpen]);
+  }, [user, userProgress, courseData, onOpen]);
 
-  if (isLoading || !courses) {
+  if (isCourseLoading || !courses) {
     return (
       <>
         <div className="flex flex-col items-center justify-center  dark:bg-pattern-dark bg-pattern-white text-white">
@@ -131,7 +155,7 @@ export default function SSRCourse({
     return (
       <>
         {courses && (
-          <div className="flex flex-col items-center justify-center  dark:bg-pattern-dark bg-pattern-white text-white">
+          <div className="flex flex-col items-center justify-center  dark:bg-pattern-dark bg-pattern-white text-white py-4">
             <Hero
               logo={courses.courseLogo}
               courseName={courses.courseName}
@@ -153,7 +177,7 @@ export default function SSRCourse({
                   </p>
                 </ModalBody>
                 <ModalFooter>
-                  <Link href="/user/auth">
+                  <Link href={`/${lang}/user/auth`}>
                     <Button color="primary" onPress={onClose}>
                       {lang == "ka" ? "შესვლა" : "Log In"}
                     </Button>
