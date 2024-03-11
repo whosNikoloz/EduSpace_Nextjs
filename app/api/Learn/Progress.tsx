@@ -25,7 +25,6 @@ const Progresess = () => {
 
       if (response.ok) {
         const progreses = await response.json();
-        console.log(progreses);
         return progreses;
       } else {
         const errorText = await response.text();
