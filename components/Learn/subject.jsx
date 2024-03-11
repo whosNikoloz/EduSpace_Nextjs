@@ -14,7 +14,7 @@ import {
 import { Reveal } from "../RevealFramer";
 import { Card, CardBody } from "@nextui-org/react";
 
-const Subject = ({ courseData, userProgress }) => {
+const Subject = ({ courseData, userProgress, lang }) => {
   return (
     <div className="space-y-3 mt-5 overflow-hidden">
       {courseData.subjects.map((subject, index) => (
@@ -24,13 +24,20 @@ const Subject = ({ courseData, userProgress }) => {
           progress={userProgress}
           formattedCourseName={courseData.formattedCourseName}
           courseId={courseData.courseId}
+          lang={lang}
         />
       ))}
     </div>
   );
 };
 
-const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
+const SubjectItem = ({
+  subject,
+  progress,
+  formattedCourseName,
+  courseId,
+  lang,
+}) => {
   const [containerVisible, setContainerVisible] = useState(true);
 
   const handleToggleContainer = () => {
@@ -47,7 +54,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
       >
         <div className="flex items-center gap-2">
           {progress?.subjectId > subject.subjectId ? (
-            <IconCheck height={25} width={25} />
+            <IconCheck height={20} width={20} />
           ) : progress?.subjectId === subject.subjectId ? (
             <Run height={25} width={25} />
           ) : (
@@ -107,14 +114,14 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                         <Quiz size={25} />
                         <div className="flex flex-col gap-1">
                           <p className="text-slate-400 text-[8px] lg-text-[10px]">
-                            გაკვეთილი
+                            {lang == "ka" ? "გაკვეთილი" : "Lesson"}
                           </p>
                           <p className="dark:text-white text-black sm:text-lg lg:text-xl">
                             {lesson.lessonName}
                           </p>
                         </div>
                       </div>
-                      <IconCheck size={30} />
+                      <IconCheck size={25} />
                     </div>
                   </div>
                 ) : isCurrentLesson ? (
@@ -124,7 +131,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                         <Quiz size={25} />
                         <div className="flex flex-col gap-1">
                           <p className="text-slate-400 text-[8px] lg-text-[10px]">
-                            გაკვეთილი
+                            {lang == "ka" ? "გაკვეთილი" : "Lesson"}
                           </p>
                           <p className="dark:text-white text-black sm:text-lg lg:text-xl">
                             {lesson.lessonName}
@@ -154,7 +161,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                         variant="ghost"
                         size="large"
                       >
-                        სწავლა
+                        {lang == "ka" ? "სწავალა" : "Learn"}
                       </Button>
                     </Link>
                   </div>
@@ -164,7 +171,7 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
                       <Quiz size={25} />
                       <div className="flex flex-col gap-1">
                         <p className="text-slate-600 text-[8px] lg-text-[10px]">
-                          გაკვეთილი
+                          {lang == "ka" ? "გაკვეთილი" : "Lesson"}
                         </p>
                         <p className="text-slate-600 sm:text-lg lg:text-xl">
                           {lesson.lessonName}
@@ -189,11 +196,15 @@ const SubjectItem = ({ subject, progress, formattedCourseName, courseId }) => {
   );
 };
 
-const SubjectComponent = ({ courseData, userProgress }) => {
+const SubjectComponent = ({ courseData, userProgress, lang }) => {
   return (
     <section className="leading-relaxed w-full max-w-screen-xl  mx-auto px-4 md-px-8">
       <div className="mt-14 w-full max-w-2xl mx-auto">
-        <Subject courseData={courseData} userProgress={userProgress} />
+        <Subject
+          courseData={courseData}
+          userProgress={userProgress}
+          lang={lang}
+        />
       </div>
       <div className="mt-14 w-full max-w-2xl mx-auto">
         <Card
@@ -205,11 +216,14 @@ const SubjectComponent = ({ courseData, userProgress }) => {
             <div className="flex flex-col items-center">
               <Certification size={100} />
               <h1 className="dark:text-white text-black mt-4">
-                თქვენი სერთიფიკატი ახლოს არის
+                {lang == "en"
+                  ? "Your certificate is close"
+                  : "თქვენი სერთიფიკატი ახლოს არის"}
               </h1>
               <p className="dark:text-white text-black mt-3 mb-4">
-                მშვენივრად აკეთებ! განაგრძეთ სწავლა თქვენი სერტიფიკატის
-                აღებისთვის!
+                {lang == "en"
+                  ? "You are doing great! Keep learning to unlock your certificate!"
+                  : "მშვენივრად აკეთებ! განაგრძეთ სწავლა თქვენი სერტიფიკატის აღებისთვის!"}
               </p>
               <Button
                 className="bg-blue-600 w-1/2 text-white"
@@ -218,7 +232,7 @@ const SubjectComponent = ({ courseData, userProgress }) => {
                 size="large"
                 isDisabled={!userProgress?.complete}
               >
-                სერთიფიკატის მიღება
+                {lang == "ka" ? "სერთიფიკატის მიღება" : "Claim Certifiaction"}
               </Button>
             </div>
           </CardBody>
