@@ -25,6 +25,7 @@ import CourseHeroSkeleton from "@/components/Learn/cousreheroskeleton";
 import SubjectSkeleton from "@/components/Learn/subjectSkeleton";
 import { Certification } from "@/components/icons";
 import { useRouter } from "next/navigation";
+import { WarningYellow } from "@/components/icons";
 
 interface Course {
   courseId: number;
@@ -175,21 +176,54 @@ export default function SSRCourse({
             <Subject courseData={courses} userProgress={progress} lang={lang} />
           </div>
         )}
-        <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
+        <Modal
+          hideCloseButton={true}
+          isDismissable={false} // Prevents the modal from closing when clicking outside
+          isKeyboardDismissDisabled={true} // Prevents the modal from closing when pressing the escape key
+          backdrop="blur"
+          motionProps={{
+            variants: {
+              enter: {
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut",
+                },
+              },
+              exit: {
+                y: +20,
+                opacity: 0,
+                transition: {
+                  duration: 0.2,
+                  ease: "easeIn",
+                },
+              },
+            },
+          }}
+          isOpen={isOpen}
+          onClose={onClose}
+        >
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1">!</ModalHeader>
-                <ModalBody>
+                <ModalHeader className="flex flex-col gap-1 items-center justify-center">
+                  <p className="flex flex-row  gap-4">
+                    {lang == "en" ? "Login Required" : "ავტორიზაცია"}
+                    <WarningYellow size={30} height={0} width={0} />
+                  </p>
+                </ModalHeader>
+                <ModalBody className="items-center justify-center">
                   <p>
                     {lang == "en"
-                      ? "Authorization is required to begin"
+                      ? "You need to be logged in to continue."
                       : "დასაწყებად აუცილებელია ავტორიზაცია"}
                   </p>
                 </ModalBody>
-                <ModalFooter>
+                <ModalFooter className="items-center justify-center">
                   <Button
                     color="primary"
+                    className="item-center"
                     onPress={onClose}
                     onClick={() => handelAuthNeeded()}
                   >
