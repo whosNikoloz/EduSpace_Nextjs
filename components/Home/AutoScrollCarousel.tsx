@@ -33,7 +33,10 @@ const AutoScrollCarousel = ({ lng }: { lng: string }) => {
     if (user) {
       router.push(`/learn/course/${FormatedName}`);
     } else {
-      sessionStorage.setItem("redirect_url", `/learn/course/${FormatedName}`);
+      sessionStorage.setItem(
+        "redirect_url",
+        `/${lng}/learn/course/${FormatedName}`
+      );
       router.push("/user/auth");
     }
   };

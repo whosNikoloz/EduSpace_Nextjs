@@ -24,6 +24,7 @@ import { useQuery } from "react-query";
 import CourseHeroSkeleton from "@/components/Learn/cousreheroskeleton";
 import SubjectSkeleton from "@/components/Learn/subjectSkeleton";
 import { Certification } from "@/components/icons";
+import { useRouter } from "next/navigation";
 
 interface Course {
   courseId: number;
@@ -109,6 +110,16 @@ export default function SSRCourse({
     }
   }, [user, userProgress, courseData, onOpen]);
 
+  const router = useRouter();
+
+  const handelAuthNeeded = () => {
+    sessionStorage.setItem(
+      "redirect_url",
+      `/${lang}/learn/course/${courses?.formattedCourseName}`
+    );
+    router.push(`/${lang}/user/auth`);
+  };
+
   if (isCourseLoading || !courses) {
     return (
       <>
@@ -177,11 +188,13 @@ export default function SSRCourse({
                   </p>
                 </ModalBody>
                 <ModalFooter>
-                  <Link href={`/${lang}/user/auth`}>
-                    <Button color="primary" onPress={onClose}>
-                      {lang == "ka" ? "შესვლა" : "Log In"}
-                    </Button>
-                  </Link>
+                  <Button
+                    color="primary"
+                    onPress={onClose}
+                    onClick={() => handelAuthNeeded()}
+                  >
+                    {lang == "ka" ? "შესვლა" : "Log In"}
+                  </Button>
                 </ModalFooter>
               </>
             )}
