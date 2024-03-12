@@ -15,7 +15,7 @@ const CompilerSection = ({ lng }) => {
 
   const handleCourse = () => {
     if (user) {
-      router.push("/learn/course/c-sharp-beginner");
+      router.push(`${lng}/learn/course/c-sharp-beginner`);
     } else {
       sessionStorage.setItem("redirect_url", "/learn/course/c-sharp-beginner");
       router.push("/user/auth");
