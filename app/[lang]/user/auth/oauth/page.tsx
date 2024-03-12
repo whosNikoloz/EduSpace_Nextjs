@@ -56,11 +56,11 @@ export default function OauthPage() {
             userModel.providerId
           );
           if (loginoauth) {
-            try {
-              await signOut({ callbackUrl: "/" });
-            } catch (error) {
-              console.error("Error during sign-out:", error);
+            const redirectUrl = sessionStorage.getItem("redirect_url");
+            if (redirectUrl) {
+              sessionStorage.removeItem("redirect_url");
             }
+            await signOut({ callbackUrl: redirectUrl ? redirectUrl : "/" });
           }
         } else {
           const registeroauth = await auth.handleoAuthRegistration(
@@ -77,7 +77,11 @@ export default function OauthPage() {
             );
             if (loginoauth) {
               try {
-                await signOut({ callbackUrl: "/" });
+                const redirectUrl = sessionStorage.getItem("redirect_url");
+                if (redirectUrl) {
+                  sessionStorage.removeItem("redirect_url");
+                }
+                await signOut({ callbackUrl: redirectUrl ? redirectUrl : "/" });
               } catch (error) {
                 console.error("Error during sign-out:", error);
               }
