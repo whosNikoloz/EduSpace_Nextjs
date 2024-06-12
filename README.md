@@ -56,13 +56,13 @@ The integrated online compiler allows users to write, compile, and execute code 
 ## Screenshots
 
 ### Compiler Main Page
-![Compiler Main Page](compilerMainPage.png)
+![Compiler Main Page](CompilerMainPage.png)
 
-### Compiler & Social Page
-![Compiler & Social Page](compilerSocialPage.png)
+### Compiler 
+![Compiler & Social Page](Compiler.png)
 
-### Login & Registration
-![Login & Registration](loginRegistration.png)
+### Registration
+![Login & Registration](reg.png)
 
 ## Contributing
 
@@ -72,5 +72,3 @@ We welcome contributions from the community to enhance our online programming le
 2. Make your changes, ensuring adherence to coding standards and guidelines.
 3. Test your changes thoroughly.
 4. Submit a pull request, providing a clear description of your changes and their purpose.
-
-Feel free to customize and expand the sections as needed to accurately reflect our platform. Replace placeholders like `path/to/platformBanner.png`, `path/to/compilerMainPage.png`, `path/to/compilerSocialPage.png`, and `path/to/loginRegistration.png` with the actual paths to your images and tailor the content to your platform's specifics. Happy coding!
