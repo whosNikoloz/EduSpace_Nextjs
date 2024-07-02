@@ -93,7 +93,7 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
 
   useEffect(() => {
     const connection = new HubConnectionBuilder()
-      .withUrl(`https://localhost:7163/notificationHub?userId=${userid}`)
+      .withUrl(`https://localhost:44310/notificationHub?userId=${userid}`)
       .configureLogging(LogLevel.Information) // Corrected typo here
       .build();
 

@@ -12,14 +12,21 @@ import { useRouter } from "next/navigation";
 const CompilerSection = ({ lng }) => {
   const { user } = useUser();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCourse = () => {
-    if (user) {
-      router.push(`${lng}/learn/course/c-sharp-beginner`);
-    } else {
-      sessionStorage.setItem("redirect_url", "/learn/course/c-sharp-beginner");
-      router.push("/user/auth");
-    }
+    setIsLoading(true);
+    setTimeout(() => {
+      if (user) {
+        router.push(`${lng}/learn/course/c-sharp-beginner`);
+      } else {
+        sessionStorage.setItem(
+          "redirect_url",
+          "/learn/course/c-sharp-beginner"
+        );
+        router.push("/user/auth");
+      }
+    }, 500); // Delay of 500 milliseconds
   };
 
   const [code, setCode] = useState(
@@ -85,6 +92,7 @@ public class HelloWorld
                 className="bg-blue-600 text-white"
                 variant="shadow"
                 onClick={handleCourse}
+                isLoading={isLoading}
               >
                 {buttonTitel}
               </Button>

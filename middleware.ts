@@ -26,8 +26,9 @@ export function middleware(request: NextRequest) {
 
   const isVideoRequest = pathname.endsWith(".mp4") || pathname.endsWith(".avi");
   const isIcoRequest = pathname.endsWith(".ico");
+  const isSvgRequest = pathname.endsWith(".svg");
   const isPngRequest = pathname.endsWith(".png");
-  if (isVideoRequest || isPngRequest || isIcoRequest) {
+  if (isVideoRequest || isPngRequest || isIcoRequest || isSvgRequest) {
     return NextResponse.next();
   }
 

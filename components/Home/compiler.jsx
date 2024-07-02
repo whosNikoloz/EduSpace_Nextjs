@@ -133,7 +133,7 @@ export const Compiler = ({ code, isDarkMode, onChange, lng }) => {
           <div className="p-2 space-x-2 border-b">
             <Button
               variant="bordered"
-              radius="none"
+              radius="md"
               onClick={() => handleTabChange("code")}
               className={activeTab === "code" ? "bg-blue-500 text-white" : ""}
             >
@@ -141,7 +141,7 @@ export const Compiler = ({ code, isDarkMode, onChange, lng }) => {
             </Button>
             <Button
               variant="bordered"
-              radius="none"
+              radius="md"
               onClick={() => handleTabChange("output")}
               className={activeTab === "output" ? "bg-blue-500 text-white" : ""}
             >

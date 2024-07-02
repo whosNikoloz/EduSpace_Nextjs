@@ -21,13 +21,9 @@ export default function RootLayout({
   params: { lang: Locale };
 }) {
   return (
-    <html
-      lang={params.lang}
-      className={`$scroll-smooth`}
-      suppressHydrationWarning
-    >
+    <html lang={params.lang} className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/eduspace.ico" sizes="any" />
+        <link rel="icon" href="/eduspace.svg" sizes="any" />
       </head>
       <body /*className={clsx(fontSans.variable)}*/>
         <Providers themeProps={{ attribute: "class", defaultTheme: "system" }}>

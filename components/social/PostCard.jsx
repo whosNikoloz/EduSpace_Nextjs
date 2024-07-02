@@ -101,7 +101,7 @@ function PostCard({ postData, onDelete, lang }) {
     }
     const connection = new HubConnectionBuilder()
       .withUrl(
-        `https://localhost:7163/commentHub?userId=${user.userId}&postId=${postid}`
+        `https://localhost:44310/commentHub?userId=${user.userId}&postId=${postid}`
       )
       .configureLogging(LogLevel.Information) // Corrected typo here
       .build();
@@ -124,7 +124,6 @@ function PostCard({ postData, onDelete, lang }) {
         setComments((prevComments) => [...prevComments, newComment]);
         toast.success(lang == "ka" ? "კომენტარი დაემატა" : "Comment Added");
       });
-      setIsAddingComment(false);
     }
   }, [con, lang]);
 

@@ -79,19 +79,19 @@ function UDropdown({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={transition}
               ref={dropdownRef}
-              className={`absolute right-0 z-20 p-2 mt-2  overflow-hidden max-h-96 bg-white  dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl origin-top-right  `}
+              className={`absolute  right-0 z-20 p-2 mt-2 overflow-hidden max-h-96 bg-white  dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] shadow-xl origin-top-right  `}
               onClick={handleDropdownClick}
             >
               <div className="h-14 px-4 py-1 gap-2">
                 <p className="font-semibold text-md">@{username}</p>
-                <p className="font-semibold text-sm text-gray-500 dark:text-gray-400">
+                <p className="font-semibold text-xs text-gray-500 dark:text-gray-400 ">
                   {email}
                 </p>
               </div>
               <Link href="/user/profile">
                 <Button
                   endContent={<Settingicon size={20} height={20} width={20} />}
-                  className="px-4 py-3 text-sm w-full justify-between text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="px-4 py-3 text-sm w-full justify-between mt-2 text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 dark:hover:text-white"
                 >
                   {lng === "en" ? "Account Settings" : "პროფილი"}
                 </Button>
@@ -99,10 +99,10 @@ function UDropdown({
               <Button
                 color="danger"
                 onClick={logout}
-                className="px-4 py-3 text-sm w-full justify-between  bg-transparent capitalize transition-colors duration-300 transform text-danger hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white "
+                className="px-4 py-3 text-sm w-full justify-between  bg-transparent  transition-colors duration-300 transform text-danger hover:bg-gray-100 dark:hover:bg-slate-700 dark:hover:text-white "
                 endContent={<LogoutIcon size={20} height={20} width={20} />}
               >
-                {lng === "en" ? "Log Out" : "გასვლა"}
+                {lng === "en" ? "Log out" : "გასვლა"}
               </Button>
             </motion.div>
           </>

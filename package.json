@@ -45,7 +45,7 @@
     "eslint-config-next": "^14.0.4",
     "firebase": "^10.4.0",
     "framer-motion": "^10.16.4",
-    "gsap": "^3.12.2",
+    "gsap": "^3.12.5",
     "install": "^0.13.0",
     "intl-messageformat": "^10.5.0",
     "jwt-decode": "^4.0.0",

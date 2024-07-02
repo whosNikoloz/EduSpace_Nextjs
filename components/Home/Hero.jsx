@@ -40,7 +40,7 @@ export default function Hero({ lng }) {
               {h1}
               <p>
                 <Link
-                  href="user/auth"
+                  href={`${lng}/user/auth`}
                   className="bg-gradient-to-r from-blue-600 via-blue-600 text-5xl sm:text-7xl  to-white  text-transparent bg-clip-text"
                 >
                   {h1span}
