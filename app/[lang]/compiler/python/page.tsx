@@ -66,17 +66,17 @@ print("Hello Python World")
             </div>
             <div className="mb-2">
               <Link href="/compiler/python">
-                <Button isIconOnly className="bg-transparent   ">
-                  <Python size={35} />
+                <Button
+                  isIconOnly
+                  className="bg-transparent border-2 border-blue-600   "
+                >
+                  <Python size={30} />
                 </Button>
               </Link>
             </div>
             <div>
               <Link href="/compiler/cpp">
-                <Button
-                  isIconOnly
-                  className="bg-transparent border-2 border-blue-600 "
-                >
+                <Button isIconOnly className="bg-transparent ">
                   <Cpp size={35} />
                 </Button>
               </Link>
@@ -98,7 +98,9 @@ print("Hello Python World")
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="border-t md:border-l border-blue-600 rounded-l-lg ">
                 <div className="flex justify-between items-center px-4">
-                  <h2 className="text-xl font-semibold mb-2">Main.py</h2>
+                  <h2 className="text-xl font-semibold  dark:text-white text-black">
+                    Main.py
+                  </h2>
                   <div className="mb-2 d-flex gap-2">
                     {" "}
                     {/* Add d-flex class to create a flex container */}
@@ -116,7 +118,7 @@ print("Hello Python World")
                     </Button>
                     <Button color="primary" isLoading={false} className="py-2">
                       <Run size={20} />
-                      კომპილაცია
+                      {lang === "en" ? "Compile" : "კომპილაცია"}
                     </Button>
                   </div>
                 </div>
@@ -130,19 +132,21 @@ print("Hello Python World")
 
               <div className="border-t border-blue-600">
                 <div className="flex justify-between items-center px-4">
-                  <h2 className="text-xl font-semibold mb-2">Output</h2>
+                  <h2 className="text-xl font-semibold  dark:text-white text-black">
+                    Output
+                  </h2>
                   <div>
                     <Button
                       isLoading={false}
                       color="primary"
                       className="mb-2 px-4 py-2 mt-4"
                     >
-                      გასუფთავება
+                      {lang === "en" ? "Clear" : "გასუფთავება"}
                     </Button>
                   </div>
                 </div>
                 <OutputTerminal
-                  outputDetails="test"
+                  outputDetails="Hello Python World"
                   Height="85vh"
                   DarkMode={isDarkMode}
                   Error={""}
@@ -178,8 +182,8 @@ print("Hello Python World")
                     color="primary"
                     className={`py-2 ${
                       selectedTab === "Main.py"
-                        ? "bg-primary"
-                        : "bg-transparent"
+                        ? "bg-primary font-bold"
+                        : "bg-transparent dark:text-white text-black font-bold "
                     }`}
                     onClick={() => handleTabChange("Main.py")}
                   >
@@ -188,7 +192,9 @@ print("Hello Python World")
                   <Button
                     color="primary"
                     className={`py-2 ${
-                      selectedTab === "Output" ? "bg-primary" : "bg-transparent"
+                      selectedTab === "Output"
+                        ? "bg-primary font-bold"
+                        : "bg-transparent dark:text-white text-black font-bold "
                     }`}
                     onClick={() => handleTabChange("Output")}
                   >
@@ -225,7 +231,7 @@ print("Hello Python World")
               )}
               {selectedTab === "Output" && (
                 <OutputTerminal
-                  outputDetails="test"
+                  outputDetails="Hello Python World"
                   Height="85vh"
                   DarkMode={isDarkMode}
                   Error={""}

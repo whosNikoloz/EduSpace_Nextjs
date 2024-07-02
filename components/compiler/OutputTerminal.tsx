@@ -57,7 +57,7 @@ const OutputTerminal: React.FC<OutputTerminalProps> = ({
         }}
       >
         <div className="flex">
-          <div className="flex-1 typing items-center pl-2">
+          <div className="flex-1 typing items-center  py-4">
             <span
               style={{ color: textColor }}
               dangerouslySetInnerHTML={{ __html: currentText }}

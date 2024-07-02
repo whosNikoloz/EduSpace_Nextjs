@@ -115,7 +115,7 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={isScrolled ? "currentColor" : "#ffff"}
+                    stroke={isScrolled ? "currentColor" : "currentColor"}
                     aria-hidden="true"
                   >
                     <path

@@ -58,8 +58,8 @@ int main() {
     <LayoutNavbar lang={lang}>
       <div className="flex flex-col  md:flex-row">
         {/* Sidebar */}
-        <div className="p-4 md:border-b border-blue-600 rounded-br-lg">
-          <div className="flex flex-row md:flex-col md:mb-1 items-start gap-7">
+        <div className="p-4 md:border-b border-blue-600  rounded-br-lg">
+          <div className="flex flex-row md:flex-col md:mb-1  items-start gap-7">
             {/* Use flex-col to arrange items vertically */}
             <div className="mb-2">
               <Link href="/compiler/csharp">
@@ -71,7 +71,7 @@ int main() {
             <div className="mb-2">
               <Link href="/compiler/python">
                 <Button isIconOnly className="bg-transparent   ">
-                  <Python size={35} />
+                  <Python size={30} />
                 </Button>
               </Link>
             </div>
@@ -102,7 +102,9 @@ int main() {
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="border-t md:border-l border-blue-600 rounded-l-lg ">
                 <div className="flex justify-between items-center px-4">
-                  <h2 className="text-xl font-semibold mb-2">Main.cpp</h2>
+                  <h2 className="text-xl font-semibold  dark:text-white text-black">
+                    Main.cpp
+                  </h2>
                   <div className="mb-2 d-flex gap-2">
                     {" "}
                     {/* Add d-flex class to create a flex container */}
@@ -120,7 +122,7 @@ int main() {
                     </Button>
                     <Button color="primary" isLoading={false} className="py-2">
                       <Run size={20} />
-                      კომპილაცია
+                      {lang === "en" ? "Compile" : "კომპილაცია"}
                     </Button>
                   </div>
                 </div>
@@ -134,19 +136,21 @@ int main() {
 
               <div className="border-t border-blue-600">
                 <div className="flex justify-between items-center px-4">
-                  <h2 className="text-xl font-semibold mb-2">Output</h2>
+                  <h2 className="text-xl font-semibold  dark:text-white text-black">
+                    Output
+                  </h2>
                   <div>
                     <Button
                       isLoading={false}
                       color="primary"
                       className="mb-2 px-4 py-2 mt-4"
                     >
-                      გასუფთავება
+                      {lang === "en" ? "Clear" : "გასუფთავება"}
                     </Button>
                   </div>
                 </div>
                 <OutputTerminal
-                  outputDetails="test"
+                  outputDetails="Hello C++ World"
                   Height="85vh"
                   DarkMode={isDarkMode}
                   Error={""}
@@ -182,8 +186,8 @@ int main() {
                     color="primary"
                     className={`py-2 ${
                       selectedTab === "Main.cpp"
-                        ? "bg-primary"
-                        : "bg-transparent"
+                        ? "bg-primary font-bold"
+                        : "bg-transparent dark:text-white text-black font-bold "
                     }`}
                     onClick={() => handleTabChange("Main.cpp")}
                   >
@@ -192,7 +196,9 @@ int main() {
                   <Button
                     color="primary"
                     className={`py-2 ${
-                      selectedTab === "Output" ? "bg-primary" : "bg-transparent"
+                      selectedTab === "Output"
+                        ? "bg-primary font-bold"
+                        : "bg-transparent dark:text-white text-black font-bold "
                     }`}
                     onClick={() => handleTabChange("Output")}
                   >
@@ -229,7 +235,7 @@ int main() {
               )}
               {selectedTab === "Output" && (
                 <OutputTerminal
-                  outputDetails="test"
+                  outputDetails="Hello C++ World"
                   Height="85vh"
                   DarkMode={isDarkMode}
                   Error={""}

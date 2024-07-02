@@ -122,7 +122,7 @@ public class HelloWorld
             <div className="mb-2">
               <Link href="/compiler/python">
                 <Button isIconOnly className="bg-transparent   ">
-                  <Python size={35} />
+                  <Python size={30} />
                 </Button>
               </Link>
             </div>
@@ -150,7 +150,9 @@ public class HelloWorld
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="border-t md:border-l border-blue-600 rounded-l-lg ">
                 <div className="flex justify-between items-center px-4">
-                  <h2 className="text-xl font-semibold mb-2">Main.cs</h2>
+                  <h2 className="text-xl font-semibold  dark:text-white text-black">
+                    Main.cs
+                  </h2>
                   <div className="mb-2 d-flex gap-2">
                     {" "}
                     {/* Add d-flex class to create a flex container */}
@@ -173,7 +175,7 @@ public class HelloWorld
                       className="py-2"
                     >
                       <Run size={20} />
-                      კომპილაცია
+                      {lang === "en" ? "Compile" : "კომპილაცია"}
                     </Button>
                   </div>
                 </div>
@@ -187,7 +189,9 @@ public class HelloWorld
 
               <div className="border-t border-blue-600">
                 <div className="flex justify-between items-center px-4">
-                  <h2 className="text-xl font-semibold mb-2">Output</h2>
+                  <h2 className="text-xl font-semibold  dark:text-white text-black">
+                    Output
+                  </h2>
                   <div>
                     <Button
                       isLoading={false}
@@ -195,7 +199,7 @@ public class HelloWorld
                       className="mb-2 px-4 py-2 mt-4"
                       onClick={handleClear}
                     >
-                      გასუფთავება
+                      {lang === "ka" ? "გასუფთავება" : "Clear"}
                     </Button>
                   </div>
                 </div>
@@ -236,8 +240,8 @@ public class HelloWorld
                     color="primary"
                     className={`py-2 ${
                       selectedTab === "Main.cs"
-                        ? "bg-primary"
-                        : "bg-transparent"
+                        ? "bg-primary font-bold"
+                        : "bg-transparent dark:text-white text-black font-bold "
                     }`}
                     onClick={() => handleTabChange("Main.cs")}
                   >
@@ -246,7 +250,9 @@ public class HelloWorld
                   <Button
                     color="primary"
                     className={`py-2 ${
-                      selectedTab === "Output" ? "bg-primary" : "bg-transparent"
+                      selectedTab === "Output"
+                        ? "bg-primary font-bold"
+                        : "bg-transparent dark:text-white text-black font-bold "
                     }`}
                     onClick={() => handleTabChange("Output")}
                   >
