@@ -1,10 +1,8 @@
-const progress_API = "https://localhost:45455/api/Progress/";
-const progress_API_NIkoloza = "https://172.20.10.7:45455/api/Progress/";
+const progress_API = "https://localhost:45455/api/v1/Progress/";
+const progress_API_NIkoloza = "https://172.20.10.7:45455/api/v1/Progress/";
 
 const progress_conveyAPI =
-  "https://othergreencat21.conveyor.cloud/api/Progress/";
-
-const mac_progress_API = "https://localhost:7163/api/Progress/";
+  "https://othergreencat21.conveyor.cloud/api/v1/Progress/";
 
 const Progresess = () => {
   const GetProgress = async (

@@ -8,10 +8,10 @@ import {
   deleteObject as deleteFirebaseObject,
 } from "firebase/storage";
 
-const social_API = "https://localhost:45455/api/Social/";
-const social_API_NIkoloza = "https://172.20.10.7:45456/api/Social/";
+const social_API = "https://localhost:45455/api/v1/Social/";
+const social_API_NIkoloza = "https://172.20.10.7:45456/api/v1/Social/";
 
-const social_conveyAPI = "https://widebluerock55.conveyor.cloud/api/Social/";
+const social_conveyAPI = "https://widebluerock55.conveyor.cloud/api/v1/Social/";
 
 const mac_social_API = "https://localhost:7163/api/Social/";
 

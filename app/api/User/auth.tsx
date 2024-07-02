@@ -23,14 +23,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
-const auth_API = "https://localhost:45455/api/Auth/";
-const user_API = "https://localhost:45455/api/User/";
+const auth_API = "https://localhost:45455/api/v1/Auth/";
+const user_API = "https://localhost:45455/api/v1/User/";
 
-const auth_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/Auth/";
-const user_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/User/";
-
-const mac_auth_API = "https://localhost:7163/api/Auth/";
-const mac_user_API = "https://localhost:7163/api/User/";
+const auth_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/v1/Auth/";
+const user_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/v1/User/";
 
 const Authentication = () => {
   const cookies = new Cookies();
