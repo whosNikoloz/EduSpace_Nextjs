@@ -26,8 +26,8 @@ const storage = getStorage(app);
 const auth_API = "https://localhost:45455/api/Auth/";
 const user_API = "https://localhost:45455/api/User/";
 
-const auth_conveyAPI = "https://oldtealhouse99.conveyor.cloud/api/Auth/";
-const user_conveyAPI = "https://widebluerock55.conveyor.cloud/api/User/";
+const auth_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/Auth/";
+const user_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/User/";
 
 const mac_auth_API = "https://localhost:7163/api/Auth/";
 const mac_user_API = "https://localhost:7163/api/User/";
@@ -38,7 +38,7 @@ const Authentication = () => {
 
   const checkEmailLogin = async (email: string) => {
     try {
-      const response = await fetch(auth_API + "Login/check-email", {
+      const response = await fetch(auth_conveyAPI + "Login/check-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const Authentication = () => {
 
   const handleLogin = async (email: any, password: any) => {
     try {
-      const response = await fetch(auth_API + "Email", {
+      const response = await fetch(auth_conveyAPI + "Email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +105,7 @@ const Authentication = () => {
     oAuthproviderId: string
   ) => {
     try {
-      const response = await fetch(auth_API + "OAuthEmail", {
+      const response = await fetch(auth_conveyAPI + "OAuthEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +136,7 @@ const Authentication = () => {
 
   const handleForgotPassword = async (email: string) => {
     try {
-      const apiUrl = `${user_API}ForgotPassword?email=${encodeURIComponent(
+      const apiUrl = `${user_conveyAPI}ForgotPassword?email=${encodeURIComponent(
         email
       )}`;
 
@@ -164,7 +164,7 @@ const Authentication = () => {
     ConfirmPassword: string
   ) => {
     try {
-      const response = await fetch(user_API + "ResetPassword", {
+      const response = await fetch(user_conveyAPI + "ResetPassword", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -189,7 +189,7 @@ const Authentication = () => {
 
   const checkEmailRegister = async (email: string) => {
     try {
-      const response = await fetch(auth_API + "Register/check-email", {
+      const response = await fetch(auth_conveyAPI + "Register/check-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -218,7 +218,7 @@ const Authentication = () => {
   const checkUserNameRegister = async (username: string) => {
     try {
       const response = await fetch(
-        auth_API + "Register/check-username/" + username,
+        auth_conveyAPI + "Register/check-username/" + username,
         {
           method: "GET",
           headers: {
@@ -248,7 +248,7 @@ const Authentication = () => {
     confirmPassword: string
   ) => {
     try {
-      const response = await fetch(auth_API + "Register", {
+      const response = await fetch(auth_conveyAPI + "Register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -279,7 +279,7 @@ const Authentication = () => {
     oAuthProviderId: string
   ) => {
     try {
-      const response = await fetch(auth_API + "OAuth2Exist", {
+      const response = await fetch(auth_conveyAPI + "OAuth2Exist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -309,7 +309,7 @@ const Authentication = () => {
     oAuthProviderId: string
   ) => {
     try {
-      const response = await fetch(auth_API + "RegisterOAuth2", {
+      const response = await fetch(auth_conveyAPI + "RegisterOAuth2", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -345,7 +345,7 @@ const Authentication = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt");
-      const response = await fetch(user_API + "ChangePassword", {
+      const response = await fetch(user_conveyAPI + "ChangePassword", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -380,7 +380,7 @@ const Authentication = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt");
-      const response = await fetch(user_API + "ChangeGeneral", {
+      const response = await fetch(user_conveyAPI + "ChangeGeneral", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -409,7 +409,7 @@ const Authentication = () => {
 
   const UpdatedUser = async (userid: number) => {
     try {
-      const apiUrl = `${user_API}${userid}`; // Construct the URL with query parameters
+      const apiUrl = `${user_conveyAPI}${userid}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -441,7 +441,7 @@ const Authentication = () => {
   const ReLogin = async (password: string) => {
     try {
       const encodedPassword = encodeURIComponent(password);
-      const apiUrl = `${user_API}ReLogin/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${user_conveyAPI}ReLogin/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -466,7 +466,7 @@ const Authentication = () => {
   const ChangeEmailRequest = async (email: string) => {
     try {
       const encodedPassword = encodeURIComponent(email);
-      const apiUrl = `${user_API}ChangeEmailRequest/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${user_conveyAPI}ChangeEmailRequest/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -493,7 +493,7 @@ const Authentication = () => {
   const ChangeEmail = async (email: string) => {
     try {
       const encodedPassword = encodeURIComponent(email);
-      const apiUrl = `${user_API}ChangeEmail/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${user_conveyAPI}ChangeEmail/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -539,7 +539,7 @@ const Authentication = () => {
       console.log(userId);
 
       const token = localStorage.getItem("jwt");
-      const response = await fetch(user_API + "UploadImage", {
+      const response = await fetch(user_conveyAPI + "UploadImage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
