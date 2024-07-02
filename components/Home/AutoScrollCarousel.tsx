@@ -78,6 +78,8 @@ const AutoScrollCarousel = ({ lng }: { lng: string }) => {
     };
   }, [courses]);
 
+  const validCourses = Array.isArray(courses) ? courses : [];
+
   return (
     <>
       <div className="relative isolate">
@@ -100,8 +102,8 @@ const AutoScrollCarousel = ({ lng }: { lng: string }) => {
         <Reveal>
           <div className="splide__track">
             <ul className="splide__list">
-              {courses.length > 0 ? ( // Check if there is fetched data
-                courses.map((course) => (
+              {validCourses.length > 0 ? (
+                validCourses.map((course) => (
                   <li className="splide__slide" key={course.courseId}>
                     <div className="slide-content ">
                       <Card
