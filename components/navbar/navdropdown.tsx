@@ -278,7 +278,7 @@ function NDropdown({
         }`}
       >
         <div
-          className={`px-3 py-4 overflow-y-auto  shadow-xl bg-white p-2 dark:bg-black backdrop-blur-sm rounded-2xl border border-black/[0.2] dark:border-white/[0.2] `}
+          className={`px-3 py-4 overflow-y-auto rounded-b-2xl  dark:backdrop-blur-2xl backdrop-blur-sm dark:bg-black/10 bg-white shadow-md p-2    `}
         >
           <ul className="space-y-3">
             {LngmenuItems.map((item, index) => (

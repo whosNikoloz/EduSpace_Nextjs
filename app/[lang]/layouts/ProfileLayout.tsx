@@ -10,7 +10,7 @@ export default function ProfileLayout({
 }) {
   return (
     <div className="relative flex flex-col h-screen bg-gradient-to-t dark:from-black dark:via-blue-900 dark:to-black from-white to-white via-blue-300">
-      <Navbar lng={lang} NotMain={false} />
+      <Navbar lng={lang} NotMain={true} />
       {children}
     </div>
   );
