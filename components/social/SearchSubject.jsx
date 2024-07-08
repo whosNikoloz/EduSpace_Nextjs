@@ -35,6 +35,7 @@ const SearchSubject = ({ searchPostFunction, lang }) => {
         placeholder={
           lang === "en" ? "Search for a subject" : "მოძებნე თემის მიხედვით"
         }
+        className="mt-8"
         size="sm"
         radius="full"
         startContent={
@@ -51,7 +52,7 @@ const SearchSubject = ({ searchPostFunction, lang }) => {
         ))}
       </datalist>
       <br />
-      <Button color="primary" onClick={handleSearch}>
+      <Button color="primary" className="mt-8" onClick={handleSearch}>
         {lang === "en" ? "Search" : "ძებნა"}
       </Button>
     </div>

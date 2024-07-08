@@ -112,7 +112,11 @@ const SSRPosts = ({ params: { lang } }: { params: { lang: Locale } }) => {
           ))}
           {!hasNextPage && (
             <CustomTitle
-              title1={"End of Posts"}
+              title1={
+                lang == "en"
+                  ? "No posts available"
+                  : "პოსტები არ არის ხელმისაწვდომი"
+              }
               title2={searchQuery}
               margin={14}
               direct={"center"}

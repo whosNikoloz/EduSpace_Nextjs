@@ -146,7 +146,6 @@ export default function SSRAuth({
       } else {
         router.push("/");
       }
-      setIsLoading(false);
     }
   };
 

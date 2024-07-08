@@ -11,6 +11,8 @@ import {
 const social_API = "https://localhost:45455/api/v1/Social/";
 const social_API_NIkoloza = "https://172.20.10.7:45456/api/v1/Social/";
 
+const docker_social_API = "http://185.139.57.56:8000/api/v1/Social/";
+
 const social_conveyAPI = "https://widebluerock55.conveyor.cloud/api/v1/Social/";
 
 const firebaseConfig = {
@@ -29,7 +31,7 @@ const storage = getStorage(app);
 const Posts = () => {
   const GetPosts = async (page: number, pageSize: number) => {
     try {
-      const apiUrl = `${social_API}Posts?page=${page}&pageSize=${pageSize}`;
+      const apiUrl = `${docker_social_API}Posts?page=${page}&pageSize=${pageSize}`;
 
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -117,7 +119,7 @@ const Posts = () => {
         ? await uploadFileToFirebaseStorage(picture, "PostContent")
         : null;
 
-      const response = await fetch(social_API + "Posts/", {
+      const response = await fetch(docker_social_API + "Posts/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -156,7 +158,7 @@ const Posts = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt");
-      const response = await fetch(social_API + "Posts/", {
+      const response = await fetch(docker_social_API + "Posts/", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -189,7 +191,7 @@ const Posts = () => {
 
   const GetLastPost = async () => {
     try {
-      const response = await fetch(social_API + "LastPost", {
+      const response = await fetch(docker_social_API + "LastPost", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -250,7 +252,7 @@ const Posts = () => {
       }
 
       // Delete the post itself
-      const postResponse = await fetch(social_API + "Posts/" + postid, {
+      const postResponse = await fetch(docker_social_API + "Posts/" + postid, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

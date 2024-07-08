@@ -26,6 +26,9 @@ const storage = getStorage(app);
 const auth_API = "https://localhost:45455/api/v1/Auth/";
 const user_API = "https://localhost:45455/api/v1/User/";
 
+const docker_auth_API = "http://185.139.57.56:8000/api/v1/Auth/";
+const docker_user_API = "http://185.139.57.56:8000/api/v1/User/";
+
 const auth_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/v1/Auth/";
 const user_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/v1/User/";
 
@@ -35,7 +38,7 @@ const Authentication = () => {
 
   const checkEmailLogin = async (email: string) => {
     try {
-      const response = await fetch(auth_API + "Login/check-email", {
+      const response = await fetch(docker_auth_API + "Login/check-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +64,7 @@ const Authentication = () => {
 
   const handleLogin = async (email: any, password: any) => {
     try {
-      const response = await fetch(auth_API + "Email", {
+      const response = await fetch(docker_auth_API + "Email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,7 +105,7 @@ const Authentication = () => {
     oAuthproviderId: string
   ) => {
     try {
-      const response = await fetch(auth_API + "OAuthEmail", {
+      const response = await fetch(docker_auth_API + "OAuthEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +136,7 @@ const Authentication = () => {
 
   const handleForgotPassword = async (email: string) => {
     try {
-      const apiUrl = `${user_API}ForgotPassword?email=${encodeURIComponent(
+      const apiUrl = `${docker_user_API}ForgotPassword?email=${encodeURIComponent(
         email
       )}`;
 
@@ -161,7 +164,7 @@ const Authentication = () => {
     ConfirmPassword: string
   ) => {
     try {
-      const response = await fetch(user_API + "ResetPassword", {
+      const response = await fetch(docker_user_API + "ResetPassword", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -186,7 +189,7 @@ const Authentication = () => {
 
   const checkEmailRegister = async (email: string) => {
     try {
-      const response = await fetch(auth_API + "Register/check-email", {
+      const response = await fetch(docker_auth_API + "Register/check-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -215,7 +218,7 @@ const Authentication = () => {
   const checkUserNameRegister = async (username: string) => {
     try {
       const response = await fetch(
-        auth_API + "Register/check-username/" + username,
+        docker_auth_API + "Register/check-username/" + username,
         {
           method: "GET",
           headers: {
@@ -245,7 +248,7 @@ const Authentication = () => {
     confirmPassword: string
   ) => {
     try {
-      const response = await fetch(auth_API + "Register", {
+      const response = await fetch(docker_auth_API + "Register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -276,7 +279,7 @@ const Authentication = () => {
     oAuthProviderId: string
   ) => {
     try {
-      const response = await fetch(auth_API + "OAuth2Exist", {
+      const response = await fetch(docker_auth_API + "OAuth2Exist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -306,7 +309,7 @@ const Authentication = () => {
     oAuthProviderId: string
   ) => {
     try {
-      const response = await fetch(auth_API + "RegisterOAuth2", {
+      const response = await fetch(docker_auth_API + "RegisterOAuth2", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -342,7 +345,7 @@ const Authentication = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt");
-      const response = await fetch(user_API + "ChangePassword", {
+      const response = await fetch(docker_user_API + "ChangePassword", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -377,7 +380,7 @@ const Authentication = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt");
-      const response = await fetch(user_API + "ChangeGeneral", {
+      const response = await fetch(docker_user_API + "ChangeGeneral", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -406,7 +409,7 @@ const Authentication = () => {
 
   const UpdatedUser = async (userid: number) => {
     try {
-      const apiUrl = `${user_API}${userid}`; // Construct the URL with query parameters
+      const apiUrl = `${docker_user_API}${userid}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -438,7 +441,7 @@ const Authentication = () => {
   const ReLogin = async (password: string) => {
     try {
       const encodedPassword = encodeURIComponent(password);
-      const apiUrl = `${user_API}ReLogin/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${docker_user_API}ReLogin/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -463,7 +466,7 @@ const Authentication = () => {
   const ChangeEmailRequest = async (email: string) => {
     try {
       const encodedPassword = encodeURIComponent(email);
-      const apiUrl = `${user_API}ChangeEmailRequest/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${docker_user_API}ChangeEmailRequest/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -490,7 +493,7 @@ const Authentication = () => {
   const ChangeEmail = async (email: string) => {
     try {
       const encodedPassword = encodeURIComponent(email);
-      const apiUrl = `${user_API}ChangeEmail/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${docker_user_API}ChangeEmail/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -536,7 +539,7 @@ const Authentication = () => {
       console.log(userId);
 
       const token = localStorage.getItem("jwt");
-      const response = await fetch(user_API + "UploadImage", {
+      const response = await fetch(docker_user_API + "UploadImage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
