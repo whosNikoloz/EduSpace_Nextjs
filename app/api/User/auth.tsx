@@ -26,8 +26,8 @@ const storage = getStorage(app);
 const auth_API = "https://localhost:45455/api/v1/Auth/";
 const user_API = "https://localhost:45455/api/v1/User/";
 
-const docker_auth_API = "http://185.139.57.56:8000/api/v1/Auth/";
-const docker_user_API = "http://185.139.57.56:8000/api/v1/User/";
+const docker_auth_API = "https://185.139.57.56:8081/api/v1/Auth/";
+const docker_user_API = "https://185.139.57.56:8081/api/v1/User/";
 
 const auth_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/v1/Auth/";
 const user_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/v1/User/";

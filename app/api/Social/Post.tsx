@@ -11,7 +11,7 @@ import {
 const social_API = "https://localhost:45455/api/v1/Social/";
 const social_API_NIkoloza = "https://172.20.10.7:45456/api/v1/Social/";
 
-const docker_social_API = "http://185.139.57.56:8000/api/v1/Social/";
+const docker_social_API = "https://185.139.57.56:8081/api/v1/Social/";
 
 const social_conveyAPI = "https://widebluerock55.conveyor.cloud/api/v1/Social/";
 
