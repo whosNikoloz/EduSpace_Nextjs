@@ -135,7 +135,7 @@ export default function CplusAdvancedLessonPage({
     };
 
     fetchLearnMaterial();
-  }, [lessonIdAsNumber, learnAPI]);
+  }, [lessonIdAsNumber]);
 
   useEffect(() => {
     const updatedProgress = (currentPage / totalPage) * 100;
@@ -208,7 +208,7 @@ export default function CplusAdvancedLessonPage({
         courseIdAsNumber || 0,
         lessonIdAsNumber || 0
       );
-      router.push("/learn/course/c-plus-expert");
+      router.push(`/en/learn/course/csharp-beginner`);
     } catch (error) {
       console.error("Error fetching Progress data:", error);
     }
@@ -254,7 +254,7 @@ export default function CplusAdvancedLessonPage({
             <Content
               learnMaterialData={learn[currentLessonIndex]}
               contentType={contentType} // Pass content type as a prop
-              onAnswerSelected={handleAnswerSelected}
+              onAnswerSelected={setAnswerSelected}
               onCorrectAnswer={setAnswerSelectedCorrect}
               onTryAgain={tryAgain}
             />
