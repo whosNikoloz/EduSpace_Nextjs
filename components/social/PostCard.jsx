@@ -101,7 +101,7 @@ function PostCard({ postData, onDelete, lang }) {
     }
     const connection = new HubConnectionBuilder()
       .withUrl(
-        `https://localhost:44310/commentHub?userId=${user.userId}&postId=${postid}`
+        `https://185.139.57.56:8081/commentHub?userId=${user.userId}&postId=${postid}`
       )
       .configureLogging(LogLevel.Information) // Corrected typo here
       .build();
