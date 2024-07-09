@@ -7,7 +7,7 @@ const learn_conveyAPI = "https://othergreencat21.conveyor.cloud/api/v1/Learn/";
 const LearnMaterial = () => {
   const LearnMaterialByLesson = async (lessonid: number) => {
     try {
-      const apiUrl = learn_API + `LearnMaterialByLesson/${lessonid}`; // Construct the URL with the lessonid parameter
+      const apiUrl = docker_API + `LearnMaterialByLesson/${lessonid}`; // Construct the URL with the lessonid parameter
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {

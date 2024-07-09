@@ -28,7 +28,7 @@ const dropdownItems = {
       startContent: icons.Beginner,
       textValue: "Beginner",
       courses: [
-        { text: "C# Beginner", link: "en/learn/course/c-sharp-beginner" },
+        { text: "C# Beginner", link: "en/learn/course/csharp-beginner" },
         { text: "Python Beginner", link: "en/learn/course/python-beginner" },
         { text: "C++ Beginner", link: "en/learn/course/c-plus-beginner" },
         { text: "Swift Beginner", link: "en/learn/course/swift-beginner" },
@@ -40,7 +40,7 @@ const dropdownItems = {
       startContent: icons.advanced,
       textValue: "Advanced",
       courses: [
-        { text: "C# Advanced", link: "/learn/course/c-sharp-beginner" },
+        { text: "C# Advanced", link: "/learn/course/csharp-beginner" },
         { text: "Python Advanced", link: "/learn/course/python-beginner" },
         { text: "C++ Advanced", link: "/learn/course/c-plus-beginner" },
         { text: "Swift Advanced", link: "/learn/course/swift-beginner" },
@@ -52,7 +52,7 @@ const dropdownItems = {
       startContent: icons.intermediate,
       textValue: "Expert",
       courses: [
-        { text: "C# Expert", link: "/learn/course/c-sharp-beginner" },
+        { text: "C# Expert", link: "/learn/course/csharp-beginner" },
         {
           text: "Python Expert",
           link: "/learn/course/python-beginner",
@@ -69,7 +69,7 @@ const dropdownItems = {
       startContent: icons.Beginner,
       textValue: "შესავალი",
       courses: [
-        { text: "C# შესავალი", link: "ka/learn/course/c-sharp-beginner" },
+        { text: "C# შესავალი", link: "ka/learn/course/csharp-beginner" },
         { text: "Python შესავალი", link: "ka/learn/course/python-beginner" },
         { text: "C++ შესავალი", link: "ka/learn/course/c-plus-beginner" },
         { text: "Swift შესავალი", link: "ka/learn/course/swift-beginner" },
@@ -81,7 +81,7 @@ const dropdownItems = {
       startContent: icons.advanced,
       textValue: "მოწინავე",
       courses: [
-        { text: "C# მოწინავე", link: "/learn/course/c-sharp-beginner" },
+        { text: "C# მოწინავე", link: "/learn/course/csharp-beginner" },
         { text: "Python მოწინავე", link: "/learn/course/python-beginner" },
         { text: "C++ მოწინავე", link: "/learn/course/c-plus-beginner" },
         { text: "Swift მოწინავე", link: "/learn/course/swift-beginner" },
@@ -93,7 +93,7 @@ const dropdownItems = {
       startContent: icons.intermediate,
       textValue: "ექსპერტი",
       courses: [
-        { text: "C# ექსპერტი", link: "/learn/course/c-sharp-beginner" },
+        { text: "C# ექსპერტი", link: "/learn/course/csharp-beginner" },
         { text: "Python ექსპერტი", link: "/learn/course/python-beginner" },
         { text: "C++ ექსპერტი", link: "/learn/course/c-plus-beginner" },
         { text: "Swift ექსპერტი", link: "/learn/course/swift-beginner" },

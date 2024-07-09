@@ -14,7 +14,7 @@ export const Header: React.FC<HeaderProps> = ({ LessonName, progress }) => {
       <div className="flex flex-col md:flex-row justify-between items-center flex-shrink-0">
         <div className="flex flex-row gap-2">
           <Link
-            href={"/learn/course/c-plus-advanced"}
+            href={"/learn/course/csharp-beginner"}
             className="text-sm mb-2 md:mb-0"
           >
             <Arrow size={24} height={24} width={24} />

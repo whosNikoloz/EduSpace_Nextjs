@@ -16,7 +16,7 @@ const Learn = {
       title: "Introduction Courses",
       links: [
         {
-          href: "/learn/course/c-sharp-beginner",
+          href: "/learn/course/csharp-beginner",
           label: "Introduction to C#",
         },
         {
@@ -36,7 +36,7 @@ const Learn = {
     {
       title: "Advanced Courses",
       links: [
-        { href: "/learn/course/c-sharp-beginner", label: "C# Advanced" },
+        { href: "/learn/course/csharp-beginner", label: "C# Advanced" },
         { href: "/learn/course/python-beginner", label: "Python Advanced" },
         { href: "/learn/course/swift-beginner", label: "Swift Advanced" },
         { href: "/learn/course/c-plus-beginner", label: "C++ Advanced" },
@@ -45,7 +45,7 @@ const Learn = {
     {
       title: "Expert Courses",
       links: [
-        { href: "/learn/course/c-sharp-beginner", label: "C# Expert" },
+        { href: "/learn/course/csharp-beginner", label: "C# Expert" },
         { href: "/learn/course/python-beginner", label: "Python Expert" },
         { href: "/learn/course/swift-beginner", label: "Swift Expert" },
         { href: "/learn/course/c-plus-beginner", label: "C++ Expert" },
@@ -56,7 +56,7 @@ const Learn = {
     {
       title: "შესავალი კურსები",
       links: [
-        { href: "/learn/course/c-sharp-beginner", label: "შესავალი C#-ში" },
+        { href: "/learn/course/csharp-beginner", label: "შესავალი C#-ში" },
         { href: "/learn/course/python-beginner", label: "შესავალი Python-ში " },
         { href: "/learn/course/swift-beginner", label: "შესავალი Swift-ში " },
         { href: "/learn/course/c-plus-beginner", label: "შესავალი C++-ში " },
@@ -65,7 +65,7 @@ const Learn = {
     {
       title: "მოწინავე კურსები",
       links: [
-        { href: "/learn/course/c-sharp-beginner", label: "C#-ში მოწინავე" },
+        { href: "/learn/course/csharp-beginner", label: "C#-ში მოწინავე" },
         { href: "/learn/course/python-beginner", label: "Python-ში მოწინავე " },
         { href: "/learn/course/swift-beginner", label: "Swift-ში მოწინავე " },
         { href: "/learn/course/c-plus-beginner", label: "C++-ში მოწინავე " },
@@ -74,7 +74,7 @@ const Learn = {
     {
       title: "ექსპერტი კურსები",
       links: [
-        { href: "/learn/course/c-sharp-beginner", label: "ექსპერტი C#-ში" },
+        { href: "/learn/course/csharp-beginner", label: "ექსპერტი C#-ში" },
         { href: "/learn/course/python-beginner", label: "ექსპერტი Python-ში " },
         { href: "/learn/course/swift-beginner", label: "ექსპერტი Swift-ში " },
         { href: "/learn/course/c-plus-beginner", label: "ექსპერტი C++-ში " },

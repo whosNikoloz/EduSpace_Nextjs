@@ -145,7 +145,7 @@ const SubjectItem = ({
                     </div>
                     <Link
                       href={{
-                        pathname: `/learn/course/${formattedCourseName}/lesson`,
+                        pathname: `/${lang}/learn/course/${formattedCourseName}/lesson`,
                         query: {
                           lessonId: lesson.lessonId,
                           lesson: lesson.lessonName,

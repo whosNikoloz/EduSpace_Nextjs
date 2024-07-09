@@ -18,12 +18,9 @@ const CompilerSection = ({ lng }) => {
     setIsLoading(true);
     setTimeout(() => {
       if (user) {
-        router.push(`${lng}/learn/course/c-sharp-beginner`);
+        router.push(`${lng}/learn/course/csharp-beginner`);
       } else {
-        sessionStorage.setItem(
-          "redirect_url",
-          "/learn/course/c-sharp-beginner"
-        );
+        sessionStorage.setItem("redirect_url", "/learn/course/csharp-beginner");
         router.push("/user/auth");
       }
     }, 500); // Delay of 500 milliseconds

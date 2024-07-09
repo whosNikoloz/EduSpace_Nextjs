@@ -22,7 +22,7 @@ const DropDownItems = {
       label: "Beginner",
       svg: Csharp,
       submenus: [
-        { title: "C# Beginner", link: "/learn/course/c-sharp-beginner" },
+        { title: "C# Beginner", link: "/learn/course/csharp-beginner" },
         { title: "Python Beginner", link: "/python" },
         { title: "C++ Beginner", link: "/cpp" },
         { title: "Swift Beginner", link: "/swift" },
@@ -55,7 +55,7 @@ const DropDownItems = {
       label: "შესავალი",
       svg: Csharp,
       submenus: [
-        { title: "C# შესავალი", link: "/learn/course/c-sharp-beginner" },
+        { title: "C# შესავალი", link: "/learn/course/csharp-beginner" },
         { title: "Python შესავალი", link: "/python" },
         { title: "C++ შესავალი", link: "/cpp" },
         { title: "Swift შესავალი", link: "/swift" },
