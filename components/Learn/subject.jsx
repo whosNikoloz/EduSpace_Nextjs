@@ -151,6 +151,7 @@ const SubjectItem = ({
                           lesson: lesson.lessonName,
                           subject: subject.subjectId,
                           course: courseId,
+                          formatedcourse: formattedCourseName,
                         },
                       }}
                     >

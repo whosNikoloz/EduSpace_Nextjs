@@ -48,7 +48,7 @@ interface LearnMaterialData {
   lessonId: number;
 }
 
-export default function CplusAdvancedLessonPage({
+export default function LessonPage({
   searchParams,
 }: {
   searchParams: {
@@ -56,6 +56,7 @@ export default function CplusAdvancedLessonPage({
     lesson: string;
     course: string;
     subject: string;
+    formatedcourse: string;
   };
 }) {
   const router = useRouter();
@@ -208,7 +209,7 @@ export default function CplusAdvancedLessonPage({
         courseIdAsNumber || 0,
         lessonIdAsNumber || 0
       );
-      router.push(`/en/learn/course/csharp-beginner`);
+      router.push(`/en/learn/course/${searchParams.formatedcourse}`);
     } catch (error) {
       console.error("Error fetching Progress data:", error);
     }
@@ -222,6 +223,7 @@ export default function CplusAdvancedLessonPage({
             <Header
               LessonName={searchParams.lesson ?? ""}
               progress={progress}
+              formatedCourse={searchParams.formatedcourse}
             />
           </div>
         )}
