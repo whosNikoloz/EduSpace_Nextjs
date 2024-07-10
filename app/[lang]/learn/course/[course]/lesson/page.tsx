@@ -225,10 +225,10 @@ export default function CplusAdvancedLessonPage({
             />
           </div>
         )}
-        <div className="mt-3 md:mt-11">
+        <div>
           {loading ? (
-            <section className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20">
-              <div className={Styles.Loader}>
+            <section className="flex flex-col items-center justify-center md:h-[80vh]  gap-4 ">
+              <div className={`${Styles.Loader} py-8 md:py-10 mt-20`}>
                 <Image
                   src={EduSpace}
                   alt="Description of the image"
@@ -239,8 +239,8 @@ export default function CplusAdvancedLessonPage({
               </div>
             </section>
           ) : contentFooter === "finished" ? (
-            <div className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20 mb-20">
-              <div className={Styles.Loader}>
+            <div className="flex flex-col items-center justify-center md:h-[80vh] gap-4 font-bold">
+              <div className={`${Styles.Loader} py-8 md:py-10 mt-20 `}>
                 <Image
                   src={EduSpace}
                   alt="Description of the image"

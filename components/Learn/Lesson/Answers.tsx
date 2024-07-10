@@ -39,7 +39,7 @@ export const Answers: React.FC<AnswerProps> = ({
   }, [onTryAgain]);
 
   return (
-    <div className="gap-5 flex flex-col   justify-center items-center mt-20 lg:mt-40">
+    <div className="gap-3 flex flex-col   justify-center items-center mt-20 lg:mt-40">
       {answers.map((answer, index) => (
         <div key={answer.answerId} className="mb-2 lg:mb-0">
           <Button

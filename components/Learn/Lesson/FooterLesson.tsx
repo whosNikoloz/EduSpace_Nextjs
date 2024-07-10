@@ -221,7 +221,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
     <>
       <footer>
         <hr className="my-4 md:my-6 lg:my-8 border-t  border-gray-500 dark:border-gray-700" />
-        <div className="flex flex-row items-center justify-center gap-4   mt-10 md:mt-5 lg:gap-24">
+        <div className="flex flex-row items-center justify-center gap-4 lg:gap-24">
           {footerContent}
         </div>
       </footer>

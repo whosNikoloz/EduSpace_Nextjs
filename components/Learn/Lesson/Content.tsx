@@ -94,9 +94,9 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
   return (
     <ScrollShadow
       hideScrollBar
-      className="max-h-[calc(100vh-220px)] h-[calc(100vh-220px)]"
+      className="max-h-[calc(100vh-220px)] h-[calc(100vh-220px)] "
     >
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center mt-10">
         <div className="grid px-6 items-center w-full lg:w-2/3 overflow-auto">
           <div className="mt-4">
             {contentType === "learn" && (
