@@ -135,7 +135,9 @@ export const Compiler = ({ code, isDarkMode, onChange, lng }) => {
               variant="bordered"
               radius="md"
               onClick={() => handleTabChange("code")}
-              className={activeTab === "code" ? "bg-blue-500 text-white" : ""}
+              className={
+                activeTab === "code" ? "bg-blue-600 text-white" : "text-white"
+              }
             >
               Code
             </Button>
@@ -143,7 +145,9 @@ export const Compiler = ({ code, isDarkMode, onChange, lng }) => {
               variant="bordered"
               radius="md"
               onClick={() => handleTabChange("output")}
-              className={activeTab === "output" ? "bg-blue-500 text-white" : ""}
+              className={
+                activeTab === "output" ? "bg-blue-600 text-white" : "text-white"
+              }
             >
               Output
             </Button>
