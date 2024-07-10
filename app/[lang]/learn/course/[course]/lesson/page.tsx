@@ -216,63 +216,68 @@ export default function CplusAdvancedLessonPage({
 
   return (
     <>
-      {contentFooter !== "finished" && ( // Check if contentFooter is not "finished"
-        <div className="mx-auto max-w-7xl pt-6 px-6">
-          <Header LessonName={searchParams.lesson ?? ""} progress={progress} />
-        </div>
-      )}
-      <div className="mt-3 md:mt-11">
-        {loading ? (
-          <section className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20">
-            <div className={Styles.Loader}>
-              <Image
-                src={EduSpace}
-                alt="Description of the image"
-                width={100} // Specify the width of the image
-                height={100}
-                priority={true}
-              />
-            </div>
-          </section>
-        ) : contentFooter === "finished" ? (
-          <div className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20 mb-20">
-            <div className={Styles.Loader}>
-              <Image
-                src={EduSpace}
-                alt="Description of the image"
-                width={100} // Specify the width of the image
-                height={100}
-                priority={true}
-              />
-            </div>
-            <p>Lesson completed!</p>
-            <p>You learned Numerical Data. You’re one step </p>
-            <p>closer to reaching your goal!</p>
-          </div>
-        ) : (
-          learn.length > 0 && (
-            <Content
-              learnMaterialData={learn[currentLessonIndex]}
-              contentType={contentType} // Pass content type as a prop
-              onAnswerSelected={setAnswerSelected}
-              onCorrectAnswer={setAnswerSelectedCorrect}
-              onTryAgain={tryAgain}
+      <div className="bg-slate-800 h-screen text-white">
+        {contentFooter !== "finished" && ( // Check if contentFooter is not "finished"
+          <div className="mx-auto max-w-7xl pt-6 px-6">
+            <Header
+              LessonName={searchParams.lesson ?? ""}
+              progress={progress}
             />
-          )
+          </div>
         )}
-      </div>
-      <div className="mt-2 md:mt-9">
-        <FooterLesson
-          contentFooter={contentFooter}
-          Hint={learn[currentLessonIndex]?.test?.hint}
-          onContinue={handleContinue}
-          answerSelected={answerSelected}
-          onFinish={handleFinish}
-          onFinished={handleOnFinished}
-          answerSelectedCorrect={answerSelectedCorrect}
-          onPrev={handlePrev}
-          onTryAgain={handleTryAgain}
-        />
+        <div className="mt-3 md:mt-11">
+          {loading ? (
+            <section className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20">
+              <div className={Styles.Loader}>
+                <Image
+                  src={EduSpace}
+                  alt="Description of the image"
+                  width={100} // Specify the width of the image
+                  height={100}
+                  priority={true}
+                />
+              </div>
+            </section>
+          ) : contentFooter === "finished" ? (
+            <div className="flex flex-col items-center justify-center h-[calc(100vh-265px)] gap-4 py-8 md:py-10 mt-20 mb-20">
+              <div className={Styles.Loader}>
+                <Image
+                  src={EduSpace}
+                  alt="Description of the image"
+                  width={100} // Specify the width of the image
+                  height={100}
+                  priority={true}
+                />
+              </div>
+              <p>Lesson completed!</p>
+              <p>You learned Numerical Data. You’re one step </p>
+              <p>closer to reaching your goal!</p>
+            </div>
+          ) : (
+            learn.length > 0 && (
+              <Content
+                learnMaterialData={learn[currentLessonIndex]}
+                contentType={contentType} // Pass content type as a prop
+                onAnswerSelected={setAnswerSelected}
+                onCorrectAnswer={setAnswerSelectedCorrect}
+                onTryAgain={tryAgain}
+              />
+            )
+          )}
+        </div>
+        <div className="mt-2 md:mt-9">
+          <FooterLesson
+            contentFooter={contentFooter}
+            Hint={learn[currentLessonIndex]?.test?.hint}
+            onContinue={handleContinue}
+            answerSelected={answerSelected}
+            onFinish={handleFinish}
+            onFinished={handleOnFinished}
+            answerSelectedCorrect={answerSelectedCorrect}
+            onPrev={handlePrev}
+            onTryAgain={handleTryAgain}
+          />
+        </div>
       </div>
     </>
   );

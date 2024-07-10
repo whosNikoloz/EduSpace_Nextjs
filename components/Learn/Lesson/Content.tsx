@@ -101,7 +101,7 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
           <div className="mt-4">
             {contentType === "learn" && (
               <>
-                <p className="content">{learnMaterialData.content}</p>
+                <p className="font-bold">{learnMaterialData.content}</p>
               </>
             )}
           </div>
@@ -128,7 +128,7 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
           )}
           <div className="mt-4">
             {contentType === "test" && (
-              <p className="question">{learnMaterialData.test.question}</p>
+              <p className="font-bold">{learnMaterialData.test.question}</p>
             )}
           </div>
 

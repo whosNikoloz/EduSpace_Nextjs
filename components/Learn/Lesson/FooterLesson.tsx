@@ -42,7 +42,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
           size="md"
           variant="shadow"
           color="primary"
-          className="w-full md:w-auto"
+          className="w-11/12 md:w-auto"
           onClick={onContinue}
         >
           შემდეგ
@@ -57,7 +57,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             color="primary"
             variant="ghost"
             radius="sm"
-            className="w-auto"
+            className="w-auto "
             onClick={onPrev}
           >
             უკან
@@ -220,8 +220,8 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
   return (
     <>
       <footer>
-        <hr className="my-4 md:my-6 lg:my-8 border-t border-gray-500 dark:border-gray-700" />
-        <div className="flex flex-row items-center justify-center gap-4  lg:gap-24">
+        <hr className="my-4 md:my-6 lg:my-8 border-t  border-gray-500 dark:border-gray-700" />
+        <div className="flex flex-row items-center justify-center gap-4   mt-10 md:mt-5 lg:gap-24">
           {footerContent}
         </div>
       </footer>

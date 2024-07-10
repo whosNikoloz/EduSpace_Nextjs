@@ -39,7 +39,7 @@ export const Answers: React.FC<AnswerProps> = ({
   }, [onTryAgain]);
 
   return (
-    <div className="gap-5 flex flex-col lg:flex-row justify-center items-center mt-20">
+    <div className="gap-5 flex flex-col   justify-center items-center mt-20 lg:mt-40">
       {answers.map((answer, index) => (
         <div key={answer.answerId} className="mb-2 lg:mb-0">
           <Button
@@ -53,9 +53,9 @@ export const Answers: React.FC<AnswerProps> = ({
             size="lg"
             variant="shadow"
             onClick={() => handleAnswerClick(index)}
-            className="rounded-md"
+            className="rounded-md  w-full font-bol"
           >
-            {answer.option}
+            <span className="text-xs md:text-[16px]">{answer.option}</span>
           </Button>
         </div>
       ))}
