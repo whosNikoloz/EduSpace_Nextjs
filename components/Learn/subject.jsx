@@ -81,7 +81,7 @@ const SubjectItem = ({
       </h4>
       <div
         className={`transition-all duration-300 ease-in-out ${
-          containerVisible ? "max-h-96" : "max-h-0 overflow-hidden"
+          containerVisible ? "max-h-[1000px]" : "max-h-0 overflow-hidden"
         }`}
       >
         {subject.lessons.map((lesson, lessonIndex) => {
