@@ -309,7 +309,7 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                     </svg>
                   </Button>
                 </div>
-                <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
+                <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-between">
                   <div className="flex flex-shrink-0 items-center">
                     <Link href={`/${lng}`}>
                       <EduSpace />
@@ -326,7 +326,7 @@ export const Navbar = ({ lng, NotMain }: { lng: string; NotMain: boolean }) => {
                       EduSpace
                     </Link>
                   </div>
-                  <div className="hidden  sm:ml-6 sm:block ">
+                  <div className="hidden  sm:ml-6 lg:block ">
                     <div className="flex space-x-4">
                       <MultiLevelDropdown isScrolled={isScrolled} lng={lng} />
                       <Link

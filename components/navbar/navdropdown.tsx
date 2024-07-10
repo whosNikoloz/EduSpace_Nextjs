@@ -273,7 +273,7 @@ function NDropdown({
       <div
         ref={dropdownRef}
         onClick={handleDropdownClick}
-        className={`transition-all  ease-in-out overflow-hidden sm:hidden w-full  ${
+        className={`transition-all  ease-in-out overflow-hidden lg:hidden w-full  ${
           Open ? "max-h-[700px]" : "max-h-0"
         }`}
       >
