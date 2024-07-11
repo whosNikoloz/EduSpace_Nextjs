@@ -11,6 +11,7 @@ import Image from "next/image";
 import EduSpace from "@/public/EduSpaceLogo.png";
 import ProgressAPI from "@/app/api/Learn/Progress";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 interface Answer {
   answerId: number;
@@ -209,6 +210,7 @@ export default function LessonPage({
         courseIdAsNumber || 0,
         lessonIdAsNumber || 0
       );
+      toast.success("Lesson completed!");
       router.push(`/en/learn/course/${searchParams.formatedcourse}`);
     } catch (error) {
       console.error("Error fetching Progress data:", error);
@@ -281,6 +283,7 @@ export default function LessonPage({
           />
         </div>
       </div>
+      <Toaster position="bottom-center" />
     </>
   );
 }

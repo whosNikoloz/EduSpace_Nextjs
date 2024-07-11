@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
+import toast from "react-hot-toast";
 
 interface Answer {
   answerId: number;
@@ -24,36 +25,53 @@ export const Answers: React.FC<AnswerProps> = ({
   onTryAgain,
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleAnswerClick = (index: number) => {
-    if (selectedAnswer !== null) {
-      return;
+    if (isLoading || selectedAnswer !== null) {
+      return; // Exit early if already loading or an answer is already selected
     }
-    setSelectedAnswer(index);
+
+    setIsLoading(true); // Set loading state when an answer is clicked
+    setSelectedAnswer(index); // Set the selected answer immediately
+
+    setTimeout(() => {
+      setIsLoading(false); // Reset loading state after processing
+
+      const isCorrect = answers[index].isCorrect;
+
+      isCorrect ? toast.success("Correct!") : toast.error("Incorrect!");
+
+      IsCorrect(isCorrect);
+    }, 1000); // Simulate processing time
+
+    // Notify parent component of answer selection
     onAnswerSelected(true);
-    IsCorrect(answers[index].isCorrect);
   };
 
   useEffect(() => {
-    setSelectedAnswer(null);
+    setSelectedAnswer(null); // Reset selected answer on try again
   }, [onTryAgain]);
 
   return (
-    <div className="gap-3 flex flex-col   justify-center items-center mt-20 lg:mt-40">
+    <div className="gap-3 flex flex-col justify-center items-center mt-20 lg:mt-40">
       {answers.map((answer, index) => (
         <div key={answer.answerId} className="mb-2 lg:mb-0">
           <Button
             color={
               selectedAnswer === index
-                ? answer.isCorrect
+                ? isLoading
+                  ? "primary"
+                  : answer.isCorrect
                   ? "success"
                   : "danger"
                 : "primary"
-            } // Change color based on the correctness of the selected answer
+            } // Change color based on the correctness of the selected answer and loading state
             size="lg"
             variant="shadow"
+            isLoading={isLoading && selectedAnswer === index}
             onClick={() => handleAnswerClick(index)}
-            className="rounded-md  w-full font-bol"
+            className="rounded-md w-full font-bold"
           >
             <span className="text-xs md:text-[16px]">{answer.option}</span>
           </Button>

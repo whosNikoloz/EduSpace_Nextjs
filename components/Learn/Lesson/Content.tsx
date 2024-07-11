@@ -101,7 +101,12 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
           <div className="mt-4">
             {contentType === "learn" && (
               <>
-                <p className="font-bold">{learnMaterialData.content}</p>
+                <h1 className="font-bold text-2xl pb-4">
+                  {learnMaterialData.learnName}
+                </h1>
+                <p className="font-semibold text-md">
+                  {learnMaterialData.content}
+                </p>
               </>
             )}
           </div>
@@ -128,7 +133,29 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
           )}
           <div className="mt-4">
             {contentType === "test" && (
-              <p className="font-bold">{learnMaterialData.test.question}</p>
+              <>
+                <p className="font-bold text-xl">
+                  {learnMaterialData.test.question}
+                </p>
+                {learnMaterialData.test.code && (
+                  <>
+                    <CodeEditor
+                      value={learnMaterialData.test.code}
+                      language="cpp"
+                      placeholder="Please enter JS code."
+                      className="rounded-md mt-4"
+                      padding={15}
+                      style={{
+                        fontSize: 12,
+                        backgroundColor: "#161B22",
+                        fontFamily:
+                          "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
+                      }}
+                      readOnly
+                    />
+                  </>
+                )}
+              </>
             )}
           </div>
 

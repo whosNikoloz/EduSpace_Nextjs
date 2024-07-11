@@ -3,6 +3,7 @@ import { Locale } from "@/i18n.config";
 import { Metadata } from "next";
 import SSRCourse from "@/app/[lang]/learn/course/[course]/ssrcourse";
 import CoursesAPI from "@/app/api/Learn/Course";
+import { Toaster } from "react-hot-toast";
 
 type Props = {
   params: { lang: Locale; course: string };
@@ -29,6 +30,7 @@ export default function CoursePage({
   return (
     <Secondlayout lang={lang}>
       <SSRCourse params={{ lang, course }} />
+      <Toaster position="bottom-left" reverseOrder={false} />
     </Secondlayout>
   );
 }
