@@ -103,7 +103,7 @@ const Comment: React.FC<CommentProps> = ({
             <div className="font-semibold text-sm leading-relaxed ">
               {username}
             </div>
-            <div className="text-normal leading-snug md:leading-normal ">
+            <div className="text-normal leading-snug md:leading-normal text-wrap break-all  whitespace-normal  max-w-xs md:max-w-sm ">
               {commentText}
             </div>
           </div>

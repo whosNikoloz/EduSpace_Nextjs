@@ -111,9 +111,7 @@ function PostCard({ postData, onDelete, lang }) {
 
     connection
       .start()
-      .then(() => {
-        console.log("Connection started!");
-      })
+      .then(() => {})
       .catch((error) => {
         console.error("Error starting connection:", error);
       });

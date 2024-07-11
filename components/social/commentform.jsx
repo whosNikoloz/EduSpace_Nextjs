@@ -90,6 +90,13 @@ function CommentForm({ postid, lang }) {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="w-full  rounded-lg">
@@ -97,6 +104,7 @@ function CommentForm({ postid, lang }) {
           <Textarea
             id="comment"
             minRows={1}
+            onKeyDown={handleKeyPress}
             variant="bordered"
             size="sm"
             value={commentText}
