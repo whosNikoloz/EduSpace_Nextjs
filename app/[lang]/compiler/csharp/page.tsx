@@ -104,7 +104,7 @@ public class HelloWorld
   };
   return (
     <LayoutNavbar lang={lang}>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row ">
         {/* Sidebar */}
         <div className="p-4 md:border-b border-blue-600 rounded-br-lg">
           <div className="flex flex-row md:flex-col md:mb-1 items-start gap-7">

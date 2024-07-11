@@ -103,7 +103,8 @@ function PostCard({ postData, onDelete, lang }) {
       .withUrl(
         `https://185.139.57.56:8081/commentHub?userId=${user.userId}&postId=${postid}`
       )
-      .configureLogging(LogLevel.Information) // Corrected typo here
+      .configureLogging(LogLevel.None) // Corrected typo here
+      //.configureLogging(LogLevel.Information) // Corrected typo here
       .build();
 
     setCon(connection);

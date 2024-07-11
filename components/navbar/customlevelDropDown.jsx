@@ -28,10 +28,10 @@ const dropdownItems = {
       startContent: icons.Beginner,
       textValue: "Beginner",
       courses: [
-        { text: "C# Beginner", link: "en/learn/course/csharp-beginner" },
-        { text: "Python Beginner", link: "en/learn/course/python-beginner" },
-        { text: "C++ Beginner", link: "en/learn/course/c-plus-beginner" },
-        { text: "Swift Beginner", link: "en/learn/course/swift-beginner" },
+        { text: "C# Beginner", link: "learn/course/csharp-beginner" },
+        { text: "Python Beginner", link: "learn/course/python-beginner" },
+        { text: "C++ Beginner", link: "learn/course/c-plus-beginner" },
+        { text: "Swift Beginner", link: "learn/course/swift-beginner" },
       ],
     },
     {
@@ -69,10 +69,10 @@ const dropdownItems = {
       startContent: icons.Beginner,
       textValue: "შესავალი",
       courses: [
-        { text: "C# შესავალი", link: "ka/learn/course/csharp-beginner" },
-        { text: "Python შესავალი", link: "ka/learn/course/python-beginner" },
-        { text: "C++ შესავალი", link: "ka/learn/course/c-plus-beginner" },
-        { text: "Swift შესავალი", link: "ka/learn/course/swift-beginner" },
+        { text: "C# შესავალი", link: "/learn/course/csharp-beginner" },
+        { text: "Python შესავალი", link: "/learn/course/python-beginner" },
+        { text: "C++ შესავალი", link: "/learn/course/c-plus-beginner" },
+        { text: "Swift შესავალი", link: "/learn/course/swift-beginner" },
       ],
     },
     {
@@ -118,6 +118,21 @@ function MultiLevelDropdown({ isScrolled, lng }) {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const dropdownRef = useRef(null);
+
+  const generateLocalizedLink = (href, currentLang) => {
+    if (!href) return "#";
+
+    // Ensure the href doesn't already contain the language segment
+    const segments = href.split("/").filter((segment) => segment);
+
+    // If the first segment is a language code, remove it
+    if (segments[0] === currentLang) {
+      segments.shift();
+    }
+
+    // Prepend the current language segment
+    return `/${currentLang}/${segments.join("/")}`;
+  };
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -182,7 +197,7 @@ function MultiLevelDropdown({ isScrolled, lng }) {
                 >
                   {item.courses.map((course, subIndex) => (
                     <li key={subIndex}>
-                      <Link href={course.link}>
+                      <Link href={generateLocalizedLink(course.link, lng)}>
                         <Button
                           className="py-2 bg-transparent  mx-auto text-center w-[150px]  whitespace-no-wrap"
                           href="#"

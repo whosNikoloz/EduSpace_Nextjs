@@ -223,6 +223,21 @@ function NDropdown({
     e.stopPropagation();
   };
 
+  const generateLocalizedLink = (href: string, currentLang: any) => {
+    if (!href) return "#";
+
+    // Ensure the href doesn't already contain the language segment
+    const segments = href.split("/").filter((segment: any) => segment);
+
+    // If the first segment is a language code, remove it
+    if (segments[0] === currentLang) {
+      segments.shift();
+    }
+
+    // Prepend the current language segment
+    return `/${currentLang}/${segments.join("/")}`;
+  };
+
   const handleThemeChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedTheme = event.target.value;
 
@@ -286,7 +301,7 @@ function NDropdown({
                 {item.href ? (
                   <>
                     <Link
-                      href={item.href}
+                      href={generateLocalizedLink(item.href, lng)}
                       className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
                       {item.svg}
@@ -380,7 +395,10 @@ function NDropdown({
                                 >
                                   <li className="px-10">
                                     <Link
-                                      href={submenu.link || "#"}
+                                      href={generateLocalizedLink(
+                                        submenu.link,
+                                        lng
+                                      )}
                                       className="flex items-center w-full p-2 text-base font-normal bg-transparent transition duration-75 rounded-lg group"
                                     >
                                       <span className="flex-1 ml-3 text-left whitespace-nowrap dark:text-white text-black">

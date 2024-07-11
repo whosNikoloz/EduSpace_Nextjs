@@ -22,7 +22,7 @@ const CodeEditorWindow = ({ onChange, language, code, isDarkMode }) => {
   }, [isDarkMode]);
 
   return (
-    <div className="overlay rounded-md overflow-hidden w-full h-full shadow-4xl">
+    <div className="overlay rounded-md overflow-hidden w-full  shadow-4xl">
       <Editor
         height="85vh"
         width={`100%`}
