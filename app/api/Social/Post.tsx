@@ -72,7 +72,6 @@ const Posts = () => {
             // You can monitor the progress here if needed.
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log(`Upload is ${progress}% done`);
           },
           (error) => {
             console.error("Error uploading file:", error);
@@ -82,10 +81,6 @@ const Posts = () => {
             try {
               // Upload completed successfully, get the download URL.
               const downloadURL = await getDownloadURL(fileRef);
-              console.log(
-                "File uploaded successfully. Download URL:",
-                downloadURL
-              );
               resolve(downloadURL);
             } catch (error) {
               console.error("Error getting download URL:", error);
@@ -200,7 +195,6 @@ const Posts = () => {
 
       if (response.ok) {
         const posts = await response.json();
-        console.log(posts);
         return posts;
       } else {
         const errorText = await response.text();
@@ -220,7 +214,6 @@ const Posts = () => {
 
         // Delete the file using the renamed imported function
         await deleteFirebaseObject(fileRef);
-        console.log("File deleted successfully");
       } else {
         console.error("File not found in your app's mapping");
       }
@@ -240,8 +233,6 @@ const Posts = () => {
 
       if (comments) {
         for (const comment of comments) {
-          console.log("picture", comment.commentPicture);
-          console.log("video", comment.commentVideo);
           const fileToPass = comment.commentPicture
             ? comment.commentPicture
             : comment.commentVideo;

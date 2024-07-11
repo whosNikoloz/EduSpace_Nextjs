@@ -68,7 +68,6 @@ function PasswordEdit({ oauth, userid }: PasswordEditProps) {
       ...error,
       newpasswordError: "",
     });
-    console.log("clear");
     setPassword({ ...password, newPassword: "" });
   };
 

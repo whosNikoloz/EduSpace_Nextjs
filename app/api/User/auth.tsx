@@ -201,9 +201,6 @@ const Authentication = () => {
 
       if (response.ok) {
         const data = await response.json();
-
-        console.log(data);
-
         if (data.successful) {
           return { success: true };
         } else {
@@ -525,7 +522,6 @@ const Authentication = () => {
       if (oldpicture) {
         try {
           await deleteFileFromFirebaseStorage(oldpicture);
-          console.log("Old picture deleted successfully");
         } catch (error) {
           console.error("Error deleting old picture:", error);
         }
@@ -534,9 +530,6 @@ const Authentication = () => {
       const pictureUrl = picture
         ? await uploadFileToFirebaseStorage(picture, "UserProfiles")
         : null;
-
-      console.log(pictureUrl);
-      console.log(userId);
 
       const token = localStorage.getItem("jwt");
       const response = await fetch(docker_user_API + "UploadImage", {
@@ -583,7 +576,6 @@ const Authentication = () => {
             // You can monitor the progress here if needed.
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log(`Upload is ${progress}% done`);
           },
           (error) => {
             console.error("Error uploading file:", error);
@@ -593,10 +585,6 @@ const Authentication = () => {
             try {
               // Upload completed successfully, get the download URL.
               const downloadURL = await getDownloadURL(fileRef);
-              console.log(
-                "File uploaded successfully. Download URL:",
-                downloadURL
-              );
               resolve(downloadURL);
             } catch (error) {
               console.error("Error getting download URL:", error);
@@ -624,12 +612,10 @@ const Authentication = () => {
       if (url) {
         // Delete the file
         await deleteObject(fileRef);
-        console.log("File deleted successfully");
       }
     } catch (error) {
       if ((error as { code: string }).code === "storage/object-not-found") {
         // File doesn't exist
-        console.log("File doesn't exist");
       } else {
         // Some other error occurred
         console.error("Error deleting file:", error);

@@ -15,9 +15,6 @@ function ConfirmAccess({ onConfirm }: { onConfirm: () => void }) {
 
   const handleConfirm = async () => {
     setIsLoading(true);
-
-    console.log(password);
-
     if (!password) {
       toast.error("შეავსეთ ველი");
       setIsLoading(false);

@@ -51,7 +51,6 @@ function EmailEdit({
       onCloseAccess();
       onOpenOtp();
       setVerificationCode(response.data);
-      console.log(response.data);
     } else if (response.error) {
       onCloseAccess();
       toast.error(response.error);

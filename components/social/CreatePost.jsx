@@ -142,7 +142,6 @@ export default function CreatePost({ setPosts, lang }) {
     );
     if (errorMessage) {
       setPostModelError("Invalid Email or Password");
-      console.log(errorMessage);
     } else {
       // Fetch the newly created post from the API
       const newPostResponse = await posts.GetLastPost();
@@ -170,8 +169,6 @@ export default function CreatePost({ setPosts, lang }) {
         toast.error(
           lang == "ka" ? "სამწუხაროდ ვერ დაიპოსტა" : "Post could not be created"
         );
-
-        console.log(newPostResponse.error);
       }
     }
   };

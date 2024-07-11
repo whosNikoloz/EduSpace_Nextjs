@@ -56,10 +56,6 @@ const Comment = () => {
           async () => {
             // Upload completed successfully, get the download URL.
             const downloadURL = await getDownloadURL(fileRef);
-            console.log(
-              "File uploaded successfully. Download URL:",
-              downloadURL
-            );
             resolve(downloadURL);
           }
         );
@@ -127,7 +123,6 @@ const Comment = () => {
 
         // Delete the file using the renamed imported function
         await deleteFirebaseObject(fileRef);
-        console.log("File deleted successfully");
       } else {
         console.error("File not found in your app's mapping");
       }

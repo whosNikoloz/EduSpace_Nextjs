@@ -99,9 +99,7 @@ const Notification: React.FC<{ userid: number; isScrolled: boolean }> = ({
 
     connection
       .start()
-      .then(() => {
-        console.log("Connection started!");
-      })
+      .then(() => {})
       .catch((error) => {
         console.error("Error starting connection:", error);
       });

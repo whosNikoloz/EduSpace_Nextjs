@@ -145,7 +145,6 @@ function PostCard({ postData, onDelete, lang }) {
     );
     if (errorMessage) {
       setPostModelError(errorMessage);
-      console.log(errorMessage);
     } else {
       setEditSuccess(false);
       onCloseEdit();

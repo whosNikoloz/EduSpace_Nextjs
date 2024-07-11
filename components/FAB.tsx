@@ -52,7 +52,6 @@ const FAB: React.FC<{ lang: string }> = ({ lang }) => {
 
   const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(input);
     if (input) {
       handleSubmit(e);
       setInput("");
