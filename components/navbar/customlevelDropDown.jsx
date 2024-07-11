@@ -122,15 +122,12 @@ function MultiLevelDropdown({ isScrolled, lng }) {
   const generateLocalizedLink = (href, currentLang) => {
     if (!href) return "#";
 
-    // Ensure the href doesn't already contain the language segment
     const segments = href.split("/").filter((segment) => segment);
 
-    // If the first segment is a language code, remove it
     if (segments[0] === currentLang) {
       segments.shift();
     }
 
-    // Prepend the current language segment
     return `/${currentLang}/${segments.join("/")}`;
   };
 

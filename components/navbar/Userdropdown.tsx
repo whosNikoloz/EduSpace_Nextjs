@@ -88,7 +88,7 @@ function UDropdown({
                   {email}
                 </p>
               </div>
-              <Link href="/user/profile">
+              <Link href={`/${lng}/user/profile`}>
                 <Button
                   endContent={<Settingicon size={20} height={20} width={20} />}
                   className="px-4 py-3 text-sm w-full justify-between mt-2 text-gray-600 bg-transparent capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 dark:hover:text-white"

@@ -94,7 +94,7 @@ public class HelloWorld
                 {buttonTitel}
               </Button>
               <Link
-                href="#compiler-section"
+                href={`${lng}/compiler/csharp`}
                 className="text-sm font-semibold leading-6 text-black dark:text-white"
               >
                 Go to Compiler
