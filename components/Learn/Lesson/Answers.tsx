@@ -13,7 +13,7 @@ interface Answer {
 
 interface AnswerProps {
   answers: Answer[];
-  onAnswerSelected: (isAnswerSelected: boolean) => void;
+  onAnswerSelected: (isAnswerSelected: string) => void;
   IsCorrect: (isAnswerSelected: boolean) => void;
   onTryAgain: number;
 }
@@ -43,10 +43,8 @@ export const Answers: React.FC<AnswerProps> = ({
       isCorrect ? toast.success("Correct!") : toast.error("Incorrect!");
 
       IsCorrect(isCorrect);
+      onAnswerSelected(answers[index].option);
     }, 1000); // Simulate processing time
-
-    // Notify parent component of answer selection
-    onAnswerSelected(true);
   };
 
   useEffect(() => {

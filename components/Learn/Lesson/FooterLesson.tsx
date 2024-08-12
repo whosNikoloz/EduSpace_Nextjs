@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Popover,
   PopoverTrigger,
@@ -12,9 +12,9 @@ type FooterLessonProps = {
   onContinue: () => void;
   contentFooter: string;
   onFinish: () => void;
-  onTryAgain: () => void;
+  onTryAgain: (needsAIHelp: boolean) => void;
   onFinished: () => void;
-  answerSelected: boolean;
+  answerSelected: string;
   answerSelectedCorrect: boolean;
   Hint: string;
 };
@@ -30,9 +30,20 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
   answerSelected,
   answerSelectedCorrect,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   let footerContent = null;
+
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const handleTryAgainClick = () => {
+    setIsPopoverOpen(true);
+  };
+
+  const handleAIHelpDecision = (needsAiHelp: boolean) => {
+    setIsPopoverOpen(false);
+    onTryAgain(needsAiHelp);
+  };
 
   switch (contentFooter) {
     case "first":
@@ -82,7 +93,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
               </div>
             </PopoverContent>
           </Popover>
-          {answerSelected ? (
+          {answerSelected != "" ? (
             answerSelectedCorrect ? (
               <Button
                 color="primary"
@@ -95,16 +106,48 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                 შემდეგ
               </Button>
             ) : (
-              <Button
+              <Popover
+                isOpen={isPopoverOpen}
+                backdrop="opaque"
+                onOpenChange={(open) => setIsPopoverOpen(open)}
                 color="primary"
-                radius="sm"
-                size="md"
-                variant="shadow"
-                className="w-auto"
-                onClick={onTryAgain}
               >
-                თავიდან ცდა
-              </Button>
+                <PopoverTrigger>
+                  <Button
+                    color="primary"
+                    radius="sm"
+                    size="md"
+                    variant="shadow"
+                    className="w-auto"
+                    onClick={handleTryAgainClick}
+                  >
+                    თავიდან ცდა
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <div className="px-1 py-2 space-y-4">
+                    <div className="text-small font-bold text-center">
+                      გსურთ AI დახმარება?
+                    </div>
+                    <div className="flex flex-row gap-2">
+                      <Button
+                        variant="shadow"
+                        color="success"
+                        onClick={() => handleAIHelpDecision(true)}
+                      >
+                        დიახ
+                      </Button>
+                      <Button
+                        color="danger"
+                        variant="shadow"
+                        onClick={() => handleAIHelpDecision(false)}
+                      >
+                        არა
+                      </Button>
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
             )
           ) : null}
         </>
@@ -143,7 +186,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
               </div>
             </PopoverContent>
           </Popover>
-          {answerSelected ? (
+          {answerSelected != "" ? (
             answerSelectedCorrect ? (
               <Button
                 color="primary"
@@ -156,16 +199,50 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                 დამთავრება
               </Button>
             ) : (
-              <Button
-                color="primary"
-                radius="sm"
-                size="md"
-                variant="shadow"
-                className="w-auto"
-                onClick={onTryAgain}
-              >
-                Try Again
-              </Button>
+              <>
+                <Popover
+                  isOpen={isPopoverOpen}
+                  backdrop="opaque"
+                  onOpenChange={(open) => setIsPopoverOpen(open)}
+                  color="primary"
+                >
+                  <PopoverTrigger>
+                    <Button
+                      color="primary"
+                      radius="sm"
+                      size="md"
+                      variant="shadow"
+                      className="w-auto"
+                      onClick={handleTryAgainClick}
+                    >
+                      თავიდან ცდა
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent>
+                    <div className="px-1 py-2 space-y-4">
+                      <div className="text-small font-bold text-center">
+                        გსურთ AI დახმარება?
+                      </div>
+                      <div className="flex flex-row gap-2">
+                        <Button
+                          variant="shadow"
+                          color="success"
+                          onClick={() => handleAIHelpDecision(true)}
+                        >
+                          დიახ
+                        </Button>
+                        <Button
+                          color="danger"
+                          variant="shadow"
+                          onClick={() => handleAIHelpDecision(false)}
+                        >
+                          არა
+                        </Button>
+                      </div>
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              </>
             )
           ) : null}
         </>

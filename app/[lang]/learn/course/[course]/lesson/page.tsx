@@ -12,6 +12,7 @@ import EduSpace from "@/public/EduSpaceLogo.png";
 import ProgressAPI from "@/app/api/Learn/Progress";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
+import AiAssistantModal from "@/components/aiassistant/AiAssistantModal";
 
 interface Answer {
   answerId: number;
@@ -75,7 +76,7 @@ export default function LessonPage({
   const [contentType, setContentType] = useState("learn"); // Add content type state
   const [contentFooter, setcontentFooter] = useState("first"); // Add content footer state
 
-  const [answerSelected, setAnswerSelected] = useState(false);
+  const [answerSelected, setAnswerSelected] = useState("");
   const [answerSelectedCorrect, setAnswerSelectedCorrect] = useState(false);
 
   const [tryAgain, setTryAgain] = useState(0);
@@ -83,6 +84,8 @@ export default function LessonPage({
   const [progress, setProgress] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
+
+  const [showAiModal, setAiShowModal] = useState(false);
 
   // Convert to numbers if they are non-null and valid numbers
   const lessonIdAsNumber = searchParams.lessonId
@@ -149,16 +152,16 @@ export default function LessonPage({
       setCurrentLessonIndex(currentLessonIndex + 1);
       setcontentFooter("learn");
       setContentType("learn");
-      setAnswerSelected(false);
+      setAnswerSelected("");
     } else {
       if (currentLessonIndex == learn.length - 1) {
         setcontentFooter("last");
         setContentType("test");
-        setAnswerSelected(false);
+        setAnswerSelected("");
       } else {
         setcontentFooter("test");
         setContentType("test");
-        setAnswerSelected(false);
+        setAnswerSelected("");
       }
     }
     setCurrentPage(currentPage + 1);
@@ -171,32 +174,37 @@ export default function LessonPage({
       if (currentLessonIndex == 0) {
         setcontentFooter("first");
         setContentType("learn");
-        setAnswerSelected(false);
+        setAnswerSelected("");
       } else {
         setcontentFooter("learn");
         setContentType("learn");
-        setAnswerSelected(false);
+        setAnswerSelected("");
       }
     } else {
       setCurrentLessonIndex(currentLessonIndex - 1);
       setcontentFooter("test");
       setContentType("test");
-      setAnswerSelected(false);
+      setAnswerSelected("");
     }
     setCurrentPage(currentPage - 1);
   };
 
-  const handleTryAgain = () => {
-    setAnswerSelected(false);
-    setAnswerSelectedCorrect(false);
-    setTryAgain(tryAgain + 1);
+  const handleTryAgain = (needsAiHelp: boolean) => {
+    if (needsAiHelp) {
+      setAiShowModal(true);
+    } else {
+      setAiShowModal(false);
+      setAnswerSelected("");
+      setAnswerSelectedCorrect(false);
+      setTryAgain(tryAgain + 1);
+    }
   };
 
-  const handleAnswerSelected = (
-    selected: boolean | ((prevState: boolean) => boolean)
-  ) => {
-    setAnswerSelected(selected);
-  };
+  // const handleAnswerSelected = (
+  //   selected: boolean | ((prevState: boolean) => boolean)
+  // ) => {
+  //   setAnswerSelected(selected);
+  // };
 
   const handleFinish = () => {
     setcontentFooter("finished");
@@ -259,13 +267,23 @@ export default function LessonPage({
             </div>
           ) : (
             learn.length > 0 && (
-              <Content
-                learnMaterialData={learn[currentLessonIndex]}
-                contentType={contentType} // Pass content type as a prop
-                onAnswerSelected={setAnswerSelected}
-                onCorrectAnswer={setAnswerSelectedCorrect}
-                onTryAgain={tryAgain}
-              />
+              <>
+                <AiAssistantModal
+                  isOpen={showAiModal}
+                  onRequestCloseModal={function (): void {
+                    handleTryAgain(false);
+                  }}
+                  question={learn[currentLessonIndex]?.test?.question}
+                  userAnswer={answerSelected}
+                />
+                <Content
+                  learnMaterialData={learn[currentLessonIndex]}
+                  contentType={contentType} // Pass content type as a prop
+                  onAnswerSelected={setAnswerSelected}
+                  onCorrectAnswer={setAnswerSelectedCorrect}
+                  onTryAgain={tryAgain}
+                />
+              </>
             )
           )}
         </div>

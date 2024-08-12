@@ -47,7 +47,7 @@ interface LearnMaterialData {
 interface LearnMaterialDataProps {
   learnMaterialData: LearnMaterialData; // Correctly define the prop
   contentType: string;
-  onAnswerSelected: (isAnswerSelected: boolean) => void;
+  onAnswerSelected: (isAnswerSelected: string) => void;
   onCorrectAnswer: (isAnswerCorrect: boolean) => void;
   onTryAgain: number;
 }
@@ -59,8 +59,8 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
   onCorrectAnswer,
   onTryAgain,
 }) => {
-  const handleAnswerSelected = () => {
-    onAnswerSelected(true);
+  const handleAnswerSelected = (answer: string) => {
+    onAnswerSelected(answer);
   };
 
   const handleIsCorrect = (isCorrect: boolean) => {
@@ -82,7 +82,7 @@ export const Content: React.FC<LearnMaterialDataProps> = ({
 
   useEffect(() => {
     setShuffledAnswers(shuffleArray(learnMaterialData.test.answers));
-    onAnswerSelected(false);
+    onAnswerSelected("");
     onCorrectAnswer(false);
   }, [
     onTryAgain,
