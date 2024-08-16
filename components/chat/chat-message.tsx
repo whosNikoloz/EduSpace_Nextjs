@@ -10,19 +10,28 @@ import { Avatar } from "@nextui-org/react";
 
 export interface ChatMessageProps {
   message: Message;
+  forasistant?: boolean;
 }
 
-export function ChatMessage({ message, ...props }: ChatMessageProps) {
+export function ChatMessage({
+  message,
+  forasistant = false,
+  ...props
+}: ChatMessageProps) {
+  if (forasistant && message.role === "user") {
+    return null;
+  }
+
   return (
     <div
       className={cn(
-        "flex flex-col md:mb-4 space-x-1  overflow-hidden  items-start "
+        "flex flex-col md:mb-4 space-x-1 overflow-hidden items-start"
       )}
       {...props}
     >
       <div
         className={cn(
-          "flex size-8 shrink-0 select-none items-center  justify-around rounded-md  shadow"
+          "flex size-8 shrink-0 select-none items-center justify-around rounded-md shadow"
         )}
       >
         {message.role === "user" ? (
@@ -47,7 +56,7 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
       </div>
       <div className="flex px-1 ml-4 space-y-2 justify-around flex-row overflow-hidden">
         <MemoizedReactMarkdown
-          className="prose break-words dark:prose-invert prose-p:leading-relaxed  mb-2 ml-9 prose-pre:p-0"
+          className="prose break-words dark:prose-invert prose-p:leading-relaxed mb-2 ml-9 prose-pre:p-0"
           remarkPlugins={[remarkGfm, remarkMath]}
           components={{
             p({ children }) {

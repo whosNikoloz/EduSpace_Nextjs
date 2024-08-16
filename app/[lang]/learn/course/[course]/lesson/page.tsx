@@ -275,6 +275,7 @@ export default function LessonPage({
                   }}
                   question={learn[currentLessonIndex]?.test?.question}
                   userAnswer={answerSelected}
+                  content={learn[currentLessonIndex]?.content}
                 />
                 <Content
                   learnMaterialData={learn[currentLessonIndex]}
@@ -301,7 +302,7 @@ export default function LessonPage({
           />
         </div>
       </div>
-      <Toaster position="bottom-center" />
+      <Toaster position="top-right" />
     </>
   );
 }

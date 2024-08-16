@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   Button,
   Modal,
@@ -9,13 +9,15 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { ChatMessage } from "../chat/chat-message";
-import { EmptyScreen } from "../chat/empty-screen";
 import { useChat } from "ai/react";
+import { ChatRequestOptions } from "ai";
+
 interface AiAssistantModalProps {
   isOpen: boolean;
   onRequestCloseModal: () => void;
   question: string;
   userAnswer: string;
+  content: string;
 }
 
 const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
@@ -23,30 +25,57 @@ const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
   onRequestCloseModal,
   question,
   userAnswer,
+  content,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [hasSubmitted, setHasSubmitted] = useState(false); // Flag to prevent multiple submissions
   const { onClose } = useDisclosure();
-  const { messages, input, setInput, handleSubmit } = useChat();
+  // const { messages, input, setInput, handleSubmit } = useChat();
 
-  const prompt = `
-      I have a student who answered a question incorrectly on our learning platform. Here is the information:
+  // const prompt = `
+  //   I have a student who answered a question incorrectly on our learning platform. Here is the information:
 
-      **Question:** ${question}
-      **User's Answer:** ${userAnswer}
+  //   **Question:** ${question}
+  //   **User's Answer:** ${userAnswer}
 
-      Please provide guidance to help the student understand the correct answer and offer a brief explanation. The correct answer should be provided. Thank you!
-    `;
+  //   Please provide guidance to help the student understand the correct answer and offer a brief explanation. The correct answer should be provided. Thank you!
+  // `;
 
-  useEffect(() => {
-    if (isOpen) {
-      setIsLoading(true);
-      console.log("Prompt: ", prompt);
-      //   const syntheticEvent = {} as React.FormEvent<HTMLFormElement>;
-      //   setInput(prompt);
-      //   handleSubmit(syntheticEvent);
-      setIsLoading(false);
-    }
-  }, [isOpen, question, userAnswer, handleSubmit, setInput]);
+  // const handleSubmitForm = useCallback(
+  //   (e: React.FormEvent<HTMLFormElement>) => {
+  //     e.preventDefault();
+  //     if (input) {
+  //       handleSubmit(e);
+  //       setInput(""); // Clear input after submission
+  //     }
+  //   },
+  //   [input, handleSubmit, setInput]
+  // );
+
+  // const submitPrompt = useCallback(() => {
+  //   setInput(prompt);
+
+  //   // Create a synthetic event object
+  //   const syntheticEvent = {
+  //     preventDefault: () => {},
+  //   } as React.FormEvent<HTMLFormElement>;
+
+  //   try {
+  //     handleSubmitForm(syntheticEvent);
+  //   } catch (error) {
+  //     console.error("Error during handleSubmit:", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // }, [prompt, handleSubmitForm, setInput]);
+
+  // useEffect(() => {
+  //   if (isOpen && !hasSubmitted) {
+  //     setIsLoading(true);
+  //     submitPrompt();
+  //     setHasSubmitted(true); // Set flag to prevent multiple submissions
+  //   }
+  // }, [isOpen, hasSubmitted, submitPrompt]);
 
   const handleRequestClose = () => {
     onRequestCloseModal();
@@ -54,24 +83,33 @@ const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={handleRequestClose}>
+    <Modal
+      size="5xl"
+      isOpen={isOpen}
+      classNames={{
+        body: "py-6",
+        backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
+        base: "border-[#292f46] bg-[#19172c] dark:bg-[#19172c] text-[#a8b0d3]",
+        header: "border-b-[1px] border-[#292f46]",
+        footer: "border-t-[1px] border-[#292f46]",
+        closeButton: "hover:bg-white/5 active:bg-white/10",
+      }}
+      onClose={handleRequestClose}
+    >
       <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">{question}</ModalHeader>
+        <ModalHeader className="flex flex-col gap-1">
+          Ai Assistant 🧑‍🚀
+        </ModalHeader>
         <ModalBody>
-          {isLoading ? (
-            <div className="flex justify-center items-center h-32">
-              <h1>Loading...</h1>
-            </div>
-          ) : messages.length > 0 ? (
-            messages.map((m) => <ChatMessage message={m} key={m.id} />)
-          ) : (
-            <h1>No Message</h1>
-          )}
+          <h1 className="font-bold">{content}</h1>
         </ModalBody>
         <ModalFooter>
-          <Button color="danger" variant="light" onPress={handleRequestClose}>
-            Okay
+          <Button color="danger" variant="shadow" onPress={handleRequestClose}>
+            Next
           </Button>
+          {/* <Button color="primary" variant="shadow" onPress={handleRequestClose}>
+            Get Data
+          </Button> */}
         </ModalFooter>
       </ModalContent>
     </Modal>

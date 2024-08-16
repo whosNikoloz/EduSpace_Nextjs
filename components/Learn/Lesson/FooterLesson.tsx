@@ -66,7 +66,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
           <Button
             size="md"
             color="primary"
-            variant="ghost"
+            variant="flat"
             radius="sm"
             className="w-auto "
             onClick={onPrev}
@@ -86,9 +86,6 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
             </PopoverTrigger>
             <PopoverContent>
               <div className="px-1 py-2">
-                <div className="text-small font-bold text-center">
-                  მინიშნება
-                </div>
                 <div className="text-tiny">{Hint}</div>
               </div>
             </PopoverContent>
@@ -158,7 +155,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
         <>
           <Button
             color="primary"
-            variant="ghost"
+            variant="flat"
             radius="sm"
             size="md"
             className="w-auto"
@@ -269,7 +266,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
         <>
           <Button
             color="primary"
-            variant="ghost"
+            variant="flat"
             radius="sm"
             size="md"
             className="w-auto"
