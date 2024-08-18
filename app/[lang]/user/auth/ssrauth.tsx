@@ -112,6 +112,7 @@ export default function SSRAuth({
   };
 
   const handleLogin = async () => {
+    setLoginError("");
     if (loginState.email === "") {
       setLoginEmailError(
         lang == "ka"
@@ -437,7 +438,7 @@ export default function SSRAuth({
               )}
 
               <Link
-                className="text-blue-600 ml-auto py-2 md:ml-52"
+                className="text-blue-500 ml-auto py-2 md:ml-52"
                 href="/user/forgot-password"
               >
                 {lang === "ka" ? "პაროლი დაგავიწყდა ?" : "Forgot password?"}

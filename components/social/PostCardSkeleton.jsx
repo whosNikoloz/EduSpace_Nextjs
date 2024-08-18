@@ -6,7 +6,7 @@ function PostCardSkeleton() {
       <div className="flex items-center justify-center">
         <div
           role="status"
-          className="px-5 py-4 bg-white  dark:bg-gray-800 shadow justif rounded-lg   sm:w-[800px] w-[350px] mb-4 "
+          className="px-5 py-4 bg-white  dark:bg-gray-800 shadow justif rounded-lg   sm:w-[800px] w-[450px] mb-4 "
         >
           <div className="flex items-center mt-4 space-x-3 mb-2.5 animate-pulse">
             <svg

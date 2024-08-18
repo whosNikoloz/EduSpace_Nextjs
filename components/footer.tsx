@@ -151,10 +151,10 @@ export const Footer = ({ lng }: { lng: string }) => {
           <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
             {footerLearn.map((section, index) => (
               <div className="space-y-3" key={index}>
-                <h3 className="uppercase text-blue-600 dark:text-blue-400">
+                <h3 className="uppercase text-blue-600 font-bold dark:text-blue-400">
                   {section.title}
                 </h3>
-                <ul className="space-y-1">
+                <ul className="space-y-1 font-mono">
                   {section.links.map((link, index) => (
                     <li key={index}>
                       <Link href={link.href}>{link.label}</Link>
@@ -165,7 +165,7 @@ export const Footer = ({ lng }: { lng: string }) => {
             ))}
 
             <div className="space-y-3">
-              <div className="uppercase text-blue-600 dark:text-blue-400">
+              <div className="uppercase text-blue-600 font-bold dark:text-blue-400">
                 Social media
               </div>
               <div className="flex justify-start space-x-3">

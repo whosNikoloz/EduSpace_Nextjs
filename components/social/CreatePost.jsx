@@ -179,7 +179,7 @@ export default function CreatePost({ setPosts, lang }) {
         {user ? (
           <>
             <div className="flex items-center justify-center ">
-              <div className="p-4 md:p-6 shadow-md bg-white rounded-lg dark:bg-gray-800 w-[350px] sm:w-[750px] mb-4">
+              <div className="p-4 md:p-6 shadow-md bg-white rounded-lg dark:bg-gray-800 w-[400px] sm:w-[735px] mb-4">
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
                     <Avatar
@@ -308,7 +308,7 @@ export default function CreatePost({ setPosts, lang }) {
           // Render this content if user is null
           <>
             <div className="flex items-center justify-center ">
-              <div className="p-4 md:p-6 shadow-md bg-white rounded-lg dark:bg-gray-800 w-[350px] sm:w-[750px] mb-4">
+              <div className="p-4 md:p-6 shadow-md bg-white rounded-lg dark:bg-gray-800 w-[400px] sm:w-[735px] mb-4">
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
                     <Avatar

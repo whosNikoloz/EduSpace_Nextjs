@@ -184,7 +184,7 @@ function PostCard({ postData, onDelete, lang }) {
       <div className="flex items-center justify-center mb-4">
         <Card
           isBlurred
-          className="border-none bg-background/60 dark:bg-gray-800/100 sm:w-[800px] w-[350px] "
+          className="border-none bg-background/60 dark:bg-gray-800/100 sm:w-[800px] w-[450px] "
           shadow="sm"
         >
           <CardBody>
