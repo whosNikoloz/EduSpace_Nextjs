@@ -69,9 +69,9 @@ export const Answers: React.FC<AnswerProps> = ({
             variant="shadow"
             isLoading={isLoading && selectedAnswer === index}
             onClick={() => handleAnswerClick(index)}
-            className="rounded-md w-full font-bold"
+            className="rounded-md text-white  font-bold min-w-[300px]  lg:min-w-[430px] text-left"
           >
-            <span className="text-xs md:text-[16px]">{answer.option}</span>
+            <span className="text-[14px] md:text-[16px]">{answer.option}</span>
           </Button>
         </div>
       ))}

@@ -130,6 +130,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                       <Button
                         variant="shadow"
                         color="success"
+                        className="text-white"
                         onClick={() => handleAIHelpDecision(true)}
                       >
                         დიახ
@@ -224,6 +225,7 @@ export const FooterLesson: React.FC<FooterLessonProps> = ({
                         <Button
                           variant="shadow"
                           color="success"
+                          className="text-white"
                           onClick={() => handleAIHelpDecision(true)}
                         >
                           დიახ
