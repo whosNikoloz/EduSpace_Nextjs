@@ -45,14 +45,14 @@ const AutoScrollCarousel = ({ lng }: { lng: string }) => {
     const courseAPI = Courses();
     const fetchCourses = async () => {
       try {
-        const response = await courseAPI.GetCourses(lng);
+        const response = await courseAPI.GetCourses();
         setCourses(response); // Assuming the API response is an array of Course objects
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
     };
     fetchCourses();
-  }, [lng]);
+  }, []);
 
   useEffect(() => {
     const perPage = isMobile ? 3 : 6; // Adjust perPage based on the device type.

@@ -1,27 +1,17 @@
-const social_API = "https://localhost:45455/api/v1/Social/";
-const social_API_NIkoloza = "https://172.20.10.7:45456/api/v1/Social/";
-
-const docker_social_API = "https://185.139.57.56:8081/api/v1/Social/";
-
-const social_conveyAPI = "https://widebluerock55.conveyor.cloud/api/v1/Social/";
-
-const mac_social_API = "https://localhost:7163/api/Social/";
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL + "/api/v1/";
 
 const Notifications = () => {
   const GetNotifications = async (userid: number) => {
     try {
       const token = localStorage.getItem("jwt");
-      const response = await fetch(
-        docker_social_API + "Notifications/" + userid,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            // Include the bearer token in the Authorization header
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(serverUrl + "notifications/" + userid, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Include the bearer token in the Authorization header
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (response.ok) {
         const notifications = await response.json();
@@ -41,7 +31,7 @@ const Notifications = () => {
     try {
       const token = localStorage.getItem("jwt");
       const response = await fetch(
-        docker_social_API + "MarkNotificationsAsRead/" + userid,
+        serverUrl + "MarkNotificationsAsRead/" + userid,
         {
           method: "PUT",
           headers: {

@@ -11,26 +11,20 @@ import {
 } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCpTtUB_NqmFfsoccOBozkZ8tMlpzTd0U0",
-  authDomain: "eduspace-a81b5.firebaseapp.com",
-  projectId: "eduspace-a81b5",
-  storageBucket: "eduspace-a81b5.appspot.com",
-  messagingSenderId: "121358878167",
-  appId: "1:121358878167:web:789c88cd50bdc3ada3b792",
-  measurementId: "G-F18D5YQKCK",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
-const auth_API = "https://localhost:45455/api/v1/Auth/";
-const user_API = "https://localhost:45455/api/v1/User/";
-
-const docker_auth_API = "https://185.139.57.56:8081/api/v1/Auth/";
-const docker_user_API = "https://185.139.57.56:8081/api/v1/User/";
-
-const auth_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/v1/Auth/";
-const user_conveyAPI = "https://fungreenlamp23.conveyor.cloud/api/v1/User/";
+const serverUrl_Auth = process.env.NEXT_PUBLIC_SERVER_URL + "/api/v1/Auth/";
+const serverUrl_User = process.env.NEXT_PUBLIC_SERVER_URL + "/api/v1/User/";
 
 const Authentication = () => {
   const cookies = new Cookies();
@@ -38,7 +32,7 @@ const Authentication = () => {
 
   const checkEmailLogin = async (email: string) => {
     try {
-      const response = await fetch(docker_auth_API + "Login/check-email", {
+      const response = await fetch(serverUrl_Auth + "Login/check-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +58,7 @@ const Authentication = () => {
 
   const handleLogin = async (email: any, password: any) => {
     try {
-      const response = await fetch(docker_auth_API + "Email", {
+      const response = await fetch(serverUrl_Auth + "Email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +99,7 @@ const Authentication = () => {
     oAuthproviderId: string
   ) => {
     try {
-      const response = await fetch(docker_auth_API + "OAuthEmail", {
+      const response = await fetch(serverUrl_Auth + "OAuthEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +130,7 @@ const Authentication = () => {
 
   const handleForgotPassword = async (email: string) => {
     try {
-      const apiUrl = `${docker_user_API}ForgotPassword?email=${encodeURIComponent(
+      const apiUrl = `${serverUrl_User}ForgotPassword?email=${encodeURIComponent(
         email
       )}`;
 
@@ -164,7 +158,7 @@ const Authentication = () => {
     ConfirmPassword: string
   ) => {
     try {
-      const response = await fetch(docker_user_API + "ResetPassword", {
+      const response = await fetch(serverUrl_User + "ResetPassword", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -189,7 +183,7 @@ const Authentication = () => {
 
   const checkEmailRegister = async (email: string) => {
     try {
-      const response = await fetch(docker_auth_API + "Register/check-email", {
+      const response = await fetch(serverUrl_Auth + "Register/check-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -201,7 +195,7 @@ const Authentication = () => {
 
       if (response.ok) {
         const data = await response.json();
-        if (data.successful) {
+        if (data.status) {
           return { success: true };
         } else {
           return { success: false, result: data.error };
@@ -215,7 +209,7 @@ const Authentication = () => {
   const checkUserNameRegister = async (username: string) => {
     try {
       const response = await fetch(
-        docker_auth_API + "Register/check-username/" + username,
+        serverUrl_Auth + "Register/check-username/" + username,
         {
           method: "GET",
           headers: {
@@ -227,7 +221,7 @@ const Authentication = () => {
       if (response.ok) {
         const data = await response.json();
 
-        if (data.successful) {
+        if (data.status) {
           return { success: true };
         } else {
           return { success: false, result: data.error };
@@ -245,7 +239,7 @@ const Authentication = () => {
     confirmPassword: string
   ) => {
     try {
-      const response = await fetch(docker_auth_API + "Register", {
+      const response = await fetch(serverUrl_Auth + "Register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -276,7 +270,7 @@ const Authentication = () => {
     oAuthProviderId: string
   ) => {
     try {
-      const response = await fetch(docker_auth_API + "OAuth2Exist", {
+      const response = await fetch(serverUrl_Auth + "OAuth2Exist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -306,7 +300,7 @@ const Authentication = () => {
     oAuthProviderId: string
   ) => {
     try {
-      const response = await fetch(docker_auth_API + "RegisterOAuth2", {
+      const response = await fetch(serverUrl_Auth + "RegisterOAuth2", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -342,7 +336,7 @@ const Authentication = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt");
-      const response = await fetch(docker_user_API + "ChangePassword", {
+      const response = await fetch(serverUrl_User + "ChangePassword", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -377,7 +371,7 @@ const Authentication = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt");
-      const response = await fetch(docker_user_API + "ChangeGeneral", {
+      const response = await fetch(serverUrl_User + "ChangeGeneral", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -406,7 +400,7 @@ const Authentication = () => {
 
   const UpdatedUser = async (userid: number) => {
     try {
-      const apiUrl = `${docker_user_API}${userid}`; // Construct the URL with query parameters
+      const apiUrl = `${serverUrl_User}${userid}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -438,7 +432,7 @@ const Authentication = () => {
   const ReLogin = async (password: string) => {
     try {
       const encodedPassword = encodeURIComponent(password);
-      const apiUrl = `${docker_user_API}ReLogin/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${serverUrl_User}ReLogin/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "GET",
@@ -463,7 +457,7 @@ const Authentication = () => {
   const ChangeEmailRequest = async (email: string) => {
     try {
       const encodedPassword = encodeURIComponent(email);
-      const apiUrl = `${docker_user_API}ChangeEmailRequest/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${serverUrl_User}ChangeEmailRequest/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -490,7 +484,7 @@ const Authentication = () => {
   const ChangeEmail = async (email: string) => {
     try {
       const encodedPassword = encodeURIComponent(email);
-      const apiUrl = `${docker_user_API}ChangeEmail/${encodedPassword}`; // Construct the URL with query parameters
+      const apiUrl = `${serverUrl_User}ChangeEmail/${encodedPassword}`; // Construct the URL with query parameters
       const token = localStorage.getItem("jwt");
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -532,7 +526,7 @@ const Authentication = () => {
         : null;
 
       const token = localStorage.getItem("jwt");
-      const response = await fetch(docker_user_API + "UploadImage", {
+      const response = await fetch(serverUrl_User + "UploadImage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

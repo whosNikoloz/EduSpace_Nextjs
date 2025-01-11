@@ -287,7 +287,7 @@ export default function SSRAuth({
       )) as ApiResponse;
 
       if (!response.success) {
-        setRegEmailError(response.result || "UserName already exists");
+        setRegEmailError(response.result || "Email already exists");
         setRegEmailHasBlurred(false);
       } else {
         setRegemailLoader(false);
@@ -605,6 +605,7 @@ export default function SSRAuth({
                 type="submit"
                 className={`${Style.btn}`}
                 onClick={handleSubmit}
+                isDisabled={confirmPasswordError !== ""}
                 isLoading={isLoading}
               >
                 {regData.button}

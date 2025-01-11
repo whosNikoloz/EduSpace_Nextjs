@@ -1,13 +1,9 @@
-const learn_API = "https://localhost:45455/api/v1/Learn/";
-const learn_API_NIkoloza = "https://172.20.10.7:45455/api/v1/Learn/";
-const docker_API = "https://185.139.57.56:8081/api/v1/Learn/";
-
-const learn_conveyAPI = "https://othergreencat21.conveyor.cloud/api/v1/Learn/";
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL + "/api/v1/";
 
 const Courses = () => {
-  const GetCourses = async (lang: string) => {
+  const GetCourses = async () => {
     try {
-      const response = await fetch(docker_API + `Courses?lang=${lang}`, {
+      const response = await fetch(serverUrl + `courses`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +27,7 @@ const Courses = () => {
   const GetCourse = async (courseName: string, lang: string) => {
     try {
       const response = await fetch(
-        docker_API + "Course/" + `${courseName}?lang=${lang}`,
+        serverUrl + "Course/" + `${courseName}?lang=${lang}`,
         {
           method: "GET",
           headers: {
@@ -62,7 +58,7 @@ const Courses = () => {
   ) => {
     try {
       const response = await fetch(
-        `${docker_API}Courses/CourseName/${notFormattedCourseName}?lang=${lang}`,
+        `${serverUrl}Courses/CourseName/${notFormattedCourseName}?lang=${lang}`,
         {
           method: "GET",
           headers: {

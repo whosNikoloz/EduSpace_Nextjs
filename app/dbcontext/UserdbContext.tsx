@@ -8,6 +8,12 @@ import {
 } from "react";
 import { jwtDecode } from "jwt-decode";
 
+enum UserRole {
+  Admin = "Admin",
+  User = "User",
+  Guest = "Guest",
+}
+
 class User {
   userId: number;
   userName: string;
@@ -16,7 +22,7 @@ class User {
   picture: string;
   email: string;
   phoneNumber: string;
-  role: string;
+  role: UserRole;
   oauth: string;
   joinedAt: string;
 
@@ -39,9 +45,22 @@ class User {
     this.picture = picture;
     this.email = email;
     this.phoneNumber = phoneNumber;
-    this.role = role;
+    this.role = this.mapRole(role);
     this.oauth = oauth;
     this.joinedAt = joinedAt;
+  }
+
+  private mapRole(role: string): UserRole {
+    switch (role.toLowerCase()) {
+      case "admin":
+        return UserRole.Admin;
+      case "user":
+        return UserRole.User;
+      case "guest":
+        return UserRole.Guest;
+      default:
+        throw new Error(`Invalid role: ${role}`);
+    }
   }
 }
 
@@ -65,42 +84,35 @@ interface UserProviderProps {
   children: ReactNode;
 }
 
-const EncodeJwtIntoUser = (userToken: string) => {
+const EncodeJwtIntoUser = (userToken: string): User => {
   const decodedToken: any = jwtDecode(userToken); // Decode the JWT token
-  const userData = {
-    userId: parseInt(
+  const userData = new User(
+    parseInt(
       decodedToken[
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
       ][0],
       10
     ),
-    userName:
-      decodedToken[
-        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
-      ][1],
-    firstName:
-      decodedToken[
-        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
-      ],
-    lastName:
-      decodedToken[
-        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"
-      ],
-    picture: decodedToken["ProfilePicture"],
-    email:
-      decodedToken[
-        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
-      ],
-    phoneNumber:
-      decodedToken[
-        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone"
-      ],
-    role: decodedToken[
+    decodedToken[
+      "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+    ][1],
+    decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"],
+    decodedToken[
+      "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"
+    ],
+    decodedToken["ProfilePicture"],
+    decodedToken[
+      "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+    ],
+    decodedToken[
+      "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone"
+    ],
+    decodedToken[
       "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
     ],
-    oauth: decodedToken["Oauth"],
-    joinedAt: decodedToken["joinedAt"],
-  };
+    decodedToken["Oauth"],
+    decodedToken["joinedAt"]
+  );
   return userData;
 };
 

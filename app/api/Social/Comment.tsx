@@ -8,21 +8,16 @@ import {
   deleteObject as deleteFirebaseObject,
 } from "firebase/storage";
 
-const social_API = "https://localhost:45455/api/v1/Social/";
-const social_API_NIkoloza = "https://172.20.10.7:45456/api/v1/Social/";
-
-const docker_social_API = "https://185.139.57.56:8081/api/v1/Social/";
-
-const social_conveyAPI = "https://widebluerock55.conveyor.cloud/api/v1/Social/";
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL + "/api/v1/";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCpTtUB_NqmFfsoccOBozkZ8tMlpzTd0U0",
-  authDomain: "eduspace-a81b5.firebaseapp.com",
-  projectId: "eduspace-a81b5",
-  storageBucket: "eduspace-a81b5.appspot.com",
-  messagingSenderId: "121358878167",
-  appId: "1:121358878167:web:789c88cd50bdc3ada3b792",
-  measurementId: "G-F18D5YQKCK",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -85,7 +80,7 @@ const Comment = () => {
         ? await uploadFileToFirebaseStorage(picture, "CommentContent")
         : null;
 
-      const response = await fetch(docker_social_API + "Comments/" + postid, {
+      const response = await fetch(serverUrl + postid + "/comment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -145,16 +140,13 @@ const Comment = () => {
 
       const token = localStorage.getItem("jwt");
 
-      const response = await fetch(
-        docker_social_API + "Comments/" + commentIdNumber,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(serverUrl + "comment/" + commentIdNumber, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (response.ok) {
         const fileToPass = contentvideo ? contentvideo : contentpicture;

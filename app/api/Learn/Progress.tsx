@@ -1,10 +1,4 @@
-const progress_API = "https://localhost:45455/api/v1/Progress/";
-const progress_API_NIkoloza = "https://172.20.10.7:45455/api/v1/Progress/";
-
-const docker_progress_API = "https://185.139.57.56:8081/api/v1/Progress/";
-
-const progress_conveyAPI =
-  "https://othergreencat21.conveyor.cloud/api/v1/Progress/";
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL + "/api/v1/";
 
 const Progresess = () => {
   const GetProgress = async (
@@ -13,7 +7,7 @@ const Progresess = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt");
-      const apiUrl = `${docker_progress_API}GetProgress/?UserId=${userid}&CourseId=${courseid}`; // Construct the URL with query parameters
+      const apiUrl = `${serverUrl}progress/?UserId=${userid}&CourseId=${courseid}`; // Construct the URL with query parameters
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
@@ -45,7 +39,7 @@ const Progresess = () => {
   ) => {
     try {
       const token = localStorage.getItem("jwt");
-      const response = await fetch(docker_progress_API + "complete-lesson/", {
+      const response = await fetch(serverUrl + "complete-lesson/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
